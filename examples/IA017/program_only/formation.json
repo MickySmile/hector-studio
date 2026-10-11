@@ -1,0 +1,835 @@
+{
+  "meta": {
+    "id": "IA017-PROGRAM-ONLY",
+    "titre": "Concevoir des agents IA et automatiser ses tâches sans développer",
+    "scenario": "program_only",
+    "duree_minutes": 420,
+    "status": "proposition_a_valider",
+    "version_fixture": "0.1",
+    "duree_statut": "annoncee_au_catalogue",
+    "source_refs": [
+      {
+        "source": "programme_IA017.pdf",
+        "location": "page 1 — titre, référence et durée"
+      }
+    ],
+    "note": "Lecture du seul programme catalogue ; les propositions ne décrivent pas une session ni un public réel confirmés."
+  },
+  "sources": [
+    {
+      "id": "SRC-PROGRAMME",
+      "fichier": "../sources/programme_IA017.pdf",
+      "type": "programme_catalogue_pdf",
+      "usage": "Seule source métier de ce scénario ; objectifs, public annoncé, prérequis, contenu et durées.",
+      "date_mise_a_jour": "2026-10-09",
+      "note": "Nom réel conservé avec sa double extension."
+    }
+  ],
+  "cadrage": {
+    "public": {
+      "connu": [
+        {
+          "texte": "Toute personne souhaitant automatiser des tâches grâce à l’IA sans compétences en développement.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "programme_IA017.pdf",
+              "location": "page 1 — PROFIL DES STAGIAIRES"
+            }
+          ]
+        }
+      ],
+      "suppose": [],
+      "inconnu": [
+        "Métiers représentés, effectif et attentes des participants réels."
+      ]
+    },
+    "niveau": {
+      "connu": [
+        {
+          "texte": "Usage courant d’un ordinateur et bases bureautiques ; aucune compétence technique ou de programmation requise.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "programme_IA017.pdf",
+              "location": "page 1 — CONNAISSANCES PRÉALABLE"
+            }
+          ]
+        }
+      ],
+      "suppose": [
+        {
+          "texte": "Des écarts de familiarité avec l’IA sont possibles.",
+          "nature": "hypothese",
+          "hypothese_refs": [
+            "PO-H01"
+          ]
+        }
+      ],
+      "inconnu": [
+        "Expérience réelle du prompting, des agents et de l’automatisation."
+      ]
+    },
+    "contexte": {
+      "connu": [
+        {
+          "texte": "Formation catalogue non certifiante d’une journée de sept heures.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "programme_IA017.pdf",
+              "location": "page 1 — durée et CERTIFICATION PRÉPARÉE"
+            }
+          ]
+        }
+      ],
+      "suppose": [
+        {
+          "texte": "Un cas métier simple peut servir de support à une première réalisation guidée.",
+          "nature": "hypothese",
+          "hypothese_refs": [
+            "PO-H02"
+          ]
+        }
+      ],
+      "inconnu": [
+        "Entreprise, processus prioritaires, outils autorisés et modalités de session."
+      ]
+    },
+    "finalite": {
+      "connu": [
+        {
+          "texte": "Comprendre les agents, distinguer assistant et agent autonome, identifier des tâches, concevoir un agent simple, créer une première automatisation et connaître les principales plateformes.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "programme_IA017.pdf",
+              "location": "page 1 — OBJECTIFS"
+            }
+          ]
+        }
+      ],
+      "propose": {
+        "texte": "Passer d’un besoin borné à un prototype et une automatisation simple sous contrôle humain, sans promettre un déploiement autonome en production.",
+        "nature": "proposition",
+        "hypothese_refs": [
+          "PO-H02",
+          "PO-H03",
+          "PO-H04"
+        ]
+      }
+    },
+    "contraintes": [
+      {
+        "texte": "Un poste de travail est annoncé par stagiaire ; les comptes et licences ne sont pas précisés.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 1 — MÉTHODES PÉDAGOGIQUES"
+          }
+        ]
+      },
+      {
+        "texte": "Le programme prévoit positionnement, mise en situation finale et attestation de compétences appuyée sur une grille.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 1 — MÉTHODES D’ÉVALUATION DES ACQUIS"
+          }
+        ]
+      },
+      {
+        "texte": "75 + 90 + 120 + 90 + 45 + 15 = 435 minutes, soit 15 minutes de plus que les 420 annoncées.",
+        "nature": "constat_calcule",
+        "source_refs": [
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 1 — durée"
+          },
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 2 — durées des rubriques 1 à 6"
+          }
+        ]
+      },
+      {
+        "texte": "L’inclusion des pauses et du positionnement dans les durées n’est pas précisée.",
+        "nature": "inconnu",
+        "source_refs": [
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 1 — durée et évaluation"
+          },
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 2 — CONTENU DU COURS"
+          }
+        ]
+      }
+    ],
+    "priorites_pedagogiques": [
+      {
+        "texte": "Concentrer la réalisation sur un besoin simple, un outil d’agent et une plateforme d’automatisation.",
+        "nature": "proposition",
+        "hypothese_refs": [
+          "PO-H02",
+          "PO-H03",
+          "PO-H04"
+        ]
+      },
+      {
+        "texte": "Intégrer vérification des réponses, confidentialité et validation humaine aux compétences opérationnelles.",
+        "nature": "proposition",
+        "hypothese_refs": []
+      },
+      {
+        "texte": "Limiter le panorama des outils pour préserver une pratique guidée accessible.",
+        "nature": "proposition",
+        "hypothese_refs": [
+          "PO-H04"
+        ]
+      }
+    ]
+  },
+  "hypotheses": [
+    {
+      "id": "PO-H01",
+      "texte": "Le groupe peut être hétérogène sur l’IA malgré des prérequis bureautiques communs.",
+      "confiance": "moyenne",
+      "impact_pedagogique": "Prévoir une entrée accessible et des approfondissements optionnels sans supposer un niveau réel.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — CONNAISSANCES PRÉALABLE et PROFIL DES STAGIAIRES"
+        }
+      ]
+    },
+    {
+      "id": "PO-H02",
+      "texte": "Un cas métier simple et des données utilisables pourront être choisis avec le formateur.",
+      "confiance": "faible",
+      "impact_pedagogique": "Conditionne la pertinence du prototype ; prévoir un cas fictif explicite si aucun cas réel n’est disponible.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 2, conception sur papier d’un besoin réel"
+        }
+      ]
+    },
+    {
+      "id": "PO-H03",
+      "texte": "Les participants disposeront des accès nécessaires à un outil d’agent et une plateforme no-code autorisés.",
+      "confiance": "faible",
+      "impact_pedagogique": "Sans accès, la réalisation exécutable devra être réarbitrée ; un poste fourni ne garantit pas les licences.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — MÉTHODES PÉDAGOGIQUES"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 3 et 4"
+        }
+      ]
+    },
+    {
+      "id": "PO-H04",
+      "texte": "Le formateur peut compresser les comparaisons de plateformes et limiter l’ambition à une première réalisation guidée.",
+      "confiance": "faible",
+      "impact_pedagogique": "Permet de viser quatre compétences bornées en une journée ; la rigidité catalogue reste inconnue.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 1, 3 et 4"
+        }
+      ]
+    },
+    {
+      "id": "PO-H05",
+      "texte": "Les 420 minutes peuvent être retenues provisoirement comme temps pédagogique hors pauses.",
+      "confiance": "faible",
+      "impact_pedagogique": "Base provisoire du ratio de pratique ; temps disponible et écart de 15 minutes à clarifier.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — durée"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — durées des rubriques 1 à 6"
+        }
+      ]
+    },
+    {
+      "id": "PO-H06",
+      "texte": "Une preuve légère par compétence peut être conciliée avec l’attestation et la grille annoncées au catalogue.",
+      "confiance": "faible",
+      "impact_pedagogique": "Faire préciser les obligations d’évaluation avant de remplacer une évaluation individuelle par une validation collective.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — MÉTHODES D’ÉVALUATION DES ACQUIS"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "PO-PER-N",
+      "niveau": "novice",
+      "nature": "simulation",
+      "represente_participants_reels": false,
+      "attentes": [
+        "Comprendre ce qu’un agent peut faire dans son travail.",
+        "Réussir une première manipulation sans coder."
+      ],
+      "acquis_probables": [
+        "Utilisation courante d’un ordinateur et d’outils bureautiques."
+      ],
+      "difficultes_probables": [
+        "Distinguer réponse conversationnelle et action automatisée.",
+        "Configurer des entrées et interpréter une erreur."
+      ],
+      "risque_ennui": "Faible si les explications sont reliées à une tâche concrète.",
+      "risque_decrochage": "Élevé si plusieurs interfaces ou termes nouveaux sont introduits simultanément.",
+      "adaptations_possibles": [
+        "Limiter les outils manipulés.",
+        "Fournir des repères et une configuration de départ."
+      ],
+      "hypothese_refs": [
+        "PO-H01"
+      ],
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — CONNAISSANCES PRÉALABLE"
+        }
+      ]
+    },
+    {
+      "id": "PO-PER-I",
+      "niveau": "intermediaire",
+      "nature": "simulation",
+      "represente_participants_reels": false,
+      "attentes": [
+        "Transformer des usages ponctuels de l’IA en procédure répétable."
+      ],
+      "acquis_probables": [
+        "Quelques essais d’assistants conversationnels, hypothèse de simulation."
+      ],
+      "difficultes_probables": [
+        "Formuler des contrôles et des critères de réussite.",
+        "Passer d’un prompt à un enchaînement d’actions."
+      ],
+      "risque_ennui": "Moyen si l’introduction répète uniquement les bases du prompting.",
+      "risque_decrochage": "Moyen si les accès ou les connexions monopolisent le temps.",
+      "adaptations_possibles": [
+        "Faire expliciter les choix et les limites.",
+        "Proposer une variante plus exigeante du même besoin borné."
+      ],
+      "hypothese_refs": [
+        "PO-H01"
+      ],
+      "source_refs": []
+    },
+    {
+      "id": "PO-PER-A",
+      "niveau": "avance",
+      "nature": "simulation",
+      "represente_participants_reels": false,
+      "attentes": [
+        "Éprouver la fiabilité et les limites d’une automatisation."
+      ],
+      "acquis_probables": [
+        "Expérience possible d’assistants configurés ou d’un outil no-code, non attestée pour le groupe."
+      ],
+      "difficultes_probables": [
+        "Limiter l’ambition à une journée.",
+        "Rendre ses contrôles compréhensibles par un collègue novice."
+      ],
+      "risque_ennui": "Élevé pendant les définitions et manipulations élémentaires.",
+      "risque_decrochage": "Moyen si l’objectif paraît trop générique ou les approfondissements impossibles.",
+      "adaptations_possibles": [
+        "Faire analyser un cas limite et les points de supervision.",
+        "Prévoir un approfondissement optionnel sans élargir le socle commun."
+      ],
+      "hypothese_refs": [
+        "PO-H01"
+      ],
+      "source_refs": []
+    }
+  ],
+  "gap": [
+    {
+      "id": "PO-G01",
+      "element_programme": "1. Comprendre les agents IA — définition, autonomie et briques",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Un socle de distinction assistant/agent est nécessaire à un public dont l’expérience IA est inconnue.",
+        "nature": "hypothese",
+        "hypothese_refs": [
+          "PO-H01"
+        ]
+      },
+      "decision": "conserver",
+      "priorite": "haute",
+      "justification": "Relier les notions à des décisions observables sur le rôle et le contrôle humain.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — OBJECTIFS"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 1"
+        }
+      ]
+    },
+    {
+      "id": "PO-G02",
+      "element_programme": "1 et 3. Panorama et comparaison ChatGPT, Claude, Gemini, Copilot",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Le panorama exhaustif risque de réduire le temps de première réalisation.",
+        "nature": "hypothese",
+        "hypothese_refs": [
+          "PO-H04"
+        ]
+      },
+      "decision": "compresser",
+      "priorite": "moyenne",
+      "justification": "Proposer une comparaison courte et une seule plateforme de réalisation, à choisir après vérification des accès.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 1 et 3"
+        }
+      ]
+    },
+    {
+      "id": "PO-G03",
+      "element_programme": "2. Concevoir un agent IA métier",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Un besoin concret et borné facilitera la définition des entrées, sorties et contrôles.",
+        "nature": "hypothese",
+        "hypothese_refs": [
+          "PO-H02"
+        ]
+      },
+      "decision": "conserver",
+      "priorite": "haute",
+      "justification": "La formalisation du besoin précède le choix d’outil.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 2"
+        }
+      ]
+    },
+    {
+      "id": "PO-G04",
+      "element_programme": "3. Créer un premier agent sans coder",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Une réalisation simple guidée semble plus réaliste qu’une maîtrise de plusieurs outils.",
+        "nature": "hypothese",
+        "hypothese_refs": [
+          "PO-H03",
+          "PO-H04"
+        ]
+      },
+      "decision": "conserver",
+      "priorite": "haute",
+      "justification": "Viser un prototype testable, sans promettre une autonomie technique de production.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 3"
+        }
+      ]
+    },
+    {
+      "id": "PO-G05",
+      "element_programme": "4. Automatiser ses processus avec l’IA",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Une première chaîne no-code bornée peut matérialiser le passage d’une réponse IA à une action.",
+        "nature": "hypothese",
+        "hypothese_refs": [
+          "PO-H03",
+          "PO-H04"
+        ]
+      },
+      "decision": "conserver",
+      "priorite": "haute",
+      "justification": "Proposer une seule chaîne simple avec contrôle humain avant toute action externe.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 4"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 5, validation humaine"
+        }
+      ]
+    },
+    {
+      "id": "PO-G06",
+      "element_programme": "4. Introduction à Make, n8n et Zapier",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Le choix de plateforme reste inconnu et l’apprentissage de trois interfaces serait coûteux.",
+        "nature": "hypothese",
+        "hypothese_refs": [
+          "PO-H03",
+          "PO-H04"
+        ]
+      },
+      "decision": "deplacer_en_ressource",
+      "priorite": "moyenne",
+      "justification": "Conserver la manipulation d’une seule plateforme dans le socle et proposer le comparatif détaillé en ressource.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 4"
+        }
+      ]
+    },
+    {
+      "id": "PO-G07",
+      "element_programme": "5. Déployer des agents IA en toute sécurité",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Les objectifs de prototype exigent déjà de traiter les données, erreurs et validations.",
+        "nature": "proposition",
+        "hypothese_refs": []
+      },
+      "decision": "conserver",
+      "priorite": "haute",
+      "justification": "Intégrer les contrôles essentiels au prototype ; la rubrique de 45 minutes ne suffit pas à garantir un déploiement sécurisé ou une conformité juridique.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 5"
+        }
+      ]
+    },
+    {
+      "id": "PO-G08",
+      "element_programme": "6. Synthèse et plan d’action",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Un prochain pas borné peut soutenir le transfert après la journée.",
+        "nature": "hypothese",
+        "hypothese_refs": [
+          "PO-H02"
+        ]
+      },
+      "decision": "conserver",
+      "priorite": "moyenne",
+      "justification": "Préserver une conclusion courte et un point à vérifier avant réutilisation.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 6"
+        }
+      ]
+    },
+    {
+      "id": "PO-G09",
+      "element_programme": "Méthodes d’évaluation — mise en situation et grille",
+      "besoin_reel_ou_hypothese": {
+        "texte": "La légèreté des preuves doit rester compatible avec l’engagement catalogue.",
+        "nature": "hypothese",
+        "hypothese_refs": [
+          "PO-H06"
+        ]
+      },
+      "decision": "conserver",
+      "priorite": "haute",
+      "justification": "Faire arbitrer les modalités et le temps d’évaluation ; ne pas supprimer un engagement annoncé.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — MÉTHODES D’ÉVALUATION DES ACQUIS"
+        }
+      ]
+    }
+  ],
+  "competences": [
+    {
+      "id": "PO-C01",
+      "titre": "Qualifier une tâche et le rôle utile de l’IA",
+      "situation_professionnelle": "Face à une tâche répétitive de son métier.",
+      "action_attendue": "Délimiter le besoin, distinguer assistance conversationnelle et agent réalisant des actions, puis expliciter ce qui reste sous contrôle humain.",
+      "niveau_cible": "Pratiquer",
+      "importance": "principale",
+      "preuve_legere": "Description courte d’un cas d’usage avec choix argumenté du rôle de l’IA.",
+      "criteres_reussite": [
+        "Résultat attendu explicite.",
+        "Distinction entre réponse et action justifiée.",
+        "Limite d’autonomie ou validation humaine identifiée."
+      ],
+      "dependances": [],
+      "status": "proposition",
+      "hypothese_refs": [
+        "PO-H02"
+      ],
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — OBJECTIFS"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 1"
+        }
+      ]
+    },
+    {
+      "id": "PO-C02",
+      "titre": "Décrire un agent répondant à un besoin borné",
+      "situation_professionnelle": "Avant de configurer un agent pour la tâche retenue.",
+      "action_attendue": "Décrire rôle, entrées, sorties, instructions, ressources utiles et contrôles.",
+      "niveau_cible": "Pratiquer",
+      "importance": "principale",
+      "preuve_legere": "Description structurée de l’agent et de ses limites.",
+      "criteres_reussite": [
+        "Entrées et sorties cohérentes avec le besoin.",
+        "Instructions et ressources pertinentes.",
+        "Critère de réussite et limite identifiables."
+      ],
+      "dependances": [
+        "PO-C01"
+      ],
+      "status": "proposition",
+      "hypothese_refs": [
+        "PO-H02"
+      ],
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 2"
+        }
+      ]
+    },
+    {
+      "id": "PO-C03",
+      "titre": "Configurer et vérifier un premier prototype sans coder",
+      "situation_professionnelle": "Avec un outil autorisé et des données de test adaptées.",
+      "action_attendue": "Configurer un agent simple et comparer ses réponses attendues et obtenues, avec accompagnement si nécessaire.",
+      "niveau_cible": "Pratiquer",
+      "importance": "principale",
+      "preuve_legere": "Prototype accompagné d’un résultat vérifié et d’une limite constatée.",
+      "criteres_reussite": [
+        "Configuration fidèle au besoin.",
+        "Résultat confronté à un critère explicite.",
+        "Erreur ou limite signalée sans la masquer.",
+        "Données utilisées compatibles avec les règles fixées pour le test."
+      ],
+      "dependances": [
+        "PO-C02"
+      ],
+      "status": "proposition",
+      "hypothese_refs": [
+        "PO-H03",
+        "PO-H04"
+      ],
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 3 et 5"
+        }
+      ]
+    },
+    {
+      "id": "PO-C04",
+      "titre": "Relier l’IA à une automatisation simple supervisée",
+      "situation_professionnelle": "Pour enchaîner une entrée, un traitement IA et une action dans un environnement de test.",
+      "action_attendue": "Configurer avec guidage une chaîne no-code simple et identifier le contrôle avant action ainsi qu’un point de reprise en cas d’erreur.",
+      "niveau_cible": "Pratiquer",
+      "importance": "principale",
+      "preuve_legere": "Chaîne simple testée, avec point de validation et limite de déploiement explicités.",
+      "criteres_reussite": [
+        "Déclencheur, traitement et action identifiés.",
+        "Exécution de test cohérente avec le besoin.",
+        "Validation humaine prévue avant une action à conséquence.",
+        "Prochain contrôle avant usage réel identifié."
+      ],
+      "dependances": [
+        "PO-C03"
+      ],
+      "status": "proposition",
+      "hypothese_refs": [
+        "PO-H03",
+        "PO-H04"
+      ],
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 4, 5 et 6"
+        }
+      ]
+    }
+  ],
+  "pratique": {
+    "cible_pourcentage": 55,
+    "justification": "Proposition pour préserver du guidage avec un niveau IA inconnu tout en visant une première réalisation ; ce taux n’est pas mesuré ni annoncé par la source.",
+    "minimum_souhaite": 40,
+    "maximum_souhaite": 70,
+    "status": "proposition_a_valider",
+    "denominateur": "Temps pédagogique hors pauses, sous réserve de PO-H05.",
+    "convention": "Compter production, décision, analyse, manipulation, conception et explication par les participants ; ne pas compter automatiquement une démonstration ou une correction.",
+    "hypothese_refs": [
+      "PO-H01",
+      "PO-H03",
+      "PO-H04",
+      "PO-H05"
+    ]
+  },
+  "alertes": [
+    {
+      "id": "PO-AL01",
+      "type": "duree_irrealiste",
+      "message": "Durée officielle : 420 minutes ; total des durées détaillées : 435 minutes ; écart : +15 minutes.",
+      "action": "Décision nécessaire avec le formateur avant conception détaillée : confirmer la durée à retenir et le traitement de cet écart, sans présumer quelle durée est correcte.",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — durée"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — durées des rubriques 1 à 6"
+        }
+      ]
+    },
+    {
+      "id": "PO-AL02",
+      "type": "surcharge",
+      "message": "Deux réalisations, plusieurs plateformes, sécurité et évaluation coexistent en une journée ; risque de survol.",
+      "action": "Valider un seul couple d’outils et une ambition de prototype guidé.",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — évaluation"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 1 à 6"
+        }
+      ]
+    },
+    {
+      "id": "PO-AL03",
+      "type": "prerequis_incertain",
+      "message": "Le niveau IA réel, l’effectif et les accès ne sont pas connus.",
+      "action": "Obtenir le positionnement et confirmer comptes, licences et outils autorisés.",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — prérequis, méthodes et évaluation"
+        }
+      ]
+    },
+    {
+      "id": "PO-AL04",
+      "type": "contenu_potentiellement_obsolete",
+      "message": "Les fonctionnalités des plateformes devront être vérifiées avant la session, même si le catalogue est daté du 09/10/2026.",
+      "action": "Vérifier les fonctionnalités nécessaires au moment du choix d’outils ; aucune recherche Web réalisée ici.",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — dernière mise à jour"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 3 et 4"
+        }
+      ]
+    },
+    {
+      "id": "PO-AL05",
+      "type": "evaluation_a_clarifier",
+      "message": "Le catalogue annonce une attestation et une grille ; leur charge n’est pas chiffrée.",
+      "action": "Confirmer les obligations avant de retenir une validation collective légère.",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — MÉTHODES D’ÉVALUATION DES ACQUIS"
+        }
+      ]
+    }
+  ],
+  "decisions_a_valider": [
+    {
+      "id": "PO-D01",
+      "porte": "P1",
+      "question": "Quels public réel, niveau IA, effectif et besoin métier retenir ?",
+      "recommandation": "Confirmer le positionnement et un cas simple avant de contextualiser la formation.",
+      "hypothese_refs": [
+        "PO-H01",
+        "PO-H02"
+      ]
+    },
+    {
+      "id": "PO-D02",
+      "porte": "P1",
+      "question": "Les 7 heures sont-elles nettes et le catalogue peut-il être compressé ?",
+      "recommandation": "Résoudre l’écart 420/435 min et déplacer les comparatifs détaillés en ressource.",
+      "hypothese_refs": [
+        "PO-H04",
+        "PO-H05"
+      ]
+    },
+    {
+      "id": "PO-D03",
+      "porte": "P1",
+      "question": "Quels outil d’agent, plateforme no-code et accès sont disponibles ?",
+      "recommandation": "Retenir un seul couple autorisé avec accès vérifiés.",
+      "hypothese_refs": [
+        "PO-H03"
+      ]
+    },
+    {
+      "id": "PO-D04",
+      "porte": "P2",
+      "question": "Valider quatre compétences centrées sur une première réalisation guidée ?",
+      "recommandation": "Limiter l’objectif à un prototype et une chaîne simple supervisée.",
+      "hypothese_refs": [
+        "PO-H02",
+        "PO-H04"
+      ]
+    },
+    {
+      "id": "PO-D05",
+      "porte": "P2",
+      "question": "Valider 55 % de pratique sur le temps pédagogique hors pauses ?",
+      "recommandation": "Confirmer cette cible après clarification de la durée et du niveau.",
+      "hypothese_refs": [
+        "PO-H01",
+        "PO-H05"
+      ]
+    },
+    {
+      "id": "PO-D06",
+      "porte": "P1",
+      "question": "Quelles preuves et modalités sont nécessaires pour l’attestation annoncée ?",
+      "recommandation": "Concilier preuves légères et engagement catalogue sans supprimer l’évaluation promise.",
+      "hypothese_refs": [
+        "PO-H06"
+      ]
+    }
+  ]
+}

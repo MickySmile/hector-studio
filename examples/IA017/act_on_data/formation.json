@@ -1,0 +1,1230 @@
+{
+  "meta": {
+    "id": "IA017-ACT-ON-DATA",
+    "titre": "Concevoir des agents IA et automatiser ses tâches sans développer — lecture du besoin Act-On Data",
+    "scenario": "act_on_data",
+    "duree_minutes": 420,
+    "status": "proposition_a_valider",
+    "version_fixture": "0.1",
+    "duree_statut": "hypothese_reprise_du_catalogue_a_confirmer_client",
+    "source_refs": [
+      {
+        "source": "programme_IA017.pdf",
+        "location": "page 1 — titre, référence et durée"
+      }
+    ],
+    "note": "Les constats client sont rapportés depuis le document fourni, sans vérification externe. La durée client n’y est pas précisée ; propositions et personas restent à valider."
+  },
+  "sources": [
+    {
+      "id": "SRC-PROGRAMME",
+      "fichier": "../sources/programme_IA017.pdf",
+      "type": "programme_catalogue_pdf",
+      "usage": "Cadre initial, objectifs, rubriques, durées et engagements d’évaluation à confronter au besoin client.",
+      "date_mise_a_jour": "2026-10-09",
+      "note": "Nom réel conservé avec sa double extension."
+    },
+    {
+      "id": "SRC-CLIENT",
+      "fichier": "../sources/besoin_client_act_on_data.md",
+      "type": "analyse_besoin_client_markdown",
+      "usage": "Public, contexte, objectifs et modalités souhaitées pour Act-On Data.",
+      "date_mise_a_jour": null,
+      "note": "Document non daté ; nom réel conservé avec sa double extension. Les mentions réglementaires ne sont pas vérifiées."
+    }
+  ],
+  "cadrage": {
+    "public": {
+      "connu": [
+        {
+          "texte": "Sept managers et managers seniors, dont le directeur Data & IA.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "besoin_client_act_on_data.md",
+              "location": "section 1 — Contexte Client et Audience — Le Public Cible"
+            }
+          ]
+        },
+        {
+          "texte": "Public décrit comme non développeur ; rester conceptuel et stratégique tout en étant pratique.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "besoin_client_act_on_data.md",
+              "location": "section 1 — Contexte Client et Audience — Le Public Cible"
+            }
+          ]
+        }
+      ],
+      "suppose": [],
+      "inconnu": [
+        "Positionnement individuel des sept participants."
+      ]
+    },
+    "niveau": {
+      "connu": [
+        {
+          "texte": "Acculturation à la donnée, usages individuels des LLM, notions de prompt engineering et cas d’usage déjà identifiés ; certains connaissent des outils no-code comme n8n.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "besoin_client_act_on_data.md",
+              "location": "section 1 — Contexte Client et Audience — Le Public Cible"
+            }
+          ]
+        }
+      ],
+      "suppose": [
+        {
+          "texte": "La connaissance des LLM ne garantit pas une maîtrise commune des architectures agentiques.",
+          "nature": "hypothese",
+          "hypothese_refs": [
+            "AOD-H02"
+          ]
+        }
+      ],
+      "inconnu": [
+        "Capacité de chacun à concevoir un workflow et à analyser ses limites."
+      ]
+    },
+    "contexte": {
+      "connu": [
+        {
+          "texte": "Act-On Data intervient dans le conseil et les services Data RH ; le document décrit une entreprise technologiquement mature.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "besoin_client_act_on_data.md",
+              "location": "section 1 — Contexte Client et Audience — L’Entreprise : Act-On Data"
+            }
+          ]
+        },
+        {
+          "texte": "Environnement Microsoft 365 ; volonté d’utiliser Copilot avec licences en attente et intérêt pour Claude dans Excel et PowerPoint.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "besoin_client_act_on_data.md",
+              "location": "section 1 — Contexte Client et Audience — Le Contexte Opérationnel et Technologique"
+            }
+          ]
+        },
+        {
+          "texte": "Le document signale une situation de Shadow AI, la manipulation de données personnelles RH sensibles et l’absence de charte IA.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "besoin_client_act_on_data.md",
+              "location": "section 1 — Contexte Client et Audience — Le Contexte Opérationnel et Technologique"
+            }
+          ]
+        },
+        {
+          "texte": "Le document présente l’entreprise comme certifiée ISO 27001 ; cette information est rapportée sans vérification externe.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "besoin_client_act_on_data.md",
+              "location": "section 1 — Contexte Client et Audience — L’Entreprise : Act-On Data"
+            }
+          ]
+        }
+      ],
+      "suppose": [],
+      "inconnu": [
+        "Date de l’analyse et évolution depuis sa rédaction des licences, usages et règles internes."
+      ]
+    },
+    "finalite": {
+      "connu": [
+        {
+          "texte": "Définir un vocabulaire commun, cartographier un agent ou workflow, évaluer les risques et distinguer production et capacité de production.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "besoin_client_act_on_data.md",
+              "location": "section 2 — Besoins de Formation et Objectifs — Objectifs Pédagogiques Globaux"
+            }
+          ]
+        },
+        {
+          "texte": "Relier les usages à la production interne, notamment appels d’offres et budgets, et à l’évolution des offres vendues aux clients.",
+          "nature": "fait_source",
+          "source_refs": [
+            {
+              "source": "besoin_client_act_on_data.md",
+              "location": "section 2 — Besoins de Formation et Objectifs — Problématiques à résoudre"
+            }
+          ]
+        }
+      ],
+      "propose": {
+        "texte": "Permettre aux managers de concevoir et discuter un workflow borné, ses contrôles et sa valeur métier ; la construction technique individuelle reste un arbitrage avec le catalogue.",
+        "nature": "proposition",
+        "hypothese_refs": [
+          "AOD-H03"
+        ]
+      }
+    },
+    "contraintes": [
+      {
+        "texte": "Le client demande une progression lente et évolutive, des concepts de base vers des architectures complexes.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 3 — Progression Pédagogique — introduction"
+          }
+        ]
+      },
+      {
+        "texte": "Le cas fil rouge attendu porte sur un workflow RH fictif, avec données fictives ; une contribution des Data Scientists est envisagée, non confirmée.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 4 — Modalités Pratiques et Livrables de la Formation — Un TP « Fil Rouge »"
+          }
+        ]
+      },
+      {
+        "texte": "Miro et des kits sur Drive sont souhaités ; les démonstrations Claude Code et n8n ne doivent pas exiger de reproduction technique par les managers.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+          }
+        ]
+      },
+      {
+        "texte": "La durée de 420 minutes est reprise du catalogue comme hypothèse ; le besoin client ne donne pas de durée.",
+        "nature": "hypothese",
+        "hypothese_refs": [
+          "AOD-H01"
+        ],
+        "source_refs": [
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 1 — durée"
+          },
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+          }
+        ]
+      },
+      {
+        "texte": "Les durées catalogue totalisent 435 minutes, soit 15 minutes au-delà des 420 annoncées.",
+        "nature": "constat_calcule",
+        "source_refs": [
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 1 — durée"
+          },
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 2 — durées des rubriques 1 à 6"
+          }
+        ]
+      },
+      {
+        "texte": "Le catalogue promet une réalisation d’agent et d’automatisation ainsi qu’une attestation avec grille ; leur adaptation au besoin client reste à faire valider.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 1 — MÉTHODES D’ÉVALUATION DES ACQUIS"
+          },
+          {
+            "source": "programme_IA017.pdf",
+            "location": "page 2 — rubriques 3 et 4"
+          }
+        ]
+      }
+    ],
+    "priorites_pedagogiques": [
+      {
+        "texte": "Consolider le vocabulaire utile et privilégier la cartographie des rôles, flux, accès et validations.",
+        "nature": "proposition",
+        "hypothese_refs": []
+      },
+      {
+        "texte": "Traiter les risques liés aux données RH et à la Shadow AI comme un critère de conception.",
+        "nature": "proposition",
+        "hypothese_refs": []
+      },
+      {
+        "texte": "Relier le choix de workflow à la capacité de production et à la valeur de l’offre de services.",
+        "nature": "proposition",
+        "hypothese_refs": []
+      },
+      {
+        "texte": "Préserver une progression graduelle ; limiter les architectures complexes et démonstrations à ce qui sert le besoin.",
+        "nature": "proposition",
+        "hypothese_refs": [
+          "AOD-H01",
+          "AOD-H03"
+        ]
+      }
+    ]
+  },
+  "hypotheses": [
+    {
+      "id": "AOD-H01",
+      "texte": "Le client souhaite conserver une journée de 420 minutes pédagogiques hors pauses.",
+      "confiance": "faible",
+      "impact_pedagogique": "La source client ne donne pas de durée ; la cible de pratique et le périmètre restent conditionnels.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — durée"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        }
+      ]
+    },
+    {
+      "id": "AOD-H02",
+      "texte": "Les managers peuvent avoir des niveaux différents en conception agentique malgré leurs usages des LLM.",
+      "confiance": "moyenne",
+      "impact_pedagogique": "Conserver un socle conceptuel progressif et proposer des variantes de complexité sans code.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 1 — Contexte Client et Audience — Le Public Cible"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — introduction"
+        }
+      ]
+    },
+    {
+      "id": "AOD-H03",
+      "texte": "Le client et le formateur peuvent remplacer une partie des réalisations techniques individuelles du catalogue par une conception logique et des démonstrations.",
+      "confiance": "moyenne",
+      "impact_pedagogique": "Conditionne le choix des quatre compétences et nécessite un accord sur les engagements catalogue et les preuves.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — MÉTHODES D’ÉVALUATION DES ACQUIS"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 3 et 4"
+        }
+      ]
+    },
+    {
+      "id": "AOD-H04",
+      "texte": "Un cas RH fictif et son jeu de données seront disponibles avant la session ; leur producteur reste à désigner.",
+      "confiance": "faible",
+      "impact_pedagogique": "Conditionne une conception contextualisée sans recours à des données RH réelles ; la contribution des Data Scientists n’est pas acquise.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation — Un TP « Fil Rouge »"
+        }
+      ]
+    },
+    {
+      "id": "AOD-H05",
+      "texte": "Miro et les environnements de démonstration pourront être préparés et autorisés, sans dépendre de licences Copilot encore en attente.",
+      "confiance": "faible",
+      "impact_pedagogique": "Vérifier les accès et prévoir une démonstration enregistrée ou une représentation statique si nécessaire.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 1 — Contexte Client et Audience — Le Contexte Opérationnel et Technologique"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        }
+      ]
+    },
+    {
+      "id": "AOD-H06",
+      "texte": "Une preuve légère de conception et de décision peut satisfaire les attentes du client et être conciliée avec la grille et l’attestation catalogue.",
+      "confiance": "faible",
+      "impact_pedagogique": "Faire valider les modalités d’évaluation ; ne pas attester une réalisation technique non effectuée.",
+      "a_valider": true,
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs — Objectifs Pédagogiques Globaux"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — MÉTHODES D’ÉVALUATION DES ACQUIS"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "AOD-PER-N",
+      "niveau": "novice",
+      "nature": "simulation",
+      "represente_participants_reels": false,
+      "attentes": [
+        "Passer de ses usages LLM individuels à une compréhension d’un agent.",
+        "Identifier les points de contrôle dans un processus RH."
+      ],
+      "acquis_probables": [
+        "Culture de la donnée et expérience du chat avec un LLM ; novice ici en architecture agentique, pas nécessairement en IA."
+      ],
+      "difficultes_probables": [
+        "Distinguer outil, connecteur et agent.",
+        "Suivre plusieurs niveaux d’orchestration."
+      ],
+      "risque_ennui": "Moyen si le rappel LLM/prompting est trop long.",
+      "risque_decrochage": "Élevé si MCP, multi-agents et code sont introduits sans progression.",
+      "adaptations_possibles": [
+        "Employer une même représentation visuelle progressive.",
+        "Relier chaque concept à un rôle ou flux du cas fictif."
+      ],
+      "hypothese_refs": [
+        "AOD-H02"
+      ],
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 1 — Contexte Client et Audience — Le Public Cible"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — introduction"
+        }
+      ]
+    },
+    {
+      "id": "AOD-PER-I",
+      "niveau": "intermediaire",
+      "nature": "simulation",
+      "represente_participants_reels": false,
+      "attentes": [
+        "Structurer un cas d’usage déjà identifié.",
+        "Comprendre les conditions d’intégration dans l’environnement de travail."
+      ],
+      "acquis_probables": [
+        "Usages LLM et prompting ; notions possibles de no-code, sans les attribuer à tous."
+      ],
+      "difficultes_probables": [
+        "Formaliser les responsabilités et les flux de données.",
+        "Séparer une démonstration convaincante d’un usage autorisé."
+      ],
+      "risque_ennui": "Moyen si les cas restent génériques.",
+      "risque_decrochage": "Moyen si la séance bascule dans la configuration technique.",
+      "adaptations_possibles": [
+        "Faire justifier les choix de connexions et validations.",
+        "Proposer une variante de processus dans le même cas fictif."
+      ],
+      "hypothese_refs": [
+        "AOD-H02"
+      ],
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 1 — Contexte Client et Audience — Le Public Cible"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 1 — Contexte Client et Audience — Le Contexte Opérationnel et Technologique"
+        }
+      ]
+    },
+    {
+      "id": "AOD-PER-A",
+      "niveau": "avance",
+      "nature": "simulation",
+      "represente_participants_reels": false,
+      "attentes": [
+        "Éprouver une architecture et ses limites.",
+        "Relier l’agentique à la capacité de production et à l’offre de services."
+      ],
+      "acquis_probables": [
+        "Recul possible sur plusieurs usages LLM et notions d’orchestration ; niveau individuel non attesté."
+      ],
+      "difficultes_probables": [
+        "Arbitrer entre ambition, sécurité et faisabilité.",
+        "Exprimer la valeur sans supposer des gains chiffrés."
+      ],
+      "risque_ennui": "Élevé pendant les rappels élémentaires prolongés.",
+      "risque_decrochage": "Moyen si la dimension stratégique reste absente.",
+      "adaptations_possibles": [
+        "Faire comparer une architecture simple et une variante plus orchestrée.",
+        "Examiner un point de supervision et une hypothèse de valeur."
+      ],
+      "hypothese_refs": [
+        "AOD-H02"
+      ],
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phases 3 et 5"
+        }
+      ]
+    }
+  ],
+  "gap": [
+    {
+      "id": "AOD-G01",
+      "element_programme": "1. Évolution de l’IA générative et limites du simple prompt",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Le groupe connaît déjà les LLM et le prompt engineering ; le besoin prévoit un rappel rapide.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 1 — Contexte Client et Audience — Le Public Cible"
+          },
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 3 — Progression Pédagogique — Phase 1"
+          }
+        ]
+      },
+      "decision": "compresser",
+      "priorite": "moyenne",
+      "justification": "Raccourcir l’acculturation générale tout en vérifiant le vocabulaire commun agent/assistant.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 1"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 1"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G02",
+      "element_programme": "2. Concevoir un agent IA métier",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Les managers doivent cartographier l’architecture logique d’un agent ou workflow.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 2 — Besoins de Formation et Objectifs — Objectifs Pédagogiques Globaux"
+          }
+        ]
+      },
+      "decision": "approfondir",
+      "priorite": "haute",
+      "justification": "Centrer la conception sur rôle, instructions, flux, ressources, actions et points de validation.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 2"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 1"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G03",
+      "element_programme": "3. Chaque participant construit son premier agent IA",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Le public est non développeur et le livrable demandé est une conception intellectuelle de workflow.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 1 — Contexte Client et Audience — Le Public Cible"
+          },
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 4 — Modalités Pratiques et Livrables de la Formation — Un TP « Fil Rouge »"
+          }
+        ]
+      },
+      "decision": "compresser",
+      "priorite": "haute",
+      "justification": "Proposer de réduire la configuration individuelle au profit de la conception logique ; cette adaptation n’est pas encore validée avec le catalogue.",
+      "status": "proposition",
+      "hypothese_refs": [
+        "AOD-H03"
+      ],
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 3"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G04",
+      "element_programme": "4. Construire une automatisation simple ; Make, n8n et Zapier",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Le besoin demande une démonstration de flux n8n et la compréhension de son rôle, sans reproduction technique obligatoire.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 3 — Progression Pédagogique — Phase 3"
+          },
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 4 — Modalités Pratiques et Livrables de la Formation — Démonstrations « Coups de poing »"
+          }
+        ]
+      },
+      "decision": "compresser",
+      "priorite": "haute",
+      "justification": "Privilégier la compréhension du flux et de ses contrôles ; la maîtrise de plusieurs plateformes ne répond pas à la priorité formulée.",
+      "status": "proposition",
+      "hypothese_refs": [
+        "AOD-H03",
+        "AOD-H05"
+      ],
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 4"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G05",
+      "element_programme": "5. Confidentialité, RGPD, validation humaine et gouvernance",
+      "besoin_reel_ou_hypothese": {
+        "texte": "La source signale Shadow AI, données RH sensibles et absence de charte IA.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 1 — Contexte Client et Audience — Le Contexte Opérationnel et Technologique"
+          }
+        ]
+      },
+      "decision": "approfondir",
+      "priorite": "haute",
+      "justification": "Relier chaque choix de conception au trajet des données et aux validations requises ; les références juridiques devront être vérifiées avant utilisation.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 5"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs — Problématiques à résoudre"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 4"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G06",
+      "element_programme": "2 et 3. Outils et ressources d’un agent — skills, connecteurs et MCP non explicités au catalogue",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Le besoin explicite skills, connecteurs/plugins, environnement Microsoft 365 et une introduction simplifiée à MCP.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 3 — Progression Pédagogique — Phase 2"
+          }
+        ]
+      },
+      "decision": "enrichir",
+      "priorite": "haute",
+      "justification": "Ajouter une lecture conceptuelle des connexions et accès sans installation ni intégration technique promises.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 2 et 3"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 2"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G07",
+      "element_programme": "4. Automatisation — orchestration multi-agents non explicitée au catalogue",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Le besoin mentionne supervision, validation, routing et collaboration entre agents.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 3 — Progression Pédagogique — Phase 3"
+          }
+        ]
+      },
+      "decision": "enrichir",
+      "priorite": "moyenne",
+      "justification": "Proposer une ouverture conceptuelle bornée, après l’architecture simple ; ne pas viser la construction d’un système multi-agents en une journée.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 4"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 3"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G08",
+      "element_programme": "Hors programme explicite — production, capacité de production et évolution des offres",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Le besoin vise les appels d’offres, budgets et l’impact de l’agentique sur les services vendus.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 2 — Besoins de Formation et Objectifs — Problématiques à résoudre"
+          },
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 3 — Progression Pédagogique — Phase 5"
+          }
+        ]
+      },
+      "decision": "enrichir",
+      "priorite": "haute",
+      "justification": "Faire de la valeur organisationnelle une compétence de décision, sans inventer de gain mesuré.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 5"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G09",
+      "element_programme": "2. Conception sur papier d’un agent répondant à un besoin réel",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Le client demande un cas RH fictif, des données fictives et une cartographie sur Miro.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+          }
+        ]
+      },
+      "decision": "enrichir",
+      "priorite": "haute",
+      "justification": "Contextualiser la conception avec ces modalités ; la disponibilité du cas et des accès doit être confirmée.",
+      "status": "proposition",
+      "hypothese_refs": [
+        "AOD-H04",
+        "AOD-H05"
+      ],
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 2"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G10",
+      "element_programme": "Hors programme explicite — ouverture Claude Code et vibe coding",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Le besoin demande une démonstration d’ouverture sans reproduction technique.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 3 — Progression Pédagogique — Phase 3"
+          },
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 4 — Modalités Pratiques et Livrables de la Formation — Démonstrations « Coups de poing »"
+          }
+        ]
+      },
+      "decision": "deplacer_en_ressource",
+      "priorite": "basse",
+      "justification": "Proposer cette ouverture en ressource complémentaire si la journée reste limitée à 420 minutes ; son maintien en direct nécessite un arbitrage explicite.",
+      "status": "proposition",
+      "hypothese_refs": [
+        "AOD-H01"
+      ],
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 3"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G11",
+      "element_programme": "6. Synthèse et plan d’action",
+      "besoin_reel_ou_hypothese": {
+        "texte": "La source vise une transformation des usages internes et des offres de services.",
+        "nature": "fait_source",
+        "source_refs": [
+          {
+            "source": "besoin_client_act_on_data.md",
+            "location": "section 2 — Besoins de Formation et Objectifs — Problématiques à résoudre"
+          }
+        ]
+      },
+      "decision": "conserver",
+      "priorite": "moyenne",
+      "justification": "Conclure sur un prochain pas et les décisions encore nécessaires, sans promettre un déploiement.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 6"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs"
+        }
+      ]
+    },
+    {
+      "id": "AOD-G12",
+      "element_programme": "Évaluation : architecture d’agent et mise en œuvre d’une automatisation",
+      "besoin_reel_ou_hypothese": {
+        "texte": "Les preuves doivent évaluer la conception et les décisions attendues du client sans attester une réalisation technique non effectuée.",
+        "nature": "proposition",
+        "hypothese_refs": [
+          "AOD-H03",
+          "AOD-H06"
+        ]
+      },
+      "decision": "conserver",
+      "priorite": "haute",
+      "justification": "Conserver l’exigence de preuve, mais faire valider son adaptation et les modalités de l’attestation avant la session.",
+      "status": "proposition",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — MÉTHODES D’ÉVALUATION DES ACQUIS"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs — Objectifs Pédagogiques Globaux"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        }
+      ]
+    }
+  ],
+  "competences": [
+    {
+      "id": "AOD-C01",
+      "titre": "Qualifier un usage agentique avec un vocabulaire commun",
+      "situation_professionnelle": "Lorsqu’un manager examine une demande d’usage IA dans son équipe.",
+      "action_attendue": "Distinguer chat, agent et workflow, expliciter rôle, autonomie et besoin de validation.",
+      "niveau_cible": "Pratiquer",
+      "importance": "principale",
+      "preuve_legere": "Qualification argumentée d’un usage et de son niveau d’autonomie.",
+      "criteres_reussite": [
+        "Rôle de l’IA relié au besoin.",
+        "Différence entre réponse et action explicitée.",
+        "Point de validation humaine identifié."
+      ],
+      "dependances": [],
+      "status": "proposition",
+      "hypothese_refs": [],
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs — Objectifs Pédagogiques Globaux"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 1"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubrique 1"
+        }
+      ]
+    },
+    {
+      "id": "AOD-C02",
+      "titre": "Cartographier un workflow agentique métier borné",
+      "situation_professionnelle": "Pour examiner un cas RH fictif avec des collègues et interlocuteurs techniques.",
+      "action_attendue": "Représenter entrées, sorties, rôle/instructions, ressources, outils/connexions et responsabilités ; situer conceptuellement orchestration et MCP lorsque pertinents.",
+      "niveau_cible": "Pratiquer",
+      "importance": "principale",
+      "preuve_legere": "Carte logique commentée d’un workflow simple, sans obligation de réalisation technique.",
+      "criteres_reussite": [
+        "Entrées, sorties et étapes lisibles.",
+        "Rôles et connexions justifiés par le besoin.",
+        "Contrôles et validations localisés.",
+        "Complexité limitée et points restant à vérifier signalés."
+      ],
+      "dependances": [
+        "AOD-C01"
+      ],
+      "status": "proposition",
+      "hypothese_refs": [
+        "AOD-H03",
+        "AOD-H04"
+      ],
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs — Objectifs Pédagogiques Globaux"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phases 2 et 3"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        }
+      ]
+    },
+    {
+      "id": "AOD-C03",
+      "titre": "Repérer les risques d’un flux de données RH et les décisions nécessaires",
+      "situation_professionnelle": "Avant d’autoriser un usage LLM ou agentique manipulant des informations RH.",
+      "action_attendue": "Identifier données, destinataires, sorties de l’environnement et usages non encadrés, puis formuler les contrôles ou validations à solliciter.",
+      "niveau_cible": "Pratiquer",
+      "importance": "principale",
+      "preuve_legere": "Analyse courte d’un flux fictif avec risques repérés et décisions de contrôle proposées.",
+      "criteres_reussite": [
+        "Trajet des données et accès explicités.",
+        "Risque de Shadow AI identifié lorsque pertinent.",
+        "Contrôle humain ou décision de gouvernance proposé.",
+        "Incertitudes juridiques ou techniques renvoyées à validation compétente, sans déclarer une conformité acquise."
+      ],
+      "dependances": [
+        "AOD-C02"
+      ],
+      "status": "proposition",
+      "hypothese_refs": [
+        "AOD-H04"
+      ],
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 1 — Contexte Client et Audience — Le Contexte Opérationnel et Technologique"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs — Problématiques à résoudre"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 4"
+        }
+      ]
+    },
+    {
+      "id": "AOD-C04",
+      "titre": "Argumenter la valeur d’un usage agentique pour la capacité de production",
+      "situation_professionnelle": "Lors d’un choix d’évolution d’un processus interne ou d’une offre de services.",
+      "action_attendue": "Distinguer un livrable produit d’une capacité de production améliorée, puis argumenter bénéfice attendu, limites et conditions d’un prochain pas.",
+      "niveau_cible": "Pratiquer",
+      "importance": "principale",
+      "preuve_legere": "Argumentaire bref sur un usage lié aux appels d’offres, budgets ou services, avec hypothèse de valeur explicite.",
+      "criteres_reussite": [
+        "Production et capacité de production distinguées.",
+        "Bénéfice relié à un besoin métier concret.",
+        "Hypothèses de gains distinguées de résultats mesurés.",
+        "Risques et condition de poursuite explicités."
+      ],
+      "dependances": [
+        "AOD-C02",
+        "AOD-C03"
+      ],
+      "status": "proposition",
+      "hypothese_refs": [],
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 5"
+        }
+      ]
+    }
+  ],
+  "pratique": {
+    "cible_pourcentage": 60,
+    "justification": "Proposition fondée sur les attentes de conception, cartographie et analyse de cas ; la pratique inclut décider, concevoir, expliquer et analyser les risques, pas seulement manipuler des outils. Aucun taux n’est fixé par le client ni encore mesuré.",
+    "minimum_souhaite": 40,
+    "maximum_souhaite": 70,
+    "status": "proposition_a_valider",
+    "denominateur": "Temps pédagogique hors pauses, sous réserve de AOD-H01.",
+    "convention": "Ne pas compter comme pratique la seule observation des démonstrations ; compter le travail produit par les participants.",
+    "hypothese_refs": [
+      "AOD-H01",
+      "AOD-H03",
+      "AOD-H04"
+    ],
+    "source_refs": [
+      {
+        "source": "besoin_client_act_on_data.md",
+        "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+      }
+    ]
+  },
+  "alertes": [
+    {
+      "id": "AOD-AL01",
+      "type": "duree_irrealiste",
+      "message": "Durée client absente ; 420 min au catalogue, mais 435 min de rubriques avant enrichissement.",
+      "action": "Confirmer la durée nette et arbitrer le périmètre avant toute planification.",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — durée"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 1 à 6"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        }
+      ]
+    },
+    {
+      "id": "AOD-AL02",
+      "type": "surcharge",
+      "message": "MCP, multi-agents, gouvernance, stratégie et démonstrations s’ajoutent à un catalogue déjà dense.",
+      "action": "Valider quatre compétences bornées et une ouverture limitée sur les architectures complexes.",
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — CONTENU DU COURS"
+        }
+      ]
+    },
+    {
+      "id": "AOD-AL03",
+      "type": "besoin_client_absent_du_programme",
+      "message": "La capacité de production et l’impact sur l’offre de services ne sont pas explicités au catalogue.",
+      "action": "Valider leur place prioritaire et les contenus à compresser en contrepartie.",
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 5"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — CONTENU DU COURS"
+        }
+      ]
+    },
+    {
+      "id": "AOD-AL04",
+      "type": "ecart_catalogue_client",
+      "message": "Le catalogue vise des réalisations techniques individuelles ; le besoin client privilégie conception et démonstrations.",
+      "action": "Faire approuver l’adaptation du résultat attendu et des preuves d’acquisition.",
+      "source_refs": [
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 1 — évaluation"
+        },
+        {
+          "source": "programme_IA017.pdf",
+          "location": "page 2 — rubriques 3 et 4"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation"
+        }
+      ]
+    },
+    {
+      "id": "AOD-AL05",
+      "type": "acces_outils_incertain",
+      "message": "Les licences Copilot sont en attente dans une source non datée ; les accès de session ne sont pas confirmés.",
+      "action": "Vérifier la situation actuelle et éviter de rendre le résultat pédagogique dépendant de Copilot.",
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 1 — Contexte Client et Audience — Le Contexte Opérationnel et Technologique"
+        }
+      ]
+    },
+    {
+      "id": "AOD-AL06",
+      "type": "donnees_et_cas_a_confirmer",
+      "message": "Le cas doit être fictif ; la fourniture du jeu de données par les Data Scientists est seulement envisagée.",
+      "action": "Désigner le responsable du cas et confirmer le caractère fictif des données avant utilisation.",
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 4 — Modalités Pratiques et Livrables de la Formation — Un TP « Fil Rouge »"
+        }
+      ]
+    },
+    {
+      "id": "AOD-AL07",
+      "type": "contenu_potentiellement_obsolete",
+      "message": "Le document non daté parle du « futur AI Act » et cite l’article 28 ; ces formulations ne sont pas vérifiées.",
+      "action": "Faire vérifier l’actualité et la portée des références avant de préparer les contenus ; aucune conclusion juridique ici.",
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 2 — Besoins de Formation et Objectifs — Problématiques à résoudre"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 4"
+        }
+      ]
+    },
+    {
+      "id": "AOD-AL08",
+      "type": "prerequis_incertain",
+      "message": "La maturité technologique de l’entreprise ne prouve pas un niveau agentique homogène des managers.",
+      "action": "Confirmer le positionnement individuel et conserver une progression sans code.",
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 1 — Contexte Client et Audience — L’Entreprise et Le Public Cible"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — introduction"
+        }
+      ]
+    }
+  ],
+  "decisions_a_valider": [
+    {
+      "id": "AOD-D01",
+      "porte": "P1",
+      "question": "Quelle durée nette et quelle marge d’adaptation du catalogue confirmer ?",
+      "recommandation": "Ne retenir 420 min qu’après accord ; corriger l’écart de 15 min et prioriser les besoins client.",
+      "hypothese_refs": [
+        "AOD-H01",
+        "AOD-H03"
+      ]
+    },
+    {
+      "id": "AOD-D02",
+      "porte": "P1",
+      "question": "Quel cas RH fictif retenir et qui fournit les données ?",
+      "recommandation": "Confirmer un cas borné et son responsable, sans présumer la contribution des Data Scientists.",
+      "hypothese_refs": [
+        "AOD-H04"
+      ]
+    },
+    {
+      "id": "AOD-D03",
+      "porte": "P2",
+      "question": "Valider les quatre compétences orientées conception, risques et valeur métier ?",
+      "recommandation": "Faire approuver le remplacement partiel des réalisations techniques et l’adaptation des preuves et de l’attestation.",
+      "hypothese_refs": [
+        "AOD-H03",
+        "AOD-H06"
+      ]
+    },
+    {
+      "id": "AOD-D04",
+      "porte": "P2",
+      "question": "Valider une cible de 60 % de pratique intellectuelle et de conception ?",
+      "recommandation": "Compter les productions et décisions des participants ; exclure la simple observation des démonstrations.",
+      "hypothese_refs": [
+        "AOD-H01",
+        "AOD-H04"
+      ]
+    },
+    {
+      "id": "AOD-D05",
+      "porte": "P3",
+      "question": "Quels supports et démonstrations sont indispensables et accessibles ?",
+      "recommandation": "Confirmer Miro et n8n ; proposer Claude Code en ressource si le temps manque, sans dépendre des licences Copilot.",
+      "hypothese_refs": [
+        "AOD-H01",
+        "AOD-H05"
+      ]
+    },
+    {
+      "id": "AOD-D06",
+      "porte": "P1",
+      "question": "Qui confirme les règles d’usage des outils et la validité des références de sécurité/conformité ?",
+      "recommandation": "Faire préciser les restrictions internes et vérifier les références avant d’en faire des contenus de formation.",
+      "hypothese_refs": [
+        "AOD-H05"
+      ],
+      "source_refs": [
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 1 — Contexte Client et Audience — Le Contexte Opérationnel et Technologique"
+        },
+        {
+          "source": "besoin_client_act_on_data.md",
+          "location": "section 3 — Progression Pédagogique — Phase 4"
+        }
+      ]
+    }
+  ]
+}
