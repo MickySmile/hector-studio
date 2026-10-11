@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hector Studio — Contrat formation V1",
+  "description": "Contrat de la structure actuellement utilisée par les fixtures IA017. Les propriétés non déclarées sont refusées pour détecter les erreurs de saisie. Modules, VCOAC, activités, recherche et productions seront ajoutés par évolution contrôlée de ce schéma, sans imposer leur modèle en V1.",
+  "$comment": "L'unicité des identifiants par collection, la résolution des références, les cycles de dépendances et la cohérence pédagogique nécessitent des contrôles complémentaires. La version_fixture décrit la fixture, pas la version du contrat. Aucun champ schema_version absent des fixtures n'est imposé.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "sources", "cadrage", "hypotheses", "personas", "gap", "competences", "pratique", "alertes", "decisions_a_valider"],
+  "properties": {
+    "meta": { "$ref": "#/$defs/meta" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "cadrage": { "$ref": "#/$defs/cadrage" },
+    "hypotheses": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/hypothese" }
+    },
+    "personas": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "$ref": "#/$defs/persona" },
+      "description": "Au moins un profil simulé de chaque niveau ; plusieurs profils d'un même niveau restent possibles avec des identifiants distincts.",
+      "allOf": [
+        { "contains": { "type": "object", "required": ["niveau"], "properties": { "niveau": { "const": "novice" } } } },
+        { "contains": { "type": "object", "required": ["niveau"], "properties": { "niveau": { "const": "intermediaire" } } } },
+        { "contains": { "type": "object", "required": ["niveau"], "properties": { "niveau": { "const": "avance" } } } }
+      ]
+    },
+    "gap": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/gap" }
+    },
+    "competences": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/competence" }
+    },
+    "pratique": { "$ref": "#/$defs/pratique" },
+    "alertes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/alerte" }
+    },
+    "decisions_a_valider": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/decision" }
+    }
+  },
+  "$defs": {
+    "texte": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "description": "Texte contenant au moins un caractère non blanc, sans limite éditoriale arbitraire."
+    },
+    "identifiant": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\S+$",
+      "description": "Identifiant stable sans espace. Aucun préfixe IA017 ni format de numérotation n'est imposé."
+    },
+    "textes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/texte" }
+    },
+    "textesRenseignes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/texte" }
+    },
+    "identifiants": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/identifiant" },
+      "description": "Références par identifiant ; leur existence dans la collection cible se contrôle hors schéma. Une liste vide signifie aucune référence déclarée."
+    },
+    "sourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source"],
+      "properties": {
+        "source": { "$ref": "#/$defs/texte" },
+        "location": { "$ref": "#/$defs/texte" }
+      },
+      "description": "Référence documentaire. Les fixtures utilisent un nom de document dans source, pas l'id de sources. location précise une page ou une section lorsqu'elle est disponible."
+    },
+    "sourceRefs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/sourceRef" }
+    },
+    "statut": {
+      "$ref": "#/$defs/texte",
+      "description": "État de validation, distinct de la nature de l'information. Vocabulaire laissé ouvert tant que le cycle de validation n'est pas formalisé."
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "titre", "scenario", "duree_minutes", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/identifiant" },
+        "titre": { "$ref": "#/$defs/texte" },
+        "scenario": {
+          "$ref": "#/$defs/identifiant",
+          "description": "Identifiant du scénario ; le contrat n'est pas limité aux deux scénarios IA017."
+        },
+        "duree_minutes": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "description": "Durée de référence en minutes entières positives ; null indique une durée inconnue (ARC-04.3). Une durée hypothétique renseignée reste qualifiée par duree_statut."
+        },
+        "status": { "$ref": "#/$defs/statut" },
+        "version_fixture": { "$ref": "#/$defs/texte" },
+        "duree_statut": { "$ref": "#/$defs/texte" },
+        "source_refs": { "$ref": "#/$defs/sourceRefs" },
+        "note": { "$ref": "#/$defs/texte" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "fichier", "type", "usage"],
+      "properties": {
+        "id": { "$ref": "#/$defs/identifiant" },
+        "fichier": {
+          "$ref": "#/$defs/texte",
+          "description": "Chemin documentaire déclaré ; existence et résolution à contrôler hors schéma."
+        },
+        "type": { "$ref": "#/$defs/texte" },
+        "usage": { "$ref": "#/$defs/texte" },
+        "date_mise_a_jour": {
+          "type": ["string", "null"],
+          "format": "date",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "description": "Date ISO YYYY-MM-DD ou null si inconnue. La validité calendaire requiert l'activation du contrôle format par le validateur."
+        },
+        "note": { "$ref": "#/$defs/texte" }
+      }
+    },
+    "information": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["texte", "nature"],
+      "properties": {
+        "texte": { "$ref": "#/$defs/texte" },
+        "nature": { "enum": ["fait_source", "hypothese", "proposition", "constat_calcule", "inconnu"] },
+        "source_refs": { "$ref": "#/$defs/sourceRefs" },
+        "hypothese_refs": { "$ref": "#/$defs/identifiants" }
+      }
+    },
+    "faitSource": {
+      "allOf": [
+        { "$ref": "#/$defs/information" },
+        { "properties": { "nature": { "const": "fait_source" } } }
+      ]
+    },
+    "informationHypothetique": {
+      "allOf": [
+        { "$ref": "#/$defs/information" },
+        { "properties": { "nature": { "const": "hypothese" } } }
+      ]
+    },
+    "proposition": {
+      "allOf": [
+        { "$ref": "#/$defs/information" },
+        { "properties": { "nature": { "const": "proposition" } } }
+      ]
+    },
+    "etatConnaissance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["connu", "suppose", "inconnu"],
+      "properties": {
+        "connu": { "type": "array", "items": { "$ref": "#/$defs/faitSource" } },
+        "suppose": { "type": "array", "items": { "$ref": "#/$defs/informationHypothetique" } },
+        "inconnu": { "$ref": "#/$defs/textes" }
+      }
+    },
+    "cadrage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["public", "niveau", "contexte", "finalite", "contraintes", "priorites_pedagogiques"],
+      "properties": {
+        "public": { "$ref": "#/$defs/etatConnaissance" },
+        "niveau": { "$ref": "#/$defs/etatConnaissance" },
+        "contexte": { "$ref": "#/$defs/etatConnaissance" },
+        "finalite": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["connu", "propose"],
+          "properties": {
+            "connu": { "type": "array", "items": { "$ref": "#/$defs/faitSource" } },
+            "propose": { "$ref": "#/$defs/proposition" }
+          }
+        },
+        "contraintes": { "type": "array", "items": { "$ref": "#/$defs/information" } },
+        "priorites_pedagogiques": { "type": "array", "items": { "$ref": "#/$defs/proposition" } }
+      }
+    },
+    "hypothese": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "texte", "confiance", "impact_pedagogique", "a_valider"],
+      "properties": {
+        "id": { "$ref": "#/$defs/identifiant" },
+        "texte": { "$ref": "#/$defs/texte" },
+        "confiance": { "enum": ["faible", "moyenne", "forte"] },
+        "impact_pedagogique": { "$ref": "#/$defs/texte" },
+        "a_valider": { "type": "boolean" },
+        "source_refs": { "$ref": "#/$defs/sourceRefs" }
+      }
+    },
+    "persona": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "niveau", "nature", "represente_participants_reels", "attentes", "acquis_probables", "difficultes_probables", "risque_ennui", "risque_decrochage", "adaptations_possibles"],
+      "properties": {
+        "id": { "$ref": "#/$defs/identifiant" },
+        "niveau": { "enum": ["novice", "intermediaire", "avance"] },
+        "nature": { "const": "simulation" },
+        "represente_participants_reels": { "const": false },
+        "attentes": { "$ref": "#/$defs/textesRenseignes" },
+        "acquis_probables": { "$ref": "#/$defs/textesRenseignes" },
+        "difficultes_probables": { "$ref": "#/$defs/textesRenseignes" },
+        "risque_ennui": { "$ref": "#/$defs/texte" },
+        "risque_decrochage": { "$ref": "#/$defs/texte" },
+        "adaptations_possibles": { "$ref": "#/$defs/textesRenseignes" },
+        "hypothese_refs": { "$ref": "#/$defs/identifiants" },
+        "source_refs": { "$ref": "#/$defs/sourceRefs" }
+      }
+    },
+    "gap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "element_programme", "besoin_reel_ou_hypothese", "decision", "priorite", "justification"],
+      "properties": {
+        "id": { "$ref": "#/$defs/identifiant" },
+        "element_programme": { "$ref": "#/$defs/texte" },
+        "besoin_reel_ou_hypothese": { "$ref": "#/$defs/information" },
+        "decision": { "enum": ["conserver", "approfondir", "compresser", "deplacer_en_ressource", "enrichir"] },
+        "priorite": { "enum": ["haute", "moyenne", "basse"] },
+        "justification": { "$ref": "#/$defs/texte" },
+        "status": { "$ref": "#/$defs/statut" },
+        "hypothese_refs": { "$ref": "#/$defs/identifiants" },
+        "source_refs": { "$ref": "#/$defs/sourceRefs" }
+      }
+    },
+    "competence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "titre", "situation_professionnelle", "action_attendue", "niveau_cible", "importance", "preuve_legere", "criteres_reussite", "dependances"],
+      "properties": {
+        "id": { "$ref": "#/$defs/identifiant" },
+        "titre": { "$ref": "#/$defs/texte" },
+        "situation_professionnelle": { "$ref": "#/$defs/texte" },
+        "action_attendue": { "$ref": "#/$defs/texte" },
+        "niveau_cible": { "enum": ["Maîtriser", "Pratiquer", "Comprendre", "Connaître", "Ressource complémentaire"] },
+        "importance": {
+          "$ref": "#/$defs/texte",
+          "description": "Les fixtures utilisent principale ; une échelle exhaustive reste à définir."
+        },
+        "preuve_legere": { "$ref": "#/$defs/texte" },
+        "criteres_reussite": { "$ref": "#/$defs/textesRenseignes" },
+        "dependances": {
+          "$ref": "#/$defs/identifiants",
+          "description": "Identifiants de compétences du même scénario, jamais titres ni objets. Existence des cibles, autoréférences et cycles se contrôlent hors schéma."
+        },
+        "status": { "$ref": "#/$defs/statut" },
+        "hypothese_refs": { "$ref": "#/$defs/identifiants" },
+        "source_refs": { "$ref": "#/$defs/sourceRefs" }
+      }
+    },
+    "pratique": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cible_pourcentage", "justification", "minimum_souhaite", "maximum_souhaite"],
+      "properties": {
+        "cible_pourcentage": {
+          "type": "number",
+          "minimum": 40,
+          "maximum": 70,
+          "description": "Cible proposée, pas une mesure de pratique réalisée. Bornes inclusives fixées pour la V1."
+        },
+        "justification": { "$ref": "#/$defs/texte" },
+        "minimum_souhaite": { "const": 40 },
+        "maximum_souhaite": { "const": 70 },
+        "status": { "$ref": "#/$defs/statut" },
+        "denominateur": { "$ref": "#/$defs/texte" },
+        "convention": { "$ref": "#/$defs/texte" },
+        "hypothese_refs": { "$ref": "#/$defs/identifiants" },
+        "source_refs": { "$ref": "#/$defs/sourceRefs" }
+      }
+    },
+    "alerte": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "message", "action"],
+      "properties": {
+        "id": { "$ref": "#/$defs/identifiant" },
+        "type": { "$ref": "#/$defs/texte" },
+        "message": { "$ref": "#/$defs/texte" },
+        "action": { "$ref": "#/$defs/texte" },
+        "source_refs": { "$ref": "#/$defs/sourceRefs" }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "porte", "question", "recommandation"],
+      "properties": {
+        "id": { "$ref": "#/$defs/identifiant" },
+        "porte": { "enum": ["P1", "P2", "P3", "P4"] },
+        "question": { "$ref": "#/$defs/texte" },
+        "recommandation": { "$ref": "#/$defs/texte" },
+        "hypothese_refs": { "$ref": "#/$defs/identifiants" },
+        "source_refs": { "$ref": "#/$defs/sourceRefs" }
+      }
+    }
+  }
+}
