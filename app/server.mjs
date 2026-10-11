@@ -2,6 +2,10 @@ import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
+import { validateFormation } from '../core/validate-formation.mjs';
+
+const scenarios = ['program_only', 'act_on_data'];
+const formationFiles = Object.fromEntries(scenarios.map(s => [s, new URL(`../examples/IA017/${s}/formation.json`, import.meta.url)]));
 
 const routes = new Map([
   ['/', [new URL('./public/index.html', import.meta.url), 'text/html']],
@@ -10,7 +14,8 @@ const routes = new Map([
   ...['program_only', 'act_on_data'].map(s => [`/api/formations/${s}`, [new URL(`../examples/IA017/${s}/formation.json`, import.meta.url), 'application/json']]),
 ]);
 
-export function createServer() {
+// Les chemins injectables servent aux tests ; aucune route ne reçoit de chemin utilisateur.
+export function createServer({ files = formationFiles } = {}) {
   return http.createServer(async (req, res) => {
     res.setHeader('Cache-Control', 'no-store');
     res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -19,7 +24,25 @@ export function createServer() {
       res.writeHead(405, { Allow: 'GET, HEAD' }).end('Lecture seule');
       return;
     }
-    const route = routes.get(req.url?.split('?')[0]);
+    const pathname = req.url?.split('?')[0];
+    if (pathname?.startsWith('/api/scenarios/')) {
+      const scenario = pathname.slice('/api/scenarios/'.length);
+      const send = (status, body) => {
+        res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(req.method === 'HEAD' ? undefined : JSON.stringify(body));
+      };
+      if (!scenarios.includes(scenario)) { send(404, { error: 'Scénario inconnu.' }); return; }
+      try {
+        const file = files[scenario];
+        const formation = JSON.parse(await readFile(file, 'utf8'));
+        const validation = await validateFormation(formation, { formationPath: file instanceof URL ? fileURLToPath(file) : file });
+        send(200, { formation: validation.valid ? formation : null, validation });
+      } catch {
+        send(500, { error: 'Impossible de valider ce scénario.' });
+      }
+      return;
+    }
+    const route = routes.get(pathname);
     if (!route) { res.writeHead(404).end('Ressource inconnue'); return; }
     try {
       const content = await readFile(route[0]);

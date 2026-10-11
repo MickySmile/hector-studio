@@ -9,7 +9,7 @@ const panel = (title, body, cls = '') => `<article class="card ${cls}"><h3>${e(t
 const detail = (title, body) => `<details><summary>${e(title)}</summary>${body}</details>`;
 const field = (title, value) => `<div class="field"><h4>${e(title)}</h4><p>${e(value)}</p></div>`;
 const actions = () => '<div class="actions"><button data-simulate>Accepter</button><button data-simulate>Modifier</button><button data-simulate>Écarter</button><small>Simulation uniquement</small></div>';
-let scenario = 'program_only', view = 'synthese', data, request = 0;
+let scenario = 'program_only', view = 'synthese', data, validation, request = 0;
 let decisionFilter = '', priorityFilter = '';
 const content = document.querySelector('#content');
 const group = block => (block.connu || []).map(fact).join('') + (block.suppose || []).map(fact).join('') + (block.propose ? fact(block.propose) : '') + (block.inconnu || []).map(texte => fact({ texte, nature: 'inconnu' })).join('');
@@ -18,10 +18,21 @@ function durationAlert() {
   const alert = data.alertes.find(a => a.type === 'duree_irrealiste');
   return alert ? `<aside class="warning"><div>${badge('⚠ Durée · arbitrage nécessaire', 'alert')}<h3>${e(alert.message)}</h3><p>${e(alert.action)}</p></div><button data-view="alertes">Voir les arbitrages →</button></aside>` : '';
 }
+function scenarioHealth() {
+  if (!validation) return '';
+  const appearance = { error: ['⨯ Problème bloquant', 'health-error'], warning: ['⚠ Arbitrage / incohérence', 'health-warning'], info: ['ℹ Information', 'health-info'] };
+  const row = check => {
+    const [label, style] = appearance[check.severity] || appearance.info;
+    return `<li class="${style}"><strong>${e(label)}</strong><p>${e(check.message)}</p></li>`;
+  };
+  const success = validation.checks.filter(check => check.code === 'validation_passed');
+  const information = validation.checks.filter(check => check.severity === 'info' && check.code !== 'validation_passed');
+  return panel('Santé du scénario', `${success.map(check => `<p class="health-success">✓ ${e(check.message)}</p>`).join('')}<ul class="health-results">${[...validation.errors, ...validation.warnings].map(row).join('')}</ul>${detail('Informations sur les contrôles', `<ul class="health-results">${information.map(row).join('')}</ul>`)}<small>Contrôles déterministes · Les arbitrages pédagogiques restent dans la vue Alertes.</small>`, 'health');
+}
 function synthese() {
   const d = data;
   return `<div class="hero"><div class="eyebrow">${scenario === 'program_only' ? 'PROGRAMME SEUL' : 'ACT-ON DATA'}</div><h2>${e(d.meta.titre)}</h2>${status('proposition')}</div>
-    <div class="stats">${[
+    ${scenarioHealth()}<div class="stats">${[
       ['Durée de référence', `${d.meta.duree_minutes} min`, d.meta.duree_statut === 'annoncee_au_catalogue' ? '✓ Annoncée au catalogue' : '? Hypothèse à confirmer au client'],
       ['Compétences', d.competences.length, '◆ Proposées, à valider'],
       ['Hypothèses', d.hypotheses.length, '? À examiner'],
@@ -29,7 +40,7 @@ function synthese() {
       ['Décisions à valider', d.decisions_a_valider.length, '◆ Arbitrages ouverts']
     ].map(([name, number, note]) => `<article class="stat"><h3>${name}</h3><strong>${e(number)}</strong><small>${note}</small></article>`).join('')}</div>
     <div class="grid two">${panel('Public', (d.cadrage.public.connu || []).map(fact).join('') + (d.cadrage.public.inconnu || []).map(texte => fact({texte,nature:'inconnu'})).join(''))}${panel('Finalité proposée', fact(d.cadrage.finalite.propose))}</div>
-    <article class="card practice"><div><h3>Cible de pratique</h3>${badge('◆ Proposition · non mesurée', 'decision')}<p>${e(d.pratique.justification)}</p></div><div><strong>${e(d.pratique.cible_pourcentage)}<span> %</span></strong><progress max="100" value="${e(d.pratique.cible_pourcentage)}" aria-label="Cible de pratique proposée"></progress><small>Fourchette souhaitée : ${e(d.pratique.minimum_souhaite)}–${e(d.pratique.maximum_souhaite)} %</small></div></article>${durationAlert()}`;
+    <article class="card practice"><div><h3>Cible de pratique</h3>${badge('◆ Proposition · non mesurée', 'decision')}<p>${e(d.pratique.justification)}</p></div><div><strong>${e(d.pratique.cible_pourcentage)}<span> %</span></strong><progress max="100" value="${e(d.pratique.cible_pourcentage)}" aria-label="Cible de pratique proposée"></progress><small>Fourchette souhaitée : ${e(d.pratique.minimum_souhaite)}–${e(d.pratique.maximum_souhaite)} %</small></div></article>`;
 }
 function cadrage() {
   return `<div class="grid two">${Object.entries({public:'Public',niveau:'Niveau',contexte:'Contexte',finalite:'Finalité'}).map(([key,title]) => panel(title,group(data.cadrage[key]))).join('')}${panel('Contraintes',data.cadrage.contraintes.map(fact).join(''))}${panel('Priorités pédagogiques',data.cadrage.priorites_pedagogiques.map(fact).join(''))}</div><h3 class="section-title">Hypothèses de cadrage</h3><div class="grid two">${data.hypotheses.map(hypothesis).join('')}</div>`;
@@ -49,29 +60,33 @@ function alertes() {
 }
 function render() {
   document.querySelector('#navigation').innerHTML = Object.entries(labels).map(([key,label])=>`<button data-view="${key}" ${view === key ? 'aria-current="page"' : ''}>${label}${key==='alertes' && data ? ` <span>${data.alertes.length}</span>` : ''}</button>`).join('');
-  if (!data) return;
+  if (!data) {
+    if (validation) content.innerHTML = `${scenarioHealth()}<p role="alert">Ce scénario contient un problème bloquant. Corrigez les données source puis réessayez.</p><button data-retry>Réessayer</button>`;
+    return;
+  }
   content.innerHTML = `${view !== 'synthese' ? `<div class="view-heading"><div class="eyebrow">${scenario === 'program_only' ? 'PROGRAMME SEUL' : 'ACT-ON DATA'}</div><h2>${labels[view]}</h2></div>` : ''}${({synthese,cadrage,personas,gap,competences,alertes})[view]()}`;
 }
 async function loadScenario(next) {
   const token = ++request;
-  scenario = next; data = null; decisionFilter = ''; priorityFilter = '';
+  scenario = next; data = null; validation = null; decisionFilter = ''; priorityFilter = '';
   document.querySelectorAll('[data-scenario]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scenario===scenario)));
   document.querySelector('#scenario-note').textContent = '';
   document.querySelector('#source-path').textContent = `examples/IA017/${scenario}/formation.json`;
   content.innerHTML = '<p class="intro">Chargement du scénario…</p>';
   render();
   try {
-    const response = await fetch(`/api/formations/${next}`, {cache:'no-store'});
+    const response = await fetch(`/api/scenarios/${next}`, {cache:'no-store'});
     if (!response.ok) throw new Error('Impossible de charger la fixture.');
     const loaded = await response.json();
     if (token !== request) return;
-    data = loaded;
-    document.querySelector('#scenario-note').textContent = data.meta.note;
+    validation = loaded.validation;
+    data = loaded.formation;
+    document.querySelector('#scenario-note').textContent = data?.meta.note || '';
     render();
   } catch {
     if (token !== request) return;
-    data = null;
-    content.innerHTML = '<div role="alert" class="warning"><p>Impossible d’afficher ce scénario. Vérifiez le serveur et la fixture JSON.</p><button data-retry>Réessayer</button></div>';
+    data = null; validation = null;
+    content.innerHTML = '<div role="alert" class="health-error"><p>Impossible de valider ce scénario. Vérifiez le serveur et le fichier de formation.</p><button data-retry>Réessayer</button></div>';
   }
 }
 document.addEventListener('click', event => {
