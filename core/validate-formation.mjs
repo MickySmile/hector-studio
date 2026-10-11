@@ -5,7 +5,7 @@ import { isDeepStrictEqual } from 'node:util';
 
 const projectDirectory = fileURLToPath(new URL('../', import.meta.url));
 const schemaUrl = new URL('../schemas/formation.schema.json', import.meta.url);
-const collections = ['sources', 'hypotheses', 'personas', 'gap', 'competences', 'alertes', 'decisions_a_valider'];
+const collections = ['sources', 'hypotheses', 'personas', 'gap', 'competences', 'modules', 'alertes', 'decisions_a_valider'];
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const array = value => Array.isArray(value) ? value : [];
 const pointer = (path, key) => `${path}/${String(key).replaceAll('~', '~0').replaceAll('/', '~1')}`;
@@ -150,6 +150,61 @@ function checkPersonasAndPractice(data, checks) {
   if (p.cible_pourcentage < p.minimum_souhaite || p.cible_pourcentage > p.maximum_souhaite) checks.push(finding('practice_out_of_bounds', 'error', 'Cible de pratique hors des bornes déclarées.', '/pratique/cible_pourcentage', { minimum: p.minimum_souhaite, cible: p.cible_pourcentage, maximum: p.maximum_souhaite }));
 }
 
+function checkModules(data, checks) {
+  if (!Array.isArray(data.modules)) return;
+  const modules = data.modules.filter(object);
+  const skills = new Set(array(data.competences).filter(object).map(c => c.id));
+  const byId = new Map(modules.map(m => [m.id, m]));
+  modules.forEach(m => {
+    const index = data.modules.indexOf(m);
+    for (const [i, id] of array(m.competences).entries()) {
+      if (!skills.has(id)) checks.push(finding('unknown_module_competence', 'error', `Compétence du module inexistante : ${id}.`, `/modules/${index}/competences/${i}`));
+    }
+    for (const [i, id] of array(m.dependances_modules).entries()) {
+      if (!byId.has(id)) checks.push(finding('unknown_module_dependency', 'error', `Module prérequis inexistant : ${id}.`, `/modules/${index}/dependances_modules/${i}`));
+    }
+    if (Number.isFinite(m.pratique_minutes) && Number.isFinite(m.duree_minutes) && m.pratique_minutes > m.duree_minutes) {
+      checks.push(finding('module_practice_exceeds_duration', 'error', 'La pratique dépasse la durée du module.', `/modules/${index}/pratique_minutes`));
+    }
+  });
+  if (byId.size === modules.length) {
+    const active = [], done = new Set();
+    function visit(id) {
+      if (active.includes(id)) {
+        const cycle = [...active.slice(active.indexOf(id)), id];
+        checks.push(finding('module_cycle', 'error', `Cycle de modules : ${cycle.join(' → ')}.`, '/modules', { cycle }));
+        return;
+      }
+      if (done.has(id) || !byId.has(id)) return;
+      active.push(id);
+      for (const next of array(byId.get(id).dependances_modules)) visit(next);
+      active.pop(); done.add(id);
+    }
+    for (const id of byId.keys()) visit(id);
+  }
+  // Ne pas publier de totaux partiels ou trompeurs sur des modules invalides.
+  if (checks.some(c => c.severity === 'error' && c.path.startsWith('/modules'))) return;
+  const durationMinutes = modules.reduce((sum, m) => sum + m.duree_minutes, 0);
+  const practiceMinutes = modules.reduce((sum, m) => sum + m.pratique_minutes, 0);
+  const envelopeMinutes = Number.isInteger(data.meta?.duree_minutes) && data.meta.duree_minutes > 0 ? data.meta.duree_minutes : null;
+  // Convention V1 : pratique planifiée / enveloppe pédagogique meta.duree_minutes.
+  // Le temps hors modules reste au dénominateur, sans pratique présumée.
+  // Tolérance inclusive de ±5 points : convention V1, pas vérité pédagogique universelle.
+  const tolerancePoints = 5;
+  const practicePercentage = envelopeMinutes === null ? null : practiceMinutes / envelopeMinutes * 100;
+  const targetPercentage = Number.isFinite(data.pratique?.cible_pourcentage) ? data.pratique.cible_pourcentage : null;
+  const deltaPoints = practicePercentage === null || targetPercentage === null ? null : practicePercentage - targetPercentage;
+  const remainingMinutes = envelopeMinutes === null ? null : envelopeMinutes - durationMinutes;
+  checks.push(finding('module_totals', 'info', `${durationMinutes} min de modules ; ${practiceMinutes} min de pratique planifiée.`, '/modules', {
+    count: modules.length, durationMinutes, practiceMinutes, envelopeMinutes, remainingMinutes,
+    practicePercentage, targetPercentage, deltaPoints, tolerancePoints,
+  }));
+  if (remainingMinutes < 0) checks.push(finding('module_duration_overflow', 'warning', `Les modules dépassent l’enveloppe de ${-remainingMinutes} min.`, '/modules'));
+  if (remainingMinutes > 0) checks.push(finding('module_time_remaining', 'info', `${remainingMinutes} min hors modules ; leur affectation doit être explicite.`, '/modules'));
+  if (practicePercentage === null) checks.push(finding('module_practice_uncheckable', 'info', 'Pourcentage non calculable : enveloppe pédagogique inconnue.', '/meta/duree_minutes'));
+  if (deltaPoints !== null && Math.abs(deltaPoints) > tolerancePoints + 1e-10) checks.push(finding('module_practice_target_mismatch', 'warning', `Pratique planifiée : ${practicePercentage.toFixed(1)} % ; cible : ${targetPercentage} % ; écart supérieur à ±${tolerancePoints} points (convention V1).`, '/modules', { deltaPoints, tolerancePoints }));
+}
+
 const within = (root, file) => {
   const difference = relative(root, file);
   return difference !== '..' && !difference.startsWith(`..${sep}`) && !isAbsolute(difference);
@@ -231,6 +286,7 @@ export async function validateFormation(data, { formationPath, projectRoot = pro
   checkPersonasAndPractice(data, checks);
   await checkSources(data, { formationPath, projectRoot: resolve(projectRoot) }, checks);
   checkDuration(data, checks);
+  checkModules(data, checks);
   if (!checks.some(item => item.severity === 'error')) checks.push(finding('validation_passed', 'info', 'Structure V1 et contrôles déterministes exécutés sans erreur bloquante.'));
   else if (previousErrors) checks.push(finding('structure_invalid', 'info', 'Structure invalide : seuls les contrôles métier applicables ont été exécutés.'));
   return result(checks);

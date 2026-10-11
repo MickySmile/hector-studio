@@ -1004,6 +1004,57 @@
       ]
     }
   ],
+  "planification_modules": "Proposition expérimentale : enveloppe de 420 minutes, dont 390 en modules et 30 hors modules (15 de cadrage/positionnement et 15 de transitions et marge). Les pauses restent hors enveloppe selon AOD-H01, à confirmer avec le client. Pratique planifiée calculée sur 420 minutes ; aucune pratique imputée aux 30 minutes hors modules. L’écart catalogue 420/435 reste non résolu. Les preuves de conception sont comprises dans les modules ; l’adaptation de l’attestation reste à valider.",
+  "modules": [
+    {
+      "id": "AOD-M01",
+      "titre": "Qualifier une demande d’usage agentique",
+      "resultat_attendu": "Argumenter le choix entre chat, agent et workflow pour un besoin métier, avec une autonomie bornée.",
+      "competences": ["AOD-C01"],
+      "concepts_cles": ["Chat, agent et workflow", "Réponse et action", "Autonomie et responsabilité"],
+      "duree_minutes": 50,
+      "pratique_minutes": 25,
+      "justification": "Rappel LLM bref pour des managers déjà utilisateurs, sans présumer une maîtrise agentique homogène (AOD-H02). Qualification commune avant la cartographie.",
+      "dependances_modules": [],
+      "status": "proposition_a_valider"
+    },
+    {
+      "id": "AOD-M02",
+      "titre": "Concevoir un workflow RH explicable",
+      "resultat_attendu": "Présenter une carte logique d’un cas RH fictif, avec rôles, flux, ressources, connexions et validations localisés.",
+      "competences": ["AOD-C01", "AOD-C02"],
+      "concepts_cles": ["Entrées, sorties et instructions", "Ressources, connecteurs et MCP", "Orchestration et supervision"],
+      "duree_minutes": 140,
+      "pratique_minutes": 90,
+      "justification": "Donner la priorité à la conception logique sur un cas fictif à fournir (AOD-H04), sur Miro si autorisé. Introduction conceptuelle de MCP et ouverture multi-agents limitée ; démonstration n8n hors minutes de pratique. Aucun déploiement technique attendu ; adaptation catalogue à valider (AOD-H03).",
+      "dependances_modules": ["AOD-M01"],
+      "status": "proposition_a_valider"
+    },
+    {
+      "id": "AOD-M03",
+      "titre": "Conditionner l’usage aux contrôles des données RH",
+      "resultat_attendu": "Analyser le trajet des données du workflow fictif et formuler les contrôles et décisions de gouvernance nécessaires.",
+      "competences": ["AOD-C02", "AOD-C03"],
+      "concepts_cles": ["Flux et destinataires des données", "Shadow AI et accès", "Contrôle humain et gouvernance"],
+      "duree_minutes": 100,
+      "pratique_minutes": 65,
+      "justification": "Partir de la carte obtenue pour expliciter risques et responsabilités. Les analyses et décisions des participants comptent comme pratique ; aucune conformité juridique acquise n’est affirmée. Références et règles internes restent à vérifier (AOD-D06).",
+      "dependances_modules": ["AOD-M02"],
+      "status": "proposition_a_valider"
+    },
+    {
+      "id": "AOD-M04",
+      "titre": "Décider d’un prochain pas créateur de valeur",
+      "resultat_attendu": "Défendre un usage pour la production interne ou l’offre de services, avec hypothèse de valeur, limites et conditions de poursuite.",
+      "competences": ["AOD-C02", "AOD-C03", "AOD-C04"],
+      "concepts_cles": ["Production et capacité de production", "Valeur métier et hypothèse de gain", "Conditions de poursuite"],
+      "duree_minutes": 100,
+      "pratique_minutes": 70,
+      "justification": "Mobiliser architecture et risques pour argumenter une décision de manager, puis transférer aux appels d’offres, budgets ou services. Les gains restent hypothétiques. Claude Code est proposé en ressource (AOD-G10) pour préserver ce résultat professionnel.",
+      "dependances_modules": ["AOD-M02", "AOD-M03"],
+      "status": "proposition_a_valider"
+    }
+  ],
   "pratique": {
     "cible_pourcentage": 60,
     "justification": "Proposition fondée sur les attentes de conception, cartographie et analyse de cas ; la pratique inclut décider, concevoir, expliquer et analyser les risques, pas seulement manipuler des outils. Aucun taux n’est fixé par le client ni encore mesuré.",

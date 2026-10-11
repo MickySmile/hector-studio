@@ -684,6 +684,57 @@
       ]
     }
   ],
+  "planification_modules": "Proposition expérimentale : enveloppe de 420 minutes, dont 390 en modules et 30 hors modules (15 de cadrage/positionnement et 15 de transitions et marge). Les pauses restent hors enveloppe selon PO-H05, à confirmer. Pratique planifiée calculée sur 420 minutes ; aucune pratique imputée aux 30 minutes hors modules. L’écart catalogue 420/435 reste non résolu. Les preuves légères sont comprises dans les modules ; une évaluation individuelle supplémentaire nécessiterait un arbitrage.",
+  "modules": [
+    {
+      "id": "PO-M01",
+      "titre": "Choisir une tâche utile à confier à l’IA",
+      "resultat_attendu": "Délimiter un cas métier simple et justifier le rôle de l’IA ainsi que la limite d’autonomie.",
+      "competences": ["PO-C01"],
+      "concepts_cles": ["LLM et limites", "Assistant, agent et action", "Autonomie et contrôle humain"],
+      "duree_minutes": 60,
+      "pratique_minutes": 25,
+      "justification": "Poser un socle accessible au niveau IA inconnu, en reliant les notions au choix d’une tâche. Cas à confirmer (PO-H02), fictif si nécessaire ; panorama des plateformes comprimé (PO-G02).",
+      "dependances_modules": [],
+      "status": "proposition_a_valider"
+    },
+    {
+      "id": "PO-M02",
+      "titre": "Spécifier un agent métier testable",
+      "resultat_attendu": "Décrire l’agent du cas retenu avec entrées, sorties, instructions, ressources et critères de réussite.",
+      "competences": ["PO-C01", "PO-C02"],
+      "concepts_cles": ["Rôle et instructions", "Contexte et ressources", "Entrées, sorties et critères de réussite"],
+      "duree_minutes": 90,
+      "pratique_minutes": 55,
+      "justification": "Transformer le besoin qualifié en spécification avant de configurer. Réinvestir PO-C01 puis travailler PO-C02 ; borner le cas pour préserver le temps de réalisation.",
+      "dependances_modules": ["PO-M01"],
+      "status": "proposition_a_valider"
+    },
+    {
+      "id": "PO-M03",
+      "titre": "Obtenir un prototype vérifié sans coder",
+      "resultat_attendu": "Configurer un premier agent, vérifier son résultat et expliquer une limite observée avec des données de test adaptées.",
+      "competences": ["PO-C02", "PO-C03"],
+      "concepts_cles": ["Configuration sans code", "Résultat attendu et résultat obtenu", "Fiabilité et confidentialité"],
+      "duree_minutes": 130,
+      "pratique_minutes": 85,
+      "justification": "Conserver une plage longue de manipulation guidée pour un seul outil autorisé, sous réserve des accès (PO-H03). Le guidage et les corrections ne sont pas automatiquement comptés comme pratique.",
+      "dependances_modules": ["PO-M02"],
+      "status": "proposition_a_valider"
+    },
+    {
+      "id": "PO-M04",
+      "titre": "Relier le prototype à une chaîne supervisée",
+      "resultat_attendu": "Tester une automatisation simple avec validation humaine, point de reprise et prochain contrôle avant tout usage réel.",
+      "competences": ["PO-C03", "PO-C04"],
+      "concepts_cles": ["Déclencheur, traitement et action", "Validation avant action", "Reprise sur erreur et limites de déploiement"],
+      "duree_minutes": 110,
+      "pratique_minutes": 65,
+      "justification": "Réutiliser le prototype vérifié dans une seule plateforme no-code, avec préparation des accès. Préserver test et prochain pas ; comparatifs détaillés en ressource (PO-G06). L’attestation et ses modalités restent à arbitrer (PO-D06).",
+      "dependances_modules": ["PO-M03"],
+      "status": "proposition_a_valider"
+    }
+  ],
   "pratique": {
     "cible_pourcentage": 55,
     "justification": "Proposition pour préserver du guidage avec un niveau IA inconnu tout en visant une première réalisation ; ce taux n’est pas mesuré ni annoncé par la source.",

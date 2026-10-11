@@ -1,4 +1,4 @@
-const labels = { synthese: 'Synthèse', cadrage: 'Cadrage', personas: 'Personas', gap: 'Gap', competences: 'Compétences', carte: 'Carte', alertes: 'Alertes' };
+const labels = { synthese: 'Synthèse', cadrage: 'Cadrage', personas: 'Personas', gap: 'Gap', competences: 'Compétences', carte: 'Carte', modules: 'Modules', alertes: 'Alertes' };
 const decisions = { conserver: 'Conserver', approfondir: 'Approfondir', compresser: 'Compresser', enrichir: 'Enrichir', deplacer_en_ressource: 'Déplacer en ressource' };
 const e = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const list = items => `<ul>${items.map(x => `<li>${e(x)}</li>`).join('')}</ul>`;
@@ -135,8 +135,33 @@ function carte() {
         return `<foreignObject x="${node.x}" y="${node.y}" width="220" height="190"><button xmlns="http://www.w3.org/1999/xhtml" id="map-node-${i}" class="map-node ${kind}" data-competence="${e(c.id)}" aria-pressed="${node===selected}" aria-controls="competence-detail" title="${e(c.titre)}"><span class="map-id">${e(c.id)}${kind ? ` · ${relationLabels[kind]}` : ''}</span><strong>${e(c.titre)}</strong><span class="map-level">${e(c.niveau_cible)}</span></button></foreignObject>`;
       }).join('')}
     </svg></div>
-    <section id="competence-detail" class="card map-detail" aria-label="Détail de la compétence" aria-live="polite">${c ? `<h3>${e(c.id)} — ${e(c.titre)}</h3><div class="grid two"><div>${field('Situation professionnelle',c.situation_professionnelle)}${field('Action attendue',c.action_attendue)}${field('Niveau cible',c.niveau_cible)}${field('Importance',c.importance)}</div><div>${field('Preuve légère',c.preuve_legere)}<h4>Critères de réussite</h4>${list(c.criteres_reussite || [])}<h4>Prérequis / dépendances</h4>${references(c.dependances || [])}</div></div>` : '<p>Sélectionnez une compétence pour afficher ses détails.</p>'}</section>
+    <section id="competence-detail" class="card map-detail" aria-label="Détail de la compétence" aria-live="polite">${c ? `<h3>${e(c.id)} — ${e(c.titre)}</h3><div class="grid two"><div>${field('Situation professionnelle',c.situation_professionnelle)}${field('Action attendue',c.action_attendue)}${field('Niveau cible',c.niveau_cible)}${field('Importance',c.importance)}</div><div>${field('Preuve légère',c.preuve_legere)}<h4>Critères de réussite</h4>${list(c.criteres_reussite || [])}<h4>Prérequis / dépendances</h4>${references(c.dependances || [])}${field('Travaillée dans les modules',(data.modules || []).filter(m => m.competences.includes(c.id)).map(m => `${m.id} — ${m.titre}`).join(' · ') || 'Aucun module défini')}</div></div>` : '<p>Sélectionnez une compétence pour afficher ses détails.</p>'}</section>
     <details class="map-text"><summary>Lecture textuelle des compétences et des relations</summary><ul>${graph.nodes.map((node,i) => `<li><button id="map-text-${i}" data-competence="${e(node.id)}" aria-pressed="${node===selected}" aria-controls="competence-detail">${e(node.id)} — ${e(node.competence.titre)}</button> · ${node.unresolved ? 'ordre à vérifier' : `étape ${node.level+1}`}<br>Prérequis : ${e((node.competence.dependances || []).join(', ') || 'aucun')}${selected ? ` · ${relationLabels[mapRelation(node,selected)]}` : ''}</li>`).join('')}</ul></details>`;
+}
+
+function modules() {
+  if (!data.modules?.length) return '<p class="card">Modules non définis : formation au stade du cadrage.</p>';
+  const totals = validation?.checks.find(c => c.code === 'module_totals')?.details;
+  const percent = value => value === null ? 'Non calculable' : `${Number(value).toLocaleString('fr-FR', {maximumFractionDigits:1})} %`;
+  const references = (ids, collection) => ids.map(id => `${id} — ${collection.find(item => item.id === id)?.titre || 'référence introuvable'}`);
+  return `<p class="intro">Architecture proposée · lecture seule. La pratique est planifiée, pas mesurée en session.</p>
+    ${durationAlert()}
+    ${totals ? `<div class="stats module-stats">${[
+      ['Durée utilisée', `${totals.durationMinutes} / ${totals.envelopeMinutes ?? '?'} min`, 'Enveloppe de planification'],
+      ['Pratique calculée', percent(totals.practicePercentage), `${totals.practiceMinutes} min / ${totals.envelopeMinutes ?? '?'} min d’enveloppe`],
+      ['Cible de pratique', percent(totals.targetPercentage), `Tolérance V1 : ±${totals.tolerancePoints} points`],
+      ['Temps hors modules', totals.remainingMinutes === null ? 'Inconnu' : `${totals.remainingMinutes} min`, 'Aucune pratique présumée']
+    ].map(([title,value,note]) => `<article class="stat"><h3>${title}</h3><strong>${e(value)}</strong><small>${e(note)}</small></article>`).join('')}</div>` : '<p role="status">Calculs des modules indisponibles.</p>'}
+    ${(validation?.warnings || []).filter(c => c.path === '/modules').map(c => `<p class="health-warning">${e(c.message)}</p>`).join('')}
+    <p class="intro">${e(data.planification_modules || 'Affectation du temps hors modules à préciser.')}</p>
+    <section class="card module-progression" aria-label="Progression des modules"><h3>Progression proposée</h3><ol>${data.modules.map(m => `<li><a href="#${e(m.id)}">${e(m.titre)}</a><span>${e(m.duree_minutes)} min</span></li>`).join('')}</ol><small>Ordre pédagogique proposé ; aucun suivi de réalisation.</small></section>
+    <div class="grid two">${data.modules.map((m,i) => panel(`${i+1}. ${m.titre}`, `
+      ${badge(`${m.duree_minutes} min`)} ${badge(`${m.pratique_minutes} min de pratique`, 'known')}
+      ${field('Résultat attendu',m.resultat_attendu)}
+      ${field('Compétences concernées',references(m.competences,data.competences).join(' · '))}
+      ${field('Concepts clés',m.concepts_cles.join(' · '))}
+      ${detail('Justification, dépendances et statut', `${field('Justification',m.justification)}${field('Modules prérequis',references(m.dependances_modules || [],data.modules).join(' · ') || 'Aucun')}${field('Statut',m.status)}<small>${e(m.id)}</small>`)}
+    `, 'module-card').replace('<article ', `<article id="${e(m.id)}" `)).join('')}</div>`;
 }
 
 function alertes() {
@@ -148,7 +173,7 @@ function render() {
     if (validation) content.innerHTML = `${scenarioHealth()}<p role="alert">Ce scénario contient un problème bloquant. Corrigez les données source puis réessayez.</p><button data-retry>Réessayer</button>`;
     return;
   }
-  content.innerHTML = `${view !== 'synthese' ? `<div class="view-heading"><div class="eyebrow">${scenario === 'program_only' ? 'PROGRAMME SEUL' : 'ACT-ON DATA'}</div><h2>${labels[view]}</h2></div>` : ''}${({synthese,cadrage,personas,gap,competences,carte,alertes})[view]()}`;
+  content.innerHTML = `${view !== 'synthese' ? `<div class="view-heading"><div class="eyebrow">${scenario === 'program_only' ? 'PROGRAMME SEUL' : 'ACT-ON DATA'}</div><h2>${labels[view]}</h2></div>` : ''}${({synthese,cadrage,personas,gap,competences,carte,modules,alertes})[view]()}`;
 }
 async function loadScenario(next) {
   const token = ++request;
