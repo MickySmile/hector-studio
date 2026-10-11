@@ -1,0 +1,271 @@
+{
+  "schema_version": "1.0",
+  "formation_id": "IA017-PROGRAM-ONLY",
+  "scenario": "program_only",
+  "questions": [
+    {
+      "id": "IA017-PROGRAM-ONLY-R-d6e72741b5cc",
+      "question": "Quelle définition opérationnelle actuelle d’un agent permet de le distinguer d’un assistant et d’une automatisation pour des débutants ?",
+      "objectif_pedagogique": "Définir et comparer les rôles sans multiplier les plateformes.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Documentation officielle",
+        "Référence conceptuelle"
+      ],
+      "fraicheur_attendue": {
+        "description": "Proposition : vérification datant de 180 jours au maximum ; pertinence à examiner.",
+        "max_age_days": 180,
+        "verification_usage": false
+      },
+      "preuve_recherchee": "Définition et critères discriminants illustrés par un même cas simple.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "PO-M01",
+          "moment_id": "PO-M01-MP02",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quelle définition opérationnelle actuelle d’un agent permet de le distinguer d’un assistant et d’une automatisation pour des débutants ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-PROGRAM-ONLY-R-8b02607f3ade",
+      "question": "Quelles limites des LLM sont indispensables pour comprendre la validation humaine dans ce cas ?",
+      "objectif_pedagogique": "Définir et comparer les rôles sans multiplier les plateformes.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Documentation officielle",
+        "Travaux de référence sur les limites des LLM"
+      ],
+      "fraicheur_attendue": {
+        "description": "Proposition : vérification datant de 180 jours au maximum ; pertinence à examiner.",
+        "max_age_days": 180,
+        "verification_usage": false
+      },
+      "preuve_recherchee": "Limites documentées reliées à des points de validation humaine observables.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "PO-M01",
+          "moment_id": "PO-M01-MP02",
+          "questions_originales": [
+            {
+              "index": 1,
+              "question": "Quelles limites des LLM sont indispensables pour comprendre la validation humaine dans ce cas ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-PROGRAM-ONLY-R-1f9bd7824446",
+      "question": "Quelles distinctions entre instructions, contexte et ressources faut-il enseigner pour spécifier un agent simple ?",
+      "objectif_pedagogique": "Relier un contraste de spécifications aux critères de réussite.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Documentation officielle",
+        "Guide de conception"
+      ],
+      "fraicheur_attendue": {
+        "description": "Proposition : vérification datant de 180 jours au maximum ; pertinence à examiner.",
+        "max_age_days": 180,
+        "verification_usage": false
+      },
+      "preuve_recherchee": "Distinctions explicites entre instructions, contexte et ressources, avec exemple de spécification.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "PO-M02",
+          "moment_id": "PO-M02-MP01",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quelles distinctions entre instructions, contexte et ressources faut-il enseigner pour spécifier un agent simple ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-PROGRAM-ONLY-R-fd764e0ec930",
+      "question": "Quel cas limite reproductible l’outil retenu permet-il de montrer sans attribuer une fiabilité non démontrée ?",
+      "objectif_pedagogique": "Faire émerger le besoin de test par une démonstration contrastée.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Documentation de l’éditeur",
+        "Test reproductible dans l’environnement retenu"
+      ],
+      "fraicheur_attendue": {
+        "description": "À vérifier dans la version et le contexte de la session, au moment de l’utilisation.",
+        "max_age_days": null,
+        "verification_usage": true
+      },
+      "preuve_recherchee": "Protocole, entrées, résultat attendu et limite observée reproductibles ; aucune généralisation de fiabilité.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "PO-M03",
+          "moment_id": "PO-M03-MP01",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quel cas limite reproductible l’outil retenu permet-il de montrer sans attribuer une fiabilité non démontrée ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-PROGRAM-ONLY-R-7550909fd1ea",
+      "question": "Quelles fonctions et licences actuelles permettent instructions, ressources et tests dans l’outil retenu ?",
+      "objectif_pedagogique": "Identifier les supports et accès utiles pour un seul outil.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Documentation et conditions de licence de l’éditeur",
+        "Confirmation des accès"
+      ],
+      "fraicheur_attendue": {
+        "description": "À vérifier dans la version et le contexte de la session, au moment de l’utilisation.",
+        "max_age_days": null,
+        "verification_usage": true
+      },
+      "preuve_recherchee": "Fonctions et licences vérifiées dans la version et le compte utilisés pour la session.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "PO-M03",
+          "moment_id": "PO-M03-MP02",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quelles fonctions et licences actuelles permettent instructions, ressources et tests dans l’outil retenu ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-PROGRAM-ONLY-R-95ff9bc507e8",
+      "question": "Quels réglages de conservation et d’accès aux données doivent être vérifiés dans cet environnement ?",
+      "objectif_pedagogique": "Identifier les supports et accès utiles pour un seul outil.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Documentation de l’éditeur",
+        "Paramètres de l’environnement autorisé"
+      ],
+      "fraicheur_attendue": {
+        "description": "À vérifier dans la version et le contexte de la session, au moment de l’utilisation.",
+        "max_age_days": null,
+        "verification_usage": true
+      },
+      "preuve_recherchee": "Réglages observables de conservation et d’accès, périmètre et restrictions confirmés.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "PO-M03",
+          "moment_id": "PO-M03-MP02",
+          "questions_originales": [
+            {
+              "index": 1,
+              "question": "Quels réglages de conservation et d’accès aux données doivent être vérifiés dans cet environnement ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-PROGRAM-ONLY-R-4dd28213e643",
+      "question": "Quels mécanismes actuels de validation, reprise et prévention des actions répétées sont disponibles sur la plateforme choisie ?",
+      "objectif_pedagogique": "Décomposer une chaîne à partir d’un incident fictif.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Documentation officielle de la plateforme",
+        "Test reproductible"
+      ],
+      "fraicheur_attendue": {
+        "description": "À vérifier dans la version et le contexte de la session, au moment de l’utilisation.",
+        "max_age_days": null,
+        "verification_usage": true
+      },
+      "preuve_recherchee": "Mécanismes vérifiés de validation, reprise et prévention des actions répétées sur un scénario de test.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "PO-M04",
+          "moment_id": "PO-M04-MP01",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quels mécanismes actuels de validation, reprise et prévention des actions répétées sont disponibles sur la plateforme choisie ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-PROGRAM-ONLY-R-1eeb6cdde7c7",
+      "question": "Quels accès, connecteurs et restrictions de l’environnement de test permettent la chaîne retenue sans données réelles ?",
+      "objectif_pedagogique": "Identifier un support de réalisation transférable.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Documentation des connecteurs",
+        "Confirmation du responsable de l’environnement"
+      ],
+      "fraicheur_attendue": {
+        "description": "À vérifier dans la version et le contexte de la session, au moment de l’utilisation.",
+        "max_age_days": null,
+        "verification_usage": true
+      },
+      "preuve_recherchee": "Liste confirmée des accès, connecteurs et restrictions nécessaires avec données de test.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "PO-M04",
+          "moment_id": "PO-M04-MP02",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quels accès, connecteurs et restrictions de l’environnement de test permettent la chaîne retenue sans données réelles ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    }
+  ]
+}

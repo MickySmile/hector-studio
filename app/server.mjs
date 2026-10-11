@@ -1,8 +1,9 @@
 import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { resolve } from 'node:path';
+import { resolve, dirname, join } from 'node:path';
 import { validateFormation } from '../core/validate-formation.mjs';
+import { loadResearchPlan } from '../core/research.mjs';
 
 const scenarios = ['program_only', 'act_on_data'];
 const formationFiles = Object.fromEntries(scenarios.map(s => [s, new URL(`../examples/IA017/${s}/formation.json`, import.meta.url)]));
@@ -15,7 +16,7 @@ const routes = new Map([
 ]);
 
 // Les chemins injectables servent aux tests ; aucune route ne reçoit de chemin utilisateur.
-export function createServer({ files = formationFiles } = {}) {
+export function createServer({ files = formationFiles, knowledgeRoot } = {}) {
   return http.createServer(async (req, res) => {
     res.setHeader('Cache-Control', 'no-store');
     res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -36,7 +37,10 @@ export function createServer({ files = formationFiles } = {}) {
         const file = files[scenario];
         const formation = JSON.parse(await readFile(file, 'utf8'));
         const validation = await validateFormation(formation, { formationPath: file instanceof URL ? fileURLToPath(file) : file });
-        send(200, { formation: validation.valid ? formation : null, validation });
+        const research = validation.valid
+          ? await loadResearchPlan(join(dirname(file instanceof URL ? fileURLToPath(file) : file), 'research-plan.json'), formation, { knowledgeRoot })
+          : null;
+        send(200, { formation: validation.valid ? formation : null, validation, research });
       } catch {
         send(500, { error: 'Impossible de valider ce scénario.' });
       }

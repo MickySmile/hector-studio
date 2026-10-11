@@ -1,4 +1,4 @@
-const labels = { synthese: 'Synthèse', cadrage: 'Cadrage', personas: 'Personas', gap: 'Gap', competences: 'Compétences', carte: 'Carte', modules: 'Modules', vcoac: 'VCOAC', alertes: 'Alertes' };
+const labels = { synthese: 'Synthèse', cadrage: 'Cadrage', personas: 'Personas', gap: 'Gap', competences: 'Compétences', carte: 'Carte', modules: 'Modules', vcoac: 'VCOAC', recherche: 'Recherche', alertes: 'Alertes' };
 const decisions = { conserver: 'Conserver', approfondir: 'Approfondir', compresser: 'Compresser', enrichir: 'Enrichir', deplacer_en_ressource: 'Déplacer en ressource' };
 const e = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const list = items => `<ul>${items.map(x => `<li>${e(x)}</li>`).join('')}</ul>`;
@@ -11,6 +11,8 @@ const field = (title, value) => `<div class="field"><h4>${e(title)}</h4><p>${e(v
 const actions = () => '<div class="actions"><button data-simulate>Accepter</button><button data-simulate>Modifier</button><button data-simulate>Écarter</button><small>Simulation uniquement</small></div>';
 let scenario = 'program_only', view = 'synthese', data, validation, request = 0;
 let decisionFilter = '', priorityFilter = '', selectedCompetence = null;
+let research = null, researchStatus = '', researchImportance = '', researchModule = '';
+const researchLabels = { covered: 'Couverte', refresh_needed: 'À actualiser', external_research_needed: 'Recherche externe nécessaire' };
 const content = document.querySelector('#content');
 const group = block => (block.connu || []).map(fact).join('') + (block.suppose || []).map(fact).join('') + (block.propose ? fact(block.propose) : '') + (block.inconnu || []).map(texte => fact({ texte, nature: 'inconnu' })).join('');
 const hypothesis = h => panel(h.texte, `${badge('? Hypothèse', 'hypothesis')} ${badge(`Confiance ${h.confiance}`)}${field('Impact pédagogique', h.impact_pedagogique)}<small>${e(h.id)} · ${h.a_valider ? 'À valider' : 'Voir la source'}</small>`);
@@ -184,20 +186,48 @@ function vcoac() {
     `, 'vcoac-module')).join('')}`;
 }
 
+function recherche() {
+  if (!research?.plan || !research.validation?.valid) return `<div class="health-error" role="alert"><p>Plan de recherche indisponible ou invalide. Corrigez la source puis rechargez le scénario.</p>${list((research?.validation?.errors || []).map(x => x.message))}</div>`;
+  const { questions } = research.plan, counts = research.counts;
+  const rows = questions.filter(q => (!researchStatus || q.status === researchStatus) && (!researchImportance || q.importance === researchImportance) && (!researchModule || q.used_by.some(u => u.module_id === researchModule)));
+  const select = (id, label, value, options) => `<label>${label} <select id="${id}"><option value="">Tous</option>${options.map(([key, title]) => `<option value="${e(key)}" ${value === key ? 'selected' : ''}>${e(title)}</option>`).join('')}</select></label>`;
+  return `<p class="intro">Lecture seule · Knowledge interne examiné en premier. Les correspondances sont des candidats à examiner ; la décision de réutilisation reste humaine. Aucune recherche externe n’est déclenchée.</p>
+    <div class="stats research-stats">${[['Questions', counts.total], ['Couvertes', counts.covered], ['À actualiser', counts.refresh_needed], ['Recherche externe nécessaire', counts.external_research_needed]].map(([label, value]) => `<article class="stat"><h3>${label}</h3><strong>${e(value)}</strong></article>`).join('')}</div>
+    <p class="intro">${e(research.knowledge_count)} fiche(s) Knowledge · contrôle du ${e(research.checked_at)}. « Externe » inclut les confirmations auprès du client ou du responsable de l’environnement.</p>
+    <div class="filters">${select('research-status', 'Statut', researchStatus, Object.entries(researchLabels))}${select('research-importance', 'Importance', researchImportance, [['haute','Haute'],['moyenne','Moyenne'],['basse','Basse'],['a_arbitrer','À arbitrer']])}${select('research-module', 'Module', researchModule, (data.modules || []).map(m => [m.id, m.titre]))}<span role="status">${rows.length} / ${questions.length} questions</span></div>
+    ${rows.length ? rows.map(q => panel(q.question, `
+      ${badge(researchLabels[q.status], q.status === 'covered' ? 'known' : 'alert')} ${badge(q.importance)}
+      ${field('Objectif pédagogique', q.objectif_pedagogique)}
+      <h4>Utilisé dans</h4>${list(q.used_by.map(u => {
+        const module = data.modules.find(m => m.id === u.module_id), moment = module?.moments_pedagogiques?.find(m => m.id === u.moment_id);
+        return `${u.module_id} — ${module?.titre || '?'} / ${u.moment_id} — ${moment?.fonctions_vcoac.map(f => f.toUpperCase()).join(' + ') || '?'} — ${moment?.titre || '?'}`;
+      }))}
+      ${field('Types de sources souhaités', q.types_sources_souhaites.join(' · '))}
+      ${field('Fraîcheur attendue', q.fraicheur_attendue.description)}
+      ${field('Preuve recherchée', q.preuve_recherchee)}
+      <p class="intro">${q.cadrage_status === 'valide' ? 'Cadrage de recherche validé.' : 'Importance, sources, fraîcheur et preuve : propositions à valider.'}</p>
+      <h4>Matches Knowledge</h4>${q.knowledge_matches.length ? q.knowledge_matches.map(match => `<div class="knowledge-match">${field(`${match.knowledge_id} — ${match.title}`, match.path)}${list(match.reasons)}${field('Fraîcheur', `${({fresh:'Fraîche',stale:'Périmée',unknown:'Inconnue'})[match.freshness.status]} · vérifiée le ${match.freshness.verified_at || 'date inconnue'} · contrôle du ${match.freshness.checked_at}`)}${field('Confiance déclarée dans la fiche', match.confidence || 'Non renseignée')}<small>Score lexical : ${e(match.score)} · aucune validation sémantique automatique.</small></div>`).join('') : '<p>Aucun candidat interne trouvé.</p>'}
+      ${q.review ? field('Revue humaine', `${q.review.reviewer} · ${q.review.date} · ${q.review.justification} · ${q.review.knowledge_ids.join(', ')}`) : ''}
+      ${detail('Traçabilité VCOAC', `${q.fusion_justification ? field('Justification de fusion', q.fusion_justification) : ''}${list(q.used_by.flatMap(u => u.questions_originales.map(o => `${u.module_id} / ${u.moment_id} · question ${o.index + 1} : ${o.question}`)))}`)}
+      <small>${e(q.id)}</small>`, 'research-question')).join('') : '<p class="card">Aucune question pour ces filtres.</p>'}`;
+}
+
 function alertes() {
   return `${durationAlert()}<h3 class="section-title">⚠ Alertes <span>${data.alertes.length}</span></h3><div class="grid two">${data.alertes.map(a=>panel(a.message,`${badge('⚠ Alerte','alert')}${field('Action proposée',a.action)}<small>${e(a.id)}</small>`)).join('')}</div><h3 class="section-title">? Hypothèses importantes <span>${data.hypotheses.length}</span></h3><div class="grid two">${data.hypotheses.map(hypothesis).join('')}</div><h3 class="section-title">◆ Décisions à valider <span>${data.decisions_a_valider.length}</span></h3><div class="grid two">${data.decisions_a_valider.map(d=>panel(d.question,`${badge('◆ Décision nécessaire','decision')} ${badge(d.porte)}${field('Recommandation',d.recommandation)}${actions()}`)).join('')}</div>`;
 }
 function render() {
+  document.querySelector('#source-path').textContent = `examples/IA017/${scenario}/${view === 'recherche' ? 'research-plan.json + formation.json' : 'formation.json'}`;
   document.querySelector('#navigation').innerHTML = Object.entries(labels).map(([key,label])=>`<button data-view="${key}" ${view === key ? 'aria-current="page"' : ''}>${label}${key==='alertes' && data ? ` <span>${data.alertes.length}</span>` : ''}</button>`).join('');
   if (!data) {
     if (validation) content.innerHTML = `${scenarioHealth()}<p role="alert">Ce scénario contient un problème bloquant. Corrigez les données source puis réessayez.</p><button data-retry>Réessayer</button>`;
     return;
   }
-  content.innerHTML = `${view !== 'synthese' ? `<div class="view-heading"><div class="eyebrow">${scenario === 'program_only' ? 'PROGRAMME SEUL' : 'ACT-ON DATA'}</div><h2>${labels[view]}</h2></div>` : ''}${({synthese,cadrage,personas,gap,competences,carte,modules,vcoac,alertes})[view]()}`;
+  content.innerHTML = `${view !== 'synthese' ? `<div class="view-heading"><div class="eyebrow">${scenario === 'program_only' ? 'PROGRAMME SEUL' : 'ACT-ON DATA'}</div><h2>${labels[view]}</h2></div>` : ''}${({synthese,cadrage,personas,gap,competences,carte,modules,vcoac,recherche,alertes})[view]()}`;
 }
 async function loadScenario(next) {
   const token = ++request;
   scenario = next; selectedCompetence = null; data = null; validation = null; decisionFilter = ''; priorityFilter = '';
+  research = null; researchStatus = ''; researchImportance = ''; researchModule = '';
   document.querySelectorAll('[data-scenario]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scenario===scenario)));
   document.querySelector('#scenario-note').textContent = '';
   document.querySelector('#source-path').textContent = `examples/IA017/${scenario}/formation.json`;
@@ -209,6 +239,7 @@ async function loadScenario(next) {
     const loaded = await response.json();
     if (token !== request) return;
     validation = loaded.validation;
+    research = loaded.research || null;
     data = loaded.formation;
     document.querySelector('#scenario-note').textContent = data?.meta.note || '';
     render();
@@ -243,6 +274,13 @@ document.addEventListener('click', event => {
   }
 });
 document.addEventListener('change', event => {
+  if (['research-status', 'research-importance', 'research-module'].includes(event.target.id)) {
+    const { id, value } = event.target;
+    if (id === 'research-status') researchStatus = value;
+    if (id === 'research-importance') researchImportance = value;
+    if (id === 'research-module') researchModule = value;
+    render(); document.getElementById(id).focus();
+  }
   if (event.target.id==='decision-filter' || event.target.id==='priority-filter') {
     const id=event.target.id;
     if (id==='decision-filter') decisionFilter=event.target.value; else priorityFilter=event.target.value;

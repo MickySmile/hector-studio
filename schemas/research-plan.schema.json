@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hector Studio — Plan de recherche V1",
+  "description": "Questions issues exclusivement de VCOAC ; cadrage éditorial explicite et couverture revue humainement.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "formation_id",
+    "scenario",
+    "questions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "formation_id": {
+      "type": "string",
+      "pattern": "^\\S+$"
+    },
+    "scenario": {
+      "type": "string",
+      "pattern": "^\\S+$"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/question"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "question",
+        "objectif_pedagogique",
+        "importance",
+        "types_sources_souhaites",
+        "fraicheur_attendue",
+        "preuve_recherchee",
+        "cadrage_status",
+        "status",
+        "used_by",
+        "knowledge_matches",
+        "fusion_justification",
+        "review"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\S+$"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "objectif_pedagogique": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "importance": {
+          "enum": [
+            "haute",
+            "moyenne",
+            "basse",
+            "a_arbitrer"
+          ]
+        },
+        "types_sources_souhaites": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "fraicheur_attendue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "description",
+            "max_age_days",
+            "verification_usage"
+          ],
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "max_age_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "verification_usage": {
+              "type": "boolean"
+            }
+          }
+        },
+        "preuve_recherchee": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "cadrage_status": {
+          "enum": [
+            "proposition_a_valider",
+            "valide"
+          ]
+        },
+        "status": {
+          "enum": [
+            "covered",
+            "refresh_needed",
+            "external_research_needed"
+          ]
+        },
+        "used_by": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "module_id",
+              "moment_id",
+              "questions_originales"
+            ],
+            "properties": {
+              "module_id": {
+                "type": "string",
+                "pattern": "^\\S+$"
+              },
+              "moment_id": {
+                "type": "string",
+                "pattern": "^\\S+$"
+              },
+              "questions_originales": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "index",
+                    "question"
+                  ],
+                  "properties": {
+                    "index": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "question": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "\\S"
+                    }
+                  }
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            }
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "knowledge_matches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/match"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "fusion_justification": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      }
+    },
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "knowledge_id",
+        "path",
+        "title",
+        "reasons",
+        "score",
+        "freshness",
+        "confidence"
+      ],
+      "properties": {
+        "knowledge_id": {
+          "type": "string",
+          "pattern": "^\\S+$"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^(concepts|sources|cases|methods|tools)/[^\\\\]+\\.md$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "score": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "freshness": {
+          "$ref": "#/$defs/freshness"
+        },
+        "confidence": {
+          "enum": [
+            null,
+            "faible",
+            "moyenne",
+            "forte"
+          ]
+        }
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "verified_at",
+        "review_after",
+        "age_days",
+        "checked_at"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "fresh",
+            "stale",
+            "unknown"
+          ]
+        },
+        "verified_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "review_after": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "age_days": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "checked_at": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "review": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "reviewer",
+        "date",
+        "justification",
+        "knowledge_ids"
+      ],
+      "properties": {
+        "reviewer": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "justification": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "knowledge_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^\\S+$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

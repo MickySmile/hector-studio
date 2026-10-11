@@ -1,0 +1,273 @@
+{
+  "schema_version": "1.0",
+  "formation_id": "IA017-ACT-ON-DATA",
+  "scenario": "act_on_data",
+  "questions": [
+    {
+      "id": "IA017-ACT-ON-DATA-R-531f994b6af1",
+      "question": "Quels critères actuels distinguent chat, agent et workflow pour décider d’un usage RH borné ?",
+      "objectif_pedagogique": "Partir des usages LLM connus pour comparer réponse, action et workflow.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Documentation officielle",
+        "Référence conceptuelle"
+      ],
+      "fraicheur_attendue": {
+        "description": "Proposition : vérification datant de 180 jours au maximum ; pertinence à examiner.",
+        "max_age_days": 180,
+        "verification_usage": false
+      },
+      "preuve_recherchee": "Critères de choix chat, agent et workflow appliqués à un cas RH borné.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "AOD-M01",
+          "moment_id": "AOD-M01-MP01",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quels critères actuels distinguent chat, agent et workflow pour décider d’un usage RH borné ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-ACT-ON-DATA-R-39188e825a6c",
+      "question": "Quel flux RH fictif peut être montré avec les capacités actuelles de n8n et les accès autorisés ?",
+      "objectif_pedagogique": "Décomposer un workflow visible avant de le cartographier.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Documentation officielle n8n",
+        "Confirmation des accès autorisés",
+        "Test reproductible"
+      ],
+      "fraicheur_attendue": {
+        "description": "À vérifier dans la version et le contexte de la session, au moment de l’utilisation.",
+        "max_age_days": null,
+        "verification_usage": true
+      },
+      "preuve_recherchee": "Flux démontrable avec données fictives, version identifiée et accès confirmés.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "AOD-M02",
+          "moment_id": "AOD-M02-MP01",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quel flux RH fictif peut être montré avec les capacités actuelles de n8n et les accès autorisés ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-ACT-ON-DATA-R-db7e80146e37",
+      "question": "Quel rôle et quelles limites de la version actuelle de MCP sont utiles à la lecture de cette carte RH ?",
+      "objectif_pedagogique": "Distinguer les briques et borner l’ouverture architecturale.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Spécification officielle MCP",
+        "Documentation des implémentations retenues"
+      ],
+      "fraicheur_attendue": {
+        "description": "Proposition : vérification datant de 90 jours au maximum ; pertinence à examiner.",
+        "max_age_days": 90,
+        "verification_usage": false
+      },
+      "preuve_recherchee": "Rôles et limites de la version identifiée, reliés aux connexions de la carte RH.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "AOD-M02",
+          "moment_id": "AOD-M02-MP02",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quel rôle et quelles limites de la version actuelle de MCP sont utiles à la lecture de cette carte RH ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-ACT-ON-DATA-R-70cf05c4fca4",
+      "question": "Quels critères justifieraient une orchestration multi-agents plutôt qu’un workflow simple dans ce cas ?",
+      "objectif_pedagogique": "Distinguer les briques et borner l’ouverture architecturale.",
+      "importance": "moyenne",
+      "types_sources_souhaites": [
+        "Documentation d’architecture",
+        "Retour d’expérience documenté"
+      ],
+      "fraicheur_attendue": {
+        "description": "Proposition : vérification datant de 180 jours au maximum ; pertinence à examiner.",
+        "max_age_days": 180,
+        "verification_usage": false
+      },
+      "preuve_recherchee": "Comparaison argumentée des conditions et coûts d’une orchestration multi-agents face à un workflow simple.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "AOD-M02",
+          "moment_id": "AOD-M02-MP02",
+          "questions_originales": [
+            {
+              "index": 1,
+              "question": "Quels critères justifieraient une orchestration multi-agents plutôt qu’un workflow simple dans ce cas ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-ACT-ON-DATA-R-fec8b45a3751",
+      "question": "Quels risques documentés de Shadow AI sont pertinents pour les flux RH et outils envisagés ?",
+      "objectif_pedagogique": "Expliquer les distinctions nécessaires en introduisant une grille.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Institution ou expertise spécialisée",
+        "Retour d’incident documenté"
+      ],
+      "fraicheur_attendue": {
+        "description": "Proposition : vérification datant de 180 jours au maximum ; pertinence à examiner.",
+        "max_age_days": 180,
+        "verification_usage": false
+      },
+      "preuve_recherchee": "Risques documentés, conditions d’apparition et contrôles pertinents pour les flux envisagés.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "AOD-M03",
+          "moment_id": "AOD-M03-MP02",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quels risques documentés de Shadow AI sont pertinents pour les flux RH et outils envisagés ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-ACT-ON-DATA-R-224f3604aea9",
+      "question": "Quelles exigences RGPD et quelles références réglementaires en vigueur doivent être vérifiées pour ce cas RH, et par quel interlocuteur compétent ?",
+      "objectif_pedagogique": "Expliquer les distinctions nécessaires en introduisant une grille.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Textes officiels en vigueur",
+        "Autorité compétente",
+        "Interlocuteur compétent désigné"
+      ],
+      "fraicheur_attendue": {
+        "description": "À vérifier dans la version et le contexte de la session, au moment de l’utilisation.",
+        "max_age_days": null,
+        "verification_usage": true
+      },
+      "preuve_recherchee": "Références en vigueur, périmètre d’application à instruire et interlocuteur de validation ; aucune conformité présumée.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "AOD-M03",
+          "moment_id": "AOD-M03-MP02",
+          "questions_originales": [
+            {
+              "index": 1,
+              "question": "Quelles exigences RGPD et quelles références réglementaires en vigueur doivent être vérifiées pour ce cas RH, et par quel interlocuteur compétent ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-ACT-ON-DATA-R-a1936416981d",
+      "question": "Quelles règles internes et restrictions d’accès le client doit-il confirmer avant de préparer la grille ?",
+      "objectif_pedagogique": "Expliquer les distinctions nécessaires en introduisant une grille.",
+      "importance": "haute",
+      "types_sources_souhaites": [
+        "Politique interne du client",
+        "Confirmation du responsable des accès et de la gouvernance"
+      ],
+      "fraicheur_attendue": {
+        "description": "À vérifier dans la version et le contexte de la session, au moment de l’utilisation.",
+        "max_age_days": null,
+        "verification_usage": true
+      },
+      "preuve_recherchee": "Règles et restrictions confirmées par un responsable identifié avant préparation de la grille.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "AOD-M03",
+          "moment_id": "AOD-M03-MP02",
+          "questions_originales": [
+            {
+              "index": 2,
+              "question": "Quelles règles internes et restrictions d’accès le client doit-il confirmer avant de préparer la grille ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    },
+    {
+      "id": "IA017-ACT-ON-DATA-R-364b45c3fd72",
+      "question": "Quels éléments probants permettraient de distinguer gain ponctuel et amélioration durable de capacité sur ce processus ?",
+      "objectif_pedagogique": "Comparer deux situations fictives pour faire émerger la question de valeur.",
+      "importance": "moyenne",
+      "types_sources_souhaites": [
+        "Étude ou méthode d’évaluation documentée",
+        "Mesures du processus à obtenir"
+      ],
+      "fraicheur_attendue": {
+        "description": "Temporalité à arbitrer selon la méthode et le processus étudiés.",
+        "max_age_days": null,
+        "verification_usage": false
+      },
+      "preuve_recherchee": "Indicateurs, situation initiale et observations répétées permettant de tester une hypothèse de gain durable.",
+      "cadrage_status": "proposition_a_valider",
+      "status": "external_research_needed",
+      "used_by": [
+        {
+          "module_id": "AOD-M04",
+          "moment_id": "AOD-M04-MP01",
+          "questions_originales": [
+            {
+              "index": 0,
+              "question": "Quels éléments probants permettraient de distinguer gain ponctuel et amélioration durable de capacité sur ce processus ?"
+            }
+          ]
+        }
+      ],
+      "knowledge_matches": [],
+      "fusion_justification": null,
+      "review": null
+    }
+  ]
+}

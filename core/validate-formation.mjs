@@ -40,6 +40,12 @@ function inspectSchema(schema) {
   if (schema.contains) inspectSchema(schema.contains);
 }
 
+/** Même sous-ensemble déterministe pour les contrats locaux, sans dépendance réseau. */
+export function validateSchema(value, schema) {
+  inspectSchema(schema);
+  return schemaErrors(value, schema, schema);
+}
+
 function matchesType(value, type) {
   if (type === 'null') return value === null;
   if (type === 'object') return object(value);
