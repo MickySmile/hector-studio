@@ -19,7 +19,7 @@
       },
       "preuve_recherchee": "Définition et critères discriminants illustrés par un même cas simple.",
       "cadrage_status": "proposition_a_valider",
-      "status": "external_research_needed",
+      "status": "covered",
       "used_by": [
         {
           "module_id": "PO-M01",
@@ -32,9 +32,40 @@
           ]
         }
       ],
-      "knowledge_matches": [],
+      "knowledge_matches": [
+        {
+          "knowledge_id": "CON-AGENT-IA",
+          "path": "concepts/agent-ia.md",
+          "title": "Agent IA — définition opérationnelle",
+          "type": "concept",
+          "reasons": [
+            "title : definition, operationnelle, agent",
+            "tags : agent",
+            "aliases : definition, agent, assistant",
+            "content : definition, operationnelle, agent, distinguer, assistant, debutants"
+          ],
+          "score": 30,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "La fiche fournit la définition opérationnelle non normative, distingue assistant, workflow prédéfini et agent par le choix de la suite des actions, et applique ces repères au même exemple simple de réclamation. Elle répond au besoin de définition pour débutants et à la preuve attendue."
+        }
+      ],
       "fusion_justification": null,
-      "review": null
+      "review": {
+        "reviewer": "Codex — analyse de couverture du matériau validé par l’utilisateur",
+        "date": "2026-10-12",
+        "justification": "Rapprochement sémantique effectué pour le cycle de capitalisation demandé, à partir du matériau validé et vérifié au 12 octobre 2026 selon l’utilisateur. Couverture suffisante de la définition et des distinctions pour débutants, illustrées sur un même cas simple. Aucune nouvelle consultation Web ni validation normative. Le statut ne résulte pas du score lexical.",
+        "knowledge_ids": [
+          "CON-AGENT-IA"
+        ]
+      }
     },
     {
       "id": "IA017-PROGRAM-ONLY-R-8b02607f3ade",
@@ -65,7 +96,28 @@
           ]
         }
       ],
-      "knowledge_matches": [],
+      "knowledge_matches": [
+        {
+          "knowledge_id": "CON-AGENT-IA",
+          "path": "concepts/agent-ia.md",
+          "title": "Agent IA — définition opérationnelle",
+          "type": "concept",
+          "reasons": [
+            "content : limites, llm, validation, humaine, cas"
+          ],
+          "score": 5,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "partial",
+          "assessment": "Le contrôle humain est identifié, mais les limites précises des LLM et leurs liens avec les points de validation ne sont pas documentés. La question reste à rechercher."
+        }
+      ],
       "fusion_justification": null,
       "review": null
     },
@@ -98,7 +150,31 @@
           ]
         }
       ],
-      "knowledge_matches": [],
+      "knowledge_matches": [
+        {
+          "knowledge_id": "MET-GRILLE-CONCEPTION-AGENT",
+          "path": "methods/grille-conception-agent.md",
+          "title": "Grille de conception d’un agent IA",
+          "type": "method",
+          "reasons": [
+            "title : agent",
+            "tags : agent",
+            "aliases : contexte, agent",
+            "content : instructions, contexte, ressources, agent"
+          ],
+          "score": 17,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "partial",
+          "assessment": "La grille situe contexte, actions et contrôle. Elle ne détaille pas la distinction instructions/contexte/ressources ni l’exemple de spécification attendu ; couverture insuffisante."
+        }
+      ],
       "fusion_justification": null,
       "review": null
     },

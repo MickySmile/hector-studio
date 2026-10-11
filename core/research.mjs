@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname, join } from 'node:path';
 import { validateSchema } from './validate-formation.mjs';
-import { normalize, loadKnowledge, searchKnowledge, freshness } from './knowledge.mjs';
+import { normalize, loadKnowledge, searchKnowledge, freshness, localDate } from './knowledge.mjs';
 
 const schema = JSON.parse(await readFile(new URL('../schemas/research-plan.schema.json', import.meta.url), 'utf8'));
 const defaultKnowledge = fileURLToPath(new URL('../knowledge/', import.meta.url));
@@ -72,7 +72,7 @@ export function buildResearchPlan(formation, { groups = [] } = {}) {
   return { schema_version: '1.0', formation_id: formation.meta.id, scenario: formation.meta.scenario, questions };
 }
 
-export async function validateResearchPlan(plan, formation, { notes = [], asOf = new Date().toISOString().slice(0, 10) } = {}) {
+export async function validateResearchPlan(plan, formation, { notes = [], asOf = localDate() } = {}) {
   const errors = validateSchema(plan, schema);
   const fail = (code, message) => errors.push({ code, message });
   if (errors.length) return { valid: false, errors };
@@ -107,6 +107,8 @@ export async function validateResearchPlan(plan, formation, { notes = [], asOf =
     for (const match of q.knowledge_matches) {
       const note = noteById.get(match.knowledge_id);
       if (!note || note.path !== match.path) fail('unknown_knowledge', `Fiche candidate introuvable : ${match.knowledge_id}`);
+      if (note && match.type && match.type !== note.metadata.type) fail('knowledge_type_mismatch', `Type de fiche incorrect : ${match.knowledge_id}`);
+      if (Boolean(match.coverage) !== Boolean(match.assessment)) fail('assessment_incomplete', `Appréciation de couverture incomplète : ${match.knowledge_id}`);
       if (matchIds.has(match.knowledge_id)) fail('duplicate_match', `Match dupliqué : ${match.knowledge_id}`);
       matchIds.add(match.knowledge_id);
     }
@@ -116,6 +118,7 @@ export async function validateResearchPlan(plan, formation, { notes = [], asOf =
       const selected = review.knowledge_ids.map(id => noteById.get(id));
       if (selected.some(note => !note)) { fail('review_reference', `Référence de revue introuvable : ${q.id}`); continue; }
       const states = selected.map(note => freshness(note, q.fraicheur_attendue, asOf).status);
+      if (q.status === 'covered' && review.knowledge_ids.some(id => q.knowledge_matches.find(m => m.knowledge_id === id)?.coverage === 'partial')) fail('partial_coverage', `Une fiche retenue reste explicitement partielle : ${q.id}`);
       if (q.status === 'covered' && states.some(s => s !== 'fresh')) fail('coverage_not_fresh', `Couverture non vérifiable ou périmée : ${q.id}`);
       if (q.status === 'refresh_needed' && !states.includes('stale')) fail('refresh_not_stale', `Aucune fiche pertinente périmée justifiée : ${q.id}`);
     }
@@ -124,15 +127,39 @@ export async function validateResearchPlan(plan, formation, { notes = [], asOf =
   return { valid: !errors.length, errors };
 }
 
+// Conserver l'examen sémantique enregistré, même sans recouvrement lexical.
+// Le titre, le type et la fraîcheur viennent toujours de la fiche actuelle.
+export function knowledgeMatchesForQuestion(question, notes, asOf) {
+  const lexical = searchKnowledge(question.question, notes, question.fraicheur_attendue, asOf);
+  const saved = new Map(question.knowledge_matches.map(m => [m.knowledge_id, m]));
+  const selectedIds = new Set([
+    ...question.knowledge_matches.filter(m => m.assessment).map(m => m.knowledge_id),
+    ...(question.review?.knowledge_ids || []),
+  ]);
+  const matches = new Map(lexical.map(m => [m.knowledge_id, m]));
+  for (const id of selectedIds) {
+    if (matches.has(id)) continue;
+    const note = notes.find(n => n.metadata.id === id);
+    if (!note) continue; // La validation préalable signale les références cassées.
+    matches.set(id, { knowledge_id: id, path: note.path, title: note.metadata.title,
+      type: note.metadata.type, reasons: ['Référence conservée par l’examen de couverture.'],
+      score: 0, freshness: freshness(note, question.fraicheur_attendue, asOf), confidence: note.metadata.confidence ?? null });
+  }
+  return [...matches.values()].map(m => {
+    const previous = saved.get(m.knowledge_id);
+    return previous?.assessment ? { ...m, assessment: previous.assessment, coverage: previous.coverage } : m;
+  }).sort((a, b) => Number(selectedIds.has(b.knowledge_id)) - Number(selectedIds.has(a.knowledge_id)) || b.score - a.score || a.knowledge_id.localeCompare(b.knowledge_id));
+}
+
 /** Lecture interne seulement. Le score lexical ne modifie jamais le statut.
  * Les candidats sont recalculés à chaque lecture, sans écriture des fichiers. */
-export async function loadResearchPlan(planPath, formation, { knowledgeRoot = defaultKnowledge, asOf = new Date().toISOString().slice(0, 10) } = {}) {
+export async function loadResearchPlan(planPath, formation, { knowledgeRoot = defaultKnowledge, asOf = localDate() } = {}) {
   try {
     const plan = JSON.parse(await readFile(planPath, 'utf8'));
     const notes = await loadKnowledge(knowledgeRoot);
     const validation = await validateResearchPlan(plan, formation, { notes, asOf });
     if (!validation.valid) return { plan: null, validation };
-    const enriched = { ...plan, questions: plan.questions.map(q => ({ ...q, knowledge_matches: searchKnowledge(q.question, notes, q.fraicheur_attendue, asOf) })) };
+    const enriched = { ...plan, questions: plan.questions.map(q => ({ ...q, knowledge_matches: knowledgeMatchesForQuestion(q, notes, asOf) })) };
     const counts = { total: enriched.questions.length, ...Object.fromEntries(researchStatuses.map(s => [s, enriched.questions.filter(q => q.status === s).length])) };
     return { plan: enriched, validation, counts, checked_at: asOf, knowledge_count: notes.length };
   } catch (error) { return { plan: null, validation: { valid: false, errors: [{ code: 'research_unavailable', message: error.message }] } }; }

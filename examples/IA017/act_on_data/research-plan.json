@@ -32,7 +32,54 @@
           ]
         }
       ],
-      "knowledge_matches": [],
+      "knowledge_matches": [
+        {
+          "knowledge_id": "CON-AGENT-IA",
+          "path": "concepts/agent-ia.md",
+          "title": "Agent IA — définition opérationnelle",
+          "type": "concept",
+          "reasons": [
+            "title : agent",
+            "tags : agent, workflow",
+            "aliases : agent, workflow",
+            "content : criteres, agent, workflow, decider, rh, borne"
+          ],
+          "score": 22,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "partial",
+          "assessment": "Les critères généraux chat/agent/workflow sont disponibles. La preuve attendue exige leur application à un cas RH borné ; le seul exemple fourni concerne une réclamation. Le transfert au cas RH reste à instruire, sans inventer de cas client."
+        },
+        {
+          "knowledge_id": "MET-GRILLE-CONCEPTION-AGENT",
+          "path": "methods/grille-conception-agent.md",
+          "title": "Grille de conception d’un agent IA",
+          "type": "method",
+          "reasons": [
+            "title : agent",
+            "tags : agent",
+            "aliases : agent",
+            "content : agent, decider, usage, rh"
+          ],
+          "score": 14,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "partial",
+          "assessment": "Objectif, limites et contrôle aident à borner un usage. La grille pédagogique ne fournit pas l’application RH attendue ni les règles internes nécessaires ; elle ne clôt pas cette question."
+        }
+      ],
       "fusion_justification": null,
       "review": null
     },

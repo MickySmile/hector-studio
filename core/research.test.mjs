@@ -9,7 +9,10 @@ import { loadKnowledge, searchKnowledge } from './knowledge.mjs';
 const fixture = scenario => new URL(`../examples/IA017/${scenario}/`, import.meta.url);
 const read = url => readFile(url, 'utf8').then(JSON.parse);
 const formation = await read(new URL('formation.json', fixture('program_only')));
-const saved = await read(new URL('research-plan.json', fixture('program_only')));
+// Les tests unitaires de validation partent d'un plan non examiné, indépendamment
+// des connaissances progressivement capitalisées dans les vrais plans.
+const saved = buildResearchPlan(formation);
+saved.questions.forEach(q => { q.fraicheur_attendue.max_age_days = 180; });
 const knowledgeRoot = fileURLToPath(new URL('../tests/fixtures/knowledge/', import.meta.url));
 const notes = await loadKnowledge(knowledgeRoot), asOf = '2026-10-12';
 const has = (report, code) => report.errors.some(e => e.code === code);
@@ -22,9 +25,10 @@ for (const scenario of ['program_only', 'act_on_data']) test(`Recherche ${scenar
   assert.equal(plan.questions.length, 8);
   const report = await loadResearchPlan(new URL('research-plan.json', fixture(scenario)), f, { asOf });
   assert.equal(report.validation.valid, true, JSON.stringify(report.validation));
-  assert.deepEqual(report.counts, { total: 8, covered: 0, refresh_needed: 0, external_research_needed: 8 });
-  assert.equal(report.knowledge_count, 0);
-  assert.ok(report.plan.questions.every(q => q.knowledge_matches.length === 0 && q.cadrage_status === 'proposition_a_valider'));
+  const covered = scenario === 'program_only' ? 1 : 0;
+  assert.deepEqual(report.counts, { total: 8, covered, refresh_needed: 0, external_research_needed: 8 - covered });
+  assert.equal(report.knowledge_count, 6);
+  assert.ok(report.plan.questions.every(q => q.cadrage_status === 'proposition_a_valider'));
   assert.equal(JSON.stringify(f), before);
 });
 

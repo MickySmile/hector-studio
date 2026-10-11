@@ -209,6 +209,19 @@
         "confidence"
       ],
       "properties": {
+        "type": {
+          "enum": ["concept", "source", "case", "method", "tool"]
+        },
+        "coverage": {
+          "enum": ["sufficient", "partial"],
+          "description": "Appréciation explicite de la contribution au besoin, jamais calculée par score lexical."
+        },
+        "assessment": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "description": "Justification sémantique conservée à la relecture du plan."
+        },
         "knowledge_id": {
           "type": "string",
           "pattern": "^\\S+$"
@@ -234,7 +247,7 @@
         },
         "score": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 0
         },
         "freshness": {
           "$ref": "#/$defs/freshness"

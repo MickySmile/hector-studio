@@ -6,6 +6,13 @@ export const normalize = text => text.normalize('NFD').replace(/\p{M}/gu, '').to
 const stopWords = new Set('a au aux de des du le la les un une et ou en pour par sur dans ce ces cet cette quel quelle quels quelles est sont doit doivent que qui se il elle son sa ses avec sans plus comment faut'.split(' '));
 const tokens = text => [...new Set(normalize(text).split(' ').filter(t => t.length > 1 && !stopWords.has(t)))];
 export const validDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
+// Les dates de vérification sont calendaires : employer le jour local du cockpit,
+// pas le jour UTC qui peut encore être la veille après minuit à Paris.
+export function localDate(date = new Date(), timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone) {
+  const parts = new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(date);
+  const values = Object.fromEntries(parts.map(p => [p.type, p.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
 
 // Profil YAML V1 volontairement limité : propriétés plates, scalaires et listes.
 // Les constructions non prises en charge échouent explicitement (pas de lecture approximative).
@@ -70,9 +77,10 @@ export async function loadKnowledge(root) {
           for (const field of ['tags', 'aliases', 'sources', 'lie_a', 'illustre', 'soutient', 'used_by']) {
             if (m[field] !== undefined && (!Array.isArray(m[field]) || !m[field].every(x => typeof x === 'string'))) throw new Error(`Liste attendue : ${field}`);
           }
-          for (const field of ['verified_at', 'review_after', 'published_at', 'accessed_at']) {
+          for (const field of ['verified_at', 'last_verified', 'page_date', 'review_after', 'published_at', 'accessed_at']) {
             if (m[field] != null && !validDate(m[field])) throw new Error(`Date invalide : ${field}`);
           }
+          if (m.last_verified != null && m.last_verified !== m.verified_at) throw new Error('last_verified doit refléter verified_at.');
           if (m.confidence != null && !['faible', 'moyenne', 'forte'].includes(m.confidence)) throw new Error('Confiance invalide.');
           if (m.verified_at && m.review_after && m.review_after < m.verified_at) throw new Error('Échéance antérieure à la vérification.');
           ids.add(m.id); notes.push({ ...note, path: notePath });
@@ -84,7 +92,7 @@ export async function loadKnowledge(root) {
   return notes;
 }
 
-export function freshness(note, { max_age_days = null, verification_usage = false } = {}, asOf = new Date().toISOString().slice(0, 10)) {
+export function freshness(note, { max_age_days = null, verification_usage = false } = {}, asOf = localDate()) {
   if (!validDate(asOf)) throw new Error('Date de contrôle invalide.');
   const { verified_at = null, review_after = null } = note.metadata;
   const age = verified_at ? Math.floor((Date.parse(asOf) - Date.parse(verified_at)) / 86400000) : null;
@@ -105,6 +113,6 @@ export function searchKnowledge(query, notes, requirement = {}, asOf) {
       const haystack = new Set(tokens(value)), matches = words.filter(word => haystack.has(word));
       if (matches.length) { reasons.push(`${field} : ${matches.join(', ')}`); score += weights[field] * matches.length; }
     }
-    return score ? [{ knowledge_id: m.id, path: note.path, title: m.title, reasons, score, freshness: freshness(note, requirement, asOf), confidence: m.confidence ?? null }] : [];
+    return score ? [{ knowledge_id: m.id, path: note.path, title: m.title, type: m.type, reasons, score, freshness: freshness(note, requirement, asOf), confidence: m.confidence ?? null }] : [];
   }).sort((a, b) => b.score - a.score || a.knowledge_id.localeCompare(b.knowledge_id));
 }

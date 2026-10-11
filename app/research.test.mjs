@@ -33,8 +33,9 @@ for (const scenario of ['program_only', 'act_on_data']) test(`Cockpit Recherche 
   const ui = await frontend(); await ui.run(`loadScenario('${scenario}')`);
   const html = ui.html();
   assert.equal((html.match(/class="card research-question"/g) || []).length, 8);
-  assert.match(html, /Couvertes<\/h3><strong>0/);
-  assert.match(html, /Recherche externe nécessaire<\/h3><strong>8/);
+  const covered = scenario === 'program_only' ? 1 : 0;
+  assert.ok(html.includes(`Couvertes</h3><strong>${covered}`));
+  assert.ok(html.includes(`Recherche externe nécessaire</h3><strong>${8 - covered}`));
   assert.match(html, /propositions à valider/);
   assert.doesNotMatch(html, /data-simulate|<input|<textarea/);
   for (const q of responses[scenario].research.plan.questions) {
@@ -71,6 +72,19 @@ test('Cockpit Recherche : erreur isolée sans ancien bilan ni blocage des module
   const ui = await frontend(body => { body.research = { plan: null, validation: { valid: false, errors: [{ message: '<plan invalide>' }] } }; return body; });
   assert.match(ui.html(), /&lt;plan invalide&gt;/); assert.doesNotMatch(ui.html(), /research-stats/);
   ui.click({ view: 'modules' }); assert.match(ui.html(), /PO-M01/);
+});
+test('Cockpit Recherche : connaissance utilisée, titre/type et distinction des apports partiels', async () => {
+  const ui = await frontend();
+  ui.change('research-status', 'covered');
+  assert.match(ui.html(), /1 \/ 8 questions/);
+  for (const text of ['CON-AGENT-IA', 'Agent IA — définition opérationnelle', 'Concept', 'Utilisée pour couvrir la question', 'Examen de couverture', 'Codex']) assert.ok(ui.html().includes(text), text);
+  assert.doesNotMatch(ui.html(), /MET-GRILLE-CONCEPTION-AGENT —[^]*Utilisée pour couvrir la question/);
+  await ui.run("loadScenario('act_on_data')");
+  ui.change('research-module', 'AOD-M01');
+  assert.match(ui.html(), /Apport partiel — recherche à compléter/);
+  assert.match(ui.html(), /Méthode/);
+  assert.match(ui.html(), /cas RH borné/);
+  assert.doesNotMatch(ui.html(), /Utilisée pour couvrir la question/);
 });
 test('Serveur Recherche : relecture des fichiers, erreur explicite, méthodes interdites et aucune écriture', async t => {
   const directory = await mkdtemp(join(tmpdir(), 'hector-research-'));

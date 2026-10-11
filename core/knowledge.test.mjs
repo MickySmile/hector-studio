@@ -58,8 +58,9 @@ test('Knowledge : propriétés YAML plates, listes Obsidian et contenu riche', (
   assert.match(note.content, /## Exemple/);
   for (const text of ['sans frontmatter', '---\nid: test', '---\nid: a\nid: b\n---', '---\nobjet:\n  champ: valeur\n---', '---\ntitle: |\n---', '---\ntags: [a, b]\n---']) assert.throws(() => parseNote(text));
 });
-test('Knowledge : modèles lisibles mais coffre métier vide', async () => {
-  assert.deepEqual(await loadKnowledge(fileURLToPath(new URL('../knowledge/', import.meta.url))), []);
+test('Knowledge : modèles lisibles, README et modèles exclus de l’index métier', async () => {
+  const actual = await loadKnowledge(fileURLToPath(new URL('../knowledge/', import.meta.url)));
+  assert.ok(actual.every(n => !n.path.includes('_templates/') && !n.path.endsWith('README.md') && n.metadata.id !== 'A-REMPLACER'));
   const directory = new URL('../knowledge/_templates/', import.meta.url);
   const names = (await readdir(directory)).filter(n => n.endsWith('.md'));
   assert.equal(names.length, 5);
