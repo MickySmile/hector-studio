@@ -33,7 +33,7 @@ for (const scenario of ['program_only', 'act_on_data']) test(`Cockpit Recherche 
   const ui = await frontend(); await ui.run(`loadScenario('${scenario}')`);
   const html = ui.html();
   assert.equal((html.match(/class="card research-question"/g) || []).length, 8);
-  const covered = scenario === 'program_only' ? 1 : 0;
+  const covered = 1;
   assert.ok(html.includes(`Couvertes</h3><strong>${covered}`));
   assert.ok(html.includes(`Recherche externe nécessaire</h3><strong>${8 - covered}`));
   assert.match(html, /propositions à valider/);
@@ -49,7 +49,7 @@ test('Cockpit Recherche : filtres combinés, compteurs globaux conservés et auc
   ui.change('research-importance', 'moyenne'); assert.match(ui.html(), /2 \/ 8 questions/);
   ui.change('research-module', 'AOD-M02'); assert.match(ui.html(), /1 \/ 8 questions/);
   ui.change('research-status', 'covered'); assert.match(ui.html(), /Aucune question pour ces filtres/);
-  assert.match(ui.html(), /Recherche externe nécessaire<\/h3><strong>8/);
+  assert.match(ui.html(), /Recherche externe nécessaire<\/h3><strong>7/);
   assert.equal(ui.calls.length, calls);
 });
 test('Cockpit Recherche : aller-retour des scénarios efface filtres et contenu précédent', async () => {
@@ -57,7 +57,9 @@ test('Cockpit Recherche : aller-retour des scénarios efface filtres et contenu 
   await ui.run("loadScenario('act_on_data')");
   assert.equal(ui.run('view'), 'recherche'); assert.match(ui.html(), /8 \/ 8 questions/);
   assert.doesNotMatch(ui.html(), /PO-M/); assert.match(ui.html(), /AOD-M/);
-  await ui.run("loadScenario('program_only')"); assert.doesNotMatch(ui.html(), /AOD-M|Shadow AI/);
+  // Le patrimoine partagé peut désormais proposer un concept Shadow AI au programme seul.
+  // Les usages et la question propres au scénario client ne doivent pas subsister.
+  await ui.run("loadScenario('program_only')"); assert.doesNotMatch(ui.html(), /AOD-M|Quels risques documentés de Shadow AI sont pertinents/);
 });
 test('Cockpit Recherche : candidats, fraîcheur, confiance et HTML échappé', async () => {
   const ui = await frontend(body => {
@@ -85,6 +87,14 @@ test('Cockpit Recherche : connaissance utilisée, titre/type et distinction des 
   assert.match(ui.html(), /Méthode/);
   assert.match(ui.html(), /cas RH borné/);
   assert.doesNotMatch(ui.html(), /Utilisée pour couvrir la question/);
+});
+test('Cockpit Recherche : cycle Shadow AI, avant/après et quatre sources visibles sans appel externe', async () => {
+  const ui = await frontend(); await ui.run("loadScenario('act_on_data')");
+  const calls = ui.calls.length;
+  ui.change('research-module', 'AOD-M03'); ui.change('research-status', 'covered');
+  assert.match(ui.html(), /1 \/ 8 questions/);
+  for (const text of ['Avant : recherche externe nécessaire', 'Après : Knowledge disponible', 'CON-SHADOW-AI', 'CON-RISQUES-IA-RH', 'MET-GRILLE-RISQUE-IA', 'CAS-RH-REPONSE-FICTIF', 'SRC-CNIL-USAGE-IAG', 'SRC-ANSSI-SECURITE-IAG', 'SRC-RGPD-REPERES-RH', 'SRC-UE-AIACT-RH']) assert.ok(ui.html().includes(text), text);
+  assert.equal(ui.calls.length, calls);
 });
 test('Serveur Recherche : relecture des fichiers, erreur explicite, méthodes interdites et aucune écriture', async t => {
   const directory = await mkdtemp(join(tmpdir(), 'hector-research-'));

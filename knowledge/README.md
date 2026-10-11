@@ -7,6 +7,14 @@ Le premier cycle capitalise un concept d’agent IA, une grille de conception
 pédagogique et quatre sources, depuis le matériau validé fourni par l’utilisateur.
 Les exemples synthétiques restent dans `tests/fixtures/knowledge/`.
 
+Le cycle externe suivant ajoute deux concepts (Shadow AI et risques IA/RH), une
+grille, un cas explicitement fictif et quatre fiches sources institutionnelles.
+Il ne réévalue que la question Shadow AI d’Act-On Data. Son journal est conservé
+dans `examples/IA017/act_on_data/research-shadow-ai.md`. Dans ces nouvelles sources,
+`accessed_at` constate une consultation Web réelle ; les dates documentaires
+inconnues restent `null`. Les obligations, recommandations et propositions
+pédagogiques sont distinguées claim par claim.
+
 ## Types et identifiants
 
 | Dossier | Type | Préfixe conseillé | Contenu |

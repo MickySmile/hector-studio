@@ -18,10 +18,11 @@ test('Capitalisation : le jour local à Paris peut précéder le changement de d
 });
 
 test('Capitalisation : six fiches réelles parsées, IDs uniques et liens Obsidian résolus', () => {
-  assert.equal(notes.length, 6);
-  assert.equal(new Set(notes.map(n => n.metadata.id)).size, 6);
-  assert.equal(notes.filter(n => n.metadata.type === 'source').length, 4);
-  for (const n of notes) {
+  const firstCycle = notes.filter(n => ['CON-AGENT-IA', 'MET-GRILLE-CONCEPTION-AGENT', 'SRC-ANTHROPIC-EFFECTIVE', 'SRC-ANTHROPIC-TRUSTWORTHY', 'SRC-GOOGLE-AGENTIC-DESIGN', 'SRC-NIST-AGENT-STANDARDS'].includes(n.metadata.id));
+  assert.equal(firstCycle.length, 6);
+  assert.equal(new Set(firstCycle.map(n => n.metadata.id)).size, 6);
+  assert.equal(firstCycle.filter(n => n.metadata.type === 'source').length, 4);
+  for (const n of firstCycle) {
     assert.equal(n.metadata.verified_at, asOf);
     assert.equal(n.metadata.confidence, 'moyenne');
     const references = [...(n.metadata.sources || []), ...(n.metadata.lie_a || []), ...(n.metadata.soutient || [])];
@@ -77,7 +78,7 @@ for (const scenario of ['program_only', 'act_on_data']) test(`Capitalisation ${s
   const before = JSON.stringify(p);
   const result = await loadResearchPlan(path(scenario, 'research-plan'), f, { asOf });
   assert.equal(result.validation.valid, true, JSON.stringify(result.validation));
-  const coveredIds = scenario === 'program_only' ? ['IA017-PROGRAM-ONLY-R-d6e72741b5cc'] : [];
+  const coveredIds = scenario === 'program_only' ? ['IA017-PROGRAM-ONLY-R-d6e72741b5cc'] : ['IA017-ACT-ON-DATA-R-fec8b45a3751'];
   assert.deepEqual(p.questions.filter(q => q.status === 'covered').map(q => q.id), coveredIds);
   for (const q of p.questions) {
     if (!coveredIds.includes(q.id)) assert.equal(q.status, 'external_research_needed');

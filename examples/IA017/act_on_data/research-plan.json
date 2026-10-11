@@ -199,7 +199,7 @@
       },
       "preuve_recherchee": "Risques documentés, conditions d’apparition et contrôles pertinents pour les flux envisagés.",
       "cadrage_status": "proposition_a_valider",
-      "status": "external_research_needed",
+      "status": "covered",
       "used_by": [
         {
           "module_id": "AOD-M03",
@@ -212,9 +212,194 @@
           ]
         }
       ],
-      "knowledge_matches": [],
+      "knowledge_matches": [
+        {
+          "knowledge_id": "CON-SHADOW-AI",
+          "path": "concepts/shadow-ai.md",
+          "title": "Shadow AI — usages d’IA hors du cadre autorisé",
+          "type": "concept",
+          "reasons": [
+            "title : shadow, ai",
+            "tags : shadow, ai, rh",
+            "content : risques, shadow, ai, rh"
+          ],
+          "score": 21,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "Définit les usages hors cadre autorisé et les mécanismes de perte de maîtrise ; synthèse pédagogique explicite."
+        },
+        {
+          "knowledge_id": "CON-RISQUES-IA-RH",
+          "path": "concepts/risques-ia-donnees-rh.md",
+          "title": "Risques IA et données RH — expositions et contrôles",
+          "type": "concept",
+          "reasons": [
+            "title : risques, rh",
+            "tags : risques, rh",
+            "aliases : risques, rh",
+            "content : risques, shadow, ai, flux, rh, outils"
+          ],
+          "score": 26,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "Documente catégories de données, expositions, conséquences et contrôles avec claims tracés, en séparant obligations et recommandations."
+        },
+        {
+          "knowledge_id": "MET-GRILLE-RISQUE-IA",
+          "path": "methods/grille-risque-usage-ia.md",
+          "title": "Grille de risque d’un usage IA — données, permissions et supervision",
+          "type": "method",
+          "reasons": [
+            "tags : risques, rh",
+            "content : shadow, ai, rh, outils"
+          ],
+          "score": 10,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "Grille pédagogique Hector reliant risque, ressource, exposition, conséquence, prévention, détection, supervision et preuve."
+        },
+        {
+          "knowledge_id": "CAS-RH-REPONSE-FICTIF",
+          "path": "cases/rh-reponse-salarie-fictif.md",
+          "title": "CAS FICTIF — préparer une réponse RH sans exposer un dossier salarié",
+          "type": "case",
+          "reasons": [
+            "title : rh",
+            "tags : risques, shadow, ai, rh",
+            "aliases : rh",
+            "content : risques, shadow, ai, rh"
+          ],
+          "score": 23,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "CAS FICTIF rempli pour le besoin pédagogique RH : Shadow AI, RAG, permissions, erreur propagée et journaux ; aucune conformité client affirmée."
+        },
+        {
+          "knowledge_id": "SRC-CNIL-USAGE-IAG",
+          "path": "sources/cnil-usage-ia-generative.md",
+          "title": "CNIL — utilisation d’un système d’IA générative",
+          "type": "source",
+          "reasons": [
+            "tags : rh",
+            "content : ai, rh"
+          ],
+          "score": 5,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte",
+          "coverage": "partial",
+          "assessment": "Source consultée : CNIL, FAQ du 18 juillet 2024, sections 2 et 5–9. Gouvernance et maîtrise des usages. Source contributive, pas couverture autonome."
+        },
+        {
+          "knowledge_id": "SRC-ANSSI-SECURITE-IAG",
+          "path": "sources/anssi-securite-ia-generative.md",
+          "title": "ANSSI — sécurité d’un système d’IA générative",
+          "type": "source",
+          "reasons": [
+            "Référence retenue après lecture sémantique des sources."
+          ],
+          "score": 0,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte",
+          "coverage": "partial",
+          "assessment": "Source consultée : ANSSI, guide publié le 29 avril 2024, recommandations techniques. Ne constitue pas une règle juridique générale."
+        },
+        {
+          "knowledge_id": "SRC-RGPD-REPERES-RH",
+          "path": "sources/rgpd-reperes-donnees-rh.md",
+          "title": "RGPD — repères pour les traitements de données RH",
+          "type": "source",
+          "reasons": [
+            "title : rh",
+            "tags : rh",
+            "content : rh"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte",
+          "coverage": "partial",
+          "assessment": "Textes RGPD consultés sur le site CNIL ; repères conditionnels pour l’analyse de risque. La question réglementaire distincte reste ouverte."
+        },
+        {
+          "knowledge_id": "SRC-UE-AIACT-RH",
+          "path": "sources/ue-ai-act-usages-rh.md",
+          "title": "Union européenne — AI Act, usages RH et calendrier",
+          "type": "source",
+          "reasons": [
+            "title : ai, rh",
+            "tags : ai, rh",
+            "content : ai, rh"
+          ],
+          "score": 16,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "partial",
+          "assessment": "Service Desk et Commission consultés ; qualification par usage et calendrier documentés avec réserve sur accès EUR-Lex. Pas de conformité présumée."
+        }
+      ],
       "fusion_justification": null,
-      "review": null
+      "review": {
+        "reviewer": "Codex — examen sémantique du cycle externe, soumis à validation utilisateur",
+        "date": "2026-10-12",
+        "justification": "Avant : recherche externe nécessaire. Après : Knowledge disponible avec quatre sources consultées et un cas RH explicitement fictif. Couverture pédagogique des risques documentés, conditions d’apparition et contrôles : données, RAG, outils/permissions, erreurs, journaux et usages non autorisés. Rattachement Shadow AI confirmé par l’utilisateur. Ce statut repose sur l’examen du contenu, jamais sur le score lexical. Il ne confirme ni les outils, contrats et règles internes du client, ni la conformité du cas réel ; les deux questions correspondantes restent inchangées. Réserve AI Act : accès au Journal officiel incomplet, reproduction et calendrier institutionnels documentés. Détail : research-shadow-ai.md.",
+        "knowledge_ids": [
+          "CON-SHADOW-AI",
+          "CON-RISQUES-IA-RH",
+          "MET-GRILLE-RISQUE-IA",
+          "CAS-RH-REPONSE-FICTIF"
+        ]
+      }
     },
     {
       "id": "IA017-ACT-ON-DATA-R-224f3604aea9",
