@@ -108,7 +108,12 @@
         "duree_minutes": {
           "type": ["integer", "null"],
           "minimum": 1,
-          "description": "Durée de référence en minutes entières positives ; null indique une durée inconnue (ARC-04.3). Une durée hypothétique renseignée reste qualifiée par duree_statut."
+          "description": "Durée officielle de référence (par exemple celle du catalogue), en minutes entières positives ; null indique une durée inconnue (ARC-04.3). Sa reprise pour une session client peut rester hypothétique, selon duree_statut."
+        },
+        "duree_detaillee_minutes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Total déclaré des durées détaillées, en minutes entières positives, sur le même périmètre que duree_minutes. Champ optionnel à omettre lorsque ce total est inconnu. Sert à comparer directement les deux durées sans analyser les textes des alertes."
         },
         "status": { "$ref": "#/$defs/statut" },
         "version_fixture": { "$ref": "#/$defs/texte" },

@@ -4,6 +4,7 @@
     "titre": "Concevoir des agents IA et automatiser ses tâches sans développer — lecture du besoin Act-On Data",
     "scenario": "act_on_data",
     "duree_minutes": 420,
+    "duree_detaillee_minutes": 435,
     "status": "proposition_a_valider",
     "version_fixture": "0.1",
     "duree_statut": "hypothese_reprise_du_catalogue_a_confirmer_client",
