@@ -92,7 +92,7 @@ test('Calcul générique : dépassement, enveloppe inconnue et pratique nulle', 
   report = await validate(data);
   assert.equal(check(report,'module_totals').details.practicePercentage,null);
   assert.ok(check(report,'module_practice_uncheckable'));
-  data.meta.duree_minutes=420; data.modules.forEach(m=>m.pratique_minutes=0);
+  data.meta.duree_minutes=420; data.modules.forEach(m=>{m.pratique_minutes=0; m.moments_pedagogiques.forEach(moment=>moment.pratique_minutes=0);});
   assert.equal(check(await validate(data),'module_totals').details.practicePercentage,0);
 });
 
@@ -100,6 +100,8 @@ test('Tolérance V1 : ±5 points inclus, avertissement au-delà dans les deux se
   for (const [minutes, warning] of [[200,false],[240,false],[199,true],[241,true]]) {
     const data = await fixture(); data.meta.duree_minutes=400;
     data.modules=[{...data.modules[0],duree_minutes:400,pratique_minutes:minutes}];
+    // Ce cas teste la tolérance P2, avant décomposition en moments P3.
+    delete data.modules[0].moments_pedagogiques;
     const report = await validate(data);
     assert.equal(Boolean(check(report,'module_practice_target_mismatch')),warning);
     assert.equal(check(report,'module_totals').details.practicePercentage,minutes/400*100);

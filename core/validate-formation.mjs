@@ -150,6 +150,29 @@ function checkPersonasAndPractice(data, checks) {
   if (p.cible_pourcentage < p.minimum_souhaite || p.cible_pourcentage > p.maximum_souhaite) checks.push(finding('practice_out_of_bounds', 'error', 'Cible de pratique hors des bornes déclarées.', '/pratique/cible_pourcentage', { minimum: p.minimum_souhaite, cible: p.cible_pourcentage, maximum: p.maximum_souhaite }));
 }
 
+function checkMoments(data, checks) {
+  const seen = new Map();
+  array(data.modules).forEach((module, i) => {
+    if (!object(module) || !Array.isArray(module.moments_pedagogiques)) return;
+    const base = `/modules/${i}/moments_pedagogiques`;
+    module.moments_pedagogiques.forEach((moment, j) => {
+      if (!object(moment)) return;
+      const path = `${base}/${j}`;
+      if (typeof moment.id === 'string') {
+        if (seen.has(moment.id)) checks.push(finding('duplicate_moment_id', 'error', `Identifiant de moment dupliqué : ${moment.id}.`, `${path}/id`, { firstPath: seen.get(moment.id) }));
+        else seen.set(moment.id, `${path}/id`);
+      }
+      if (moment.besoin_recherche === true && (!Array.isArray(moment.questions_recherche) || !moment.questions_recherche.some(q => typeof q === 'string' && q.trim()))) checks.push(finding('research_questions_missing', 'error', 'Une recherche nécessaire doit comporter au moins une question explicite.', `${path}/questions_recherche`));
+      if (Number.isFinite(moment.pratique_minutes) && Number.isFinite(moment.duree_minutes) && moment.pratique_minutes > moment.duree_minutes) checks.push(finding('moment_practice_exceeds_duration', 'error', 'La pratique dépasse la durée du moment.', `${path}/pratique_minutes`));
+      if (array(moment.fonctions_vcoac).length === 1 && moment.fonctions_vcoac[0] === 'consolider' && moment.duree_minutes > 10) checks.push(finding('consolidation_long', 'warning', 'Consolidation seule supérieure à 10 minutes : vérifier qu’elle reste courte et ne devient pas un cours.', `${path}/duree_minutes`));
+    });
+    if (checks.some(c => c.severity === 'error' && c.path.startsWith(`${base}/`))) return;
+    const sum = key => module.moments_pedagogiques.reduce((total, m) => total + m[key], 0);
+    if (sum('duree_minutes') !== module.duree_minutes) checks.push(finding('moment_duration_mismatch', 'error', 'La somme des moments doit égaler la durée du module.', base, { actual: sum('duree_minutes'), expected: module.duree_minutes }));
+    if (sum('pratique_minutes') !== module.pratique_minutes) checks.push(finding('moment_practice_mismatch', 'error', 'La pratique des moments doit égaler la pratique du module.', base, { actual: sum('pratique_minutes'), expected: module.pratique_minutes }));
+  });
+}
+
 function checkModules(data, checks) {
   if (!Array.isArray(data.modules)) return;
   const modules = data.modules.filter(object);
@@ -286,6 +309,7 @@ export async function validateFormation(data, { formationPath, projectRoot = pro
   checkPersonasAndPractice(data, checks);
   await checkSources(data, { formationPath, projectRoot: resolve(projectRoot) }, checks);
   checkDuration(data, checks);
+  checkMoments(data, checks);
   checkModules(data, checks);
   if (!checks.some(item => item.severity === 'error')) checks.push(finding('validation_passed', 'info', 'Structure V1 et contrôles déterministes exécutés sans erreur bloquante.'));
   else if (previousErrors) checks.push(finding('structure_invalid', 'info', 'Structure invalide : seuls les contrôles métier applicables ont été exécutés.'));

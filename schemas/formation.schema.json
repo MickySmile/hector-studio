@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Hector Studio — Contrat formation V1",
-  "description": "Contrat de la structure actuellement utilisée par les fixtures IA017. Modules optionnels au stade du cadrage. Les propriétés non déclarées sont refusées ; VCOAC, activités, recherche et productions restent différés.",
+  "description": "Contrat IA017 : modules et moments VCOAC optionnels avant P3. Seuls les besoins de recherche sont décrits ; contenus détaillés et productions restent différés.",
   "$comment": "L'unicité des identifiants par collection, la résolution des références, les cycles de dépendances et la cohérence pédagogique nécessitent des contrôles complémentaires. La version_fixture décrit la fixture, pas la version du contrat. Aucun champ schema_version absent des fixtures n'est imposé.",
   "type": "object",
   "additionalProperties": false,
@@ -295,9 +295,29 @@
         "pratique_minutes": { "type": "integer", "minimum": 0 },
         "justification": { "$ref": "#/$defs/texte" },
         "dependances_modules": { "$ref": "#/$defs/identifiants" },
+        "moments_pedagogiques": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/moment" } },
         "status": { "$ref": "#/$defs/statut" }
       },
-      "$comment": "Convention V1 : durées planifiées saisies au module en attendant les séquences. pratique_minutes <= duree_minutes, références et cycles contrôlés par le core. L'ordre du tableau est la progression proposée."
+      "$comment": "Les moments sont optionnels avant P3. Lorsqu'ils sont présents, leurs durées et minutes de pratique doivent égaler celles du module. L'ordre du tableau est la progression proposée."
+    },
+    "moment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "fonctions_vcoac", "titre", "intention", "duree_minutes", "pratique_minutes", "contenu_prevu", "concepts_concernes", "besoin_recherche", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/identifiant" },
+        "fonctions_vcoac": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["voir", "comprendre", "outiller", "agir", "consolider"] } },
+        "titre": { "$ref": "#/$defs/texte" },
+        "intention": { "$ref": "#/$defs/texte" },
+        "duree_minutes": { "type": "integer", "minimum": 1 },
+        "pratique_minutes": { "type": "integer", "minimum": 0, "description": "Temps effectif de production des participants, explicite même dans un moment fusionné ; aucune fonction ne suffit à présumer ce temps." },
+        "contenu_prevu": { "$ref": "#/$defs/textesRenseignes" },
+        "concepts_concernes": { "$ref": "#/$defs/textes", "uniqueItems": true },
+        "besoin_recherche": { "type": "boolean" },
+        "questions_recherche": { "$ref": "#/$defs/textes", "description": "Au moins une question non blanche si besoin_recherche vaut true ; contrôlé par le core." },
+        "status": { "$ref": "#/$defs/statut" }
+      },
+      "$comment": "IDs uniques dans l'ensemble des moments d'un scénario. Aucune obligation de cinq fonctions. Consolidation seule au-delà de 10 min : warning uniquement."
     },
     "pratique": {
       "type": "object",

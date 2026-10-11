@@ -68,3 +68,30 @@ test('Carte : affiche tous les modules travaillant la compétence sélectionnée
   assert.match(ui.content.innerHTML,/Travaillée dans les modules/);
   assert.match(ui.content.innerHTML,/PO-M02/); assert.match(ui.content.innerHTML,/PO-M03/);
 });
+
+for(const scenario of ['program_only','act_on_data']) test(`Cockpit VCOAC ${scenario} : fusions, durées, recherche et détails`,async()=>{
+  const ui=await frontend();ui.click({view:'vcoac'});await ui.run(`loadScenario('${scenario}')`);
+  const html=ui.content.innerHTML,moments=fixtures[scenario].modules.flatMap(m=>m.moments_pedagogiques);
+  assert.match(ui.navigation.innerHTML,/data-view="vcoac" aria-current="page"/);
+  assert.equal((html.match(/class="vcoac-moment"/g)||[]).length,moments.length);
+  assert.match(html,/Recherche nécessaire/);assert.match(html,/VOIR \+ COMPRENDRE/);
+  assert.doesNotMatch(html,/data-simulate|<input|<textarea/);
+  for(const m of moments) {
+    assert.ok(html.includes(m.id));assert.ok(html.includes(`${m.duree_minutes} min`));
+    for(const text of [m.titre,m.intention,...m.questions_recherche]) assert.ok(html.includes(text),text);
+  }
+});
+
+test('Cockpit VCOAC : aller-retour de scénario sans contenu résiduel',async()=>{
+  const ui=await frontend();ui.click({view:'vcoac'});
+  ui.click({scenario:'act_on_data'});await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(ui.run('view'),'vcoac');assert.match(ui.content.innerHTML,/AOD-M01-MP01/);assert.doesNotMatch(ui.content.innerHTML,/PO-M/);
+  ui.click({scenario:'program_only'});await new Promise(resolve=>setImmediate(resolve));
+  assert.match(ui.content.innerHTML,/PO-M01-MP01/);assert.doesNotMatch(ui.content.innerHTML,/AOD-M|Shadow AI/);
+});
+
+test('Cockpit VCOAC : champs échappés, warnings et état avant P3',async()=>{
+  const ui=await frontend(d=>{const m=d.modules[0].moments_pedagogiques[0];m.titre='<script>';m.questions_recherche=['<img>'];m.besoin_recherche=true;return d;},r=>{r.warnings.push({path:'/modules/0/moments_pedagogiques/0/duree_minutes',message:'Consolidation <longue>'});return r;});
+  ui.click({view:'vcoac'});assert.match(ui.content.innerHTML,/&lt;script&gt;/);assert.match(ui.content.innerHTML,/&lt;img&gt;/);assert.match(ui.content.innerHTML,/Consolidation &lt;longue&gt;/);assert.doesNotMatch(ui.content.innerHTML,/<script>|<img>/);
+  const absent=await frontend(d=>{d.modules.forEach(m=>delete m.moments_pedagogiques);return d;});absent.click({view:'vcoac'});assert.match(absent.content.innerHTML,/Moments pédagogiques non définis/);
+});

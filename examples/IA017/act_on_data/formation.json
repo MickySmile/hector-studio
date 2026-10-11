@@ -1016,6 +1016,73 @@
       "pratique_minutes": 25,
       "justification": "Rappel LLM bref pour des managers déjà utilisateurs, sans présumer une maîtrise agentique homogène (AOD-H02). Qualification commune avant la cartographie.",
       "dependances_modules": [],
+      "moments_pedagogiques": [
+        {
+          "id": "AOD-M01-MP01",
+          "fonctions_vcoac": [
+            "voir",
+            "comprendre"
+          ],
+          "titre": "Un chat RH doit-il devenir un agent ?",
+          "intention": "Partir des usages LLM connus pour comparer réponse, action et workflow.",
+          "duree_minutes": 20,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Contraste fictif RH : rédaction d’une réponse versus action dans un processus ; rappel LLM bref, autonomie et responsabilité à distinguer."
+          ],
+          "concepts_concernes": [
+            "Chat, agent et workflow",
+            "Réponse et action",
+            "Autonomie et responsabilité"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quels critères actuels distinguent chat, agent et workflow pour décider d’un usage RH borné ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M01-MP02",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Qualifier une demande de manager",
+          "intention": "Justifier un choix sans présumer qu’un agent est nécessaire.",
+          "duree_minutes": 20,
+          "pratique_minutes": 20,
+          "contenu_prevu": [
+            "Micro-activité envisagée : choisir un rôle de l’IA pour une demande RH fictive et localiser une validation humaine ; confrontation entre pairs."
+          ],
+          "concepts_concernes": [
+            "Chat, agent et workflow",
+            "Autonomie et responsabilité"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M01-MP03",
+          "fonctions_vcoac": [
+            "agir",
+            "consolider"
+          ],
+          "titre": "Reformuler la limite d’autonomie",
+          "intention": "Consolider la décision au moment où elle est expliquée.",
+          "duree_minutes": 10,
+          "pratique_minutes": 5,
+          "contenu_prevu": [
+            "5 min de reformulation argumentée par les participants après confrontation, puis 5 min de synthèse des repères et retour au cas ; fusion centrée sur la même décision."
+          ],
+          "concepts_concernes": [
+            "Réponse et action",
+            "Autonomie et responsabilité"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        }
+      ],
       "status": "proposition_a_valider"
     },
     {
@@ -1028,6 +1095,135 @@
       "pratique_minutes": 90,
       "justification": "Donner la priorité à la conception logique sur un cas fictif à fournir (AOD-H04), sur Miro si autorisé. Introduction conceptuelle de MCP et ouverture multi-agents limitée ; démonstration n8n hors minutes de pratique. Aucun déploiement technique attendu ; adaptation catalogue à valider (AOD-H03).",
       "dependances_modules": ["AOD-M01"],
+      "moments_pedagogiques": [
+        {
+          "id": "AOD-M02-MP01",
+          "fonctions_vcoac": [
+            "voir",
+            "comprendre"
+          ],
+          "titre": "Où une demande RH circule-t-elle réellement ?",
+          "intention": "Décomposer un workflow visible avant de le cartographier.",
+          "duree_minutes": 20,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Démonstration n8n envisagée sur cas fictif : rôles, flux et validations ; observation non comptée comme pratique, représentation statique de repli à confirmer."
+          ],
+          "concepts_concernes": [
+            "Entrées, sorties et instructions",
+            "Orchestration et supervision"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quel flux RH fictif peut être montré avec les capacités actuelles de n8n et les accès autorisés ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M02-MP02",
+          "fonctions_vcoac": [
+            "comprendre"
+          ],
+          "titre": "Situer ressources, connexions et MCP",
+          "intention": "Distinguer les briques et borner l’ouverture architecturale.",
+          "duree_minutes": 15,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Lecture conceptuelle : ressource, outil, connecteur, MCP et supervision ; comparaison brève architecture simple/variante multi-agents, sans installation."
+          ],
+          "concepts_concernes": [
+            "Ressources, connecteurs et MCP",
+            "Orchestration et supervision"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quel rôle et quelles limites de la version actuelle de MCP sont utiles à la lecture de cette carte RH ?",
+            "Quels critères justifieraient une orchestration multi-agents plutôt qu’un workflow simple dans ce cas ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M02-MP03",
+          "fonctions_vcoac": [
+            "outiller"
+          ],
+          "titre": "Préparer la carte logique",
+          "intention": "Identifier un support commun compréhensible par les managers.",
+          "duree_minutes": 10,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Type d’outil : canvas de workflow ; logiciel de cartographie si autorisé, sans imposer Miro au résultat pédagogique."
+          ],
+          "concepts_concernes": [
+            "Entrées, sorties et instructions",
+            "Orchestration et supervision"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M02-MP04",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Cartographier le workflow RH",
+          "intention": "Concevoir les rôles, entrées, sorties, ressources et validations.",
+          "duree_minutes": 60,
+          "pratique_minutes": 60,
+          "contenu_prevu": [
+            "TP de conception envisagé sur cas et données fictifs ; carte logique à produire, sans réalisation technique obligatoire."
+          ],
+          "concepts_concernes": [
+            "Entrées, sorties et instructions",
+            "Ressources, connecteurs et MCP",
+            "Orchestration et supervision"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M02-MP05",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Éprouver et expliquer la carte",
+          "intention": "Faire apparaître une connexion ou une responsabilité manquante.",
+          "duree_minutes": 30,
+          "pratique_minutes": 30,
+          "contenu_prevu": [
+            "Application envisagée : revue croisée de la carte, scénario d’échec et révision argumentée ; pratique de conception par les managers."
+          ],
+          "concepts_concernes": [
+            "Ressources, connecteurs et MCP",
+            "Orchestration et supervision"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M02-MP06",
+          "fonctions_vcoac": [
+            "consolider"
+          ],
+          "titre": "Fixer les points de lecture du workflow",
+          "intention": "Ancrer trois repères après la revue croisée.",
+          "duree_minutes": 5,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Retour au trajet de la demande : entrée, responsabilité, validation ; transition vers l’analyse des données RH."
+          ],
+          "concepts_concernes": [
+            "Entrées, sorties et instructions",
+            "Orchestration et supervision"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        }
+      ],
       "status": "proposition_a_valider"
     },
     {
@@ -1040,6 +1236,114 @@
       "pratique_minutes": 65,
       "justification": "Partir de la carte obtenue pour expliciter risques et responsabilités. Les analyses et décisions des participants comptent comme pratique ; aucune conformité juridique acquise n’est affirmée. Références et règles internes restent à vérifier (AOD-D06).",
       "dependances_modules": ["AOD-M02"],
+      "moments_pedagogiques": [
+        {
+          "id": "AOD-M03-MP01",
+          "fonctions_vcoac": [
+            "voir"
+          ],
+          "titre": "Où part la donnée RH copiée dans un outil personnel ?",
+          "intention": "Créer une question sur un usage non encadré.",
+          "duree_minutes": 10,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Incident fictif de Shadow AI dans le workflow précédent ; trajet de la donnée à interroger, sans attribuer cet incident au client."
+          ],
+          "concepts_concernes": [
+            "Flux et destinataires des données",
+            "Shadow AI et accès"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M03-MP02",
+          "fonctions_vcoac": [
+            "comprendre",
+            "outiller"
+          ],
+          "titre": "Relier chaque risque à un contrôle à instruire",
+          "intention": "Expliquer les distinctions nécessaires en introduisant une grille.",
+          "duree_minutes": 20,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Flux, destinataires, accès, supervision et gouvernance à documenter ; type d’outil : grille d’analyse des risques. Fusion : chaque distinction sert directement une rubrique future de la grille. Aucun avis de conformité."
+          ],
+          "concepts_concernes": [
+            "Flux et destinataires des données",
+            "Shadow AI et accès",
+            "Contrôle humain et gouvernance"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quels risques documentés de Shadow AI sont pertinents pour les flux RH et outils envisagés ?",
+            "Quelles exigences RGPD et quelles références réglementaires en vigueur doivent être vérifiées pour ce cas RH, et par quel interlocuteur compétent ?",
+            "Quelles règles internes et restrictions d’accès le client doit-il confirmer avant de préparer la grille ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M03-MP03",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Analyser le trajet des données fictives",
+          "intention": "Repérer risques et décisions à solliciter sur la carte existante.",
+          "duree_minutes": 45,
+          "pratique_minutes": 45,
+          "contenu_prevu": [
+            "Exercice guidé envisagé : annoter flux, destinataires, accès et incertitudes ; proposer les points de contrôle."
+          ],
+          "concepts_concernes": [
+            "Flux et destinataires des données",
+            "Shadow AI et accès",
+            "Contrôle humain et gouvernance"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M03-MP04",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Défendre une décision de contrôle",
+          "intention": "Faire expliciter les responsabilités et limites de l’analyse.",
+          "duree_minutes": 20,
+          "pratique_minutes": 20,
+          "contenu_prevu": [
+            "Application envisagée : discussion entre pairs des contrôles et demandes de validation, puis révision de la carte ; aucune conformité déclarée acquise."
+          ],
+          "concepts_concernes": [
+            "Contrôle humain et gouvernance"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M03-MP05",
+          "fonctions_vcoac": [
+            "consolider"
+          ],
+          "titre": "Revenir à la sortie de données initiale",
+          "intention": "Retenir les vérifications essentielles après mise en commun.",
+          "duree_minutes": 5,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Trois points clés et retour à l’incident fictif ; mini-checklist orale sans nouvel apport juridique."
+          ],
+          "concepts_concernes": [
+            "Flux et destinataires des données",
+            "Contrôle humain et gouvernance"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        }
+      ],
       "status": "proposition_a_valider"
     },
     {
@@ -1052,6 +1356,92 @@
       "pratique_minutes": 70,
       "justification": "Mobiliser architecture et risques pour argumenter une décision de manager, puis transférer aux appels d’offres, budgets ou services. Les gains restent hypothétiques. Claude Code est proposé en ressource (AOD-G10) pour préserver ce résultat professionnel.",
       "dependances_modules": ["AOD-M02", "AOD-M03"],
+      "moments_pedagogiques": [
+        {
+          "id": "AOD-M04-MP01",
+          "fonctions_vcoac": [
+            "voir",
+            "comprendre"
+          ],
+          "titre": "Un livrable plus rapide améliore-t-il la capacité de production ?",
+          "intention": "Comparer deux situations fictives pour faire émerger la question de valeur.",
+          "duree_minutes": 15,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Contraste fictif appliqué à un appel d’offres ou un budget : livrable ponctuel versus processus réutilisable ; aucun gain chiffré présenté comme mesuré."
+          ],
+          "concepts_concernes": [
+            "Production et capacité de production",
+            "Valeur métier et hypothèse de gain"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quels éléments probants permettraient de distinguer gain ponctuel et amélioration durable de capacité sur ce processus ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M04-MP02",
+          "fonctions_vcoac": [
+            "outiller"
+          ],
+          "titre": "Préparer une argumentation de valeur",
+          "intention": "Identifier un support léger de décision.",
+          "duree_minutes": 10,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Type d’outil : canvas de décision reliant besoin, hypothèse de valeur, limites et conditions de poursuite ; contenu détaillé différé."
+          ],
+          "concepts_concernes": [
+            "Valeur métier et hypothèse de gain",
+            "Conditions de poursuite"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M04-MP03",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Argumenter un prochain pas",
+          "intention": "Mobiliser architecture et risques pour une décision de manager.",
+          "duree_minutes": 70,
+          "pratique_minutes": 70,
+          "contenu_prevu": [
+            "Situation autonome envisagée : argumenter un usage pour les appels d’offres, budgets ou services, confronter entre pairs et réviser les conditions de poursuite ; gains explicitement hypothétiques."
+          ],
+          "concepts_concernes": [
+            "Production et capacité de production",
+            "Valeur métier et hypothèse de gain",
+            "Conditions de poursuite"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "AOD-M04-MP04",
+          "fonctions_vcoac": [
+            "consolider"
+          ],
+          "titre": "Retenir une condition de poursuite",
+          "intention": "Fixer le transfert immédiatement après la confrontation.",
+          "duree_minutes": 5,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Retour au contraste initial et reformulation courte de la valeur à vérifier, du risque à lever et de la décision suivante."
+          ],
+          "concepts_concernes": [
+            "Valeur métier et hypothèse de gain",
+            "Conditions de poursuite"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        }
+      ],
       "status": "proposition_a_valider"
     }
   ],

@@ -696,6 +696,90 @@
       "pratique_minutes": 25,
       "justification": "Poser un socle accessible au niveau IA inconnu, en reliant les notions au choix d’une tâche. Cas à confirmer (PO-H02), fictif si nécessaire ; panorama des plateformes comprimé (PO-G02).",
       "dependances_modules": [],
+      "moments_pedagogiques": [
+        {
+          "id": "PO-M01-MP01",
+          "fonctions_vcoac": [
+            "voir"
+          ],
+          "titre": "Une réponse utile suffit-elle à accomplir la tâche ?",
+          "intention": "Créer une question à partir d’un contraste concret.",
+          "duree_minutes": 10,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Cas fictif généraliste : préparer une réponse puis devoir déclencher une action ; observation seulement."
+          ],
+          "concepts_concernes": [
+            "Assistant, agent et action"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M01-MP02",
+          "fonctions_vcoac": [
+            "comprendre"
+          ],
+          "titre": "Distinguer assistant, agent et autonomie",
+          "intention": "Définir et comparer les rôles sans multiplier les plateformes.",
+          "duree_minutes": 20,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "LLM et limites ; différence réponse/action ; responsabilité et contrôle humain à expliquer après documentation."
+          ],
+          "concepts_concernes": [
+            "LLM et limites",
+            "Assistant, agent et action",
+            "Autonomie et contrôle humain"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quelle définition opérationnelle actuelle d’un agent permet de le distinguer d’un assistant et d’une automatisation pour des débutants ?",
+            "Quelles limites des LLM sont indispensables pour comprendre la validation humaine dans ce cas ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M01-MP03",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Qualifier une tâche bornée",
+          "intention": "Décider du rôle utile de l’IA dans un besoin simple.",
+          "duree_minutes": 25,
+          "pratique_minutes": 25,
+          "contenu_prevu": [
+            "Micro-activité envisagée : choix argumenté d’une tâche et de sa limite d’autonomie ; comparaison des choix entre participants."
+          ],
+          "concepts_concernes": [
+            "Assistant, agent et action",
+            "Autonomie et contrôle humain"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M01-MP04",
+          "fonctions_vcoac": [
+            "consolider"
+          ],
+          "titre": "Revenir à la tâche initiale",
+          "intention": "Fixer trois repères après la mise en commun.",
+          "duree_minutes": 5,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Retour au contraste initial : résultat attendu, action éventuelle et contrôle humain ; aucun nouvel apport."
+          ],
+          "concepts_concernes": [
+            "Autonomie et contrôle humain"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        }
+      ],
       "status": "proposition_a_valider"
     },
     {
@@ -708,6 +792,92 @@
       "pratique_minutes": 55,
       "justification": "Transformer le besoin qualifié en spécification avant de configurer. Réinvestir PO-C01 puis travailler PO-C02 ; borner le cas pour préserver le temps de réalisation.",
       "dependances_modules": ["PO-M01"],
+      "moments_pedagogiques": [
+        {
+          "id": "PO-M02-MP01",
+          "fonctions_vcoac": [
+            "voir",
+            "comprendre"
+          ],
+          "titre": "Pourquoi deux descriptions produisent-elles des attentes différentes ?",
+          "intention": "Relier un contraste de spécifications aux critères de réussite.",
+          "duree_minutes": 15,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Deux descriptions fictives d’un même besoin, l’une vague et l’autre bornée ; décomposition rôle, contexte, entrée et sortie."
+          ],
+          "concepts_concernes": [
+            "Rôle et instructions",
+            "Contexte et ressources",
+            "Entrées, sorties et critères de réussite"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quelles distinctions entre instructions, contexte et ressources faut-il enseigner pour spécifier un agent simple ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M02-MP02",
+          "fonctions_vcoac": [
+            "outiller"
+          ],
+          "titre": "Préparer une spécification courte",
+          "intention": "Fournir le type de support nécessaire à la conception.",
+          "duree_minutes": 15,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Type d’outil : canvas de spécification et grille de critères ; contenu détaillé à produire ultérieurement."
+          ],
+          "concepts_concernes": [
+            "Rôle et instructions",
+            "Entrées, sorties et critères de réussite"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M02-MP03",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Décrire et confronter son agent",
+          "intention": "Transformer la tâche retenue en spécification testable.",
+          "duree_minutes": 55,
+          "pratique_minutes": 55,
+          "contenu_prevu": [
+            "Exercice guidé envisagé : décrire l’agent, confronter ses critères entre pairs puis réviser la description ; aucune consigne détaillée à ce stade."
+          ],
+          "concepts_concernes": [
+            "Rôle et instructions",
+            "Contexte et ressources",
+            "Entrées, sorties et critères de réussite"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M02-MP04",
+          "fonctions_vcoac": [
+            "consolider"
+          ],
+          "titre": "Retenir ce qui rend la description testable",
+          "intention": "Stabiliser les repères après la confrontation.",
+          "duree_minutes": 5,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Trois points clés et retour au besoin initial, immédiatement après la mise en commun."
+          ],
+          "concepts_concernes": [
+            "Entrées, sorties et critères de réussite"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        }
+      ],
       "status": "proposition_a_valider"
     },
     {
@@ -720,6 +890,131 @@
       "pratique_minutes": 85,
       "justification": "Conserver une plage longue de manipulation guidée pour un seul outil autorisé, sous réserve des accès (PO-H03). Le guidage et les corrections ne sont pas automatiquement comptés comme pratique.",
       "dependances_modules": ["PO-M02"],
+      "moments_pedagogiques": [
+        {
+          "id": "PO-M03-MP01",
+          "fonctions_vcoac": [
+            "voir",
+            "comprendre"
+          ],
+          "titre": "Un résultat convaincant est-il un résultat correct ?",
+          "intention": "Faire émerger le besoin de test par une démonstration contrastée.",
+          "duree_minutes": 15,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Démonstration prévue sur données fictives : résultat attendu et écart observable ; capacités et limites à vérifier avant préparation."
+          ],
+          "concepts_concernes": [
+            "Résultat attendu et résultat obtenu",
+            "Fiabilité et confidentialité"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quel cas limite reproductible l’outil retenu permet-il de montrer sans attribuer une fiabilité non démontrée ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M03-MP02",
+          "fonctions_vcoac": [
+            "outiller"
+          ],
+          "titre": "Préparer la configuration et la vérification",
+          "intention": "Identifier les supports et accès utiles pour un seul outil.",
+          "duree_minutes": 15,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Types d’outils : logiciel no-code autorisé et checklist de test ; repères de configuration à préparer, sans tutoriel détaillé."
+          ],
+          "concepts_concernes": [
+            "Configuration sans code",
+            "Fiabilité et confidentialité"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quelles fonctions et licences actuelles permettent instructions, ressources et tests dans l’outil retenu ?",
+            "Quels réglages de conservation et d’accès aux données doivent être vérifiés dans cet environnement ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M03-MP03",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Configurer une première version",
+          "intention": "Obtenir un prototype correspondant à la spécification.",
+          "duree_minutes": 55,
+          "pratique_minutes": 55,
+          "contenu_prevu": [
+            "TP guidé envisagé : configuration et premier essai sur données fictives ; assistance pendant la manipulation."
+          ],
+          "concepts_concernes": [
+            "Configuration sans code"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M03-MP04",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Tester et ajuster le prototype",
+          "intention": "Comparer résultats et critères, puis expliquer une limite.",
+          "duree_minutes": 30,
+          "pratique_minutes": 30,
+          "contenu_prevu": [
+            "Application envisagée : essais contrastés, ajustement et explicitation d’un écart ; observations produites par les participants."
+          ],
+          "concepts_concernes": [
+            "Résultat attendu et résultat obtenu",
+            "Fiabilité et confidentialité"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M03-MP05",
+          "fonctions_vcoac": [
+            "comprendre"
+          ],
+          "titre": "Mettre en commun les écarts",
+          "intention": "Expliquer les erreurs observées sans ajouter un nouveau thème.",
+          "duree_minutes": 10,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Correction collective menée par le formateur à partir des essais ; temps non compté comme pratique."
+          ],
+          "concepts_concernes": [
+            "Résultat attendu et résultat obtenu"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M03-MP06",
+          "fonctions_vcoac": [
+            "consolider"
+          ],
+          "titre": "Fixer une routine de vérification",
+          "intention": "Retenir quelques repères juste après la correction.",
+          "duree_minutes": 5,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Reformulation courte : attendu, observé, limite ; retour à la démonstration initiale."
+          ],
+          "concepts_concernes": [
+            "Résultat attendu et résultat obtenu"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        }
+      ],
       "status": "proposition_a_valider"
     },
     {
@@ -732,6 +1027,96 @@
       "pratique_minutes": 65,
       "justification": "Réutiliser le prototype vérifié dans une seule plateforme no-code, avec préparation des accès. Préserver test et prochain pas ; comparatifs détaillés en ressource (PO-G06). L’attestation et ses modalités restent à arbitrer (PO-D06).",
       "dependances_modules": ["PO-M03"],
+      "moments_pedagogiques": [
+        {
+          "id": "PO-M04-MP01",
+          "fonctions_vcoac": [
+            "voir",
+            "comprendre"
+          ],
+          "titre": "Que se passe-t-il si une action part trop tôt ?",
+          "intention": "Décomposer une chaîne à partir d’un incident fictif.",
+          "duree_minutes": 20,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Cas fictif : déclenchement, traitement IA, action et reprise ; comparaison avec un point de validation avant action."
+          ],
+          "concepts_concernes": [
+            "Déclencheur, traitement et action",
+            "Validation avant action",
+            "Reprise sur erreur et limites de déploiement"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quels mécanismes actuels de validation, reprise et prévention des actions répétées sont disponibles sur la plateforme choisie ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M04-MP02",
+          "fonctions_vcoac": [
+            "outiller"
+          ],
+          "titre": "Préparer une chaîne de test supervisée",
+          "intention": "Identifier un support de réalisation transférable.",
+          "duree_minutes": 15,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Types d’outils : logiciel d’automatisation et checklist de contrôle ; une seule plateforme, sans catalogue ni template détaillé."
+          ],
+          "concepts_concernes": [
+            "Déclencheur, traitement et action",
+            "Validation avant action"
+          ],
+          "besoin_recherche": true,
+          "questions_recherche": [
+            "Quels accès, connecteurs et restrictions de l’environnement de test permettent la chaîne retenue sans données réelles ?"
+          ],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M04-MP03",
+          "fonctions_vcoac": [
+            "agir"
+          ],
+          "titre": "Relier et éprouver la chaîne",
+          "intention": "Réaliser une première automatisation dans un périmètre de test.",
+          "duree_minutes": 65,
+          "pratique_minutes": 65,
+          "contenu_prevu": [
+            "TP guidé envisagé : relier le prototype, tester un parcours simple et un échec, expliciter le point de reprise et le prochain contrôle."
+          ],
+          "concepts_concernes": [
+            "Déclencheur, traitement et action",
+            "Validation avant action",
+            "Reprise sur erreur et limites de déploiement"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        },
+        {
+          "id": "PO-M04-MP04",
+          "fonctions_vcoac": [
+            "comprendre",
+            "consolider"
+          ],
+          "titre": "Corriger puis fixer le prochain pas",
+          "intention": "Relier les écarts observés aux limites avant réutilisation.",
+          "duree_minutes": 10,
+          "pratique_minutes": 0,
+          "contenu_prevu": [
+            "Correction collective pendant 5 min, puis consolidation de 5 min : trois points clés et retour à l’incident initial. Fusion justifiée par le même problème ; aucun nouveau cours."
+          ],
+          "concepts_concernes": [
+            "Validation avant action",
+            "Reprise sur erreur et limites de déploiement"
+          ],
+          "besoin_recherche": false,
+          "questions_recherche": [],
+          "status": "proposition_a_valider"
+        }
+      ],
       "status": "proposition_a_valider"
     }
   ],

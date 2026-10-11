@@ -1,4 +1,4 @@
-const labels = { synthese: 'Synthèse', cadrage: 'Cadrage', personas: 'Personas', gap: 'Gap', competences: 'Compétences', carte: 'Carte', modules: 'Modules', alertes: 'Alertes' };
+const labels = { synthese: 'Synthèse', cadrage: 'Cadrage', personas: 'Personas', gap: 'Gap', competences: 'Compétences', carte: 'Carte', modules: 'Modules', vcoac: 'VCOAC', alertes: 'Alertes' };
 const decisions = { conserver: 'Conserver', approfondir: 'Approfondir', compresser: 'Compresser', enrichir: 'Enrichir', deplacer_en_ressource: 'Déplacer en ressource' };
 const e = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const list = items => `<ul>${items.map(x => `<li>${e(x)}</li>`).join('')}</ul>`;
@@ -164,6 +164,26 @@ function modules() {
     `, 'module-card').replace('<article ', `<article id="${e(m.id)}" `)).join('')}</div>`;
 }
 
+function vcoac() {
+  if (!data.modules?.length) return '<p class="card">Moments pédagogiques non définis : formation au stade du cadrage.</p>';
+  const functions = m => m.fonctions_vcoac.map(f => f.toUpperCase()).join(' + ');
+  const moments = data.modules.flatMap(m => m.moments_pedagogiques || []);
+  return `<p class="intro">Conception P3 · propositions à valider · lecture seule. Les fonctions peuvent être fusionnées (+) ; les flèches indiquent l’ordre des moments. Aucun contenu de recherche n’est encore produit.</p>
+    <p>${badge(`${moments.length} moments`)} ${badge(`${moments.filter(m => m.besoin_recherche).length} besoins de recherche`, 'alert')}</p>
+    <p class="intro">La pratique indique uniquement le temps de production des participants. Une fusion ne multiplie ni la durée ni la pratique.</p>
+    ${data.modules.map((module, i) => panel(`Module ${i + 1} — ${module.titre}`, `
+      ${badge(`${module.duree_minutes} min`)} ${badge(`${module.pratique_minutes} min de pratique`, 'known')}
+      ${module.moments_pedagogiques?.length ? `<ol class="vcoac-flow" aria-label="Progression VCOAC du module ${i + 1}">${module.moments_pedagogiques.map(m => `<li><a href="#${e(m.id)}">${e(functions(m))}<span>${e(m.duree_minutes)} min</span></a>${m.besoin_recherche ? badge('Recherche nécessaire', 'alert') : ''}</li>`).join('')}</ol>
+      ${module.moments_pedagogiques.map(m => `<details id="${e(m.id)}" class="vcoac-moment"><summary>${e(functions(m))} · ${e(m.duree_minutes)} min — ${e(m.titre)} ${m.besoin_recherche ? badge('Recherche nécessaire', 'alert') : ''}</summary>
+        ${field('Intention', m.intention)}<h4>Contenu prévu</h4>${list(m.contenu_prevu)}
+        ${field('Concepts concernés', m.concepts_concernes.join(' · ') || 'Aucun concept déclaré')}
+        ${field('Pratique planifiée', `${m.pratique_minutes} min sur ${m.duree_minutes} min`)}
+        ${m.besoin_recherche ? `<h4>Questions de recherche à instruire</h4>${list(m.questions_recherche || [])}` : '<p>Aucun besoin de recherche supplémentaire identifié pour ce moment.</p>'}
+        ${(validation?.warnings || []).filter(c => c.path === `/modules/${i}/moments_pedagogiques/${module.moments_pedagogiques.indexOf(m)}/duree_minutes`).map(c => `<p class="health-warning">${e(c.message)}</p>`).join('')}
+        ${field('Statut', m.status)}<small>${e(m.id)}</small></details>`).join('')}` : '<p>Moments pédagogiques non définis pour ce module.</p>'}
+    `, 'vcoac-module')).join('')}`;
+}
+
 function alertes() {
   return `${durationAlert()}<h3 class="section-title">⚠ Alertes <span>${data.alertes.length}</span></h3><div class="grid two">${data.alertes.map(a=>panel(a.message,`${badge('⚠ Alerte','alert')}${field('Action proposée',a.action)}<small>${e(a.id)}</small>`)).join('')}</div><h3 class="section-title">? Hypothèses importantes <span>${data.hypotheses.length}</span></h3><div class="grid two">${data.hypotheses.map(hypothesis).join('')}</div><h3 class="section-title">◆ Décisions à valider <span>${data.decisions_a_valider.length}</span></h3><div class="grid two">${data.decisions_a_valider.map(d=>panel(d.question,`${badge('◆ Décision nécessaire','decision')} ${badge(d.porte)}${field('Recommandation',d.recommandation)}${actions()}`)).join('')}</div>`;
 }
@@ -173,7 +193,7 @@ function render() {
     if (validation) content.innerHTML = `${scenarioHealth()}<p role="alert">Ce scénario contient un problème bloquant. Corrigez les données source puis réessayez.</p><button data-retry>Réessayer</button>`;
     return;
   }
-  content.innerHTML = `${view !== 'synthese' ? `<div class="view-heading"><div class="eyebrow">${scenario === 'program_only' ? 'PROGRAMME SEUL' : 'ACT-ON DATA'}</div><h2>${labels[view]}</h2></div>` : ''}${({synthese,cadrage,personas,gap,competences,carte,modules,alertes})[view]()}`;
+  content.innerHTML = `${view !== 'synthese' ? `<div class="view-heading"><div class="eyebrow">${scenario === 'program_only' ? 'PROGRAMME SEUL' : 'ACT-ON DATA'}</div><h2>${labels[view]}</h2></div>` : ''}${({synthese,cadrage,personas,gap,competences,carte,modules,vcoac,alertes})[view]()}`;
 }
 async function loadScenario(next) {
   const token = ++request;
