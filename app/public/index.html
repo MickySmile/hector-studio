@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hector Studio — IA017</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#content">Aller au contenu</a>
+  <header><div class="brand"><span class="monogram" aria-hidden="true">H</span><div><h1>Hector Studio <span>— IA017</span></h1><p>Conception pédagogique · Prototype V1</p></div></div><span class="readonly">Lecture seule</span></header>
+  <main>
+    <section class="scenario-bar" aria-label="Choix du scénario"><div><div class="eyebrow">EXPLORER UN SCÉNARIO</div><p>Deux lectures d’un même programme</p></div><div class="switch" aria-label="Scénario"><button data-scenario="program_only" aria-pressed="true">Programme seul</button><button data-scenario="act_on_data" aria-pressed="false">Act-On Data</button></div></section>
+    <nav aria-label="Vues du cockpit" id="navigation"></nav>
+    <div id="scenario-note" class="scenario-note"></div>
+    <section id="content" tabindex="-1" aria-live="polite"><p>Chargement des fixtures…</p></section>
+    <footer><span>Source : <code id="source-path">formation.json</code></span><span>Aucune modification enregistrée</span></footer>
+  </main>
+  <div id="toast" role="status"></div>
+</body>
+</html>
