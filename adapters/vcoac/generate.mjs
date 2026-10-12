@@ -1,38 +1,18 @@
-import { readFile, writeFile, mkdir, realpath } from 'node:fs/promises';
-import { resolve, relative, isAbsolute, dirname, join } from 'node:path';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadContents } from '../../core/content.mjs';
 import { validateResearchPlan } from '../../core/research.mjs';
 import { projection } from './projection.mjs';
 import { loadMachine, validateSpec, sha256 } from './machine.mjs';
 
+import { safeRead, normalize, json, momentSources, projectSlides } from './project.mjs';
+export { sectionsOf } from './project.mjs';
+
 export const repository = fileURLToPath(new URL('../../', import.meta.url));
 export const scenarioPath = 'examples/IA017/act_on_data/';
 export const moduleId = 'AOD-M02';
 export const stem = 'IA017-act-on-data-module2';
-const json = value => JSON.stringify(value, null, 2) + '\n';
-const normalize = text => text.replace(/\r\n/g, '\n');
-
-export function sectionsOf(content) {
-  const lines = normalize(content).split('\n'), sections = [];
-  let current;
-  lines.forEach((line, index) => {
-    const heading = /^#{1,3} (.+)$/.exec(line);
-    if (heading) { current = { heading: heading[1], line: index + 1, text: '' }; sections.push(current); }
-    if (current) current.text += line + '\n';
-  });
-  if (!sections.length || new Set(sections.map(s => s.heading)).size !== sections.length) throw new Error('Sections absentes ou ambiguës.');
-  return sections;
-}
-
-async function safeRead(root, file) {
-  if (/(^|[\\/])(?:tests|fixtures)([\\/]|$)/i.test(file)) throw new Error(`Fixture interdite : ${file}`);
-  const base = await realpath(root), target = await realpath(resolve(base, file));
-  const rel = relative(base, target);
-  if (isAbsolute(rel) || rel.startsWith('..')) throw new Error(`Source hors dépôt : ${file}`);
-  return normalize(await readFile(target, 'utf8'));
-}
-
 export async function generate({ root = repository, machineRoot = join(root, 'references/machine_vcoac/local/machine_vcoac'), editorial = projection } = {}) {
   const machine = await loadMachine(machineRoot);
   const lock = JSON.parse(await readFile(new URL('./sources.lock.json', import.meta.url), 'utf8'));
@@ -61,46 +41,7 @@ export async function generate({ root = repository, machineRoot = join(root, 're
   const audit = inputs['docs/PILOTE_INTEGRATION_VCOAC.md'].split('### Validation réelle n8n par le formateur — 12 octobre 2026')[1];
   if (!audit || momentIds.some(id => !audit.includes(`| ${id} | **READY** |`))) throw new Error('Readiness M02 non validée.');
 
-  const sections = Object.fromEntries(momentIds.map(id => [id, sectionsOf(loaded.contents[id].content)]));
-  const used = new Set(), ids = new Set(), fragments = [];
-  const addSection = (entry, section) => {
-    const file = scenarioPath + loaded.contents[entry.moment_id].path;
-    const source = { file, section: section.heading, sha256: sha256(section.text) };
-    entry.provenance.push(source);
-    entry.source_text.push(section.text.trim());
-    used.add(entry.moment_id + '/' + section.heading);
-  };
-  for (const slide of editorial) {
-    const moment = module.moments_pedagogiques.find(m => m.id === slide.moment_id);
-    if (!moment || !moment.fonctions_vcoac.map(f => f.toUpperCase()).includes(slide.phase)) throw new Error('Moment ou fonction hors pilote.');
-    if (!slide.slide_id.startsWith(slide.moment_id + '-') || ids.has(slide.slide_id)) throw new Error('slide_id absent, incohérent ou dupliqué.');
-    ids.add(slide.slide_id);
-    if (!slide.sections?.length || !slide.objective || !slide.reason) throw new Error('Provenance ou décision éditoriale absente.');
-    const entry = { ...structuredClone(slide), provenance: [], source_text: [], knowledge_refs: loaded.contents[moment.id].metadata.knowledge_refs, source_refs: loaded.contents[moment.id].metadata.source_refs };
-    for (const heading of slide.sections) {
-      const source = sections[moment.id].find(s => s.heading === heading);
-      if (!source) throw new Error(`Fragment absent : ${moment.id} / ${heading}`);
-      addSection(entry, source);
-    }
-    fragments.push(entry);
-  }
-  for (const id of momentIds) {
-    const entries = fragments.filter(f => f.moment_id === id);
-    if (!entries.length) throw new Error(`Moment oublié : ${id}`);
-    // Introduction et détails non projetés : conservation complète en notes,
-    // avec provenance distincte. Aucun écrêtage pour respecter un layout.
-    for (const section of sections[id]) if (!used.has(id + '/' + section.heading)) addSection(entries[0], section);
-    const required = module.moments_pedagogiques.find(m => m.id === id).fonctions_vcoac;
-    if (required.some(phase => !entries.some(e => e.phase === phase.toUpperCase()))) throw new Error(`Fonction perdue : ${id}`);
-  }
-  const slides = fragments.map(fragment => ({
-    ...fragment.screen, phase: fragment.phase,
-    section: `${fragment.moment_id} — ${module.moments_pedagogiques.find(m => m.id === fragment.moment_id).titre}`,
-    notes: {
-      essentiel: [fragment.objective, fragment.source_text.join('\n\n')],
-      ...fragment.notes,
-    },
-  }));
+  const { fragments, slides, used } = projectSlides(editorial, momentSources(selected, loaded.contents, scenarioPath));
   const spec = { deck: { titre: `Act-On Data — Module 2 — ${module.titre}`, auteur: 'Hector Studio', fichesDansNotes: false }, slides };
   const checks = validateSpec(spec, machine);
   if (!checks.valid) throw new Error('Spec refusée : ' + JSON.stringify(checks));
@@ -158,10 +99,10 @@ function mappingReport(ir, validation) {
   return lines.join('\n');
 }
 
-export async function writeArtifacts(result, directory = join(repository, 'outputs/vcoac')) {
+export async function writeArtifacts(result, directory = join(repository, 'outputs/vcoac'), artifactStem = stem) {
   await mkdir(directory, { recursive: true });
   for (const [suffix, value] of [['.json', json(result.spec)], ['-intermediate.json', json(result.intermediate)], ['-validation.json', json(result.validation)], ['-mapping.md', result.mapping]]) {
-    await writeFile(join(directory, stem + suffix), value, 'utf8');
+    await writeFile(join(directory, artifactStem + suffix), value, 'utf8');
   }
 }
 

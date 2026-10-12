@@ -1,7 +1,10 @@
-# Adaptateur VCOAC — pilote Act-On Data / Module 2
+# Adaptateur VCOAC — Act-On Data
 
-V1 limitée à `IA017-ACT-ON-DATA / AOD-M02`. Produit une proposition P4,
-une spec JSON et ses preuves de traçabilité. **Aucun rendu PowerPoint.**
+Deux projections de `IA017-ACT-ON-DATA` : le pilote Module 2 validé et la
+formation complète. Elles produisent une spec JSON et ses preuves de traçabilité.
+**Aucun rendu PowerPoint dans ces lanceurs.** Le pilote reste reproductible
+à l'identique. Les sections ci-dessous décrivent d'abord ce pilote ; l'extension
+complète est documentée en fin de fichier.
 
 ## Préparer la dépendance locale
 
@@ -125,3 +128,53 @@ Les PPTX, specs, rapports et prévisualisations sont des artefacts générables 
 `outputs/vcoac/`, ignorés par Git. Le ZIP et l'extraction de la machine restent
 des dépendances locales externes. La validation de ce rendu ne remplace pas les
 contrôles stricts et visuels d'un futur rendu modifié.
+
+## Extension à la formation complète — spec et mapping uniquement
+
+Référence pédagogique : `036dd3b69202775b66cb2adfe40629cdd5a890f3`.
+Les 18 moments READY sont projetés dans l'ordre de la formation. Une ouverture
+et une clôture communes viennent de `conduite-session.md`. Les transitions
+réutilisent les consolidations et reprises existantes. L'enveloppe reste
+420 min dont 250 de pratique ; les durées ne sont jamais comptées par slide.
+
+```text
+node adapters/vcoac/generate-full.mjs
+node --test --test-reporter=spec
+```
+
+Le premier lanceur écrit uniquement les quatre artefacts préfixés
+`outputs/vcoac/IA017-act-on-data-full` : spec `.json`, `-mapping.md`,
+`-validation.json` et `-intermediate.json`. Il ne touche pas aux sorties du pilote.
+Le mapping contient les champs écran, sections sources, références Knowledge,
+notes exactes, transitions, choix éditoriaux et zones de vigilance. Le manifeste
+intermédiaire rend ces informations inspectables par programme.
+
+- `full-projection.mjs` porte les reformulations M1/M3/M4 et le cadre commun.
+  Il importe la projection M2 sans la modifier.
+- `project.mjs` partage le contrôle des IDs, de l'ordre, des fonctions et des
+  sections, puis la conservation intégrale des sources dans les notes.
+- `generate-full.mjs` vérifie formation, readiness, recherche et provenance,
+  réexécute le pilote et compare ses 17 slides ainsi que ses quatre artefacts
+  aux empreintes figées avant l'extension, puis appelle le contrôleur réel.
+- `full-sources.lock.json` verrouille uniquement le fond nécessaire et les
+  décisions de projection relues. Aucun recalcul automatique des verrous.
+- `full.test.mjs` couvre l'ensemble, les régressions du pilote, les refus
+  d'entrées altérées, les liens, les fixtures interdites et le déterminisme.
+
+**Notes : option B explicitement choisie par l'utilisateur le 12 octobre 2026.**
+Les sections sources et corrigés restent intégraux, comme dans le pilote.
+Les utiliser comme réserve d'animation, sans les lire intégralement en séance.
+Les rubriques facultatives de notes restent limitées à transition, relance,
+réponse et vigilance, appuyées sur le contenu disponible.
+
+La seule recherche ouverte autorisée par le verrou porte sur les règles client
+avant transfert réel ; elle n'est jamais déclarée couverte. Le cas fictif reste
+animable. Les arbitrages d'attestation et d'usage réel gardent leur portée
+documentée dans la conduite de session.
+
+La validation porte sur le contrat, types, champs, longueurs, notes, provenance,
+ordre, couverture et absence d'assets. Les écrans nouveaux utilisent les mêmes
+types natifs que le pilote, plus PROGRAMME, BILAN et OPPOSITION_LIGNES, relus dans
+le catalogue et les composeurs locaux. Aucune image externe requise ni recherchée.
+Le rendu graphique reste à examiner dans une étape ultérieure autorisée.
+**Ne pas lancer `build_template.js` pour le deck complet à cette étape.**
