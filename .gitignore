@@ -1,0 +1,6 @@
+# Dépendance VCOAC externe : archive et extraction locales uniquement.
+/references/machine_vcoac/machine_vcoac.zip
+/references/machine_vcoac/local/
+
+# Artefacts VCOAC régénérables (spec, rapports et futurs rendus).
+/outputs/vcoac/
