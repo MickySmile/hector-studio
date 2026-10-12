@@ -166,11 +166,39 @@ function modules() {
     `, 'module-card').replace('<article ', `<article id="${e(m.id)}" `)).join('')}</div>`;
 }
 
+let enriched = null;
+
+// Rendu du profil Markdown local : HTML toujours échappé, aucun code ni lien actif.
+function contentMarkdown(text) {
+  return text.trim().split(/\n\s*\n/).map(block => {
+    const heading = /^(#{1,6}) (.+)$/.exec(block);
+    if (heading) return `<h${Math.min(heading[1].length + 2, 6)}>${e(heading[2])}</h${Math.min(heading[1].length + 2, 6)}>`;
+    if (block.split('\n').every(line => line.startsWith('- '))) return list(block.split('\n').map(line => line.slice(2)));
+    return `<p>${e(block).replaceAll('\n', '<br>')}</p>`;
+  }).join('');
+}
+
+function enrichedContent(moment) {
+  if (!moment.content_ref) return '';
+  const item = enriched?.contents?.[moment.id];
+  if (!item) return `<p class="health-error" role="alert">Contenu enrichi indisponible. ${e((enriched?.errors || []).filter(x => x.moment_id === moment.id).map(x => x.message).join(' '))}</p>`;
+  return `<details class="enriched-content"><summary>Voir le contenu enrichi</summary>
+    <p class="intro">Lecture seule · ${e(item.path)} · rédigé depuis Knowledge le ${e(item.metadata.last_generated_from_knowledge)}</p>
+    ${contentMarkdown(item.content)}
+    <h4>Fiches Knowledge et Sources résolues</h4>
+    <p>Les références de chaque fiche indiquent l’étape suivante de la provenance. Ouvrir la fiche Source correspondante pour ses repères documentaires.</p>
+    ${item.knowledge.map(note => `<details><summary>${e(note.metadata.id)} — ${e(note.metadata.title)}</summary>
+      <p>${e(note.path)} · ${e(note.metadata.type)}</p>
+      ${field('Références sources', note.source_ids.join(' → ') || 'Fiche Source terminale')}
+      ${contentMarkdown(note.content)}</details>`).join('')}
+    </details>`;
+}
+
 function vcoac() {
   if (!data.modules?.length) return '<p class="card">Moments pédagogiques non définis : formation au stade du cadrage.</p>';
   const functions = m => m.fonctions_vcoac.map(f => f.toUpperCase()).join(' + ');
   const moments = data.modules.flatMap(m => m.moments_pedagogiques || []);
-  return `<p class="intro">Conception P3 · propositions à valider · lecture seule. Les fonctions peuvent être fusionnées (+) ; les flèches indiquent l’ordre des moments. Aucun contenu de recherche n’est encore produit.</p>
+  return `<p class="intro">Conception P3 · propositions à valider · lecture seule. Les fonctions peuvent être fusionnées (+) ; les flèches indiquent l’ordre des moments. Les contenus enrichis disponibles sont signalés sur leur moment.</p>
     <p>${badge(`${moments.length} moments`)} ${badge(`${moments.filter(m => m.besoin_recherche).length} besoins de recherche`, 'alert')}</p>
     <p class="intro">La pratique indique uniquement le temps de production des participants. Une fusion ne multiplie ni la durée ni la pratique.</p>
     ${data.modules.map((module, i) => panel(`Module ${i + 1} — ${module.titre}`, `
@@ -182,6 +210,7 @@ function vcoac() {
         ${field('Pratique planifiée', `${m.pratique_minutes} min sur ${m.duree_minutes} min`)}
         ${m.besoin_recherche ? `<h4>Questions de recherche à instruire</h4>${list(m.questions_recherche || [])}` : '<p>Aucun besoin de recherche supplémentaire identifié pour ce moment.</p>'}
         ${(validation?.warnings || []).filter(c => c.path === `/modules/${i}/moments_pedagogiques/${module.moments_pedagogiques.indexOf(m)}/duree_minutes`).map(c => `<p class="health-warning">${e(c.message)}</p>`).join('')}
+        ${enrichedContent(m)}
         ${field('Statut', m.status)}<small>${e(m.id)}</small></details>`).join('')}` : '<p>Moments pédagogiques non définis pour ce module.</p>'}
     `, 'vcoac-module')).join('')}`;
 }
@@ -228,6 +257,7 @@ async function loadScenario(next) {
   const token = ++request;
   scenario = next; selectedCompetence = null; data = null; validation = null; decisionFilter = ''; priorityFilter = '';
   research = null; researchStatus = ''; researchImportance = ''; researchModule = '';
+  enriched = null;
   document.querySelectorAll('[data-scenario]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scenario===scenario)));
   document.querySelector('#scenario-note').textContent = '';
   document.querySelector('#source-path').textContent = `examples/IA017/${scenario}/formation.json`;
@@ -240,6 +270,7 @@ async function loadScenario(next) {
     if (token !== request) return;
     validation = loaded.validation;
     research = loaded.research || null;
+    enriched = loaded.enriched || null;
     data = loaded.formation;
     document.querySelector('#scenario-note').textContent = data?.meta.note || '';
     render();

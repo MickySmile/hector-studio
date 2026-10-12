@@ -8,3 +8,8 @@
 .research-question { margin-bottom: 1rem; }
 .knowledge-match { border-left: 3px solid var(--research-border); padding: .5rem 1rem; margin: 1rem 0; overflow-wrap: anywhere; }
 .research-stats { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.enriched-content { border: 1px solid #d0dacf; border-radius: 8px; padding: 18px; background: #f7f9f5; }
+.enriched-content > summary { font-size: 15px; }
+.enriched-content > p, .enriched-content > ul { max-width: 90ch; }
+.enriched-content h4 { font-size: 16px; text-transform: none; letter-spacing: 0; margin-top: 28px; }
+.enriched-content details { background: white; padding: 12px; overflow-wrap: anywhere; }

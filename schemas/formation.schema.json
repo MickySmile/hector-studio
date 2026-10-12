@@ -306,6 +306,8 @@
       "required": ["id", "fonctions_vcoac", "titre", "intention", "duree_minutes", "pratique_minutes", "contenu_prevu", "concepts_concernes", "besoin_recherche", "status"],
       "properties": {
         "id": { "$ref": "#/$defs/identifiant" },
+        "content_ref": { "type": "string", "pattern": "^content/[A-Za-z0-9_-]+\\.md$", "description": "Contenu riche externe, relatif au scénario ; contrôlé au chargement." },
+        "knowledge_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/identifiant" } },
         "fonctions_vcoac": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["voir", "comprendre", "outiller", "agir", "consolider"] } },
         "titre": { "$ref": "#/$defs/texte" },
         "intention": { "$ref": "#/$defs/texte" },

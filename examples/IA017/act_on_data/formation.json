@@ -1259,6 +1259,8 @@
         },
         {
           "id": "AOD-M03-MP02",
+          "content_ref": "content/AOD-M03-MP02.md",
+          "knowledge_refs": ["CON-SHADOW-AI", "CON-RISQUES-IA-RH", "MET-GRILLE-RISQUE-IA", "CAS-RH-REPONSE-FICTIF", "CON-AGENT-IA"],
           "fonctions_vcoac": [
             "comprendre",
             "outiller"

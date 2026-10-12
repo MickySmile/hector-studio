@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { resolve, dirname, join } from 'node:path';
 import { validateFormation } from '../core/validate-formation.mjs';
 import { loadResearchPlan } from '../core/research.mjs';
+import { loadContents } from '../core/content.mjs';
 
 const scenarios = ['program_only', 'act_on_data'];
 const formationFiles = Object.fromEntries(scenarios.map(s => [s, new URL(`../examples/IA017/${s}/formation.json`, import.meta.url)]));
@@ -40,7 +41,8 @@ export function createServer({ files = formationFiles, knowledgeRoot } = {}) {
         const research = validation.valid
           ? await loadResearchPlan(join(dirname(file instanceof URL ? fileURLToPath(file) : file), 'research-plan.json'), formation, { knowledgeRoot })
           : null;
-        send(200, { formation: validation.valid ? formation : null, validation, research });
+        const enriched = validation.valid ? await loadContents(formation, file, { knowledgeRoot }) : null;
+        send(200, { formation: validation.valid ? formation : null, validation, research, enriched });
       } catch {
         send(500, { error: 'Impossible de valider ce scénario.' });
       }
