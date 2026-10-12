@@ -33,7 +33,7 @@ for (const scenario of ['program_only', 'act_on_data']) test(`Cockpit Recherche 
   const ui = await frontend(); await ui.run(`loadScenario('${scenario}')`);
   const html = ui.html();
   assert.equal((html.match(/class="card research-question"/g) || []).length, 8);
-  const covered = 1;
+  const covered = scenario === 'act_on_data' ? 2 : 1;
   assert.ok(html.includes(`Couvertes</h3><strong>${covered}`));
   assert.ok(html.includes(`Recherche externe nécessaire</h3><strong>${8 - covered}`));
   assert.match(html, /propositions à valider/);
@@ -49,7 +49,7 @@ test('Cockpit Recherche : filtres combinés, compteurs globaux conservés et auc
   ui.change('research-importance', 'moyenne'); assert.match(ui.html(), /2 \/ 8 questions/);
   ui.change('research-module', 'AOD-M02'); assert.match(ui.html(), /1 \/ 8 questions/);
   ui.change('research-status', 'covered'); assert.match(ui.html(), /Aucune question pour ces filtres/);
-  assert.match(ui.html(), /Recherche externe nécessaire<\/h3><strong>7/);
+  assert.match(ui.html(), /Recherche externe nécessaire<\/h3><strong>6/);
   assert.equal(ui.calls.length, calls);
 });
 test('Cockpit Recherche : aller-retour des scénarios efface filtres et contenu précédent', async () => {
@@ -96,6 +96,19 @@ test('Cockpit Recherche : cycle Shadow AI, avant/après et quatre sources visibl
   for (const text of ['Avant : recherche externe nécessaire', 'Après : Knowledge disponible', 'CON-SHADOW-AI', 'CON-RISQUES-IA-RH', 'MET-GRILLE-RISQUE-IA', 'CAS-RH-REPONSE-FICTIF', 'SRC-CNIL-USAGE-IAG', 'SRC-ANSSI-SECURITE-IAG', 'SRC-RGPD-REPERES-RH', 'SRC-UE-AIACT-RH']) assert.ok(ui.html().includes(text), text);
   assert.equal(ui.calls.length, calls);
 });
+test('Cockpit Recherche : cycle MCP, chaîne complète et sources, sans couvrir les questions voisines', async () => {
+  const ui = await frontend(); await ui.run("loadScenario('act_on_data')");
+  const calls = ui.calls.length;
+  ui.change('research-module', 'AOD-M02'); ui.change('research-status', 'covered');
+  assert.match(ui.html(), /1 \/ 8 questions/);
+  for (const text of ['Recherche externe nécessaire → Knowledge créée → sources officielles MCP', 'statut final : covered', 'CON-MCP', 'MET-CONNEXION-MCP', 'CAS-RH-MCP-FICTIF', 'SRC-MCP-SPEC-2026-07-28', 'SRC-MCP-SECURITE', 'SRC-ANTHROPIC-MCP', 'SRC-MICROSOFT-MCP', 'SRC-GOOGLE-MCP', '2026-07-28', 'soumis à validation utilisateur']) assert.ok(ui.html().includes(text), text);
+  ui.change('research-status', 'external_research_needed');
+  assert.match(ui.html(), /2 \/ 8 questions/);
+  assert.match(ui.html(), /capacités actuelles de n8n/);
+  assert.match(ui.html(), /orchestration multi-agents/);
+  assert.equal(ui.calls.length, calls);
+});
+
 test('Serveur Recherche : relecture des fichiers, erreur explicite, méthodes interdites et aucune écriture', async t => {
   const directory = await mkdtemp(join(tmpdir(), 'hector-research-'));
   const formationPath = join(directory, 'formation.json'), planPath = join(directory, 'research-plan.json');

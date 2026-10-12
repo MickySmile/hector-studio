@@ -1,0 +1,1802 @@
+{
+  "verified_at": "2026-10-12",
+  "method": "Recherche lexicale réelle sur tout le patrimoine ; score sans décision automatique de couverture.",
+  "queries": [
+    {
+      "query": "MCP",
+      "matches": [
+        {
+          "knowledge_id": "CAS-RH-MCP-FICTIF",
+          "path": "cases/rh-connexion-mcp-fictif.md",
+          "title": "CAS FICTIF — consulter une source RH via MCP sans écrire sans validation",
+          "type": "case",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : mcp",
+            "content : mcp"
+          ],
+          "score": 11,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CON-MCP",
+          "path": "concepts/mcp.md",
+          "title": "MCP — Model Context Protocol : connecter un agent aux données et outils",
+          "type": "concept",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : mcp",
+            "content : mcp"
+          ],
+          "score": 11,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-CONNEXION-MCP",
+          "path": "methods/grille-connexion-mcp.md",
+          "title": "Faut-il connecter cet agent via MCP ?",
+          "type": "method",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : mcp",
+            "content : mcp"
+          ],
+          "score": 11,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-MCP",
+          "path": "sources/anthropic-mcp-connector.md",
+          "title": "Anthropic — connecteur MCP de l’API Messages",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-GOOGLE-MCP",
+          "path": "sources/google-cloud-mcp.md",
+          "title": "Google Cloud — serveurs MCP distants et contrôles",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SECURITE",
+          "path": "sources/mcp-autorisation-securite.md",
+          "title": "MCP — autorisation et sécurité : exigences et bonnes pratiques",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SPEC-2026-07-28",
+          "path": "sources/mcp-specification-2026-07-28.md",
+          "title": "MCP — spécification 2026-07-28",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MICROSOFT-MCP",
+          "path": "sources/microsoft-copilot-studio-mcp.md",
+          "title": "Microsoft — MCP dans Copilot Studio, standard harness",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "CON-AGENT-IA",
+          "path": "concepts/agent-ia.md",
+          "title": "Agent IA — définition opérationnelle",
+          "type": "concept",
+          "reasons": [
+            "content : mcp"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        }
+      ]
+    },
+    {
+      "query": "Model Context Protocol",
+      "matches": [
+        {
+          "knowledge_id": "CON-MCP",
+          "path": "concepts/mcp.md",
+          "title": "MCP — Model Context Protocol : connecter un agent aux données et outils",
+          "type": "concept",
+          "reasons": [
+            "title : model, context, protocol",
+            "aliases : model, context, protocol",
+            "content : model"
+          ],
+          "score": 22,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-GOOGLE-MCP",
+          "path": "sources/google-cloud-mcp.md",
+          "title": "Google Cloud — serveurs MCP distants et contrôles",
+          "type": "source",
+          "reasons": [
+            "content : model"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        }
+      ]
+    },
+    {
+      "query": "connecter un agent à des outils",
+      "matches": [
+        {
+          "knowledge_id": "CON-MCP",
+          "path": "concepts/mcp.md",
+          "title": "MCP — Model Context Protocol : connecter un agent aux données et outils",
+          "type": "concept",
+          "reasons": [
+            "title : connecter, agent, outils",
+            "tags : agent, outils",
+            "aliases : connecter, agent, outils",
+            "content : connecter, agent, outils"
+          ],
+          "score": 30,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-CONNEXION-MCP",
+          "path": "methods/grille-connexion-mcp.md",
+          "title": "Faut-il connecter cet agent via MCP ?",
+          "type": "method",
+          "reasons": [
+            "title : connecter, agent",
+            "tags : agent, outils",
+            "aliases : connecter, agent, outils",
+            "content : connecter, agent"
+          ],
+          "score": 25,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CON-AGENT-IA",
+          "path": "concepts/agent-ia.md",
+          "title": "Agent IA — définition opérationnelle",
+          "type": "concept",
+          "reasons": [
+            "title : agent",
+            "tags : agent",
+            "aliases : agent",
+            "content : agent, outils"
+          ],
+          "score": 12,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-GRILLE-CONCEPTION-AGENT",
+          "path": "methods/grille-conception-agent.md",
+          "title": "Grille de conception d’un agent IA",
+          "type": "method",
+          "reasons": [
+            "title : agent",
+            "tags : agent",
+            "aliases : agent",
+            "content : agent, outils"
+          ],
+          "score": 12,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-GOOGLE-AGENTIC-DESIGN",
+          "path": "sources/google-cloud-agentic-design-patterns.md",
+          "title": "Choose a design pattern for your agentic AI system",
+          "type": "source",
+          "reasons": [
+            "tags : agent, outils",
+            "content : agent, outils"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-NIST-AGENT-STANDARDS",
+          "path": "sources/nist-ai-agent-standards-initiative.md",
+          "title": "AI Agent Standards Initiative",
+          "type": "source",
+          "reasons": [
+            "title : agent",
+            "tags : agent",
+            "content : agent"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CAS-RH-MCP-FICTIF",
+          "path": "cases/rh-connexion-mcp-fictif.md",
+          "title": "CAS FICTIF — consulter une source RH via MCP sans écrire sans validation",
+          "type": "case",
+          "reasons": [
+            "tags : agent",
+            "aliases : agent",
+            "content : agent"
+          ],
+          "score": 7,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CON-RISQUES-IA-RH",
+          "path": "concepts/risques-ia-donnees-rh.md",
+          "title": "Risques IA et données RH — expositions et contrôles",
+          "type": "concept",
+          "reasons": [
+            "aliases : agent",
+            "content : agent, outils"
+          ],
+          "score": 5,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-GRILLE-RISQUE-IA",
+          "path": "methods/grille-risque-usage-ia.md",
+          "title": "Grille de risque d’un usage IA — données, permissions et supervision",
+          "type": "method",
+          "reasons": [
+            "aliases : agent",
+            "content : outils"
+          ],
+          "score": 4,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-EFFECTIVE",
+          "path": "sources/anthropic-building-effective-agents.md",
+          "title": "Building effective agents",
+          "type": "source",
+          "reasons": [
+            "tags : agent",
+            "content : agent"
+          ],
+          "score": 4,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-TRUSTWORTHY",
+          "path": "sources/anthropic-trustworthy-agents.md",
+          "title": "Trustworthy agents in practice",
+          "type": "source",
+          "reasons": [
+            "tags : agent",
+            "content : agent"
+          ],
+          "score": 4,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-ANSSI-SECURITE-IAG",
+          "path": "sources/anssi-securite-ia-generative.md",
+          "title": "ANSSI — sécurité d’un système d’IA générative",
+          "type": "source",
+          "reasons": [
+            "tags : agent"
+          ],
+          "score": 3,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MICROSOFT-MCP",
+          "path": "sources/microsoft-copilot-studio-mcp.md",
+          "title": "Microsoft — MCP dans Copilot Studio, standard harness",
+          "type": "source",
+          "reasons": [
+            "content : agent, outils"
+          ],
+          "score": 2,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-MCP",
+          "path": "sources/anthropic-mcp-connector.md",
+          "title": "Anthropic — connecteur MCP de l’API Messages",
+          "type": "source",
+          "reasons": [
+            "content : outils"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        }
+      ]
+    },
+    {
+      "query": "MCP vs API",
+      "matches": [
+        {
+          "knowledge_id": "MET-CONNEXION-MCP",
+          "path": "methods/grille-connexion-mcp.md",
+          "title": "Faut-il connecter cet agent via MCP ?",
+          "type": "method",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp, api",
+            "aliases : mcp, vs, api",
+            "content : mcp, api"
+          ],
+          "score": 21,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CON-MCP",
+          "path": "concepts/mcp.md",
+          "title": "MCP — Model Context Protocol : connecter un agent aux données et outils",
+          "type": "concept",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : mcp, vs, api",
+            "content : mcp, api"
+          ],
+          "score": 18,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-MCP",
+          "path": "sources/anthropic-mcp-connector.md",
+          "title": "Anthropic — connecteur MCP de l’API Messages",
+          "type": "source",
+          "reasons": [
+            "title : mcp, api",
+            "tags : mcp",
+            "content : mcp, api"
+          ],
+          "score": 13,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "CAS-RH-MCP-FICTIF",
+          "path": "cases/rh-connexion-mcp-fictif.md",
+          "title": "CAS FICTIF — consulter une source RH via MCP sans écrire sans validation",
+          "type": "case",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : mcp",
+            "content : mcp"
+          ],
+          "score": 11,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SECURITE",
+          "path": "sources/mcp-autorisation-securite.md",
+          "title": "MCP — autorisation et sécurité : exigences et bonnes pratiques",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp, api"
+          ],
+          "score": 9,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-GOOGLE-MCP",
+          "path": "sources/google-cloud-mcp.md",
+          "title": "Google Cloud — serveurs MCP distants et contrôles",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SPEC-2026-07-28",
+          "path": "sources/mcp-specification-2026-07-28.md",
+          "title": "MCP — spécification 2026-07-28",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MICROSOFT-MCP",
+          "path": "sources/microsoft-copilot-studio-mcp.md",
+          "title": "Microsoft — MCP dans Copilot Studio, standard harness",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "CON-AGENT-IA",
+          "path": "concepts/agent-ia.md",
+          "title": "Agent IA — définition opérationnelle",
+          "type": "concept",
+          "reasons": [
+            "aliases : vs",
+            "content : mcp"
+          ],
+          "score": 4,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        }
+      ]
+    },
+    {
+      "query": "serveur MCP",
+      "matches": [
+        {
+          "knowledge_id": "CAS-RH-MCP-FICTIF",
+          "path": "cases/rh-connexion-mcp-fictif.md",
+          "title": "CAS FICTIF — consulter une source RH via MCP sans écrire sans validation",
+          "type": "case",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : serveur, mcp",
+            "content : serveur, mcp"
+          ],
+          "score": 15,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CON-MCP",
+          "path": "concepts/mcp.md",
+          "title": "MCP — Model Context Protocol : connecter un agent aux données et outils",
+          "type": "concept",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : serveur, mcp",
+            "content : serveur, mcp"
+          ],
+          "score": 15,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-CONNEXION-MCP",
+          "path": "methods/grille-connexion-mcp.md",
+          "title": "Faut-il connecter cet agent via MCP ?",
+          "type": "method",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : mcp",
+            "content : serveur, mcp"
+          ],
+          "score": 12,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SECURITE",
+          "path": "sources/mcp-autorisation-securite.md",
+          "title": "MCP — autorisation et sécurité : exigences et bonnes pratiques",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : serveur, mcp"
+          ],
+          "score": 9,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SPEC-2026-07-28",
+          "path": "sources/mcp-specification-2026-07-28.md",
+          "title": "MCP — spécification 2026-07-28",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : serveur, mcp"
+          ],
+          "score": 9,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-MCP",
+          "path": "sources/anthropic-mcp-connector.md",
+          "title": "Anthropic — connecteur MCP de l’API Messages",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-GOOGLE-MCP",
+          "path": "sources/google-cloud-mcp.md",
+          "title": "Google Cloud — serveurs MCP distants et contrôles",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MICROSOFT-MCP",
+          "path": "sources/microsoft-copilot-studio-mcp.md",
+          "title": "Microsoft — MCP dans Copilot Studio, standard harness",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "CON-AGENT-IA",
+          "path": "concepts/agent-ia.md",
+          "title": "Agent IA — définition opérationnelle",
+          "type": "concept",
+          "reasons": [
+            "content : mcp"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        }
+      ]
+    },
+    {
+      "query": "permissions MCP",
+      "matches": [
+        {
+          "knowledge_id": "MET-CONNEXION-MCP",
+          "path": "methods/grille-connexion-mcp.md",
+          "title": "Faut-il connecter cet agent via MCP ?",
+          "type": "method",
+          "reasons": [
+            "title : mcp",
+            "tags : permissions, mcp",
+            "aliases : permissions, mcp",
+            "content : mcp"
+          ],
+          "score": 17,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CON-MCP",
+          "path": "concepts/mcp.md",
+          "title": "MCP — Model Context Protocol : connecter un agent aux données et outils",
+          "type": "concept",
+          "reasons": [
+            "title : mcp",
+            "tags : permissions, mcp",
+            "aliases : mcp",
+            "content : permissions, mcp"
+          ],
+          "score": 15,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CAS-RH-MCP-FICTIF",
+          "path": "cases/rh-connexion-mcp-fictif.md",
+          "title": "CAS FICTIF — consulter une source RH via MCP sans écrire sans validation",
+          "type": "case",
+          "reasons": [
+            "title : mcp",
+            "tags : permissions, mcp",
+            "aliases : mcp",
+            "content : mcp"
+          ],
+          "score": 14,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-GRILLE-RISQUE-IA",
+          "path": "methods/grille-risque-usage-ia.md",
+          "title": "Grille de risque d’un usage IA — données, permissions et supervision",
+          "type": "method",
+          "reasons": [
+            "title : permissions",
+            "tags : permissions",
+            "aliases : permissions"
+          ],
+          "score": 10,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SECURITE",
+          "path": "sources/mcp-autorisation-securite.md",
+          "title": "MCP — autorisation et sécurité : exigences et bonnes pratiques",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : permissions, mcp"
+          ],
+          "score": 9,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-MCP",
+          "path": "sources/anthropic-mcp-connector.md",
+          "title": "Anthropic — connecteur MCP de l’API Messages",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-GOOGLE-MCP",
+          "path": "sources/google-cloud-mcp.md",
+          "title": "Google Cloud — serveurs MCP distants et contrôles",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SPEC-2026-07-28",
+          "path": "sources/mcp-specification-2026-07-28.md",
+          "title": "MCP — spécification 2026-07-28",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MICROSOFT-MCP",
+          "path": "sources/microsoft-copilot-studio-mcp.md",
+          "title": "Microsoft — MCP dans Copilot Studio, standard harness",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "CON-RISQUES-IA-RH",
+          "path": "concepts/risques-ia-donnees-rh.md",
+          "title": "Risques IA et données RH — expositions et contrôles",
+          "type": "concept",
+          "reasons": [
+            "tags : permissions",
+            "aliases : permissions",
+            "content : permissions"
+          ],
+          "score": 7,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-ANSSI-SECURITE-IAG",
+          "path": "sources/anssi-securite-ia-generative.md",
+          "title": "ANSSI — sécurité d’un système d’IA générative",
+          "type": "source",
+          "reasons": [
+            "tags : permissions"
+          ],
+          "score": 3,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "CON-AGENT-IA",
+          "path": "concepts/agent-ia.md",
+          "title": "Agent IA — définition opérationnelle",
+          "type": "concept",
+          "reasons": [
+            "content : permissions, mcp"
+          ],
+          "score": 2,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-GRILLE-CONCEPTION-AGENT",
+          "path": "methods/grille-conception-agent.md",
+          "title": "Grille de conception d’un agent IA",
+          "type": "method",
+          "reasons": [
+            "content : permissions"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-NIST-AGENT-STANDARDS",
+          "path": "sources/nist-ai-agent-standards-initiative.md",
+          "title": "AI Agent Standards Initiative",
+          "type": "source",
+          "reasons": [
+            "content : permissions"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        }
+      ]
+    },
+    {
+      "query": "sécurité MCP",
+      "matches": [
+        {
+          "knowledge_id": "MET-CONNEXION-MCP",
+          "path": "methods/grille-connexion-mcp.md",
+          "title": "Faut-il connecter cet agent via MCP ?",
+          "type": "method",
+          "reasons": [
+            "title : mcp",
+            "tags : securite, mcp",
+            "aliases : securite, mcp",
+            "content : securite, mcp"
+          ],
+          "score": 18,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CON-MCP",
+          "path": "concepts/mcp.md",
+          "title": "MCP — Model Context Protocol : connecter un agent aux données et outils",
+          "type": "concept",
+          "reasons": [
+            "title : mcp",
+            "tags : securite, mcp",
+            "aliases : mcp",
+            "content : securite, mcp"
+          ],
+          "score": 15,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SECURITE",
+          "path": "sources/mcp-autorisation-securite.md",
+          "title": "MCP — autorisation et sécurité : exigences et bonnes pratiques",
+          "type": "source",
+          "reasons": [
+            "title : securite, mcp",
+            "tags : mcp",
+            "content : securite, mcp"
+          ],
+          "score": 13,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "CAS-RH-MCP-FICTIF",
+          "path": "cases/rh-connexion-mcp-fictif.md",
+          "title": "CAS FICTIF — consulter une source RH via MCP sans écrire sans validation",
+          "type": "case",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : mcp",
+            "content : mcp"
+          ],
+          "score": 11,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-ANSSI-SECURITE-IAG",
+          "path": "sources/anssi-securite-ia-generative.md",
+          "title": "ANSSI — sécurité d’un système d’IA générative",
+          "type": "source",
+          "reasons": [
+            "title : securite",
+            "tags : securite",
+            "content : securite"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-MCP",
+          "path": "sources/anthropic-mcp-connector.md",
+          "title": "Anthropic — connecteur MCP de l’API Messages",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-GOOGLE-MCP",
+          "path": "sources/google-cloud-mcp.md",
+          "title": "Google Cloud — serveurs MCP distants et contrôles",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SPEC-2026-07-28",
+          "path": "sources/mcp-specification-2026-07-28.md",
+          "title": "MCP — spécification 2026-07-28",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MICROSOFT-MCP",
+          "path": "sources/microsoft-copilot-studio-mcp.md",
+          "title": "Microsoft — MCP dans Copilot Studio, standard harness",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "CON-AGENT-IA",
+          "path": "concepts/agent-ia.md",
+          "title": "Agent IA — définition opérationnelle",
+          "type": "concept",
+          "reasons": [
+            "content : mcp"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CON-RISQUES-IA-RH",
+          "path": "concepts/risques-ia-donnees-rh.md",
+          "title": "Risques IA et données RH — expositions et contrôles",
+          "type": "concept",
+          "reasons": [
+            "content : securite"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-GRILLE-CONCEPTION-AGENT",
+          "path": "methods/grille-conception-agent.md",
+          "title": "Grille de conception d’un agent IA",
+          "type": "method",
+          "reasons": [
+            "content : securite"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-GRILLE-RISQUE-IA",
+          "path": "methods/grille-risque-usage-ia.md",
+          "title": "Grille de risque d’un usage IA — données, permissions et supervision",
+          "type": "method",
+          "reasons": [
+            "content : securite"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-NIST-AGENT-STANDARDS",
+          "path": "sources/nist-ai-agent-standards-initiative.md",
+          "title": "AI Agent Standards Initiative",
+          "type": "source",
+          "reasons": [
+            "content : securite"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        }
+      ]
+    },
+    {
+      "query": "agent accès données",
+      "matches": [
+        {
+          "knowledge_id": "CON-MCP",
+          "path": "concepts/mcp.md",
+          "title": "MCP — Model Context Protocol : connecter un agent aux données et outils",
+          "type": "concept",
+          "reasons": [
+            "title : agent, donnees",
+            "tags : agent, donnees",
+            "aliases : agent, acces, donnees",
+            "content : agent, acces, donnees"
+          ],
+          "score": 26,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CAS-RH-MCP-FICTIF",
+          "path": "cases/rh-connexion-mcp-fictif.md",
+          "title": "CAS FICTIF — consulter une source RH via MCP sans écrire sans validation",
+          "type": "case",
+          "reasons": [
+            "tags : agent, acces, donnees",
+            "aliases : agent, acces, donnees",
+            "content : agent, acces, donnees"
+          ],
+          "score": 21,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CON-RISQUES-IA-RH",
+          "path": "concepts/risques-ia-donnees-rh.md",
+          "title": "Risques IA et données RH — expositions et contrôles",
+          "type": "concept",
+          "reasons": [
+            "title : donnees",
+            "tags : donnees",
+            "aliases : agent, donnees",
+            "content : agent, acces, donnees"
+          ],
+          "score": 16,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-CONNEXION-MCP",
+          "path": "methods/grille-connexion-mcp.md",
+          "title": "Faut-il connecter cet agent via MCP ?",
+          "type": "method",
+          "reasons": [
+            "title : agent",
+            "tags : agent, donnees",
+            "aliases : agent",
+            "content : agent, acces, donnees"
+          ],
+          "score": 16,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-GRILLE-CONCEPTION-AGENT",
+          "path": "methods/grille-conception-agent.md",
+          "title": "Grille de conception d’un agent IA",
+          "type": "method",
+          "reasons": [
+            "title : agent",
+            "tags : agent",
+            "aliases : agent",
+            "content : agent, acces"
+          ],
+          "score": 12,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-RGPD-REPERES-RH",
+          "path": "sources/rgpd-reperes-donnees-rh.md",
+          "title": "RGPD — repères pour les traitements de données RH",
+          "type": "source",
+          "reasons": [
+            "title : donnees",
+            "tags : donnees",
+            "aliases : donnees",
+            "content : acces, donnees"
+          ],
+          "score": 12,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "CON-AGENT-IA",
+          "path": "concepts/agent-ia.md",
+          "title": "Agent IA — définition opérationnelle",
+          "type": "concept",
+          "reasons": [
+            "title : agent",
+            "tags : agent",
+            "aliases : agent",
+            "content : agent"
+          ],
+          "score": 11,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "MET-GRILLE-RISQUE-IA",
+          "path": "methods/grille-risque-usage-ia.md",
+          "title": "Grille de risque d’un usage IA — données, permissions et supervision",
+          "type": "method",
+          "reasons": [
+            "title : donnees",
+            "aliases : agent",
+            "content : acces, donnees"
+          ],
+          "score": 9,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-NIST-AGENT-STANDARDS",
+          "path": "sources/nist-ai-agent-standards-initiative.md",
+          "title": "AI Agent Standards Initiative",
+          "type": "source",
+          "reasons": [
+            "title : agent",
+            "tags : agent",
+            "content : agent, acces"
+          ],
+          "score": 9,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CAS-RH-REPONSE-FICTIF",
+          "path": "cases/rh-reponse-salarie-fictif.md",
+          "title": "CAS FICTIF — préparer une réponse RH sans exposer un dossier salarié",
+          "type": "case",
+          "reasons": [
+            "tags : donnees",
+            "content : acces, donnees"
+          ],
+          "score": 5,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-EFFECTIVE",
+          "path": "sources/anthropic-building-effective-agents.md",
+          "title": "Building effective agents",
+          "type": "source",
+          "reasons": [
+            "tags : agent",
+            "content : agent, acces"
+          ],
+          "score": 5,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-TRUSTWORTHY",
+          "path": "sources/anthropic-trustworthy-agents.md",
+          "title": "Trustworthy agents in practice",
+          "type": "source",
+          "reasons": [
+            "tags : agent",
+            "content : agent, acces"
+          ],
+          "score": 5,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "CON-SHADOW-AI",
+          "path": "concepts/shadow-ai.md",
+          "title": "Shadow AI — usages d’IA hors du cadre autorisé",
+          "type": "concept",
+          "reasons": [
+            "aliases : donnees",
+            "content : donnees"
+          ],
+          "score": 4,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-GOOGLE-AGENTIC-DESIGN",
+          "path": "sources/google-cloud-agentic-design-patterns.md",
+          "title": "Choose a design pattern for your agentic AI system",
+          "type": "source",
+          "reasons": [
+            "tags : agent",
+            "content : agent"
+          ],
+          "score": 4,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne"
+        },
+        {
+          "knowledge_id": "SRC-ANSSI-SECURITE-IAG",
+          "path": "sources/anssi-securite-ia-generative.md",
+          "title": "ANSSI — sécurité d’un système d’IA générative",
+          "type": "source",
+          "reasons": [
+            "tags : agent"
+          ],
+          "score": 3,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-CNIL-USAGE-IAG",
+          "path": "sources/cnil-usage-ia-generative.md",
+          "title": "CNIL — utilisation d’un système d’IA générative",
+          "type": "source",
+          "reasons": [
+            "aliases : donnees"
+          ],
+          "score": 3,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MICROSOFT-MCP",
+          "path": "sources/microsoft-copilot-studio-mcp.md",
+          "title": "Microsoft — MCP dans Copilot Studio, standard harness",
+          "type": "source",
+          "reasons": [
+            "content : agent, acces, donnees"
+          ],
+          "score": 3,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        },
+        {
+          "knowledge_id": "SRC-MCP-SPEC-2026-07-28",
+          "path": "sources/mcp-specification-2026-07-28.md",
+          "title": "MCP — spécification 2026-07-28",
+          "type": "source",
+          "reasons": [
+            "content : acces"
+          ],
+          "score": 1,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte"
+        }
+      ]
+    }
+  ]
+}

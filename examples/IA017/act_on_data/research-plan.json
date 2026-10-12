@@ -133,7 +133,7 @@
       },
       "preuve_recherchee": "Rôles et limites de la version identifiée, reliés aux connexions de la carte RH.",
       "cadrage_status": "proposition_a_valider",
-      "status": "external_research_needed",
+      "status": "covered",
       "used_by": [
         {
           "module_id": "AOD-M02",
@@ -146,9 +146,198 @@
           ]
         }
       ],
-      "knowledge_matches": [],
+      "knowledge_matches": [
+        {
+          "knowledge_id": "CON-MCP",
+          "path": "concepts/mcp.md",
+          "title": "MCP — Model Context Protocol : connecter un agent aux données et outils",
+          "type": "concept",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : mcp",
+            "content : role, limites, version, actuelle, mcp, lecture, rh"
+          ],
+          "score": 17,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "Réponse pédagogique complète : protocole 2026-07-28, API/connecteur/plugin, hôte/client/serveur, capacités actives et dépréciées, autorisation, limites et usages fournisseurs sourcés."
+        },
+        {
+          "knowledge_id": "MET-CONNEXION-MCP",
+          "path": "methods/grille-connexion-mcp.md",
+          "title": "Faut-il connecter cet agent via MCP ?",
+          "type": "method",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "aliases : mcp",
+            "content : version, mcp, utiles, lecture, rh"
+          ],
+          "score": 15,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "Application de la synthèse MCP : grille de décision pour justifier une connexion, vérifier compatibilité, droits et validation ; proposition Hector, pas norme."
+        },
+        {
+          "knowledge_id": "CAS-RH-MCP-FICTIF",
+          "path": "cases/rh-connexion-mcp-fictif.md",
+          "title": "CAS FICTIF — consulter une source RH via MCP sans écrire sans validation",
+          "type": "case",
+          "reasons": [
+            "title : mcp, rh",
+            "tags : mcp, rh",
+            "aliases : mcp",
+            "content : mcp, utiles, lecture, carte, rh"
+          ],
+          "score": 22,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "Application à la carte RH : connexion, consultation, analyse et circuit distinct de correction validée ; cas explicitement fictif, aucun accès client présumé."
+        },
+        {
+          "knowledge_id": "SRC-MCP-SPEC-2026-07-28",
+          "path": "sources/mcp-specification-2026-07-28.md",
+          "title": "MCP — spécification 2026-07-28",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : version, actuelle, mcp, utiles"
+          ],
+          "score": 11,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte",
+          "coverage": "partial",
+          "assessment": "Source officielle : spécification 2026-07-28, architecture, messages, capacités, transports et dépréciations ; vérification 2026-10-12."
+        },
+        {
+          "knowledge_id": "SRC-MCP-SECURITE",
+          "path": "sources/mcp-autorisation-securite.md",
+          "title": "MCP — autorisation et sécurité : exigences et bonnes pratiques",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte",
+          "coverage": "partial",
+          "assessment": "Profil HTTP OAuth et exigences normatives distingués des bonnes pratiques ; vérification 2026-10-12, documentation 2026-07-28."
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-MCP",
+          "path": "sources/anthropic-mcp-connector.md",
+          "title": "Anthropic — connecteur MCP de l’API Messages",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : limites, version, mcp"
+          ],
+          "score": 10,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte",
+          "coverage": "partial",
+          "assessment": "API Messages : connecteur distant limité aux outils ; page non datée, bêtas identifiées, vérifiée le 2026-10-12. Pas une preuve de support universel."
+        },
+        {
+          "knowledge_id": "SRC-MICROSOFT-MCP",
+          "path": "sources/microsoft-copilot-studio-mcp.md",
+          "title": "Microsoft — MCP dans Copilot Studio, standard harness",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp, lecture"
+          ],
+          "score": 9,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte",
+          "coverage": "partial",
+          "assessment": "Copilot Studio standard harness : outils et ressources via sorties d’outils ; pages des 2026-08-19/26, vérifiées le 2026-10-12."
+        },
+        {
+          "knowledge_id": "SRC-GOOGLE-MCP",
+          "path": "sources/google-cloud-mcp.md",
+          "title": "Google Cloud — serveurs MCP distants et contrôles",
+          "type": "source",
+          "reasons": [
+            "title : mcp",
+            "tags : mcp",
+            "content : mcp"
+          ],
+          "score": 8,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte",
+          "coverage": "partial",
+          "assessment": "Serveurs Google Cloud : support déclaré de 2026-07-28 et contrôles de plateforme ; page du 2026-10-09, vérifiée le 2026-10-12."
+        }
+      ],
       "fusion_justification": null,
-      "review": null
+      "review": {
+        "reviewer": "Codex — examen sémantique du cycle MCP, soumis à validation utilisateur",
+        "date": "2026-10-12",
+        "justification": "Recherche externe nécessaire → Knowledge créée → sources officielles MCP, Anthropic, Microsoft et Google Cloud → statut final : covered. Couverture pédagogique examinée : rôles et limites de MCP 2026-07-28 appliqués à une carte RH fictive ; distinction connexion, identité, droits et validation humaine. Le concept porte la réponse, la grille et le cas en permettent l’application. Aucun score lexical ne décide du statut. Vérification au 2026-10-12 ; revue des capacités et offres avant usage et au plus tard le 2026-11-12. Support précis des produits et accès client non testés ; autres questions inchangées. Journal : research-mcp.md.",
+        "knowledge_ids": [
+          "CON-MCP",
+          "MET-CONNEXION-MCP",
+          "CAS-RH-MCP-FICTIF"
+        ]
+      }
     },
     {
       "id": "IA017-ACT-ON-DATA-R-70cf05c4fca4",
