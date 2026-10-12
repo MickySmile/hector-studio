@@ -95,22 +95,55 @@ for (const [id, count, sections] of [
   }
 });
 
-test('Réutilisation : exactement trois contenus, aucun autre moment enrichi, patrimoine partagé', async () => {
+test('Réutilisation : exactement cinq contenus, aucun autre moment enrichi, patrimoine partagé', async () => {
   const result = await loadContents(formation, path);
-  const expected = ['AOD-M01-MP01', 'AOD-M01-MP02', 'AOD-M03-MP02'];
+  const expected = ['AOD-M01-MP01', 'AOD-M01-MP02', 'AOD-M02-MP02', 'AOD-M02-MP03', 'AOD-M03-MP02'];
   assert.deepEqual(Object.keys(result.contents).sort(), expected);
   const referenced = formation.modules.flatMap(m => m.moments_pedagogiques).filter(m => m.content_ref || m.knowledge_refs);
   assert.deepEqual(referenced.map(m => m.id).sort(), expected);
   for (const id of ['CON-AGENT-IA', 'CAS-RH-REPONSE-FICTIF', 'CON-RISQUES-IA-RH']) {
-    assert.deepEqual(Object.values(result.contents).filter(c => c.metadata.knowledge_refs.includes(id)).map(c => c.metadata.moment_id).sort(), expected);
+    const users = ['AOD-M01-MP01', 'AOD-M01-MP02', ...(id === 'CON-AGENT-IA' ? ['AOD-M02-MP02'] : []), 'AOD-M03-MP02'];
+    assert.deepEqual(Object.values(result.contents).filter(c => c.metadata.knowledge_refs.includes(id)).map(c => c.metadata.moment_id).sort(), users);
   }
 });
 
-test('Réutilisation : référence invalide sur un nouveau moment, les deux autres restent lisibles', async () => {
+test('Réutilisation : référence invalide isolée, les quatre autres contenus restent lisibles', async () => {
   const copy = structuredClone(formation);
   copy.modules[0].moments_pedagogiques[0].knowledge_refs = ['INCONNUE'];
   const result = await loadContents(copy, path);
   assert.equal(result.valid, false);
   assert.deepEqual(result.errors.map(e => e.moment_id), ['AOD-M01-MP01']);
-  assert.deepEqual(Object.keys(result.contents).sort(), ['AOD-M01-MP02', 'AOD-M03-MP02']);
+  assert.deepEqual(Object.keys(result.contents).sort(), ['AOD-M01-MP02', 'AOD-M02-MP02', 'AOD-M02-MP03', 'AOD-M03-MP02']);
+});
+
+for (const [id, sources, minutes, role] of [['AOD-M02-MP02', 12, 15, 'comprendre'], ['AOD-M02-MP03', 8, 10, 'outiller']]) {
+  test(`Réutilisation MCP ${id} : provenance complète, sources officielles et durée du rôle conservée`, async () => {
+    const result = await loadContents(formation, path);
+    assert.deepEqual(result.errors, []);
+    const item = result.contents[id];
+    const moment = formation.modules[1].moments_pedagogiques.find(m => m.id === id);
+    assert.equal(item.metadata.module_id, 'AOD-M02');
+    assert.equal(item.metadata.moment_id, id);
+    assert.deepEqual(item.metadata.knowledge_refs, moment.knowledge_refs);
+    assert.equal(item.metadata.last_generated_from_knowledge, '2026-10-12');
+    assert.deepEqual(moment.fonctions_vcoac, [role]);
+    assert.equal(moment.duree_minutes, minutes); assert.equal(moment.pratique_minutes, 0);
+    assert.equal(item.knowledge.filter(n => n.metadata.type === 'source').length, sources);
+    assert.deepEqual(item.knowledge.filter(n => n.metadata.type === 'source').map(n => n.metadata.id).sort(), [...item.metadata.source_refs].sort());
+    for (const id of ['CON-MCP', 'MET-CONNEXION-MCP', 'CAS-RH-MCP-FICTIF', 'SRC-MCP-SPEC-2026-07-28', 'SRC-MCP-SECURITE']) assert.ok(item.knowledge.some(n => n.metadata.id === id));
+    for (const n of item.knowledge) {
+      assert.doesNotMatch(n.path, /tests|fixtures/); assert.doesNotMatch(n.metadata.id, /^T-/);
+      for (const parent of n.source_ids) assert.ok(item.knowledge.some(p => p.metadata.id === parent));
+    }
+  });
+}
+
+test('Réutilisation MCP : une source MCP manquante invalide seulement les deux contenus concernés', async () => {
+  const copy = notes.filter(n => n.metadata.id !== 'SRC-MCP-SECURITE');
+  const result = await loadContents(formation, path);
+  for (const item of Object.values(result.contents)) {
+    const resolve = () => resolveProvenance(item.metadata.knowledge_refs, item.metadata.source_refs, copy);
+    if (['AOD-M02-MP02', 'AOD-M02-MP03'].includes(item.metadata.moment_id)) assert.throws(resolve, /Source non résolue/);
+    else assert.doesNotThrow(resolve);
+  }
 });

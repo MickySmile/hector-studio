@@ -1125,6 +1125,12 @@
         },
         {
           "id": "AOD-M02-MP02",
+        "content_ref": "content/AOD-M02-MP02.md",
+        "knowledge_refs": [
+          "CON-AGENT-IA",
+          "CON-MCP",
+          "CAS-RH-MCP-FICTIF"
+        ],
           "fonctions_vcoac": [
             "comprendre"
           ],
@@ -1148,6 +1154,12 @@
         },
         {
           "id": "AOD-M02-MP03",
+        "content_ref": "content/AOD-M02-MP03.md",
+        "knowledge_refs": [
+          "CON-MCP",
+          "MET-CONNEXION-MCP",
+          "CAS-RH-MCP-FICTIF"
+        ],
           "fonctions_vcoac": [
             "outiller"
           ],
