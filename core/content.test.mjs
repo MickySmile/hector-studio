@@ -12,7 +12,12 @@ const formation = JSON.parse(await readFile(path, 'utf8'));
 const pilot = formation.modules[2].moments_pedagogiques[1];
 const markdown = await readFile(new URL('./content/AOD-M03-MP02.md', path), 'utf8');
 const notes = await loadKnowledge(fileURLToPath(new URL('../knowledge', import.meta.url)));
-const loaded = await loadContents(formation, path);
+// Garder les contrôles du pilote indépendants du nombre de moments enrichis.
+const pilotFormation = structuredClone(formation);
+for (const module of pilotFormation.modules) for (const moment of module.moments_pedagogiques) {
+  if (moment.id !== pilot.id) { delete moment.content_ref; delete moment.knowledge_refs; }
+}
+const loaded = await loadContents(pilotFormation, path);
 const item = loaded.contents[pilot.id];
 
 test('Contenu pilote : un seul moment, cinq Knowledge, huit sources, cas indirect résolu', () => {
@@ -56,13 +61,56 @@ for (const [name, ref, transform] of [
   t.after(() => rm(directory, { recursive: true, force: true }));
   await mkdir(join(directory, 'content'));
   await writeFile(join(directory, pilot.content_ref), transform(markdown));
-  const copy = structuredClone(formation); copy.modules[2].moments_pedagogiques[1].content_ref = ref;
+  const copy = structuredClone(pilotFormation); copy.modules[2].moments_pedagogiques[1].content_ref = ref;
   const result = await loadContents(copy, join(directory, 'formation.json'));
   assert.equal(result.valid, false); assert.equal(result.errors.length, 1);
   assert.equal(result.errors[0].moment_id, pilot.id); assert.deepEqual(result.contents, {});
 });
 
 test('Chargement interdit un patrimoine de fixtures', async () => {
-  const result = await loadContents(formation, path, { knowledgeRoot: fileURLToPath(new URL('../tests/fixtures/knowledge', import.meta.url)) });
+  const result = await loadContents(pilotFormation, path, { knowledgeRoot: fileURLToPath(new URL('../tests/fixtures/knowledge', import.meta.url)) });
   assert.equal(result.valid, false); assert.match(result.errors[0].message, /fixtures/);
+});
+
+for (const [id, count, sections] of [
+  ['AOD-M01-MP01', 3, ['VOIR', 'COMPRENDRE']],
+  ['AOD-M01-MP02', 4, ['AGIR', 'Support réutilisé']],
+]) test(`Réutilisation ${id} : contenu existant, références cohérentes et huit sources hors fixtures`, async () => {
+  const result = await loadContents(formation, path);
+  assert.equal(result.valid, true);
+  const item = result.contents[id];
+  const moment = formation.modules[0].moments_pedagogiques.find(m => m.id === id);
+  assert.equal(item.path, moment.content_ref);
+  assert.equal(item.metadata.moment_id, id); assert.equal(item.metadata.module_id, 'AOD-M01');
+  assert.deepEqual(item.metadata.knowledge_refs, moment.knowledge_refs);
+  assert.equal(item.metadata.knowledge_refs.length, count);
+  for (const section of sections) assert.ok(item.content.includes(`## ${section}`));
+  for (const ref of moment.knowledge_refs) assert.ok(item.knowledge.some(n => n.metadata.id === ref));
+  const sources = item.knowledge.filter(n => n.metadata.type === 'source');
+  assert.equal(sources.length, 8);
+  assert.deepEqual(sources.map(n => n.metadata.id).sort(), [...item.metadata.source_refs].sort());
+  for (const note of item.knowledge) {
+    assert.doesNotMatch(note.path, /tests|fixtures/); assert.doesNotMatch(note.metadata.id, /^T-/);
+    for (const ref of note.source_ids) assert.ok(item.knowledge.some(n => n.metadata.id === ref));
+  }
+});
+
+test('Réutilisation : exactement trois contenus, aucun autre moment enrichi, patrimoine partagé', async () => {
+  const result = await loadContents(formation, path);
+  const expected = ['AOD-M01-MP01', 'AOD-M01-MP02', 'AOD-M03-MP02'];
+  assert.deepEqual(Object.keys(result.contents).sort(), expected);
+  const referenced = formation.modules.flatMap(m => m.moments_pedagogiques).filter(m => m.content_ref || m.knowledge_refs);
+  assert.deepEqual(referenced.map(m => m.id).sort(), expected);
+  for (const id of ['CON-AGENT-IA', 'CAS-RH-REPONSE-FICTIF', 'CON-RISQUES-IA-RH']) {
+    assert.deepEqual(Object.values(result.contents).filter(c => c.metadata.knowledge_refs.includes(id)).map(c => c.metadata.moment_id).sort(), expected);
+  }
+});
+
+test('Réutilisation : référence invalide sur un nouveau moment, les deux autres restent lisibles', async () => {
+  const copy = structuredClone(formation);
+  copy.modules[0].moments_pedagogiques[0].knowledge_refs = ['INCONNUE'];
+  const result = await loadContents(copy, path);
+  assert.equal(result.valid, false);
+  assert.deepEqual(result.errors.map(e => e.moment_id), ['AOD-M01-MP01']);
+  assert.deepEqual(Object.keys(result.contents).sort(), ['AOD-M01-MP02', 'AOD-M03-MP02']);
 });

@@ -184,13 +184,20 @@ function enrichedContent(moment) {
   if (!item) return `<p class="health-error" role="alert">Contenu enrichi indisponible. ${e((enriched?.errors || []).filter(x => x.moment_id === moment.id).map(x => x.message).join(' '))}</p>`;
   return `<details class="enriched-content"><summary>Voir le contenu enrichi</summary>
     <p class="intro">Lecture seule · ${e(item.path)} · rédigé depuis Knowledge le ${e(item.metadata.last_generated_from_knowledge)}</p>
+    <p>Knowledge réutilisée : ${e(item.metadata.knowledge_refs.length)} fiches (références directes).</p>
     ${contentMarkdown(item.content)}
     <h4>Fiches Knowledge et Sources résolues</h4>
     <p>Les références de chaque fiche indiquent l’étape suivante de la provenance. Ouvrir la fiche Source correspondante pour ses repères documentaires.</p>
-    ${item.knowledge.map(note => `<details><summary>${e(note.metadata.id)} — ${e(note.metadata.title)}</summary>
+    ${item.knowledge.map(note => {
+      const otherMoments = item.metadata.knowledge_refs.includes(note.metadata.id)
+        ? Object.values(enriched.contents).filter(other => other.metadata.moment_id !== moment.id && other.metadata.knowledge_refs.includes(note.metadata.id)).map(other => other.metadata.moment_id)
+        : [];
+      return `<details><summary>${e(note.metadata.id)} — ${e(note.metadata.title)}</summary>
       <p>${e(note.path)} · ${e(note.metadata.type)}</p>
+      ${otherMoments.length ? field('Également utilisée dans ce scénario', otherMoments.join(' · ')) : ''}
       ${field('Références sources', note.source_ids.join(' → ') || 'Fiche Source terminale')}
-      ${contentMarkdown(note.content)}</details>`).join('')}
+      ${contentMarkdown(note.content)}</details>`;
+    }).join('')}
     </details>`;
 }
 

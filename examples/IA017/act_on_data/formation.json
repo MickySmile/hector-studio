@@ -1019,6 +1019,8 @@
       "moments_pedagogiques": [
         {
           "id": "AOD-M01-MP01",
+          "content_ref": "content/AOD-M01-MP01.md",
+          "knowledge_refs": ["CON-AGENT-IA", "CAS-RH-REPONSE-FICTIF", "CON-RISQUES-IA-RH"],
           "fonctions_vcoac": [
             "voir",
             "comprendre"
@@ -1043,6 +1045,8 @@
         },
         {
           "id": "AOD-M01-MP02",
+          "content_ref": "content/AOD-M01-MP02.md",
+          "knowledge_refs": ["CON-AGENT-IA", "MET-GRILLE-CONCEPTION-AGENT", "CAS-RH-REPONSE-FICTIF", "CON-RISQUES-IA-RH"],
           "fonctions_vcoac": [
             "agir"
           ],
