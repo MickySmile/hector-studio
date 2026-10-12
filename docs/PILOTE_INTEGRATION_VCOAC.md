@@ -584,7 +584,7 @@ Phases : CONSOLIDER. Plafond : 90 mots.
 ## Cycle A — Complétude Module 2
 
 **Lecture du suivi :** les bilans ci-dessous sont chronologiques. L’état courant
-figure dans « Suivi après validation de l’Option A », à la fin de cette section ;
+figure dans « Validation réelle n8n par le formateur », à la fin de cette section ;
 les mentions antérieures de décision non appliquée décrivent l’étape précédente.
 
 **Date : 12 octobre 2026.** Périmètre : Act-On Data, AOD-M02 uniquement.
@@ -872,3 +872,50 @@ existantes de comptage sont actualisées : neuf contenus, 26 fiches Knowledge.
 Seul blocage de complétude restant : **test réel n8n pour MP01**. Condition de
 session restante : **validation du dossier RH-042 par le formateur**. Aucun
 PowerPoint, adaptateur, spec finale, modification machine ou commit.
+
+### Validation réelle n8n par le formateur — 12 octobre 2026
+
+**État courant : MP01 READY ; Module 2 : 6 READY / 6.** Ce bilan remplace
+les bilans précédents, conservés comme historique du Cycle A.
+
+Le formateur confirme l’exécution réelle avec succès sur **n8n Cloud**, le
+**12 octobre 2026**. Trace enregistrée depuis son retour explicite transmis
+par l’utilisateur ; aucune exécution indépendante de Codex.
+
+| Test | elements_recus | elements_attendus | Branche exécutée | Résultat | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| A | 8 | 9 | FALSE | Dossier incomplet | PASS |
+| B | 8 | 8 | TRUE | Dossier complet | PASS |
+
+Manual Trigger, Edit Fields, If et deux branches déterministes ; condition
+« elements_recus = elements_attendus ». Aucune API externe, aucune donnée RH
+réelle et aucun agent IA. Ce scénario remplace le candidat de comparaison des
+compteurs : les nombres sont des éléments fictifs, pas des jours de congés.
+Version exacte, captures et export non transmis ; ils ne sont pas inventés.
+La confirmation du formateur lève le dernier blocage opérationnel pédagogique.
+La fiche outil et MP01 sont actualisés ; la question n8n est couverte par cette
+validation d’usage, pas par la documentation seule. Le README est aligné sur le
+scénario réellement testé pour éviter une inversion des branches lors d’un nouvel essai.
+
+| Moment | Statut |
+| --- | --- |
+| AOD-M02-MP01 | **READY** |
+| AOD-M02-MP02 | **READY** |
+| AOD-M02-MP03 | **READY** |
+| AOD-M02-MP04 | **READY** |
+| AOD-M02-MP05 | **READY** |
+| AOD-M02-MP06 | **READY** |
+
+**Bilan : READY 6 ; PARTIAL 0 ; BLOCKED_RESEARCH 0 ; BLOCKED_DECISION 0 ;
+BLOCKED_OPERATIONAL 0.** Durées conservées : 140 min, dont 90 de pratique.
+
+Avant l’adaptateur : valider le profil de mapping et les découpages éditoriaux
+à la porte P4 ; préparer les fragments/visuels requis sans perte pédagogique.
+La validation du dossier RH-042 avant utilisation en session reste confiée au
+formateur. READY ne constitue pas une validation graphique ni un test du moteur.
+Aucun adaptateur, spec ou PowerPoint créé ; machine VCOAC inchangée.
+
+Contrôle après mise à jour : **193 tests réussis, 0 échec, 0 ignoré**, via
+`node --test --test-reporter=spec`. Les attentes de couverture sont actualisées
+et les tests vérifient les deux résultats déclarés, la trace n8n Cloud et les
+six statuts READY. Aucun code de production modifié ; ZIP VCOAC exclu du commit.

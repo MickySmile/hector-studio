@@ -25,7 +25,7 @@ for (const scenario of ['program_only', 'act_on_data']) test(`Recherche ${scenar
   assert.equal(plan.questions.length, 8);
   const report = await loadResearchPlan(new URL('research-plan.json', fixture(scenario)), f, { asOf });
   assert.equal(report.validation.valid, true, JSON.stringify(report.validation));
-  const covered = scenario === 'act_on_data' ? 3 : 1;
+  const covered = scenario === 'act_on_data' ? 4 : 1;
   assert.deepEqual(report.counts, { total: 8, covered, refresh_needed: 0, external_research_needed: 8 - covered });
   assert.equal(report.knowledge_count, 26);
   assert.ok(report.plan.questions.every(q => q.cadrage_status === 'proposition_a_valider'));

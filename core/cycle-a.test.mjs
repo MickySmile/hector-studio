@@ -17,7 +17,8 @@ test('Cycle A : la documentation n8n partielle ne peut être promue en preuve de
   assert.equal((await validateResearchPlan(plan, formation, { notes, asOf })).valid, true);
   const copy = structuredClone(plan);
   const question = copy.questions.find(q => q.id.endsWith('39188e825a6c'));
-  assert.equal(question.status, 'external_research_needed');
+  assert.equal(question.status, 'covered');
+  question.knowledge_matches.forEach(m => { m.coverage = 'partial'; });
   assert.ok(question.review.knowledge_ids.length > 0);
   question.status = 'covered';
   assert.ok((await validateResearchPlan(copy, formation, { notes, asOf })).errors.some(e => e.code === 'partial_coverage'));
@@ -74,12 +75,20 @@ test('RH-042 : dossier absent bloque exactement MP04 et MP05', async () => {
   assert.deepEqual(broken.sort(), ['AOD-M02-MP04', 'AOD-M02-MP05']);
 });
 
-test('RH-042 : matrice courante cohérente, cinq READY et MP01 opérationnellement bloqué, durées conservées', async () => {
+test('RH-042 : matrice courante cohérente, six READY après validation réelle du formateur, durées conservées', async () => {
   const audit = await readFile(new URL('../docs/PILOTE_INTEGRATION_VCOAC.md', import.meta.url), 'utf8');
-  const current = audit.split('### Suivi après validation de l’Option A — 12 octobre 2026')[1];
+  const current = audit.split('### Validation réelle n8n par le formateur — 12 octobre 2026')[1];
   assert.ok(current);
+  const tool = notes.find(n => n.metadata.id === 'OUT-N8N-DEMO-FICTIVE');
+  assert.equal(tool.metadata.statut, 'test_reel_valide_formateur');
+  assert.equal(tool.metadata.version, null);
+  for (const text of [current, tool.content]) {
+    assert.match(text, /n8n Cloud/);
+    assert.match(text, /\| A \| 8 \| 9 \| FALSE \| Dossier incomplet \| PASS \|/);
+    assert.match(text, /\| B \| 8 \| 8 \| TRUE \| Dossier complet \| PASS \|/);
+  }
   const rows = [...current.matchAll(/^\| (AOD-M02-MP\d{2}) \| \*\*([A-Z_]+)\*\*/gm)].map(m => [m[1], m[2]]);
-  assert.deepEqual(rows, Array.from({length:6}, (_, i) => [`AOD-M02-MP0${i+1}`, i === 0 ? 'BLOCKED_OPERATIONAL' : 'READY']));
+  assert.deepEqual(rows, Array.from({length:6}, (_, i) => [`AOD-M02-MP0${i+1}`, 'READY']));
   const module = formation.modules.find(m => m.id === 'AOD-M02');
   assert.equal(module.duree_minutes, 140);
   assert.equal(module.pratique_minutes, 90);
@@ -91,5 +100,5 @@ test('RH-042 : matrice courante cohérente, cinq READY et MP01 opérationnelleme
     const steps = [...text.matchAll(/^\d\. \*\*(\d+) min/gm)];
     assert.equal(steps.reduce((sum, step) => sum + Number(step[1]), 0), minutes);
   }
-  assert.equal(plan.questions.find(q => q.id.endsWith('39188e825a6c')).status, 'external_research_needed');
+  assert.equal(plan.questions.find(q => q.id.endsWith('39188e825a6c')).status, 'covered');
 });

@@ -78,7 +78,7 @@ for (const scenario of ['program_only', 'act_on_data']) test(`Capitalisation ${s
   const before = JSON.stringify(p);
   const result = await loadResearchPlan(path(scenario, 'research-plan'), f, { asOf });
   assert.equal(result.validation.valid, true, JSON.stringify(result.validation));
-  const coveredIds = scenario === 'program_only' ? ['IA017-PROGRAM-ONLY-R-d6e72741b5cc'] : ['IA017-ACT-ON-DATA-R-db7e80146e37', 'IA017-ACT-ON-DATA-R-70cf05c4fca4', 'IA017-ACT-ON-DATA-R-fec8b45a3751'];
+  const coveredIds = scenario === 'program_only' ? ['IA017-PROGRAM-ONLY-R-d6e72741b5cc'] : ['IA017-ACT-ON-DATA-R-39188e825a6c', 'IA017-ACT-ON-DATA-R-db7e80146e37', 'IA017-ACT-ON-DATA-R-70cf05c4fca4', 'IA017-ACT-ON-DATA-R-fec8b45a3751'];
   assert.deepEqual(p.questions.filter(q => q.status === 'covered').map(q => q.id), coveredIds);
   for (const q of p.questions) {
     if (!coveredIds.includes(q.id)) assert.equal(q.status, 'external_research_needed');

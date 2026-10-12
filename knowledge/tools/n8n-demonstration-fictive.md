@@ -1,8 +1,8 @@
 ---
 id: "OUT-N8N-DEMO-FICTIVE"
 type: "tool"
-title: "n8n — candidat de démonstration RH sur valeurs fictives"
-statut: "candidat_documente_non_teste"
+title: "n8n — démonstration fictive validée par le formateur"
+statut: "test_reel_valide_formateur"
 tags: ["n8n", "workflow", "RH", "démonstration", "accès"]
 aliases: ["flux RH fictif n8n"]
 version: null
@@ -14,42 +14,39 @@ lie_a: []
 used_by: ["IA017-ACT-ON-DATA"]
 ---
 
-# n8n — candidat de démonstration fictive
+# n8n — démonstration fictive validée
 
-## Capacité connue, disponibilité inconnue
+## Validation réelle — 12 octobre 2026
 
-Les repères N1–N3 de la source officielle permettent de **proposer** un trajet
-visible : départ manuel → valeurs fictives → comparaison → sortie à examiner.
-La lecture du 12 octobre 2026 vérifie cette proposition documentaire, pas un essai.
-Version de session : inconnue. Environnement et accès autorisés : non confirmés.
+Le formateur confirme avoir exécuté réellement la démonstration avec succès sur
+**n8n Cloud**. Trace : retour explicite du formateur transmis dans cette conversation
+le 12 octobre 2026 ; Codex enregistre ce retour, sans exécution indépendante.
+Aucune donnée RH réelle, API externe ou agent IA utilisé.
+Version exacte de n8n non communiquée ; aucune capture ni export fourni à Hector.
+Ces limites de traçabilité ne remettent pas en cause la validation pédagogique
+expressément donnée par le formateur ; recontrôler avant usage si l’environnement change.
 
-## Candidat pédagogique dérivé du cas existant
+## Scénario effectivement testé
 
-Reprendre RH-042, compteur 8 et valeur suggérée 9, sans créer une procédure ni
-des événements détaillés absents du cas. La valeur 9 est une donnée d’exemple,
-**pas le résultat d’un calcul démontré**. La procédure RH n’est pas simulée.
+Manual Trigger → Edit Fields (données fictives) → If → deux Edit Fields de sortie.
+Condition déterministe : **elements_recus = elements_attendus**.
 
-1. Départ manuel par le formateur.
-2. Champs fictifs : dossier RH-042 ; compteur 8 ; valeur suggérée 9.
-3. Comparaison des deux valeurs.
-4. Sortie textuelle à examiner : « Écart à vérifier — aucune correction ».
+| Test | elements_recus | elements_attendus | Branche | Résultat | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| A | 8 | 9 | FALSE | Dossier incomplet | PASS |
+| B | 8 | 8 | TRUE | Dossier complet | PASS |
 
-Le scénario ne requiert dans sa conception ni appel LLM, ni MCP, ni SIRH, ni
-envoi de message, ni opération d’écriture métier. Cela ne prouve pas que
-l’instance n8n est locale, hors réseau, disponible ou autorisée. Le responsable
-de l’environnement doit le confirmer. La lecture du résultat par un RH est un
-repère de conception, pas un circuit d’approbation implémenté.
+Ce test remplace le candidat initial portant sur des compteurs 8/9 : les valeurs
+représentent ici des nombres d’éléments fictifs, pas des jours de congés.
+« Dossier complet » signifie uniquement égalité des deux nombres de test ;
+aucune validité métier des pièces ni approbation humaine n’est démontrée.
+Le scénario montre déclencheur, données, comparaison, décision et branchement.
+Aucune correction RH, connexion SIRH ou validation métier n’est implémentée.
+La distinction workflow / agent s’appuie sur cette règle fixée à l’avance.
 
-## Preuves encore nécessaires avant démonstration
+## Portée et provenance
 
-Identifier la version et l’environnement approuvés, leur responsable et les
-droits de présentation. Après choix du scénario par le formateur, y préparer et
-tester le flux. Conserver une trace datée montrant les entrées, le chemin suivi,
-la sortie et l’absence d’action métier. Vérifier un second passage sans écart
-sur des valeurs de test explicitement choisies lors de cette préparation.
-
-État présent : **aucun test exécuté, aucune capture, aucun accès confirmé**.
-La documentation seule ne couvre donc pas la question du plan de recherche.
-Une représentation statique de repli reste à approuver ; elle ne doit jamais
-être présentée comme une exécution n8n. Cette proposition ne sélectionne pas le
-cas fil rouge de l’atelier. Aucun gabarit logiciel n’est livré à ce stade.
+Capacités N1–N3 : SRC-N8N-FLUX-FICTIF. Le cas RH/MCP reste une illustration
+pour discuter responsabilités et frontière lecture/écriture, pas le jeu testé.
+La preuve d’usage est le retour du formateur ci-dessus, distinct des sources Web.
+MP01 est READY pour la complétude pédagogique ; durée 20 min, sans pratique.

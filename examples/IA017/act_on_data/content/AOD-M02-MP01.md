@@ -8,59 +8,48 @@ last_generated_from_knowledge: "2026-10-12"
 
 # Où une demande RH circule-t-elle réellement ?
 
-VOIR + COMPRENDRE — **20 minutes, 0 minute de pratique**. Préparation documentaire
-Cycle A, **BLOCKED_RESEARCH**. Le candidat ci-dessous ne constitue pas une
-démonstration disponible. Choix du scénario et repli statique non approuvés.
+VOIR + COMPRENDRE — **20 minutes, 0 minute de pratique**. **READY** :
+démonstration réellement exécutée sur n8n Cloud et validée par le formateur
+le **12 octobre 2026**. La trace des deux tests PASS figure dans OUT-N8N-DEMO-FICTIVE.
 
 ## Intention et message essentiel
 
 Décomposer un workflow visible avant de le cartographier. Suivre une demande
 permet de distinguer valeurs reçues, traitement, sortie et décision humaine.
-Un écart détecté ne donne pas l’autorisation de corriger.
+Un branchement déterministe ne donne pas l’autorisation d’une action métier.
 
-## VOIR — candidat à préparer après validation
+## VOIR — démonstration validée
 
-Reprise illustrative du CAS FICTIF RH-042 : 8 jours au compteur, 9 suggérés ;
-aucune procédure ni donnée événementielle complète n’est inventée. La question
-d’observation est : « Où passe la demande, et qui pourrait autoriser une correction ? »
+CAS FICTIF : compter les éléments reçus et attendus d’un dossier.
+Manual Trigger → Edit Fields → If → deux branches déterministes.
+Condition : **elements_recus = elements_attendus**.
 
-OUT-N8N-DEMO-FICTIVE décrit le candidat : déclenchement manuel → valeurs fictives
-→ comparaison → sortie « Écart à vérifier — aucune correction ». Il illustre
-un workflow prédéfini ; ni agent, ni MCP, ni connexion réelle RH ne sont démontrés.
-La valeur 9 est fournie par le cas, non calculée par ce candidat. Le rôle de revue
-RH serait montré par une annotation, pas présenté comme une fonction implémentée.
+- Test A : 8 reçus / 9 attendus → FALSE → « Dossier incomplet » — PASS.
+- Test B : 8 reçus / 8 attendus → TRUE → « Dossier complet » — PASS.
 
-## COMPRENDRE — commentaire prévu
+Aucune API externe, donnée RH réelle ou agent IA. « Complet » signifie ici
+égalité des nombres fictifs ; cela ne prouve ni qualité des pièces ni validation RH.
+La question d’observation reste : « Où passe la demande, et qui pourrait autoriser une correction ? »
 
-Le formateur suit l’entrée RH-042, montre les valeurs transmises, repère la
-comparaison puis la sortie. Il explique pourquoi cette sortie reste à examiner
-avec les pièces et la règle. Réponse à la question initiale : le formateur lance
-le flux fictif ; le workflow suit ses étapes ; le RH habilité garde la décision
-métier. L’absence de connexion d’écriture empêche ce candidat de corriger le SIRH,
-sans prouver pour autant une configuration de sécurité de l’environnement.
+## COMPRENDRE — commentaire
 
-## Déroulé prévu après levée des blocages
+Le formateur déclenche, montre les deux nombres, la comparaison et la branche.
+Réponse : la règle prédéfinie oriente le workflow ; un agent IA n’est pas démontré.
+Le RH habilité garde la décision métier. Relier ensuite cette limite au cas RH-042
+illustratif et à sa séparation lecture/correction, sans confondre les éléments
+reçus/attendus du test avec les compteurs de congés de l’atelier.
 
-- 3 minutes : situation fictive, question d’observation et limites de ce qui sera montré.
-- 7 minutes : observation du trajet préparé, des entrées et de la sortie.
-- 7 minutes : commentaire rôles/flux/validation et distinction écart/correction.
+## Déroulé — durée inchangée
+
+- 3 minutes : situation fictive, question d’observation et limites.
+- 7 minutes : observation du trajet, des entrées et des deux sorties.
+- 7 minutes : commentaire rôles/flux/validation et distinction workflow/agent.
 - 3 minutes : reprise de la question et transition vers ressources et connexions.
 
-Ce minutage décrit l’usage pédagogique envisagé, pas un test réalisé. Aucun
-export n8n, spec VCOAC, image d’exécution ou contenu de repli prétendument validé.
+## Validation et provenance
 
-## Éléments indispensables encore absents
-
-Version de session, accès autorisés et responsable confirmés ; scénario choisi
-par le formateur ; flux effectivement préparé ; essai daté et trace observable.
-Le dossier Knowledge liste la preuve à recueillir. Si la démonstration est
-abandonnée au profit du dessin, AOD-D05 doit être tranchée avant de changer la
-promesse de ce moment. La question n8n reste `external_research_needed` : la
-documentation couvre les briques, pas la preuve complète attendue.
-
-## Provenance
-
-OUT-N8N-DEMO-FICTIVE → SRC-N8N-FLUX-FICTIF (N1–N3 consultés le 12 octobre 2026)
-et CAS-RH-MCP-FICTIF (H7, déjà capitalisé). Le cas justifie les valeurs et la
-frontière lecture/correction ; ses sources MCP ne prouvent aucune fonction n8n.
-Les annotations, le scénario et le minutage sont des propositions pédagogiques.
+Validation réelle du formateur : 12 octobre 2026, n8n Cloud, tests A et B PASS.
+Version exacte, captures et export non transmis ; aucun résultat supplémentaire
+n’est supposé. La validation lève le blocage opérationnel de MP01.
+OUT-N8N-DEMO-FICTIVE conserve la trace ; SRC-N8N-FLUX-FICTIF documente les briques.
+CAS-RH-MCP-FICTIF étaye seulement le commentaire des responsabilités métier.
