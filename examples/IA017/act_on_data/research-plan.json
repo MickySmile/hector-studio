@@ -113,9 +113,63 @@
           ]
         }
       ],
-      "knowledge_matches": [],
+      "knowledge_matches": [
+        {
+          "knowledge_id": "OUT-N8N-DEMO-FICTIVE",
+          "path": "tools/n8n-demonstration-fictive.md",
+          "title": "n8n — candidat de démonstration RH sur valeurs fictives",
+          "type": "tool",
+          "reasons": [
+            "title : rh, n8n",
+            "tags : rh, n8n, acces",
+            "aliases : flux, rh, fictif, n8n",
+            "content : flux, rh, etre, n8n, acces, autorises"
+          ],
+          "score": 35,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "partial",
+          "assessment": "Candidat documentaire dérivé du cas RH-042, sans nouveau jeu de données. Les briques sont documentées ; version de session, scénario retenu, accès autorisés et essai daté restent absents. Aucune démonstration testée ni repli approuvé."
+        },
+        {
+          "knowledge_id": "SRC-N8N-FLUX-FICTIF",
+          "path": "sources/n8n-flux-fictif.md",
+          "title": "n8n — déclenchement manuel, champs et branchement conditionnel",
+          "type": "source",
+          "reasons": [
+            "title : n8n",
+            "tags : n8n",
+            "content : flux, fictif, capacites, n8n, acces"
+          ],
+          "score": 12,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "forte",
+          "coverage": "partial",
+          "assessment": "Trois pages officielles n8n consultées le 2026-10-12 : Manual Trigger, Edit Fields et If. Elles étayent les capacités, jamais les accès client ou une preuve de fonctionnement."
+        }
+      ],
       "fusion_justification": null,
-      "review": null
+      "review": {
+        "reviewer": "Codex — examen sémantique Cycle A, soumis à validation utilisateur",
+        "date": "2026-10-12",
+        "justification": "Knowledge interne examinée avant Web : aucune documentation n8n, cas MCP seulement illustratif. Recherche ciblée puis capitalisation des capacités et du candidat. La preuve recherchée demeure incomplète : external_research_needed conservé. AOD-D02/D05 et test dans un environnement autorisé restent nécessaires. Aucun compte configuré, aucune exécution n8n ni choix du repli. Détail : docs/PILOTE_INTEGRATION_VCOAC.md, Cycle A.",
+        "knowledge_ids": [
+          "OUT-N8N-DEMO-FICTIVE",
+          "SRC-N8N-FLUX-FICTIF"
+        ]
+      }
     },
     {
       "id": "IA017-ACT-ON-DATA-R-db7e80146e37",
@@ -355,7 +409,7 @@
       },
       "preuve_recherchee": "Comparaison argumentée des conditions et coûts d’une orchestration multi-agents face à un workflow simple.",
       "cadrage_status": "proposition_a_valider",
-      "status": "external_research_needed",
+      "status": "covered",
       "used_by": [
         {
           "module_id": "AOD-M02",
@@ -368,9 +422,83 @@
           ]
         }
       ],
-      "knowledge_matches": [],
+      "knowledge_matches": [
+        {
+          "knowledge_id": "MET-CHOIX-ORCHESTRATION",
+          "path": "methods/comparer-workflow-multi-agents.md",
+          "title": "Comparer un workflow simple et une orchestration multi-agents",
+          "type": "method",
+          "reasons": [
+            "title : orchestration, multi, agents, workflow, simple",
+            "tags : criteres, orchestration, multi, agents, workflow",
+            "aliases : multi, agents, simple",
+            "content : criteres, orchestration, multi, agents, workflow, simple, cas"
+          ],
+          "score": 51,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2027-04-10",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "Comparaison argumentée complète pour le moment conceptuel : responsabilités, choix de la suite, coordination, coût/délai à mesurer, désaccord et contrôle humain. Application explicite au cas illustratif RH-042 déjà utilisé en MP02 ; aucun bénéfice de multi-agents démontré, aucun choix du fil rouge ni plateforme présumé."
+        },
+        {
+          "knowledge_id": "SRC-ANTHROPIC-EFFECTIVE",
+          "path": "sources/anthropic-building-effective-agents.md",
+          "title": "Building effective agents",
+          "type": "source",
+          "reasons": [
+            "title : agents",
+            "tags : workflow",
+            "aliases : agents",
+            "content : orchestration, multi, agents, workflow, simple"
+          ],
+          "score": 15,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "partial",
+          "assessment": "Complément Cycle A consulté le 2026-10-12 : simplicité, délégation dynamique et compromis coût/latence ; source contributive sans preuve RH."
+        },
+        {
+          "knowledge_id": "SRC-GOOGLE-AGENTIC-DESIGN",
+          "path": "sources/google-cloud-agentic-design-patterns.md",
+          "title": "Choose a design pattern for your agentic AI system",
+          "type": "source",
+          "reasons": [
+            "content : criteres, multi, agents, workflow, cas"
+          ],
+          "score": 5,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": null,
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "partial",
+          "assessment": "Complément Cycle A consulté le 2026-10-12 : responsabilités spécialisées, coordination, accès et évaluation ; source contributive, application RH portée par la méthode."
+        }
+      ],
       "fusion_justification": null,
-      "review": null
+      "review": {
+        "reviewer": "Codex — examen sémantique Cycle A, soumis à validation utilisateur",
+        "date": "2026-10-12",
+        "justification": "Avant : external_research_needed. Knowledge existante consultée : les fiches agent et grille excluaient explicitement les critères multi-agents ; les fiches sources ne les détaillaient pas. Lecture ciblée des deux sources officielles déjà identifiées, puis méthode réutilisable avant contenu. La comparaison et ses coûts sont couverts conceptuellement pour RH-042 ; aucune mesure de performance ou architecture client approuvée. MP02 garde 15 minutes avec répartition éditoriale 2+3+5+4+1 ; contenu MCP conservé. La question MCP et toutes les questions hors de ces deux recherches restent inchangées.",
+        "knowledge_ids": [
+          "MET-CHOIX-ORCHESTRATION"
+        ]
+      }
     },
     {
       "id": "IA017-ACT-ON-DATA-R-fec8b45a3751",

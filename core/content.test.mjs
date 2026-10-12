@@ -95,9 +95,9 @@ for (const [id, count, sections] of [
   }
 });
 
-test('Réutilisation : exactement cinq contenus, aucun autre moment enrichi, patrimoine partagé', async () => {
+test('Réutilisation : neuf contenus, MP04 enrichi après arbitrage RH-042, patrimoine partagé', async () => {
   const result = await loadContents(formation, path);
-  const expected = ['AOD-M01-MP01', 'AOD-M01-MP02', 'AOD-M02-MP02', 'AOD-M02-MP03', 'AOD-M03-MP02'];
+  const expected = ['AOD-M01-MP01', 'AOD-M01-MP02', 'AOD-M02-MP01', 'AOD-M02-MP02', 'AOD-M02-MP03', 'AOD-M02-MP04', 'AOD-M02-MP05', 'AOD-M02-MP06', 'AOD-M03-MP02'];
   assert.deepEqual(Object.keys(result.contents).sort(), expected);
   const referenced = formation.modules.flatMap(m => m.moments_pedagogiques).filter(m => m.content_ref || m.knowledge_refs);
   assert.deepEqual(referenced.map(m => m.id).sort(), expected);
@@ -107,16 +107,16 @@ test('Réutilisation : exactement cinq contenus, aucun autre moment enrichi, pat
   }
 });
 
-test('Réutilisation : référence invalide isolée, les quatre autres contenus restent lisibles', async () => {
+test('Réutilisation : référence invalide isolée, les huit autres contenus restent lisibles', async () => {
   const copy = structuredClone(formation);
   copy.modules[0].moments_pedagogiques[0].knowledge_refs = ['INCONNUE'];
   const result = await loadContents(copy, path);
   assert.equal(result.valid, false);
   assert.deepEqual(result.errors.map(e => e.moment_id), ['AOD-M01-MP01']);
-  assert.deepEqual(Object.keys(result.contents).sort(), ['AOD-M01-MP02', 'AOD-M02-MP02', 'AOD-M02-MP03', 'AOD-M03-MP02']);
+  assert.deepEqual(Object.keys(result.contents).sort(), ['AOD-M01-MP02', 'AOD-M02-MP01', 'AOD-M02-MP02', 'AOD-M02-MP03', 'AOD-M02-MP04', 'AOD-M02-MP05', 'AOD-M02-MP06', 'AOD-M03-MP02']);
 });
 
-for (const [id, sources, minutes, role] of [['AOD-M02-MP02', 12, 15, 'comprendre'], ['AOD-M02-MP03', 8, 10, 'outiller']]) {
+for (const [id, sources, minutes, role] of [['AOD-M02-MP02', 12, 15, 'comprendre'], ['AOD-M02-MP03', 11, 10, 'outiller']]) {
   test(`Réutilisation MCP ${id} : provenance complète, sources officielles et durée du rôle conservée`, async () => {
     const result = await loadContents(formation, path);
     assert.deepEqual(result.errors, []);
@@ -138,12 +138,12 @@ for (const [id, sources, minutes, role] of [['AOD-M02-MP02', 12, 15, 'comprendre
   });
 }
 
-test('Réutilisation MCP : une source MCP manquante invalide seulement les deux contenus concernés', async () => {
+test('Réutilisation MCP : une source MCP manquante invalide seulement les contenus concernés du Module 2', async () => {
   const copy = notes.filter(n => n.metadata.id !== 'SRC-MCP-SECURITE');
   const result = await loadContents(formation, path);
   for (const item of Object.values(result.contents)) {
     const resolve = () => resolveProvenance(item.metadata.knowledge_refs, item.metadata.source_refs, copy);
-    if (['AOD-M02-MP02', 'AOD-M02-MP03'].includes(item.metadata.moment_id)) assert.throws(resolve, /Source non résolue/);
+    if (item.metadata.module_id === 'AOD-M02') assert.throws(resolve, /Source non résolue/);
     else assert.doesNotThrow(resolve);
   }
 });

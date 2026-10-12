@@ -580,3 +580,295 @@ Phases : CONSOLIDER. Plafond : 90 mots.
 
 - Champs requis (selon conditions) : `titre` **!** ≤60 ; `champs` **!** [3–5] ; `champs[].etiquette` **!** ≤30.
 - Autres champs déclarés : `kicker` ≤30 ; `chapeau` ≤100 ; `champs[].aide` ≤70.
+
+## Cycle A — Complétude Module 2
+
+**Lecture du suivi :** les bilans ci-dessous sont chronologiques. L’état courant
+figure dans « Suivi après validation de l’Option A », à la fin de cette section ;
+les mentions antérieures de décision non appliquée décrivent l’étape précédente.
+
+**Date : 12 octobre 2026.** Périmètre : Act-On Data, AOD-M02 uniquement.
+L’audit initial ci-dessus est conservé. Cette section constate les enrichissements
+du Cycle A ; elle ne valide ni le cas fil rouge, ni les accès, ni les portes P3/P4.
+Point de départ Git : `1cea848e3295c0c8624594e19f95af218e6c51e7`.
+
+### Analyse avant modification
+
+Relecture préalable effectuée : AGENTS.md, cahier des charges, architecture cible,
+audit initial, formation, plan de recherche, cinq contenus existants, patrimoine
+Knowledge et modèles, schéma formation, chargeurs content/knowledge/research.
+La matrice a été reconstituée et présentée avant toute écriture.
+
+Tous les moments ont pour statut éditorial JSON `proposition_a_valider` ; il est
+inchangé. Les états ci-dessous portent sur la complétude du **moment entier**.
+Durées indiquées : total / pratique.
+
+| Moment et titre | Fonctions ; minutes | Avant ; Markdown existant | Knowledge disponible / manquante | Obstacle précis à READY | Candidats déjà identifiés |
+| --- | --- | --- | --- | --- | --- |
+| AOD-M02-MP01 — Où une demande RH circule-t-elle réellement ? | VOIR + COMPRENDRE ; 20 / 0 | BLOCKED_RESEARCH ; aucun | Cas RH/MCP disponibles indirectement ; documentation n8n, version et essai absents. | Démonstration non préparée/testée ; accès, cas et repli non confirmés (D02/D05). | VISUEL_QUESTION puis ARCHITECTURE_FLUX en COMPRENDRE. |
+| AOD-M02-MP02 — Situer ressources, connexions et MCP | COMPRENDRE ; 15 / 0 | BLOCKED_RESEARCH ; content/AOD-M02-MP02.md | CON-AGENT-IA, CON-MCP, CAS-RH-MCP-FICTIF ; critères et coûts multi-agents manquants. | Comparaison absente ; les 15 min sont déjà réparties entre les apports MCP. | DEFINITION, CARTES, ARCHITECTURE_FLUX, OPPOSITION_LIGNES ; COMPARAISON_AB après recherche. |
+| AOD-M02-MP03 — Préparer la carte logique | OUTILLER ; 10 / 0 | PARTIAL ; content/AOD-M02-MP03.md | CON-MCP, MET-CONNEXION-MCP, CAS-RH-MCP-FICTIF ; MET-GRILLE-CONCEPTION-AGENT réutilisable. Aucune recherche nécessaire. | Canvas global, exemple rempli et gabarit global manquants ; seule la grille MCP est complète. | CARTES ; deux FICHE_OUTIL de trois questions ; GRILLE_DEMO seulement si structure pertinente. |
+| AOD-M02-MP04 — Cartographier le workflow RH | AGIR ; 60 / 60 | BLOCKED_DECISION ; aucun | Cas illustratifs et grilles disponibles ; dossier de TP non choisi/non fourni. | AOD-D02/H04 : choix du cas et responsable ; modalités selon D05. Consignes et correction contextualisées à préparer ensuite. | CONSIGNE_ATELIER, VISUEL_QUESTION/commentee. |
+| AOD-M02-MP05 — Éprouver et expliquer la carte | AGIR ; 30 / 30 | PARTIAL ; aucun | CAS-RH-MCP-FICTIF et MET-CONNEXION-MCP réutilisables ; aucune recherche nécessaire. | Protocole, échec, livrable et correction non rédigés ; dépendance au cas MP04 déjà signalée. | CONSIGNE_ATELIER, VISUEL_QUESTION/commentee. |
+| AOD-M02-MP06 — Fixer les points de lecture du workflow | CONSOLIDER ; 5 / 0 | PARTIAL ; aucun | Trois repères JSON et cas RH/MCP suffisants ; aucune Knowledge manquante. | Synthèse exacte, illustration et déroulé à formuler. | A_RETENIR si contraste fondé ; PROCESSUS seulement pour une séquence réelle. |
+
+**Avant : READY 0 ; PARTIAL 3 ; BLOCKED_RESEARCH 2 ; BLOCKED_DECISION 1.**
+
+### Recherche réellement effectuée et capitalisation préalable
+
+Recherche interne par lecture des notes et recherche textuelle `n8n`,
+`multi-agents`, `orchestration`, `critères de choix`. Le rapprochement lexical
+sert seulement à trouver les notes ; l’examen du contenu décide de la couverture.
+
+**Question n8n — R-39188e825a6c (MP01).** Aucun fond n8n dans Knowledge ; le cas
+MCP déclare explicitement ne pas couvrir ce besoin. Lecture ciblée de trois pages
+officielles : [Manual Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.manualworkflowtrigger.md),
+[Edit Fields](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.set),
+[If](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.if.md).
+Capitalisation avant rédaction de MP01 :
+
+- [SRC-N8N-FLUX-FICTIF](../knowledge/sources/n8n-flux-fictif.md) : capacités documentées, dates et limites.
+- [OUT-N8N-DEMO-FICTIVE](../knowledge/tools/n8n-demonstration-fictive.md) : candidat documentaire dérivé de RH-042 ; preuve d’exécution absente.
+
+Le candidat montre des valeurs fictives et une sortie à examiner. Il ne calcule
+pas les événements absents du cas, ne simule pas une procédure RH et ne démontre
+ni MCP, ni agent, ni contrôle d’accès métier. **Aucune instance n8n installée,
+configurée ou exécutée.** Les pages ne confirment pas les accès ou la version
+de session. Les deux matches sont `partial` ; la revue documente pourquoi le
+statut reste `external_research_needed`. Un accès autorisé, un essai daté et le
+choix du scénario sont encore nécessaires ; davantage de recherche Web ne les
+remplacerait pas. Le repli statique reste une décision, pas une solution appliquée.
+
+**Question multi-agents — R-70cf05c4fca4 (MP02).** Le concept agent et la grille
+de conception excluaient explicitement les critères multi-agents de leur portée.
+Les fiches sources contenaient seulement des repères généraux. Lecture ciblée
+des pages déjà identifiées :
+[Anthropic, Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
+et [Google Cloud, Choose a design pattern](https://docs.cloud.google.com/architecture/choose-design-pattern-agentic-ai-system).
+Les passages utilisés et dates sont ajoutés aux deux fiches sources existantes,
+en conservant leur provenance initiale. La date de publication Anthropic
+19 décembre 2024 est désormais constatée ; la page avertit que l’outillage a
+évolué. Le Cycle A retient des critères conceptuels, sans enseigner cet outillage.
+
+Capitalisation avant utilisation :
+[MET-CHOIX-ORCHESTRATION](../knowledge/methods/comparer-workflow-multi-agents.md).
+La méthode applique la comparaison au cas illustratif RH-042 déjà utilisé en
+MP02, avec rôles, échanges, désaccord, coût/délai à vérifier et même résultat
+attendu. Elle n’affirme aucun gain mesuré ni besoin démontré de multi-agents.
+La question passe à `covered` après examen sémantique Codex, déclaré comme tel
+et soumis à validation utilisateur. Seule la méthode est retenue comme couverture
+suffisante ; les sources contributives restent `partial`.
+
+**Seulement ces deux questions ont changé.** Question MCP déjà couverte et
+questions hors Module 2 inchangées. Les formulations, origines et critères de
+preuve sont conservés. Le plan complet comporte maintenant 3 questions couvertes
+et 5 ouvertes ; pour M02 : 2 couvertes, 1 ouverte. Aucune API payante configurée.
+
+### Contenus, outils et activité préparés
+
+`formation.json` reçoit uniquement des références courtes aux contenus et à la
+Knowledge de MP01/MP02/MP03/MP05/MP06. Titres, intentions, fonctions, minutes,
+pratique, architecture et décisions restent identiques. **MP04 n’est pas modifié**,
+ne reçoit ni Markdown ni référence nouvelle. Aucune décision n’est appliquée.
+
+| Fichier de contenu | Travail réalisé | Portée et limites |
+| --- | --- | --- |
+| [MP01 créé](../examples/IA017/act_on_data/content/AOD-M02-MP01.md) | Préparation VOIR/COMPRENDRE : question, candidat, commentaire et 20 min détaillées. | Document de préparation explicitement bloqué ; pas de fausse capture ou démonstration déclarée disponible. |
+| [MP02 enrichi](../examples/IA017/act_on_data/content/AOD-M02-MP02.md) | Comparaison simple/multi-agents, question/réponse et justification appliquée à RH-042. | Répartition 2+3+5+4+1 = 15 min. Les détails MCP restent dans les notes/ressource, sans suppression. Minutage à éprouver en animation. |
+| [MP03 enrichi](../examples/IA017/act_on_data/content/AOD-M02-MP03.md) | Canvas global, six rubriques de la grille existante adaptées, usage, exemple rempli et gabarit vierge ; grille MCP conservée intégralement. | 2+3+4+1 = 10 min de présentation. Les deux supports complets sont disponibles ; aucun logiciel imposé. La source de cet enrichissement PARTIAL est exclusivement le patrimoine antérieur au Cycle A. |
+| [MP05 créé](../examples/IA017/act_on_data/content/AOD-M02-MP05.md) | Revue en binômes/trinôme, ressources, mission, 4+8+6+8+4 = 30 min de pratique, scénario « validation absente », carte révisée, quatre critères C02 et principe de correction. | Fondé sur H7/H6 déjà capitalisés. Exemple RH-042 illustratif ; l’action et le dossier d’atelier restent à contextualiser après choix de MP04. |
+| [MP06 créé](../examples/IA017/act_on_data/content/AOD-M02-MP06.md) | Phrase, trois règles, illustration existante, contraste lire/corriger et déroulé 1+3+1 = 5 min. | Aucun résultat de participant supposé. L’exemple existant suffit à produire la consolidation indépendamment du choix ultérieur du TP. |
+
+Trois fiches Knowledge créées (une source, un outil candidat, une méthode) ; deux
+fiches sources complétées. Aucun autre fond Knowledge modifié. Les enrichissements
+PARTIAL ne dépendent pas des nouveaux apports de recherche du Cycle A : le canvas
+réutilise la grille préexistante ; sa provenance partagée bénéficie seulement de
+la relecture datée d’une source, sans nouvel enseignement importé.
+
+### Nouvelle matrice de complétude
+
+READY signifie contenu produisible dans le périmètre pédagogique du moment,
+avec provenance résolue ; cela ne vaut ni approbation P3/P4 ni autorisation de
+déployer un outil. Une inconnue explicitement utilisée dans un cas de discussion
+n’est pas une preuve manquante nécessaire à cette discussion. En revanche, une
+démonstration annoncée ou un dossier d’atelier encore à choisir reste bloquant.
+
+| Moment | Après | Justification et reste à faire |
+| --- | --- | --- |
+| AOD-M02-MP01 | **BLOCKED_RESEARCH** | Briques et scénario candidat documentés, mais version/accès/scénario validé/essai absents. D02/D05 restent aussi ouverts. La preuve exigée par le plan n’est pas satisfaite. |
+| AOD-M02-MP02 | **READY** | Intention, distinctions MCP, cas disponible, comparaison et réponse attendue rédigés. Les deux recherches propres au moment sont couvertes ; aucune décision d’architecture client requise pour expliquer la comparaison. Provenance résolue. |
+| AOD-M02-MP03 | **READY** | Outil global et grille MCP identifiés ; usage, exemple rempli, deux gabarits et annotations disponibles. Toutes les rubriques utiles à C02 figurent dans le canvas. Pas de recherche ni choix de logiciel indispensable. Provenance résolue. |
+| AOD-M02-MP04 | **BLOCKED_DECISION** | Inchangé. D02/H04 : cas, responsable, dossier et données à confirmer ; puis consigne et correction contextualisées à préparer. Carte d’arbitrage ci-dessous, non appliquée. |
+| AOD-M02-MP05 | **BLOCKED_DECISION** (hérité de MP04) | Le manque rédactionnel du protocole est résolu. Situation, mission, 30 min, ressources, consigne, livrable, quatre critères et correction sont préparés. Mais l’activité complète dépend du dossier et de la carte MP04 : aucun READY conditionnel accordé. |
+| AOD-M02-MP06 | **READY** | Phrase, trois repères, exemple et commentaire exacts ; aucune nouvelle recherche ou décision nécessaire au contenu de consolidation. Retour aux cartes réelles facultatif, jamais supposé. Provenance résolue. |
+
+**Après : READY 3 ; PARTIAL 0 ; BLOCKED_RESEARCH 1 ; BLOCKED_DECISION 2.**
+Le nombre de décisions racines n’a pas augmenté : **une même décision de cas
+bloque MP04 et MP05**. L’audit initial comptait MP05 en PARTIAL et signalait sa
+dépendance sans la compter comme décision. Sa rédaction étant maintenant faite,
+la dépendance devient son obstacle principal. Compter seulement MP04 et afficher
+MP05 READY masquerait cette condition du contrat de complétude.
+
+Le module garde **140 minutes, dont 90 de pratique**. Les timings internes de
+MP02/MP03 sont des propositions éditoriales pour couvrir leur périmètre initial,
+pas des durées modifiées ou des validations d’animation obtenues.
+
+### Productibilité future, sans adaptation au moteur
+
+- **MP01 :** VISUEL_QUESTION puis ARCHITECTURE_FLUX restent des candidats ; visuel
+  d’exécution absent. Une représentation statique ne pourra pas simuler une preuve.
+- **MP02 :** DEFINITION/CARTES pour les termes, OPPOSITION_LIGNES pour les
+  frontières, COMPARAISON_AB désormais documentée. Le retour de consultation et
+  les contrôles conditionnels doivent rester visibles : un flux linéaire natif
+  ne suffit pas à les représenter automatiquement.
+- **MP03 :** le canvas global reste un support entier consultable. Les **six
+  questions MCP sont toutes conservées** ; deux FICHE_OUTIL de trois champs ou
+  plusieurs CARTES sont envisageables. Aucune réduction à cinq questions et
+  aucune grille à quatre colonnes inventée pour GRILLE_DEMO.
+- **MP04/MP05 :** CONSIGNE_ATELIER et visuel commenté restent candidats. La
+  consigne MP05 possède cinq étapes ; **les quatre critères C02 restent intacts**.
+  Le type limité à deux/trois critères impose une projection ultérieure en
+  plusieurs supports, pas une suppression. Le principe de correction est rédigé,
+  mais une carte corrigée du TP n’est pas encore disponible.
+- **MP06 :** A_RETENIR devient un candidat fondé : « Lire / Corriger » reprend la
+  distinction déjà enseignée ; la phrase et les trois règles sont écrites pour
+  la pédagogie. Leur projection graphique reste à vérifier par le futur adaptateur.
+
+Aucune spec, aucun PPTX, aucun adaptateur et aucune modification/exécution de
+la machine VCOAC. Les candidats ne sont pas des choix de mise en page définitifs.
+
+### Carte d’arbitrage — MP04, décision non appliquée
+
+**Décision à prendre :** quel cas RH fictif retenir pour le TP, et qui en fournit
+et valide le dossier ? Nécessaire pour contextualiser les 60 min de cartographie
+et la revue de 30 min, sans inventer une procédure métier (AOD-D02/H04).
+
+| | Option A — adapter RH-042 déjà capitalisé | Option B — cas fictif fourni par le formateur/client |
+| --- | --- | --- |
+| Conséquence pédagogique | Continuité avec MP02/MP03 ; transformer l’illustration en dossier de TP explicite. | Contexte potentiellement plus pertinent ; préparer ressources, attendus et correction propres. |
+| Conséquence durée | Conserver 60 + 30 min ; préparation du dossier en amont à attribuer. | Viser les mêmes 60 + 30 min si le cas est borné ; sinon nouvel arbitrage, aucune extension automatique. |
+| Avantage | Repères déjà disponibles, moins de changement de contexte. | Meilleur ajustement au besoin choisi par le formateur. |
+| Risque | L’exemple actuel n’est pas un jeu de données complet ; ne pas inventer les événements ni la règle permettant 8 → 9. | Délai de fourniture et périmètre inconnus ; la contribution des Data Scientists n’est pas acquise. |
+
+**Recommandation Codex : Option A**, sous validation explicite du formateur.
+Elle réutilise les repères déjà enseignés et préserve la continuité du module.
+Désigner un responsable pour préparer puis valider le dossier et les attendus.
+Cette recommandation ne choisit pas le cas et ne lève pas D02 ni le besoin de
+preuve n8n/D05.
+
+### Contrôles et résultat du Cycle A
+
+- **190 tests réussis, 0 échec, 0 ignoré**, via `node --test --test-reporter=spec`.
+  Les 187 tests existants sont conservés ; six fichiers de tests reçoivent
+  uniquement les attentes actualisées de contenu, de couverture et de dates.
+- Trois tests nécessaires ajoutés dans `core/cycle-a.test.mjs` : refuser la
+  promotion de la documentation n8n partielle ; refuser une source contributive
+  seule comme couverture multi-agents ; isoler une source n8n manquante à MP01
+  et vérifier l’absence d’enrichissement de MP04.
+- Première exécution bloquée notamment par `EPERM` sur `realpath(knowledge)`
+  dans la sandbox. Cause confirmée par le chargeur ; suite complète réussie
+  hors sandbox. Une attente ancienne du filtre de recherche a également été
+  actualisée pour la nouvelle couverture multi-agents. Aucun code moteur modifié.
+- Les chargeurs et tests vérifient formation, plan et provenance des huit
+  contenus du scénario, dont les cinq contenus M02. L’existence d’un Markdown
+  ne fait pas passer automatiquement un moment READY.
+- Comparaison finale à HEAD : audit initial intégralement préservé ; MP04
+  identique ; formation identique hors références des cinq moments enrichis ;
+  seules les deux questions indiquées modifiées. `git diff --check` réussi,
+  index vide. Le ZIP reste non suivi, non modifié (SHA-256 identique à celui
+  de l’audit initial : `EBB56F01DADE9A290B8702BDDF82FEBD7748CCF2F9E8469C5C4F1A86153C095B`).
+
+**Production du module entier encore empêchée** par la preuve de démonstration
+MP01, le choix et la préparation du dossier MP04, puis la contextualisation de
+MP05. Les validations globales déjà ouvertes dans le JSON restent inchangées et
+distinctes de ce travail de contenu. Les choix de visuels, projections et contrôles
+graphiques relèveront ensuite de P4 ; aucun rendu n’est prétendu vérifié ici.
+
+**Arrêt du Cycle A : aucun arbitrage appliqué, aucun commit.**
+
+### Suivi après validation de l’Option A — 12 octobre 2026
+
+**Décision A validée par le formateur : adapter le cas fictif RH-042.**
+Hector Studio prépare le dossier pédagogique ; le formateur valide le dossier
+avant utilisation en session. Le choix et la responsabilité sont acquis ; la
+validation de la version préparée n’est pas encore obtenue. Ce suivi remplace
+le bilan précédent pour les statuts courants, sans effacer l’historique.
+
+**Dossier créé :** [CAS FICTIF — RH-042](../knowledge/cases/rh-042-dossier-pedagogique.md),
+identifiant `CAS-RH042-ATELIER`. Il fournit la demande du manager, trois pièces
+D1/D2/D3, les ressources représentées, les permissions, la frontière de correction
+et le scénario de revue. Les valeurs 8/9 et RH-099 viennent du cas existant.
+D2 reste volontairement insuffisant pour certifier 9 : l’exercice consiste à
+concevoir un chemin de vérification, pas à inventer une règle de congés. La
+consigne fictive D3 explicite le traitement attendu sans se prétendre règle client.
+Aucune recherche externe nécessaire ni réalisée.
+
+**MP04 complété :** [contenu](../examples/IA017/act_on_data/content/AOD-M02-MP04.md),
+situation, mission, ressources accessibles, cinq étapes (10+15+15+10+10 = 60 min),
+carte annotée attendue, quatre critères C02, principe de correction et carte/brouillon
+de référence pour le formateur. Travail sur papier possible ; aucune dépendance
+à une démonstration n8n ni à un outil connecté.
+
+**MP05 vérifié et adapté :** [contenu](../examples/IA017/act_on_data/content/AOD-M02-MP05.md).
+Le seul blocage restant était bien le choix et la préparation du dossier commun.
+Les pièces D1–D3 et la référence MP04 sont disponibles ; le scénario porte maintenant
+explicitement sur l’absence de réponse du RH et la correction RH-042 de 8 à 9.
+La carte des participants sera produite en MP04 selon la consigne préparée :
+c’est une dépendance normale de séance, plus un livrable à concevoir en amont.
+Les 30 min (4+8+6+8+4), quatre critères et principe de correction sont conservés.
+Aucun autre blocage de contenu identifié.
+
+#### Statuts courants des six moments
+
+| Moment | Statut | Justification |
+| --- | --- | --- |
+| AOD-M02-MP01 | **BLOCKED_OPERATIONAL** | Version n8n, accès autorisés, exécution réelle et comportement à vérifier ; aucune preuve de fonctionnement. |
+| AOD-M02-MP02 | **READY** | Distinctions et comparaison documentées, cas illustratif disponible ; contenu inchangé. |
+| AOD-M02-MP03 | **READY** | Canvas, exemple et gabarits disponibles ; contenu inchangé. |
+| AOD-M02-MP04 | **READY** | Cas choisi, dossier, consigne, ressources et référence de correction complets ; 60 min conservées. |
+| AOD-M02-MP05 | **READY** | Revue contextualisée avec pièces, action, échec et correction précis ; 30 min conservées. |
+| AOD-M02-MP06 | **READY** | Synthèse et illustration disponibles ; contenu inchangé. |
+
+**Bilan courant : READY 5 ; PARTIAL 0 ; BLOCKED_RESEARCH 0 ;
+BLOCKED_DECISION 0 ; BLOCKED_OPERATIONAL 1.** Module inchangé : 140 min dont 90
+de pratique. READY évalue la complétude pour produire le contenu ; la validation
+du dossier avant usage en session, expressément confiée au formateur, reste à obtenir.
+Elle n’est pas confondue avec la décision de cas désormais validée.
+
+**MP01 n’est pas modifié et ne devient pas READY.** Son ancien libellé documentaire
+BLOCKED_RESEARCH est précisé ici en BLOCKED_OPERATIONAL : la lacune restante est
+une preuve d’usage, pas une connaissance supplémentaire à chercher sur le Web.
+Le plan de recherche reste inchangé et ouvert (`external_research_needed`, parmi
+les trois états que son schéma accepte) ; cet état ne constitue pas une demande
+de recherche Web ni une couverture acquise. Le statut courant de complétude est
+celui de la matrice ci-dessus. Aucun changement du schéma ou du moteur.
+
+#### Checklist courte — prochaine action : test réel n8n
+
+- [ ] Noter version exacte, environnement et date du test.
+- [ ] Faire confirmer les accès autorisés et le responsable de l’environnement.
+- [ ] Exécuter réellement le candidat sur valeurs fictives : 8/9 avec écart,
+  puis 8/8 sans écart ; observer entrées, branche suivie et sortie attendue.
+- [ ] Vérifier l’absence de correction métier/envoi et conserver une trace datée
+  du comportement observé, des écarts et du verdict avant de réévaluer MP01.
+
+**Checklist préparée, aucun point déclaré réalisé.** La validation du cas de
+cartographie n’atteste ni une instance disponible ni une démonstration n8n réussie.
+
+#### Contrôles après préparation du dossier
+
+Le chargeur contrôle la provenance des neuf contenus du scénario. Les contrôles
+du dossier vérifient sa nature fictive, ses références et la condition de validation
+avant session ; retirer le dossier doit invalider MP04/MP05 sans toucher les autres
+moments. La matrice distingue explicitement le blocage opérationnel de MP01 et
+les durées des ateliers sont conservées.
+
+**Suite complète : 193 tests réussis, 0 échec, 0 ignoré**, via
+`node --test --test-reporter=spec`, hors sandbox à cause du blocage `realpath`
+déjà confirmé. Trois tests ciblés ajoutés pour le dossier et ses liens, l’effet
+d’une référence de cas absente et la cohérence matrice/durées. Les attentes
+existantes de comptage sont actualisées : neuf contenus, 26 fiches Knowledge.
+
+Seul blocage de complétude restant : **test réel n8n pour MP01**. Condition de
+session restante : **validation du dossier RH-042 par le formateur**. Aucun
+PowerPoint, adaptateur, spec finale, modification machine ou commit.

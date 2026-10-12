@@ -1102,6 +1102,8 @@
       "moments_pedagogiques": [
         {
           "id": "AOD-M02-MP01",
+          "content_ref": "content/AOD-M02-MP01.md",
+          "knowledge_refs": ["OUT-N8N-DEMO-FICTIVE", "CAS-RH-MCP-FICTIF"],
           "fonctions_vcoac": [
             "voir",
             "comprendre"
@@ -1129,7 +1131,8 @@
         "knowledge_refs": [
           "CON-AGENT-IA",
           "CON-MCP",
-          "CAS-RH-MCP-FICTIF"
+          "CAS-RH-MCP-FICTIF",
+          "MET-CHOIX-ORCHESTRATION"
         ],
           "fonctions_vcoac": [
             "comprendre"
@@ -1158,7 +1161,8 @@
         "knowledge_refs": [
           "CON-MCP",
           "MET-CONNEXION-MCP",
-          "CAS-RH-MCP-FICTIF"
+          "CAS-RH-MCP-FICTIF",
+          "MET-GRILLE-CONCEPTION-AGENT"
         ],
           "fonctions_vcoac": [
             "outiller"
@@ -1180,6 +1184,8 @@
         },
         {
           "id": "AOD-M02-MP04",
+          "content_ref": "content/AOD-M02-MP04.md",
+          "knowledge_refs": ["CAS-RH042-ATELIER", "MET-CONNEXION-MCP"],
           "fonctions_vcoac": [
             "agir"
           ],
@@ -1201,6 +1207,8 @@
         },
         {
           "id": "AOD-M02-MP05",
+          "content_ref": "content/AOD-M02-MP05.md",
+          "knowledge_refs": ["CAS-RH042-ATELIER", "MET-CONNEXION-MCP"],
           "fonctions_vcoac": [
             "agir"
           ],
@@ -1221,6 +1229,8 @@
         },
         {
           "id": "AOD-M02-MP06",
+          "content_ref": "content/AOD-M02-MP06.md",
+          "knowledge_refs": ["CAS-RH-MCP-FICTIF", "MET-CONNEXION-MCP"],
           "fonctions_vcoac": [
             "consolider"
           ],
@@ -1632,7 +1642,7 @@
       "id": "AOD-D02",
       "porte": "P1",
       "question": "Quel cas RH fictif retenir et qui fournit les données ?",
-      "recommandation": "Confirmer un cas borné et son responsable, sans présumer la contribution des Data Scientists.",
+      "recommandation": "Décision formateur validée : Option A, adapter le cas fictif RH-042. Hector Studio prépare le dossier pédagogique ; le formateur valide le dossier avant utilisation en session. La validation du dossier préparé reste à obtenir.",
       "hypothese_refs": [
         "AOD-H04"
       ]

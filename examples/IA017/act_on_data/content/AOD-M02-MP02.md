@@ -1,7 +1,7 @@
 ---
 moment_id: "AOD-M02-MP02"
 module_id: "AOD-M02"
-knowledge_refs: ["CON-AGENT-IA", "CON-MCP", "CAS-RH-MCP-FICTIF"]
+knowledge_refs: ["CON-AGENT-IA", "CON-MCP", "CAS-RH-MCP-FICTIF", "MET-CHOIX-ORCHESTRATION"]
 source_refs: ["SRC-GOOGLE-AGENTIC-DESIGN", "SRC-NIST-AGENT-STANDARDS", "SRC-ANTHROPIC-TRUSTWORTHY", "SRC-ANTHROPIC-EFFECTIVE", "SRC-MCP-SPEC-2026-07-28", "SRC-MCP-SECURITE", "SRC-ANTHROPIC-MCP", "SRC-MICROSOFT-MCP", "SRC-GOOGLE-MCP", "SRC-ANSSI-SECURITE-IAG", "SRC-CNIL-USAGE-IAG", "SRC-RGPD-REPERES-RH"]
 last_generated_from_knowledge: "2026-10-12"
 ---
@@ -12,7 +12,9 @@ COMPRENDRE — 15 minutes d’explication illustrée, 0 minute de pratique plani
 
 ## Intention pédagogique
 
-Le manager doit pouvoir expliquer pourquoi une connexion est utile, situer client et serveur MCP sur une carte et distinguer échange possible, accès permis et action validée.
+Le manager doit pouvoir expliquer pourquoi une connexion est utile, situer client et serveur MCP sur une carte, distinguer échange possible, accès permis et action validée, puis demander une justification avant de multiplier les agents.
+
+Message essentiel : une connexion et une orchestration répondent à deux questions différentes — accéder à une ressource et répartir le travail. Chacune doit servir le besoin décrit.
 
 ## COMPRENDRE — partir du besoin d’accès
 
@@ -56,15 +58,46 @@ Question expliquée par le formateur : « Le serveur répond et l’outil appara
 
 Utiliser le trajet ci-dessus comme repère sur la carte : repérer la connexion, puis les permissions, puis le point de validation. La grille MET-CONNEXION-MCP, accessible par le cas, sera présentée dans le moment OUTILLER suivant.
 
-- 3 minutes : besoin d’accès et distinction API / connecteur / MCP.
-- 4 minutes : trajet client / serveur et capacités standardisées.
-- 6 minutes : cas RH-042, lecture, analyse et correction conditionnelle.
-- 2 minutes : reformulation par le formateur des trois frontières et transition vers la grille.
+- 2 minutes : besoin d’accès et distinction API / connecteur / MCP.
+- 3 minutes : trajet client / serveur et capacités standardisées.
+- 5 minutes : cas RH-042, lecture, analyse et correction conditionnelle.
+- 4 minutes : comparaison ci-dessous, sur le même résultat attendu.
+- 1 minute : trois frontières et transition vers le canvas.
+
+Répartition éditoriale Cycle A dans les **15 minutes existantes** : les explications
+MCP détaillées restent disponibles comme notes et ressource. À l’oral, suivre les
+repères ci-dessus ; ne pas lire l’intégralité du document. Aucun contenu n’est
+supprimé et aucune activité n’est ajoutée. Ce minutage proposé n’est pas un essai
+d’animation mesuré ; sa validation P3 reste distincte de la complétude.
+
+## COMPRENDRE — faut-il plusieurs agents pour RH-042 ?
+
+Application de MET-CHOIX-ORCHESTRATION ; **comparaison pédagogique fictive**.
+Le résultat commun reste une explication de l’écart et un brouillon pour revue RH.
+Le cas déjà utilisé ici n’est pas, par cette comparaison, choisi pour le TP MP04.
+
+| Point de lecture | Trajet simple | Variante multi-agents, hypothèse à justifier |
+| --- | --- | --- |
+| Travail | Consulter les éléments permis, rapprocher les valeurs, préparer le brouillon, le faire examiner. | Séparer l’examen des événements et celui de la procédure, puis rapprocher les conclusions. |
+| Justification | Le chemin est descriptible à l’avance ; aucune difficulté mesurée n’est fournie par le cas. | Expliquer quelle difficulté concrète chaque rôle supplémentaire résout. Deux noms d’agents ne sont pas une justification. |
+| Coût de conception | Un trajet à expliquer et à vérifier. | Préciser les échanges, le traitement d’un désaccord et les droits de chaque rôle ; mesurer ensuite coût et délai comparatifs. |
+| Responsabilité | Le RH habilité peut refuser le brouillon. | Il conserve cette décision : un accord entre agents ne valide pas un compteur. |
+
+Question présentée puis expliquée : « L’un dit 8, l’autre 9 : avons-nous résolu
+le problème ? » Réponse attendue : non, les pièces et la règle doivent être
+examinées ; le nombre d’agents ne prouve pas la valeur correcte.
+
+Conclusion bornée : **le cas ne démontre pas le besoin de multi-agents**. Les
+critères de comparaison sont disponibles ; aucun gain chiffré, produit choisi
+ou architecture client n’est affirmé. Workflow et multi-agents ne sont pas
+exclusifs : un workflow peut orchestrer plusieurs agents selon des étapes fixes.
+Le formateur montre une comparaison de choix, sans ajouter un cours de patterns.
 
 ## Knowledge utilisée et provenance
 
 - CON-AGENT-IA → ses quatre fiches Source : rappel opérationnel de l’agent et du choix des actions.
 - CON-MCP, P1–P5/P9–P11 → SRC-MCP-SPEC-2026-07-28 et SRC-MCP-SECURITE : rôles, capacités et limites du protocole. H1–H5 portent la synthèse pédagogique et le vocabulaire.
 - CAS-RH-MCP-FICTIF, H7 → CON-MCP et MET-CONNEXION-MCP → leurs sources : illustration des accès et du contrôle. Les contrôles du cas sont des choix de conception proposés, pas des fonctions garanties par MCP.
+- MET-CHOIX-ORCHESTRATION → compléments Cycle A de SRC-ANTHROPIC-EFFECTIVE et SRC-GOOGLE-AGENTIC-DESIGN : critères et compromis ; application RH explicitement pédagogique. La recherche dédiée est consignée dans la section Cycle A du document d’audit.
 
-Les sources fournisseurs restent accessibles dans la provenance du concept ; aucune capacité de produit n’est enseignée ici. Le cas ne décrit pas l’architecture réelle d’Act-On Data. La comparaison multi-agents annoncée dans le contenu prévu reste à instruire séparément et n’est pas développée dans cet enrichissement MCP. La date de rédaction ne renouvelle pas la vérification des sources ; réexamen du patrimoine avant démonstration technique et au plus tard le 12 novembre 2026.
+Les sources fournisseurs restent accessibles dans la provenance du concept ; aucune capacité de produit n’est enseignée ici. Le cas ne décrit pas l’architecture réelle d’Act-On Data. La comparaison multi-agents est maintenant documentée ; aucune décision d’architecture réelle n’est nécessaire pour expliquer ses critères. Les deux sources d’architecture ont été consultées le 12 octobre 2026. La rédaction ne renouvelle pas les autres sources ; réexamen du patrimoine MCP avant démonstration technique et au plus tard le 12 novembre 2026.

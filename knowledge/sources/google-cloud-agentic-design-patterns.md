@@ -11,7 +11,7 @@ aliases: []
 page_date: "2026-05-28"
 page_date_kind: "date affichée fournie"
 published_at: null
-accessed_at: null
+accessed_at: "2026-10-12"
 last_verified: "2026-10-12"
 verified_at: "2026-10-12"
 review_after: null
@@ -46,3 +46,19 @@ reste inconnu. La date de publication n’est pas qualifiée dans le matériau.
 Confiance moyenne dans les apports capitalisés, limitée au matériau reçu. Pour
 ces repères conceptuels, réexaminer la pertinence selon l’évolution du sujet et
 le besoin pédagogique ; la date de page ne prouve pas la révision de chaque phrase.
+
+## Complément Cycle A — consultation du 12 octobre 2026
+
+La provenance initiale ci-dessus est conservée. Lecture Web réelle des sections
+« Define your requirements », « Single-agent system », « Multi-agent systems »
+et « Parallel pattern ». La page affiche « Last reviewed 2026-05-28 UTC ».
+
+Le choix dépend des tâches, délais, coûts et interventions humaines. Plusieurs
+agents spécialisés peuvent répondre à des responsabilités distinctes difficiles
+à gérer ensemble. Leur coordination exige davantage d’évaluation, de contrôle
+des accès et de fiabilité ; agréger des résultats contradictoires ajoute du
+travail. Le parallélisme peut réduire un délai sans réduire le coût global.
+
+Conseils d’architecture du fournisseur, sans résultat mesuré pour le cas RH.
+La comparaison pédagogique [[methods/comparer-workflow-multi-agents]] est une
+interprétation Hector, pas une recommandation de plateforme Google.

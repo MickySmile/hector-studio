@@ -19,7 +19,7 @@ test('Cockpit enrichi : API, sections, provenance, lecture seule et aller-retour
   await vm.runInContext("loadScenario('act_on_data')", context);
   handlers.click({ target: { closest: () => ({ dataset: { view: 'vcoac' }, hasAttribute: () => false }) } });
   const html = () => document.querySelector('#content').innerHTML;
-  assert.equal((html().match(/Voir le contenu enrichi/g) || []).length, 5);
+  assert.equal((html().match(/Voir le contenu enrichi/g) || []).length, 9);
   assert.match(html(), /<details class="enriched-content"><summary>Voir le contenu enrichi<\/summary>/);
   for (const [id, count] of [['AOD-M01-MP01', 3], ['AOD-M01-MP02', 4], ['AOD-M03-MP02', 5]]) {
     const rendered = vm.runInContext(`enrichedContent(data.modules.flatMap(m => m.moments_pedagogiques).find(m => m.id === '${id}'))`, context);
@@ -34,7 +34,7 @@ test('Cockpit enrichi : API, sections, provenance, lecture seule et aller-retour
   for (const text of ['Intention pédagogique', 'Messages essentiels', 'Exemple', 'OUTILLER', 'AGIR', 'CONSOLIDER', 'CAS-RH-REPONSE-FICTIF', 'SRC-RGPD-REPERES-RH']) assert.ok(html().includes(text));
   for (const [id, other] of [['AOD-M02-MP02', 'AOD-M02-MP03'], ['AOD-M02-MP03', 'AOD-M02-MP02']]) {
     const rendered = vm.runInContext(`enrichedContent(data.modules.flatMap(m => m.moments_pedagogiques).find(m => m.id === '${id}'))`, context);
-    assert.match(rendered, /Knowledge réutilisée : 3 fiches/);
+    assert.match(rendered, /Knowledge réutilisée : 4 fiches/);
     for (const text of ['Intention pédagogique', 'Exemple', 'CON-MCP', 'CAS-RH-MCP-FICTIF', 'SRC-MCP-SPEC-2026-07-28', 'SRC-MCP-SECURITE', other]) assert.ok(rendered.includes(text), `${id}: ${text}`);
     assert.doesNotMatch(rendered, /Contenu enrichi indisponible/);
   }
@@ -42,7 +42,7 @@ test('Cockpit enrichi : API, sections, provenance, lecture seule et aller-retour
   await vm.runInContext("loadScenario('program_only')", context);
   assert.doesNotMatch(html(), /Voir le contenu enrichi|Knowledge réutilisée|Également utilisée|CAS-RH-REPONSE-FICTIF|AOD-M01-MP01|AOD-M01-MP02|AOD-M03-MP02|AOD-M02-MP02|AOD-M02-MP03/);
   await vm.runInContext("loadScenario('act_on_data')", context);
-  assert.equal((html().match(/Voir le contenu enrichi/g) || []).length, 5);
+  assert.equal((html().match(/Voir le contenu enrichi/g) || []).length, 9);
   vm.runInContext("enriched.contents['AOD-M03-MP02'].content = '<script>alert(1)</script>'; render()", context);
   assert.match(html(), /&lt;script&gt;/); assert.doesNotMatch(html(), /<script>/);
   vm.runInContext("enriched = { contents: {}, errors: [{ moment_id: 'AOD-M03-MP02', message: 'Source <absente>' }] }; render()", context);

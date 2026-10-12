@@ -58,8 +58,8 @@ for (const [query, expected] of [
 test('Recherche RH : Shadow AI couverte, questions juridiques et client maintenues ouvertes après le cycle MCP', async () => {
   const result = await loadResearchPlan(new URL('examples/IA017/act_on_data/research-plan.json', root), formation, { asOf });
   assert.equal(result.validation.valid, true, JSON.stringify(result.validation));
-  assert.deepEqual(result.counts, { total: 8, covered: 2, refresh_needed: 0, external_research_needed: 6 });
-  assert.deepEqual(plan.questions.filter(q => q.status === 'covered').map(q => q.id), ['IA017-ACT-ON-DATA-R-db7e80146e37', target]);
+  assert.deepEqual(result.counts, { total: 8, covered: 3, refresh_needed: 0, external_research_needed: 5 });
+  assert.deepEqual(plan.questions.filter(q => q.status === 'covered').map(q => q.id), ['IA017-ACT-ON-DATA-R-db7e80146e37', 'IA017-ACT-ON-DATA-R-70cf05c4fca4', target]);
   for (const id of ['IA017-ACT-ON-DATA-R-224f3604aea9', 'IA017-ACT-ON-DATA-R-a1936416981d']) assert.equal(plan.questions.find(q => q.id === id).status, 'external_research_needed');
   const q = result.plan.questions.find(q => q.id === target);
   assert.equal(q.knowledge_matches.filter(m => m.assessment && m.type === 'source').length, 4);
