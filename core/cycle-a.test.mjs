@@ -64,7 +64,7 @@ test('RH-042 : dossier fictif traçable, validation de session encore requise et
   }
 });
 
-test('RH-042 : dossier absent bloque exactement MP04 et MP05', async () => {
+test('RH-042 : dossier absent bloque exactement les moments utilisateurs du fil rouge', async () => {
   const loaded = await loadContents(formation, path);
   const incomplete = notes.filter(n => n.metadata.id !== 'CAS-RH042-ATELIER');
   const broken = [];
@@ -72,7 +72,9 @@ test('RH-042 : dossier absent bloque exactement MP04 et MP05', async () => {
     try { resolveProvenance(c.metadata.knowledge_refs, c.metadata.source_refs, incomplete); }
     catch { broken.push(c.metadata.moment_id); }
   }
-  assert.deepEqual(broken.sort(), ['AOD-M02-MP04', 'AOD-M02-MP05']);
+  const users = formation.modules.flatMap(m => m.moments_pedagogiques).filter(m => m.knowledge_refs.includes('CAS-RH042-ATELIER')).map(m => m.id).sort();
+  assert.ok(users.includes('AOD-M02-MP04') && users.includes('AOD-M02-MP05'));
+  assert.deepEqual(broken.sort(), users);
 });
 
 test('RH-042 : matrice courante cohérente, six READY après validation réelle du formateur, durées conservées', async () => {

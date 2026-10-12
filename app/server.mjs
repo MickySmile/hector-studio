@@ -42,7 +42,20 @@ export function createServer({ files = formationFiles, knowledgeRoot } = {}) {
           ? await loadResearchPlan(join(dirname(file instanceof URL ? fileURLToPath(file) : file), 'research-plan.json'), formation, { knowledgeRoot })
           : null;
         const enriched = validation.valid ? await loadContents(formation, file, { knowledgeRoot }) : null;
-        send(200, { formation: validation.valid ? formation : null, validation, research, enriched });
+        let readiness = null, readiness_error = null;
+        if (scenario === 'act_on_data' && validation.valid) {
+          try {
+            const manifest = JSON.parse(await readFile(join(dirname(file instanceof URL ? fileURLToPath(file) : file), 'readiness.json'), 'utf8'));
+            const expected = formation.modules.flatMap(m => m.moments_pedagogiques.map(p => `${m.id}/${p.id}`));
+            const actual = manifest.modules.flatMap(m => m.moments.map(p => `${m.module_id}/${p.moment_id}`));
+            const states = ['READY', 'PARTIAL', 'BLOCKED_RESEARCH', 'BLOCKED_DECISION', 'BLOCKED_OPERATIONAL'];
+            if (manifest.formation_id !== formation.meta.id || actual.length !== expected.length || new Set(actual).size !== actual.length || expected.some(id => !actual.includes(id)) || manifest.modules.some(m => m.total !== m.moments.length || m.ready !== m.moments.filter(p => p.status === 'READY').length || m.moments.some(p => !states.includes(p.status) || p.content_ref !== enriched?.contents[p.moment_id]?.path)) || !enriched?.valid) throw new Error('Readiness incohérente');
+            readiness = manifest;
+          } catch {
+            readiness_error = 'Readiness indisponible ou incohérente avec les contenus. Vérifier readiness.json et la provenance.';
+          }
+        }
+        send(200, { formation: validation.valid ? formation : null, validation, research, enriched, readiness, readiness_error });
       } catch {
         send(500, { error: 'Impossible de valider ce scénario.' });
       }

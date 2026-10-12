@@ -1,8 +1,8 @@
 ---
 moment_id: "AOD-M01-MP02"
 module_id: "AOD-M01"
-knowledge_refs: ["CON-AGENT-IA", "MET-GRILLE-CONCEPTION-AGENT", "CAS-RH-REPONSE-FICTIF", "CON-RISQUES-IA-RH"]
-source_refs: ["SRC-GOOGLE-AGENTIC-DESIGN", "SRC-NIST-AGENT-STANDARDS", "SRC-ANTHROPIC-TRUSTWORTHY", "SRC-ANTHROPIC-EFFECTIVE", "SRC-RGPD-REPERES-RH", "SRC-CNIL-USAGE-IAG", "SRC-ANSSI-SECURITE-IAG", "SRC-UE-AIACT-RH"]
+knowledge_refs: ["CON-AGENT-IA","MET-GRILLE-CONCEPTION-AGENT","CAS-RH-REPONSE-FICTIF","CON-RISQUES-IA-RH"]
+source_refs: ["SRC-GOOGLE-AGENTIC-DESIGN","SRC-NIST-AGENT-STANDARDS","SRC-ANTHROPIC-TRUSTWORTHY","SRC-ANTHROPIC-EFFECTIVE","SRC-RGPD-REPERES-RH","SRC-CNIL-USAGE-IAG","SRC-ANSSI-SECURITE-IAG","SRC-UE-AIACT-RH"]
 last_generated_from_knowledge: "2026-10-12"
 ---
 
@@ -49,6 +49,29 @@ Adaptation de la rubrique « Contrôle » de MET-GRILLE-CONCEPTION-AGENT et de l
 ## Repère pour la confrontation
 
 Une proposition est défendable si le groupe peut expliquer ce qu’il délègue, ce qu’il interdit et comment une personne reprend la main. Le choix d’un agent demande une raison liée à l’adaptation pendant l’exécution, pas au seul souhait d’automatiser. Revenir à CON-AGENT-IA en cas de désaccord sur les termes. La consolidation collective reste prévue dans le moment suivant.
+
+## Consigne participant — une slide
+
+En binôme, choisissez assistant, workflow ou agent pour préparer un brouillon RH soumis à revue. Dites qui choisit la suite et remplissez les six rubriques : Objectif, Contexte, Actions, Boucle, Limites, Contrôle. Livrable : six réponses courtes et une décision justifiée, avec une inconnue. 20 min : choisir 4, remplir 8, confronter 6, réviser 2. Réussite : délégation bornée, action interdite et reprise humaine visibles. Papier suffisant ; aucune donnée réelle.
+
+## Gabarit et données utiles
+
+Objectif / critère de réussite : … ; Contexte / pièces autorisées : … ; Actions / permissions : … ; Boucle / qui choisit la suite : … ; Limites / arrêt : … ; Contrôle / qui vérifie et peut refuser : … .
+
+La production porte sur la conception, pas sur une réponse RH juridiquement exacte. Aucune procédure d'absence complète n'est fournie : le groupe doit signaler ce manque et ne pas inventer les droits du salarié. Nom, compteur et justificatif sont des catégories de données dans la fiction, pas un dossier réel à compléter. La variante de préparation d'un brouillon introduit le même univers RH que RH-042 ; les pièces D1–D3 arriveront en module 2.
+
+## Exemple rempli et principe de correction — notes formateur
+
+- Objectif : préparer un brouillon à examiner ; il cite la procédure utilisée et montre les informations manquantes.
+- Contexte : question du gestionnaire et extrait autorisé de procédure ; extrait non fourni à ce stade, donc à demander. Justificatif médical exclu car inutile à la mission.
+- Actions : préparer et réviser un texte ; aucun envoi ni écriture dans la paie.
+- Boucle : assistant retenu ; le gestionnaire choisit les pièces, examine le manque et relance. Le système ne choisit pas ici la prochaine consultation.
+- Limites : arrêter la réponse de fond si la procédure manque ou se contredit ; rendre une demande de complément au lieu d'une règle inventée.
+- Contrôle : RH habilité compare au texte de référence et corrige ou refuse avant toute diffusion.
+
+Décision exemple : « Nous proposons un assistant pour un brouillon à partir d'une pièce choisie par le gestionnaire ; avant un usage réel, nous devons confirmer la procédure et l'outil autorisé. » Un workflow est également recevable si les étapes sont prévues ; un agent demande une consultation adaptative utile et bornée. Évaluer la justification, sans imposer l'assistant. Le groupe doit produire ses propres six réponses avant de voir le corrigé.
+
+Avec trois groupes, faire une rotation des grilles pendant les 6 minutes de confrontation : chaque groupe formule une objection puis reçoit la sienne. Aucune restitution plénière longue à ajouter. L'exemple rempli développe MET-GRILLE-CONCEPTION-AGENT ; il ne constitue pas une nouvelle règle métier.
 
 ## Knowledge utilisée et provenance
 

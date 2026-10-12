@@ -1,108 +1,60 @@
 ---
 moment_id: "AOD-M03-MP02"
 module_id: "AOD-M03"
-knowledge_refs: ["CON-SHADOW-AI", "CON-RISQUES-IA-RH", "MET-GRILLE-RISQUE-IA", "CAS-RH-REPONSE-FICTIF", "CON-AGENT-IA"]
-source_refs: ["SRC-CNIL-USAGE-IAG", "SRC-ANSSI-SECURITE-IAG", "SRC-RGPD-REPERES-RH", "SRC-UE-AIACT-RH", "SRC-GOOGLE-AGENTIC-DESIGN", "SRC-NIST-AGENT-STANDARDS", "SRC-ANTHROPIC-TRUSTWORTHY", "SRC-ANTHROPIC-EFFECTIVE"]
+knowledge_refs: ["CON-SHADOW-AI","CON-RISQUES-IA-RH","MET-GRILLE-RISQUE-IA","CAS-RH-REPONSE-FICTIF","CON-AGENT-IA","CAS-RH042-ATELIER","MET-REVUE-RH"]
+source_refs: ["SRC-CNIL-USAGE-IAG","SRC-ANSSI-SECURITE-IAG","SRC-RGPD-REPERES-RH","SRC-UE-AIACT-RH","SRC-GOOGLE-AGENTIC-DESIGN","SRC-NIST-AGENT-STANDARDS","SRC-ANTHROPIC-TRUSTWORTHY","SRC-ANTHROPIC-EFFECTIVE","SRC-MCP-SPEC-2026-07-28","SRC-MCP-SECURITE","SRC-ANTHROPIC-MCP","SRC-MICROSOFT-MCP","SRC-GOOGLE-MCP","SRC-CNIL-ROLE-DPO"]
 last_generated_from_knowledge: "2026-10-12"
 ---
 
 # Relier chaque risque à un contrôle à instruire
 
-Proposition pédagogique issue du patrimoine existant, à tester avec le formateur. La date ci-dessus constate la rédaction depuis Knowledge, sans nouvelle vérification externe. Le pilote approfondit la question Shadow AI couverte ; les exigences applicables au cas réel et les règles internes restent à instruire.
-
 ## Intention pédagogique
 
-À partir d’un usage RH, le manager doit pouvoir expliquer quelle donnée ou action est exposée, relier un risque à un contrôle concret et nommer la confirmation nécessaire avant de poursuivre. Il distingue une preuve de contrôle d’une simple promesse de sécurité.
+Expliquer quelle donnée ou action est exposée, puis relier un risque à un contrôle, un rôle et une preuve. 20 minutes d'apport et de démonstration du support, 0 minute de pratique. Les exercices sont entièrement placés en MP03/MP04, sans ajouter l'ancienne esquisse de cinq minutes.
 
 ## Messages essentiels
 
-- Qualifier ce qui circule : personnel, catégorie particulière, confidentiel ou inférence à examiner ne sont pas des synonymes. Appui : CON-RISQUES-IA-RH, G1–G2/H1.
-- Le Shadow AI est une rupture du cadre d’usage autorisé, y compris avec un outil déjà autorisé utilisé hors périmètre. Appui : CON-SHADOW-AI, S1/C1.
-- Lire davantage, propager une sortie et agir avec des permissions créent des expositions différentes. Appui : CON-RISQUES-IA-RH, H2/A1–A3 ; CON-AGENT-IA.
-- Un contrôle utile précise une mesure, un responsable et une preuve ; la personne qui supervise doit pouvoir refuser ou arrêter. Appui : MET-GRILLE-RISQUE-IA, H4 ; CON-RISQUES-IA-RH, H3.
+- Personnel, catégorie particulière, confidentiel et inférence à examiner ne sont pas synonymes.
+- Le Shadow AI décrit un usage hors cadre, y compris un outil autorisé utilisé hors de son périmètre.
+- Les risques concernent aussi récupération documentaire, permissions, sortie et journaux.
+- Un contrôle relie une mesure, un responsable proposé et une preuve observable ; une inconnue reste à instruire.
 
-## COMPRENDRE
+## COMPRENDRE — repères et limites
 
-Partir de trois questions : qu’est-ce qui entre, qui peut y accéder, que peut faire le système ? Le risque ne se limite pas au prompt : pièces jointes, documents récupérés, sorties et journaux peuvent aussi exposer des informations. Appui : CON-RISQUES-IA-RH, H2/A2–A3.
+CON-RISQUES-IA-RH (G1–G2/H1) distingue un compteur rattaché à une personne identifiable, une information de santé et une information interne confidentielle. Enlever le nom ne garantit pas l'anonymat. Un compteur n'est pas automatiquement une donnée de santé. RH-042 est fictif ; ces repères préparent le raisonnement pour un usage réel.
 
-- Donnée personnelle RH : nom, salaire nominatif ou compteur rattaché à une personne identifiable. Retirer le nom ne garantit pas l’anonymat. Repère juridique capitalisé : G1, article 4 du RGPD.
-- Catégorie particulière du RGPD : un diagnostic médical relève de la santé ; toutes les données RH ne relèvent pas de l’article 9. Le régime comporte une interdiction de principe et des exceptions encadrées. Repère juridique capitalisé : G2.
-- Information interne/confidentielle : un budget de réorganisation sans personne identifiable peut être confidentiel sans être personnel. Synthèse pédagogique : H1.
-- Inférence potentiellement sensible : un planning d’absences peut permettre de supposer un état de santé. Le compteur n’est pas automatiquement une donnée de santé ; la qualification dépend du contexte. Synthèse pédagogique : H1 et limite du CAS-RH-REPONSE-FICTIF.
-- Shadow AI : copier le dossier dans un compte personnel non autorisé fait perdre la maîtrise du cadre d’usage. Ce terme est opérationnel, sans catégorie juridique autonome. Synthèse pédagogique : CON-SHADOW-AI, S1.
-- Agent disposant de permissions : le système peut choisir des actions puis utiliser leurs résultats pour poursuivre. Le périmètre des droits effectifs compte autant que la consigne. Définition opérationnelle : CON-AGENT-IA ; contrôles recommandés : CON-RISQUES-IA-RH, A1–A2.
+Les repères RGPD déjà capitalisés portent sur qualification, finalité, base légale, minimisation, droits, destinataires et garanties. L'article 28 concerne la sous-traitance ; il ne résume pas la conformité. MET-REVUE-RH rassemble les références à vérifier et les questions à adresser aux responsables compétents. Le DPO informe et conseille ; le responsable du traitement conserve sa responsabilité. RH, DSI/RSSI et juridique apportent les vérifications métier, techniques et juridiques dans leurs domaines.
 
-Relier ensuite trois familles de contrôles : organisationnel (périmètre d’usage confirmé), technique (corpus et permissions limités), humain (RH habilité qui compare le brouillon aux documents et peut le refuser). Ce sont ici des propositions pédagogiques adaptées de MET-GRILLE-RISQUE-IA, pas trois obligations juridiques universelles. Les principes juridiques cités dans Knowledge gardent leur propre portée ; remplir une grille ne démontre aucune conformité.
+AI Act : faire qualifier la finalité réelle et la version applicable avec le juridique ; ne pas conclure à partir du seul mot RH. La réserve d'accès direct au texte consolidé reste documentée dans Knowledge. Aucun calendrier ni classement automatique du cas n'est enseigné. La compétence attendue est de formuler la bonne demande, pas de rendre un avis juridique.
 
-## Exemple — CAS FICTIF RH
+## Exemple — CAS FICTIF RH-042
 
-Adaptation de CAS-RH-REPONSE-FICTIF, H5 : un gestionnaire prépare une réponse sur une procédure d’absence. Le dossier fictif contient un nom, un compteur de jours et un justificatif médical ; une documentation interne décrit la procédure. Le résultat attendu est un brouillon relu par un RH habilité, sans décision sur les droits du salarié ni écriture dans la paie.
+Reprendre D1 (8 affichés), D2 (9 suggérés sans preuve) et D3 (brouillon soumis au RH). Dans l'incident MP01, un compte personnel reçoit les pièces et la réponse non vérifiée est partagée plus largement. Les lecteurs et la conservation sont inconnus ; ne pas inventer un contrat fournisseur. La variante du cas RH général avec justificatif médical reste un exemple de donnée inutile ; aucun justificatif n'est nécessaire à RH-042.
 
-Pour gagner du temps, il envisage de copier tout le dossier dans un compte personnel non autorisé. La variante encadrée proposée retire le justificatif inutile, limite le corpus aux procédures et empêche l’envoi autonome. Cela illustre une réduction d’exposition à tester, pas un outil testé ni une politique réelle d’Act-On Data.
+## Mise en perspective — du chat à l'action
 
-## Mise en perspective — du chat à l’action
+Chat : la copie suffit à exposer une donnée. Accès documentaire : un corpus trop large peut donner accès à un autre dossier. Workflow : une erreur peut se propager dans des étapes prévues. Agent : ses outils peuvent agir selon leurs permissions effectives. Ces distinctions reprennent CON-AGENT-IA et CON-RISQUES-IA-RH ; elles ne constituent pas un classement universel des niveaux de risque.
 
-À périmètre de contrôle inchangé, chaque capacité ajoutée peut élargir l’exposition ; cette progression n’est ni un score de risque ni une fatalité. Synthèse pédagogique à partir de CON-RISQUES-IA-RH, H2/C2/A1–A3, et CON-AGENT-IA.
+## OUTILLER — grille existante, exemple rempli
 
-- Chat : le dossier copié expose déjà les données via le prompt, les pièces jointes et l’historique. Vérifier ce qui est transmis.
-- Accès documentaire : la récupération peut lire un autre dossier si les droits ou le corpus sont trop larges. Tester le refus d’accès avec deux profils fictifs.
-- Workflow : une réponse erronée peut se propager à plusieurs étapes prédéfinies. Prévoir une sortie en brouillon et une comparaison avec la procédure de référence.
-- Agent capable d’agir : les outils peuvent envoyer un message ou modifier une ressource selon les permissions. Limiter les droits, vérifier le destinataire et prévoir arrêt/révocation ; une instruction dans un document ne doit pas autoriser une action.
+Usage : avant l'essai ou lorsque changent données, corpus, destinataires ou droits. Réutiliser MET-GRILLE-RISQUE-IA : risque ; donnée/ressource ; exposition ; conséquence ; prévention ; détection ; validation humaine ; preuve/trace. Ajouter propriétaire proposé et état confirmé/à instruire. Le gabarit vierge complet est dans Knowledge et repris en MP03.
 
-## OUTILLER — grille de risque existante
+Exemple : risque = propagation de 9 comme valeur certaine ; donnée = D1/D2 ; exposition = brouillon puis espace partagé ; conséquence = décision RH non fondée ; prévention = brouillon sourcé et envoi exclu ; détection = comparaison aux pièces ; validation = RH habilité peut refuser et demander complément ; preuve = état en attente et demande de pièce manquante. Propriétaire proposé : RH habilité ; règle confirmée dans l'exercice D3, capacité du système réel inconnue.
 
-Quand l’utiliser : avant un essai ou lorsque changent données, corpus, destinataires ou permissions. Réutiliser MET-GRILLE-RISQUE-IA (H4), proposition méthodologique Hector Studio ; aucune nouvelle grille ni checklist de conformité.
+Demande de confirmation réutilisable : usage … ; donnée/destinataire … ; permission … ; question précise … ; rôle sollicité … ; preuve attendue … ; réponse ou inconnue … ; action suspendue … . MET-REVUE-RH fournit l'exemple complet. Ne pas remplacer l'examen du flux par une case « sécurisé » ou « DPO validé ».
 
-Comment l’utiliser : borner le résultat attendu et les décisions interdites ; suivre le trajet saisie → documents → modèle → outil → journal → destinataire ; qualifier données et droits ; remplir une ligne par événement redouté ; nommer propriétaire et preuve ; choisir un essai fictif borné, une révision ou une suspension. Une inconnue reste « à instruire ».
+## AGIR — passage aux ateliers suivants
 
-Mini-exemple rempli, repris de la ligne « Partage Shadow AI » du cas existant :
+Le formateur montre le support, sans faire remplir une nouvelle activité ici. MP03 donnera 45 minutes d'analyse, MP04 20 minutes de défense et de révision. Les règles internes réelles restent une confirmation client : les permissions fictives de D3 permettent déjà de préparer et d'utiliser la grille en formation.
 
-- Risque : partage Shadow AI.
-- Donnée / ressource : nom, compteur de jours, justificatif médical fictifs.
-- Exposition possible : prompt et pièce jointe vers le compte personnel.
-- Conséquence : divulgation et perte de maîtrise.
-- Contrôle préventif : essai fictif uniquement ; chemin autorisé à confirmer ; justificatif exclu.
-- Détection : revue de la pièce avant saisie et signalement d’un écart.
-- Validation humaine éventuelle : responsable d’usage confirme le périmètre et peut suspendre l’essai.
-- Preuve / traçabilité : décision d’usage et liste de champs acceptés ; appuis C1/G2/G3.
+## CONSOLIDER et minutage
 
-Nature : proposition organisationnelle avec contrôle humain. Propriétaire proposé : responsable d’usage, à désigner par le client. État : à instruire. Réexamen : avant tout essai sur données réelles. Ces précisions réutilisent les compléments demandés par la méthode.
+- 5 min : distinguer données et expositions à partir de l'incident.
+- 4 min : situer les repères juridiques et les rôles à solliciter, sans détail de calendrier.
+- 4 min : comparer chat, récupération, workflow et action avec permissions.
+- 6 min : montrer la grille et la ligne remplie, puis le gabarit de confirmation.
+- 1 min : retenir « donnée, trajet, contrôle, responsable, preuve » et distribuer MP03.
 
-## AGIR — esquisse à arbitrer
+## Provenance Knowledge → sources
 
-Situation : même CAS FICTIF RH ; on propose maintenant de connecter le corpus documentaire et de permettre l’envoi du brouillon.
-
-Mission : en binôme de managers, choisir une exposition supplémentaire et compléter une ligne de la grille existante ; décider si l’essai fictif peut continuer ou quelle confirmation manque.
-
-Production attendue : une ligne argumentée et une phrase de décision mentionnant le responsable à solliciter.
-
-Durée proposée : 5 minutes (3 minutes de préparation, 2 minutes de confrontation). Cette esquisse n’est pas encore intégrée au déroulé : MP02 conserve ses 20 minutes et 0 minute de pratique planifiées. Son activation nécessitera un arbitrage de temps et de pratique ; aucun autre moment n’est modifié.
-
-Critères légers de réussite :
-
-- La donnée et le trajet d’exposition sont nommés sans assimiler toute donnée RH à la santé.
-- Le contrôle proposé répond au risque choisi.
-- Un responsable et une preuve observable sont identifiés.
-- La décision distingue confirmé et à instruire, avec possibilité d’arrêt.
-
-Proposition pédagogique dérivée de MET-GRILLE-RISQUE-IA et CAS-RH-REPONSE-FICTIF. Pas de corrigé complet à ce stade.
-
-## CONSOLIDER
-
-- Qualifier la donnée avant de qualifier le risque.
-- Suivre aussi les accès, actions, sorties et journaux.
-- Relier chaque contrôle à un responsable et une preuve.
-- Une inconnue appelle une confirmation, pas une conformité présumée.
-
-## Knowledge utilisée et provenance
-
-Les identifiants de claims ci-dessus sont ceux des fiches capitalisées. Les sources indiquées ici désignent des fiches locales, consultables dans le cockpit avec leur provenance et leurs réserves.
-
-- CON-SHADOW-AI, S1/C1 → SRC-CNIL-USAGE-IAG ; la fiche référence aussi SRC-ANSSI-SECURITE-IAG pour son contexte de sécurité.
-- CON-RISQUES-IA-RH, G1–G2 → SRC-RGPD-REPERES-RH (articles 4 et 9) ; C2 → SRC-CNIL-USAGE-IAG ; A1–A3 → SRC-ANSSI-SECURITE-IAG (R26–R29 et repères détaillés dans la fiche).
-- CON-RISQUES-IA-RH, H1–H3 : synthèses pédagogiques, sans prescription textuelle équivalente. SRC-UE-AIACT-RH reste une source de cette fiche, mais aucun calendrier ni conclusion de classement AI Act n’est enseigné ici ; ses réserves restent applicables.
-- MET-GRILLE-RISQUE-IA, H4 → fiches ANSSI, CNIL et RGPD ci-dessus ; la méthode et les contrôles concrets restent des propositions Hector.
-- CAS-RH-REPONSE-FICTIF, H5 → CON-RISQUES-IA-RH et MET-GRILLE-RISQUE-IA → leurs fiches Source. Les sources étayent les risques ; elles ne prouvent pas que l’incident fictif a eu lieu.
-- CON-AGENT-IA → SRC-GOOGLE-AGENTIC-DESIGN, SRC-NIST-AGENT-STANDARDS, SRC-ANTHROPIC-TRUSTWORTHY et SRC-ANTHROPIC-EFFECTIVE. Définition et comparaison opérationnelles issues du matériau capitalisé, sans nouvelle consultation.
-
-Les règles client, contrats, droits effectifs et interlocuteurs ne sont pas connus. Les deux questions correspondantes du plan de recherche restent ouvertes. Le gain pédagogique proposé est de passer de thèmes généraux à une décision argumentée ; son efficacité réelle reste à observer lors du test utilisateur.
+CON-SHADOW-AI, CON-RISQUES-IA-RH et MET-GRILLE-RISQUE-IA → sources CNIL, ANSSI, RGPD et UE. CAS-RH-REPONSE-FICTIF apporte les contrastes ; CAS-RH042-ATELIER les pièces de travail. CON-AGENT-IA apporte les distinctions conceptuelles. MET-REVUE-RH → SRC-CNIL-ROLE-DPO et sources existantes : complément documentaire ciblé du 12 octobre 2026. Les sources étayent les repères, pas un incident client ou une conformité acquise. La couverture pédagogique est suffisante ; règles, contrats et interlocuteurs nommés restent à confirmer avant transfert réel.

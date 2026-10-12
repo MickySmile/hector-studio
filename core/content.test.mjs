@@ -20,11 +20,11 @@ for (const module of pilotFormation.modules) for (const moment of module.moments
 const loaded = await loadContents(pilotFormation, path);
 const item = loaded.contents[pilot.id];
 
-test('Contenu pilote : un seul moment, cinq Knowledge, huit sources, cas indirect résolu', () => {
+test('Contenu M03 enrichi : un seul moment isolé, sept Knowledge et provenance complète', () => {
   assert.deepEqual(loaded.errors, []);
   assert.deepEqual(Object.keys(loaded.contents), [pilot.id]);
-  assert.equal(item.metadata.knowledge_refs.length, 5);
-  assert.equal(item.knowledge.filter(n => n.metadata.type === 'source').length, 8);
+  assert.equal(item.metadata.knowledge_refs.length, 7);
+  assert.deepEqual(item.knowledge.filter(n => n.metadata.type === 'source').map(n => n.metadata.id).sort(), [...item.metadata.source_refs].sort());
   assert.deepEqual(item.knowledge.find(n => n.metadata.id === 'CAS-RH-REPONSE-FICTIF').source_ids, ['CON-RISQUES-IA-RH', 'MET-GRILLE-RISQUE-IA']);
   for (const section of ['Intention pédagogique', 'Messages essentiels', 'COMPRENDRE', 'Exemple', 'Mise en perspective', 'OUTILLER', 'AGIR', 'CONSOLIDER']) assert.ok(item.content.includes(`## ${section}`));
 });
@@ -95,25 +95,26 @@ for (const [id, count, sections] of [
   }
 });
 
-test('Réutilisation : neuf contenus, MP04 enrichi après arbitrage RH-042, patrimoine partagé', async () => {
+test('Réutilisation : dix-huit contenus Act-On Data, patrimoine partagé', async () => {
   const result = await loadContents(formation, path);
-  const expected = ['AOD-M01-MP01', 'AOD-M01-MP02', 'AOD-M02-MP01', 'AOD-M02-MP02', 'AOD-M02-MP03', 'AOD-M02-MP04', 'AOD-M02-MP05', 'AOD-M02-MP06', 'AOD-M03-MP02'];
+  const expected = formation.modules.flatMap(m => m.moments_pedagogiques.map(p => p.id)).sort();
+  assert.equal(expected.length, 18);
   assert.deepEqual(Object.keys(result.contents).sort(), expected);
   const referenced = formation.modules.flatMap(m => m.moments_pedagogiques).filter(m => m.content_ref || m.knowledge_refs);
   assert.deepEqual(referenced.map(m => m.id).sort(), expected);
   for (const id of ['CON-AGENT-IA', 'CAS-RH-REPONSE-FICTIF', 'CON-RISQUES-IA-RH']) {
-    const users = ['AOD-M01-MP01', 'AOD-M01-MP02', ...(id === 'CON-AGENT-IA' ? ['AOD-M02-MP02'] : []), 'AOD-M03-MP02'];
+    const users = formation.modules.flatMap(m => m.moments_pedagogiques).filter(m => m.knowledge_refs.includes(id)).map(m => m.id).sort();
     assert.deepEqual(Object.values(result.contents).filter(c => c.metadata.knowledge_refs.includes(id)).map(c => c.metadata.moment_id).sort(), users);
   }
 });
 
-test('Réutilisation : référence invalide isolée, les huit autres contenus restent lisibles', async () => {
+test('Réutilisation : référence invalide isolée, les dix-sept autres contenus restent lisibles', async () => {
   const copy = structuredClone(formation);
   copy.modules[0].moments_pedagogiques[0].knowledge_refs = ['INCONNUE'];
   const result = await loadContents(copy, path);
   assert.equal(result.valid, false);
   assert.deepEqual(result.errors.map(e => e.moment_id), ['AOD-M01-MP01']);
-  assert.deepEqual(Object.keys(result.contents).sort(), ['AOD-M01-MP02', 'AOD-M02-MP01', 'AOD-M02-MP02', 'AOD-M02-MP03', 'AOD-M02-MP04', 'AOD-M02-MP05', 'AOD-M02-MP06', 'AOD-M03-MP02']);
+  assert.deepEqual(Object.keys(result.contents).sort(), formation.modules.flatMap(m => m.moments_pedagogiques.map(p => p.id)).filter(id => id !== 'AOD-M01-MP01').sort());
 });
 
 for (const [id, sources, minutes, role] of [['AOD-M02-MP02', 12, 15, 'comprendre'], ['AOD-M02-MP03', 11, 10, 'outiller']]) {
@@ -138,12 +139,12 @@ for (const [id, sources, minutes, role] of [['AOD-M02-MP02', 12, 15, 'comprendre
   });
 }
 
-test('Réutilisation MCP : une source MCP manquante invalide seulement les contenus concernés du Module 2', async () => {
+test('Réutilisation MCP : une source MCP manquante invalide seulement les contenus qui en dépendent', async () => {
   const copy = notes.filter(n => n.metadata.id !== 'SRC-MCP-SECURITE');
   const result = await loadContents(formation, path);
   for (const item of Object.values(result.contents)) {
     const resolve = () => resolveProvenance(item.metadata.knowledge_refs, item.metadata.source_refs, copy);
-    if (item.metadata.module_id === 'AOD-M02') assert.throws(resolve, /Source non résolue/);
+    if (item.metadata.source_refs.includes('SRC-MCP-SECURITE')) assert.throws(resolve, /Source non résolue/);
     else assert.doesNotThrow(resolve);
   }
 });

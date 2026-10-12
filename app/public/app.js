@@ -12,12 +12,14 @@ const actions = () => '<div class="actions"><button data-simulate>Accepter</butt
 let scenario = 'program_only', view = 'synthese', data, validation, request = 0;
 let decisionFilter = '', priorityFilter = '', selectedCompetence = null;
 let research = null, researchStatus = '', researchImportance = '', researchModule = '';
+let readiness = null, readinessError = null;
 const researchLabels = { covered: 'Couverte', refresh_needed: 'À actualiser', external_research_needed: 'Recherche externe nécessaire' };
 const content = document.querySelector('#content');
 const group = block => (block.connu || []).map(fact).join('') + (block.suppose || []).map(fact).join('') + (block.propose ? fact(block.propose) : '') + (block.inconnu || []).map(texte => fact({ texte, nature: 'inconnu' })).join('');
 const hypothesis = h => panel(h.texte, `${badge('? Hypothèse', 'hypothesis')} ${badge(`Confiance ${h.confiance}`)}${field('Impact pédagogique', h.impact_pedagogique)}<small>${e(h.id)} · ${h.a_valider ? 'À valider' : 'Voir la source'}</small>`);
 function durationAlert() {
   const alert = data.alertes.find(a => a.type === 'duree_irrealiste');
+  if (alert && readiness) return `<aside class="warning"><div>${badge('Anomalie de source conservée', 'alert')}<h3>Catalogue : 420 min annoncées / 435 min détaillées</h3><p>Planification confirmée à 420 min. Durées des modules conservées ; 30 min affectées à l'ouverture, aux transitions et à la clôture.</p></div></aside>`;
   return alert ? `<aside class="warning"><div>${badge('⚠ Durée · arbitrage nécessaire', 'alert')}<h3>${e(alert.message)}</h3><p>${e(alert.action)}</p></div><button data-view="alertes">Voir les arbitrages →</button></aside>` : '';
 }
 function scenarioHealth() {
@@ -34,12 +36,12 @@ function scenarioHealth() {
 function synthese() {
   const d = data;
   return `<div class="hero"><div class="eyebrow">${scenario === 'program_only' ? 'PROGRAMME SEUL' : 'ACT-ON DATA'}</div><h2>${e(d.meta.titre)}</h2>${status('proposition')}</div>
-    ${scenarioHealth()}<div class="stats">${[
-      ['Durée de référence', `${d.meta.duree_minutes} min`, d.meta.duree_statut === 'annoncee_au_catalogue' ? '✓ Annoncée au catalogue' : '? Hypothèse à confirmer au client'],
+    ${readinessSummary()}${scenarioHealth()}<div class="stats">${[
+      ['Durée de référence', `${d.meta.duree_minutes} min`, readiness ? '✓ Enveloppe de planification confirmée' : d.meta.duree_statut === 'annoncee_au_catalogue' ? '✓ Annoncée au catalogue' : '? Hypothèse à confirmer au client'],
       ['Compétences', d.competences.length, '◆ Proposées, à valider'],
       ['Hypothèses', d.hypotheses.length, '? À examiner'],
       ['Alertes', d.alertes.length, '⚠ Points de vigilance'],
-      ['Décisions à valider', d.decisions_a_valider.length, '◆ Arbitrages ouverts']
+      [readiness ? 'Points humains restants' : 'Décisions à valider', readiness ? readiness.human_followups.length : d.decisions_a_valider.length, readiness ? 'Voir le détail de readiness' : '◆ Arbitrages ouverts']
     ].map(([name, number, note]) => `<article class="stat"><h3>${name}</h3><strong>${e(number)}</strong><small>${note}</small></article>`).join('')}</div>
     <div class="grid two">${panel('Public', (d.cadrage.public.connu || []).map(fact).join('') + (d.cadrage.public.inconnu || []).map(texte => fact({texte,nature:'inconnu'})).join(''))}${panel('Finalité proposée', fact(d.cadrage.finalite.propose))}</div>
     <article class="card practice"><div><h3>Cible de pratique</h3>${badge('◆ Proposition · non mesurée', 'decision')}<p>${e(d.pratique.justification)}</p></div><div><strong>${e(d.pratique.cible_pourcentage)}<span> %</span></strong><progress max="100" value="${e(d.pratique.cible_pourcentage)}" aria-label="Cible de pratique proposée"></progress><small>Fourchette souhaitée : ${e(d.pratique.minimum_souhaite)}–${e(d.pratique.maximum_souhaite)} %</small></div></article>`;
@@ -146,7 +148,7 @@ function modules() {
   const totals = validation?.checks.find(c => c.code === 'module_totals')?.details;
   const percent = value => value === null ? 'Non calculable' : `${Number(value).toLocaleString('fr-FR', {maximumFractionDigits:1})} %`;
   const references = (ids, collection) => ids.map(id => `${id} — ${collection.find(item => item.id === id)?.titre || 'référence introuvable'}`);
-  return `<p class="intro">Architecture proposée · lecture seule. La pratique est planifiée, pas mesurée en session.</p>
+  return `${readinessSummary()}<p class="intro">Architecture proposée · lecture seule. La pratique est planifiée, pas mesurée en session.</p>
     ${durationAlert()}
     ${totals ? `<div class="stats module-stats">${[
       ['Durée utilisée', `${totals.durationMinutes} / ${totals.envelopeMinutes ?? '?'} min`, 'Enveloppe de planification'],
@@ -167,6 +169,30 @@ function modules() {
 }
 
 let enriched = null;
+
+function readinessSummary() {
+  if (readinessError) return `<p class="health-error" role="alert">${e(readinessError)}</p>`;
+  if (!readiness) return '';
+  return panel('Readiness pédagogique — Act-On Data', `<p>${e(readiness.definition)}</p>
+    <div class="stats">${readiness.modules.map((m, i) => `<article class="stat"><h3>Module ${i + 1}</h3><strong>${e(m.ready)}/${e(m.total)} READY</strong></article>`).join('')}</div>
+    <p>${e(readiness.timing.envelope_minutes)} min · ${e(readiness.timing.practice_minutes)} min de pratique · ${e(readiness.timing.practice_percent.toFixed(2).replace('.', ','))} %. Anomalie catalogue 420/435 conservée.</p>
+    <p>Parcourir VCOAC pour les contenus, consignes d'activités, gabarits, corrections et fiches Knowledge résolues.</p>
+    ${detail('Conduite et points humains restants', `${list(readiness.timing.segments.map(s => `${s.label} : ${s.minutes} min`))}${list(readiness.human_followups.map(f => `${f.title} — ${f.scope}`))}<p>${readiness.remaining_blockers.length ? e(readiness.remaining_blockers.join(' · ')) : 'Aucun blocage pédagogique restant. Validation finale du formateur attendue.'}</p>`)}
+    <button data-view="vcoac">Parcourir les moments et activités</button><button data-view="recherche">Voir la couverture Knowledge</button>`);
+}
+
+function momentReadiness(id) {
+  const m = readiness?.modules.flatMap(module => module.moments).find(m => m.moment_id === id);
+  return m ? badge(m.status, m.status === 'READY' ? 'known' : 'alert') : '';
+}
+
+function researchBadge(moment) {
+  if (!moment.besoin_recherche) return '';
+  if (!readiness || !research?.plan) return badge('Recherche nécessaire', 'alert');
+  const questions = research.plan.questions.filter(q => q.used_by.some(u => u.moment_id === moment.id));
+  return questions.length && questions.every(q => q.status === 'covered')
+    ? badge('Knowledge couverte', 'known') : badge('Confirmation client pour le réel', 'alert');
+}
 
 // Rendu du profil Markdown local : HTML toujours échappé, aucun code ni lien actif.
 function contentMarkdown(text) {
@@ -205,20 +231,20 @@ function vcoac() {
   if (!data.modules?.length) return '<p class="card">Moments pédagogiques non définis : formation au stade du cadrage.</p>';
   const functions = m => m.fonctions_vcoac.map(f => f.toUpperCase()).join(' + ');
   const moments = data.modules.flatMap(m => m.moments_pedagogiques || []);
-  return `<p class="intro">Conception P3 · propositions à valider · lecture seule. Les fonctions peuvent être fusionnées (+) ; les flèches indiquent l’ordre des moments. Les contenus enrichis disponibles sont signalés sur leur moment.</p>
-    <p>${badge(`${moments.length} moments`)} ${badge(`${moments.filter(m => m.besoin_recherche).length} besoins de recherche`, 'alert')}</p>
+  return `${readinessSummary()}<p class="intro">Conception P3 · propositions à valider · lecture seule. Les fonctions peuvent être fusionnées (+) ; les flèches indiquent l’ordre des moments. Les contenus enrichis disponibles sont signalés sur leur moment.</p>
+    <p>${badge(`${moments.length} moments`)} ${badge(`${moments.filter(m => m.besoin_recherche).length} ${readiness ? 'moments liés au plan de recherche' : 'besoins de recherche'}`, 'alert')}</p>
     <p class="intro">La pratique indique uniquement le temps de production des participants. Une fusion ne multiplie ni la durée ni la pratique.</p>
     ${data.modules.map((module, i) => panel(`Module ${i + 1} — ${module.titre}`, `
       ${badge(`${module.duree_minutes} min`)} ${badge(`${module.pratique_minutes} min de pratique`, 'known')}
-      ${module.moments_pedagogiques?.length ? `<ol class="vcoac-flow" aria-label="Progression VCOAC du module ${i + 1}">${module.moments_pedagogiques.map(m => `<li><a href="#${e(m.id)}">${e(functions(m))}<span>${e(m.duree_minutes)} min</span></a>${m.besoin_recherche ? badge('Recherche nécessaire', 'alert') : ''}</li>`).join('')}</ol>
-      ${module.moments_pedagogiques.map(m => `<details id="${e(m.id)}" class="vcoac-moment"><summary>${e(functions(m))} · ${e(m.duree_minutes)} min — ${e(m.titre)} ${m.besoin_recherche ? badge('Recherche nécessaire', 'alert') : ''}</summary>
+      ${module.moments_pedagogiques?.length ? `<ol class="vcoac-flow" aria-label="Progression VCOAC du module ${i + 1}">${module.moments_pedagogiques.map(m => `<li><a href="#${e(m.id)}">${e(functions(m))}<span>${e(m.duree_minutes)} min</span></a>${researchBadge(m)}</li>`).join('')}</ol>
+      ${module.moments_pedagogiques.map(m => `<details id="${e(m.id)}" class="vcoac-moment"><summary>${e(functions(m))} · ${e(m.duree_minutes)} min — ${e(m.titre)} ${momentReadiness(m.id)} ${researchBadge(m)}</summary>
         ${field('Intention', m.intention)}<h4>Contenu prévu</h4>${list(m.contenu_prevu)}
         ${field('Concepts concernés', m.concepts_concernes.join(' · ') || 'Aucun concept déclaré')}
         ${field('Pratique planifiée', `${m.pratique_minutes} min sur ${m.duree_minutes} min`)}
-        ${m.besoin_recherche ? `<h4>Questions de recherche à instruire</h4>${list(m.questions_recherche || [])}` : '<p>Aucun besoin de recherche supplémentaire identifié pour ce moment.</p>'}
+        ${m.besoin_recherche ? `<h4>${readiness ? 'Traçabilité des questions de recherche' : 'Questions de recherche à instruire'}</h4>${list(m.questions_recherche || [])}` : '<p>Aucun besoin de recherche supplémentaire identifié pour ce moment.</p>'}
         ${(validation?.warnings || []).filter(c => c.path === `/modules/${i}/moments_pedagogiques/${module.moments_pedagogiques.indexOf(m)}/duree_minutes`).map(c => `<p class="health-warning">${e(c.message)}</p>`).join('')}
         ${enrichedContent(m)}
-        ${field('Statut', m.status)}<small>${e(m.id)}</small></details>`).join('')}` : '<p>Moments pédagogiques non définis pour ce module.</p>'}
+        ${field('Statut de conception historique', m.status)}<small>${e(m.id)}</small></details>`).join('')}` : '<p>Moments pédagogiques non définis pour ce module.</p>'}
     `, 'vcoac-module')).join('')}`;
 }
 
@@ -265,6 +291,7 @@ async function loadScenario(next) {
   scenario = next; selectedCompetence = null; data = null; validation = null; decisionFilter = ''; priorityFilter = '';
   research = null; researchStatus = ''; researchImportance = ''; researchModule = '';
   enriched = null;
+  readiness = null; readinessError = null;
   document.querySelectorAll('[data-scenario]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scenario===scenario)));
   document.querySelector('#scenario-note').textContent = '';
   document.querySelector('#source-path').textContent = `examples/IA017/${scenario}/formation.json`;
@@ -278,8 +305,9 @@ async function loadScenario(next) {
     validation = loaded.validation;
     research = loaded.research || null;
     enriched = loaded.enriched || null;
+    readiness = loaded.readiness || null; readinessError = loaded.readiness_error || null;
     data = loaded.formation;
-    document.querySelector('#scenario-note').textContent = data?.meta.note || '';
+    document.querySelector('#scenario-note').textContent = readiness ? 'Formation pédagogiquement READY sur cas fictif · 420 min de planification · Module 2 validé conservé. Le cadrage historique reste consultable ; la validation finale du formateur est attendue.' : data?.meta.note || '';
     render();
   } catch {
     if (token !== request) return;
@@ -325,4 +353,4 @@ document.addEventListener('change', event => {
     render(); document.getElementById(id).focus();
   }
 });
-loadScenario(scenario);
+loadScenario(typeof location !== 'undefined' && new URLSearchParams(location.search).get('scenario') === 'act_on_data' ? 'act_on_data' : scenario);

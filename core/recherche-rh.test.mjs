@@ -55,12 +55,12 @@ for (const [query, expected] of [
   assert.ok(buildResearchPlan(formation).questions.every(q => q.status === 'external_research_needed'));
 });
 
-test('Recherche RH : Shadow AI couverte, questions juridiques et client maintenues ouvertes après le cycle MCP', async () => {
+test('Recherche RH : repères pédagogiques couverts, règles client toujours non confirmées', async () => {
   const result = await loadResearchPlan(new URL('examples/IA017/act_on_data/research-plan.json', root), formation, { asOf });
   assert.equal(result.validation.valid, true, JSON.stringify(result.validation));
-  assert.deepEqual(result.counts, { total: 8, covered: 4, refresh_needed: 0, external_research_needed: 4 });
-  assert.deepEqual(plan.questions.filter(q => q.status === 'covered').map(q => q.id), ['IA017-ACT-ON-DATA-R-39188e825a6c', 'IA017-ACT-ON-DATA-R-db7e80146e37', 'IA017-ACT-ON-DATA-R-70cf05c4fca4', target]);
-  for (const id of ['IA017-ACT-ON-DATA-R-224f3604aea9', 'IA017-ACT-ON-DATA-R-a1936416981d']) assert.equal(plan.questions.find(q => q.id === id).status, 'external_research_needed');
+  assert.deepEqual(result.counts, { total: 8, covered: 7, refresh_needed: 0, external_research_needed: 1 });
+  assert.equal(plan.questions.find(q => q.id.endsWith('224f3604aea9')).status, 'covered');
+  assert.equal(plan.questions.find(q => q.id.endsWith('a1936416981d')).status, 'external_research_needed');
   const q = result.plan.questions.find(q => q.id === target);
   assert.equal(q.knowledge_matches.filter(m => m.assessment && m.type === 'source').length, 4);
   assert.match(q.review.justification, /Avant : recherche externe nécessaire/);

@@ -33,7 +33,7 @@ for (const scenario of ['program_only', 'act_on_data']) test(`Cockpit Recherche 
   const ui = await frontend(); await ui.run(`loadScenario('${scenario}')`);
   const html = ui.html();
   assert.equal((html.match(/class="card research-question"/g) || []).length, 8);
-  const covered = scenario === 'act_on_data' ? 4 : 1;
+  const covered = scenario === 'act_on_data' ? 7 : 1;
   assert.ok(html.includes(`Couvertes</h3><strong>${covered}`));
   assert.ok(html.includes(`Recherche externe nécessaire</h3><strong>${8 - covered}`));
   assert.match(html, /propositions à valider/);
@@ -50,7 +50,7 @@ test('Cockpit Recherche : filtres combinés, compteurs globaux conservés et auc
   ui.change('research-module', 'AOD-M02'); assert.match(ui.html(), /1 \/ 8 questions/);
   ui.change('research-status', 'covered'); assert.match(ui.html(), /1 \/ 8 questions/);
   ui.change('research-status', 'external_research_needed'); assert.match(ui.html(), /Aucune question pour ces filtres/);
-  assert.match(ui.html(), /Recherche externe nécessaire<\/h3><strong>4/);
+  assert.match(ui.html(), /Recherche externe nécessaire<\/h3><strong>1/);
   assert.equal(ui.calls.length, calls);
 });
 test('Cockpit Recherche : aller-retour des scénarios efface filtres et contenu précédent', async () => {
@@ -84,16 +84,15 @@ test('Cockpit Recherche : connaissance utilisée, titre/type et distinction des 
   assert.doesNotMatch(ui.html(), /MET-GRILLE-CONCEPTION-AGENT —[^]*Utilisée pour couvrir la question/);
   await ui.run("loadScenario('act_on_data')");
   ui.change('research-module', 'AOD-M01');
-  assert.match(ui.html(), /Apport partiel — recherche à compléter/);
+  assert.match(ui.html(), /Utilisée pour couvrir la question/);
   assert.match(ui.html(), /Méthode/);
-  assert.match(ui.html(), /cas RH borné/);
-  assert.doesNotMatch(ui.html(), /Utilisée pour couvrir la question/);
+  assert.match(ui.html(), /application fictive/);
 });
 test('Cockpit Recherche : cycle Shadow AI, avant/après et quatre sources visibles sans appel externe', async () => {
   const ui = await frontend(); await ui.run("loadScenario('act_on_data')");
   const calls = ui.calls.length;
   ui.change('research-module', 'AOD-M03'); ui.change('research-status', 'covered');
-  assert.match(ui.html(), /1 \/ 8 questions/);
+  assert.match(ui.html(), /2 \/ 8 questions/);
   for (const text of ['Avant : recherche externe nécessaire', 'Après : Knowledge disponible', 'CON-SHADOW-AI', 'CON-RISQUES-IA-RH', 'MET-GRILLE-RISQUE-IA', 'CAS-RH-REPONSE-FICTIF', 'SRC-CNIL-USAGE-IAG', 'SRC-ANSSI-SECURITE-IAG', 'SRC-RGPD-REPERES-RH', 'SRC-UE-AIACT-RH']) assert.ok(ui.html().includes(text), text);
   assert.equal(ui.calls.length, calls);
 });

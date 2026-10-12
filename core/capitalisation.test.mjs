@@ -78,7 +78,7 @@ for (const scenario of ['program_only', 'act_on_data']) test(`Capitalisation ${s
   const before = JSON.stringify(p);
   const result = await loadResearchPlan(path(scenario, 'research-plan'), f, { asOf });
   assert.equal(result.validation.valid, true, JSON.stringify(result.validation));
-  const coveredIds = scenario === 'program_only' ? ['IA017-PROGRAM-ONLY-R-d6e72741b5cc'] : ['IA017-ACT-ON-DATA-R-39188e825a6c', 'IA017-ACT-ON-DATA-R-db7e80146e37', 'IA017-ACT-ON-DATA-R-70cf05c4fca4', 'IA017-ACT-ON-DATA-R-fec8b45a3751'];
+  const coveredIds = scenario === 'program_only' ? ['IA017-PROGRAM-ONLY-R-d6e72741b5cc'] : ['531f994b6af1', '39188e825a6c', 'db7e80146e37', '70cf05c4fca4', 'fec8b45a3751', '224f3604aea9', '364b45c3fd72'].map(id => `IA017-ACT-ON-DATA-R-${id}`);
   assert.deepEqual(p.questions.filter(q => q.status === 'covered').map(q => q.id), coveredIds);
   for (const q of p.questions) {
     if (!coveredIds.includes(q.id)) assert.equal(q.status, 'external_research_needed');
@@ -96,6 +96,9 @@ for (const scenario of ['program_only', 'act_on_data']) test(`Capitalisation ${s
 test('Capitalisation : un match partiel et une recherche lexicale ne créent pas de couverture', async () => {
   const f = await read(path('act_on_data', 'formation')), p = await read(path('act_on_data', 'research-plan'));
   const q = p.questions[0];
+  // Reconstituer explicitement l'état partiel testé, désormais couvert dans le cours.
+  q.status = 'external_research_needed'; q.review = null;
+  q.knowledge_matches.forEach(m => { m.coverage = 'partial'; });
   const matches = knowledgeMatchesForQuestion(q, notes, asOf);
   assert.ok(matches.some(m => m.coverage === 'partial'));
   assert.equal(q.status, 'external_research_needed');

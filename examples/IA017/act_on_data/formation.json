@@ -1004,14 +1004,20 @@
       ]
     }
   ],
-  "planification_modules": "Proposition expérimentale : enveloppe de 420 minutes, dont 390 en modules et 30 hors modules (15 de cadrage/positionnement et 15 de transitions et marge). Les pauses restent hors enveloppe selon AOD-H01, à confirmer avec le client. Pratique planifiée calculée sur 420 minutes ; aucune pratique imputée aux 30 minutes hors modules. L’écart catalogue 420/435 reste non résolu. Les preuves de conception sont comprises dans les modules ; l’adaptation de l’attestation reste à valider.",
+  "planification_modules": "Enveloppe de planification confirmée par la demande du 12 octobre 2026 : 420 minutes hors pauses. Modules conservés : 390 min ; ouverture/positionnement : 15 min ; trois transitions logistiques : 3 min chacune ; clôture : 6 min. Pratique : 250/420 = 59,52 %, sans pratique imputée aux 30 minutes hors modules. Anomalie d’origine catalogue 420/435 conservée ; aucune durée de module modifiée. Voir readiness.json et conduite-session.md pour le détail. Les statuts historiques proposition_a_valider ne constituent pas la readiness de production.",
   "modules": [
     {
       "id": "AOD-M01",
       "titre": "Qualifier une demande d’usage agentique",
       "resultat_attendu": "Argumenter le choix entre chat, agent et workflow pour un besoin métier, avec une autonomie bornée.",
-      "competences": ["AOD-C01"],
-      "concepts_cles": ["Chat, agent et workflow", "Réponse et action", "Autonomie et responsabilité"],
+      "competences": [
+        "AOD-C01"
+      ],
+      "concepts_cles": [
+        "Chat, agent et workflow",
+        "Réponse et action",
+        "Autonomie et responsabilité"
+      ],
       "duree_minutes": 50,
       "pratique_minutes": 25,
       "justification": "Rappel LLM bref pour des managers déjà utilisateurs, sans présumer une maîtrise agentique homogène (AOD-H02). Qualification commune avant la cartographie.",
@@ -1020,7 +1026,11 @@
         {
           "id": "AOD-M01-MP01",
           "content_ref": "content/AOD-M01-MP01.md",
-          "knowledge_refs": ["CON-AGENT-IA", "CAS-RH-REPONSE-FICTIF", "CON-RISQUES-IA-RH"],
+          "knowledge_refs": [
+            "CON-AGENT-IA",
+            "CAS-RH-REPONSE-FICTIF",
+            "CON-RISQUES-IA-RH"
+          ],
           "fonctions_vcoac": [
             "voir",
             "comprendre"
@@ -1030,7 +1040,8 @@
           "duree_minutes": 20,
           "pratique_minutes": 0,
           "contenu_prevu": [
-            "Contraste fictif RH : rédaction d’une réponse versus action dans un processus ; rappel LLM bref, autonomie et responsabilité à distinguer."
+            "Un chat RH doit-il devenir un agent ?",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Chat, agent et workflow",
@@ -1046,7 +1057,12 @@
         {
           "id": "AOD-M01-MP02",
           "content_ref": "content/AOD-M01-MP02.md",
-          "knowledge_refs": ["CON-AGENT-IA", "MET-GRILLE-CONCEPTION-AGENT", "CAS-RH-REPONSE-FICTIF", "CON-RISQUES-IA-RH"],
+          "knowledge_refs": [
+            "CON-AGENT-IA",
+            "MET-GRILLE-CONCEPTION-AGENT",
+            "CAS-RH-REPONSE-FICTIF",
+            "CON-RISQUES-IA-RH"
+          ],
           "fonctions_vcoac": [
             "agir"
           ],
@@ -1055,7 +1071,8 @@
           "duree_minutes": 20,
           "pratique_minutes": 20,
           "contenu_prevu": [
-            "Micro-activité envisagée : choisir un rôle de l’IA pour une demande RH fictive et localiser une validation humaine ; confrontation entre pairs."
+            "Qualifier une demande de manager",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Chat, agent et workflow",
@@ -1076,7 +1093,8 @@
           "duree_minutes": 10,
           "pratique_minutes": 5,
           "contenu_prevu": [
-            "5 min de reformulation argumentée par les participants après confrontation, puis 5 min de synthèse des repères et retour au cas ; fusion centrée sur la même décision."
+            "Reformuler la limite d'autonomie",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Réponse et action",
@@ -1084,7 +1102,13 @@
           ],
           "besoin_recherche": false,
           "questions_recherche": [],
-          "status": "proposition_a_valider"
+          "status": "proposition_a_valider",
+          "content_ref": "content/AOD-M01-MP03.md",
+          "knowledge_refs": [
+            "CON-AGENT-IA",
+            "MET-GRILLE-CONCEPTION-AGENT",
+            "CAS-RH042-ATELIER"
+          ]
         }
       ],
       "status": "proposition_a_valider"
@@ -1093,17 +1117,29 @@
       "id": "AOD-M02",
       "titre": "Concevoir un workflow RH explicable",
       "resultat_attendu": "Présenter une carte logique d’un cas RH fictif, avec rôles, flux, ressources, connexions et validations localisés.",
-      "competences": ["AOD-C01", "AOD-C02"],
-      "concepts_cles": ["Entrées, sorties et instructions", "Ressources, connecteurs et MCP", "Orchestration et supervision"],
+      "competences": [
+        "AOD-C01",
+        "AOD-C02"
+      ],
+      "concepts_cles": [
+        "Entrées, sorties et instructions",
+        "Ressources, connecteurs et MCP",
+        "Orchestration et supervision"
+      ],
       "duree_minutes": 140,
       "pratique_minutes": 90,
       "justification": "Donner la priorité à la conception logique sur un cas fictif à fournir (AOD-H04), sur Miro si autorisé. Introduction conceptuelle de MCP et ouverture multi-agents limitée ; démonstration n8n hors minutes de pratique. Aucun déploiement technique attendu ; adaptation catalogue à valider (AOD-H03).",
-      "dependances_modules": ["AOD-M01"],
+      "dependances_modules": [
+        "AOD-M01"
+      ],
       "moments_pedagogiques": [
         {
           "id": "AOD-M02-MP01",
           "content_ref": "content/AOD-M02-MP01.md",
-          "knowledge_refs": ["OUT-N8N-DEMO-FICTIVE", "CAS-RH-MCP-FICTIF"],
+          "knowledge_refs": [
+            "OUT-N8N-DEMO-FICTIVE",
+            "CAS-RH-MCP-FICTIF"
+          ],
           "fonctions_vcoac": [
             "voir",
             "comprendre"
@@ -1127,13 +1163,13 @@
         },
         {
           "id": "AOD-M02-MP02",
-        "content_ref": "content/AOD-M02-MP02.md",
-        "knowledge_refs": [
-          "CON-AGENT-IA",
-          "CON-MCP",
-          "CAS-RH-MCP-FICTIF",
-          "MET-CHOIX-ORCHESTRATION"
-        ],
+          "content_ref": "content/AOD-M02-MP02.md",
+          "knowledge_refs": [
+            "CON-AGENT-IA",
+            "CON-MCP",
+            "CAS-RH-MCP-FICTIF",
+            "MET-CHOIX-ORCHESTRATION"
+          ],
           "fonctions_vcoac": [
             "comprendre"
           ],
@@ -1157,13 +1193,13 @@
         },
         {
           "id": "AOD-M02-MP03",
-        "content_ref": "content/AOD-M02-MP03.md",
-        "knowledge_refs": [
-          "CON-MCP",
-          "MET-CONNEXION-MCP",
-          "CAS-RH-MCP-FICTIF",
-          "MET-GRILLE-CONCEPTION-AGENT"
-        ],
+          "content_ref": "content/AOD-M02-MP03.md",
+          "knowledge_refs": [
+            "CON-MCP",
+            "MET-CONNEXION-MCP",
+            "CAS-RH-MCP-FICTIF",
+            "MET-GRILLE-CONCEPTION-AGENT"
+          ],
           "fonctions_vcoac": [
             "outiller"
           ],
@@ -1185,7 +1221,10 @@
         {
           "id": "AOD-M02-MP04",
           "content_ref": "content/AOD-M02-MP04.md",
-          "knowledge_refs": ["CAS-RH042-ATELIER", "MET-CONNEXION-MCP"],
+          "knowledge_refs": [
+            "CAS-RH042-ATELIER",
+            "MET-CONNEXION-MCP"
+          ],
           "fonctions_vcoac": [
             "agir"
           ],
@@ -1208,7 +1247,10 @@
         {
           "id": "AOD-M02-MP05",
           "content_ref": "content/AOD-M02-MP05.md",
-          "knowledge_refs": ["CAS-RH042-ATELIER", "MET-CONNEXION-MCP"],
+          "knowledge_refs": [
+            "CAS-RH042-ATELIER",
+            "MET-CONNEXION-MCP"
+          ],
           "fonctions_vcoac": [
             "agir"
           ],
@@ -1230,7 +1272,10 @@
         {
           "id": "AOD-M02-MP06",
           "content_ref": "content/AOD-M02-MP06.md",
-          "knowledge_refs": ["CAS-RH-MCP-FICTIF", "MET-CONNEXION-MCP"],
+          "knowledge_refs": [
+            "CAS-RH-MCP-FICTIF",
+            "MET-CONNEXION-MCP"
+          ],
           "fonctions_vcoac": [
             "consolider"
           ],
@@ -1256,12 +1301,21 @@
       "id": "AOD-M03",
       "titre": "Conditionner l’usage aux contrôles des données RH",
       "resultat_attendu": "Analyser le trajet des données du workflow fictif et formuler les contrôles et décisions de gouvernance nécessaires.",
-      "competences": ["AOD-C02", "AOD-C03"],
-      "concepts_cles": ["Flux et destinataires des données", "Shadow AI et accès", "Contrôle humain et gouvernance"],
+      "competences": [
+        "AOD-C02",
+        "AOD-C03"
+      ],
+      "concepts_cles": [
+        "Flux et destinataires des données",
+        "Shadow AI et accès",
+        "Contrôle humain et gouvernance"
+      ],
       "duree_minutes": 100,
       "pratique_minutes": 65,
       "justification": "Partir de la carte obtenue pour expliciter risques et responsabilités. Les analyses et décisions des participants comptent comme pratique ; aucune conformité juridique acquise n’est affirmée. Références et règles internes restent à vérifier (AOD-D06).",
-      "dependances_modules": ["AOD-M02"],
+      "dependances_modules": [
+        "AOD-M02"
+      ],
       "moments_pedagogiques": [
         {
           "id": "AOD-M03-MP01",
@@ -1273,7 +1327,8 @@
           "duree_minutes": 10,
           "pratique_minutes": 0,
           "contenu_prevu": [
-            "Incident fictif de Shadow AI dans le workflow précédent ; trajet de la donnée à interroger, sans attribuer cet incident au client."
+            "Où part la donnée RH copiée dans un outil personnel ?",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Flux et destinataires des données",
@@ -1281,12 +1336,26 @@
           ],
           "besoin_recherche": false,
           "questions_recherche": [],
-          "status": "proposition_a_valider"
+          "status": "proposition_a_valider",
+          "content_ref": "content/AOD-M03-MP01.md",
+          "knowledge_refs": [
+            "CAS-RH042-ATELIER",
+            "CAS-RH-REPONSE-FICTIF",
+            "CON-SHADOW-AI"
+          ]
         },
         {
           "id": "AOD-M03-MP02",
           "content_ref": "content/AOD-M03-MP02.md",
-          "knowledge_refs": ["CON-SHADOW-AI", "CON-RISQUES-IA-RH", "MET-GRILLE-RISQUE-IA", "CAS-RH-REPONSE-FICTIF", "CON-AGENT-IA"],
+          "knowledge_refs": [
+            "CON-SHADOW-AI",
+            "CON-RISQUES-IA-RH",
+            "MET-GRILLE-RISQUE-IA",
+            "CAS-RH-REPONSE-FICTIF",
+            "CON-AGENT-IA",
+            "CAS-RH042-ATELIER",
+            "MET-REVUE-RH"
+          ],
           "fonctions_vcoac": [
             "comprendre",
             "outiller"
@@ -1296,7 +1365,8 @@
           "duree_minutes": 20,
           "pratique_minutes": 0,
           "contenu_prevu": [
-            "Flux, destinataires, accès, supervision et gouvernance à documenter ; type d’outil : grille d’analyse des risques. Fusion : chaque distinction sert directement une rubrique future de la grille. Aucun avis de conformité."
+            "Relier chaque risque à un contrôle à instruire",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Flux et destinataires des données",
@@ -1321,7 +1391,8 @@
           "duree_minutes": 45,
           "pratique_minutes": 45,
           "contenu_prevu": [
-            "Exercice guidé envisagé : annoter flux, destinataires, accès et incertitudes ; proposer les points de contrôle."
+            "Analyser le trajet des données fictives",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Flux et destinataires des données",
@@ -1330,7 +1401,13 @@
           ],
           "besoin_recherche": false,
           "questions_recherche": [],
-          "status": "proposition_a_valider"
+          "status": "proposition_a_valider",
+          "content_ref": "content/AOD-M03-MP03.md",
+          "knowledge_refs": [
+            "CAS-RH042-ATELIER",
+            "MET-GRILLE-RISQUE-IA",
+            "MET-REVUE-RH"
+          ]
         },
         {
           "id": "AOD-M03-MP04",
@@ -1342,14 +1419,21 @@
           "duree_minutes": 20,
           "pratique_minutes": 20,
           "contenu_prevu": [
-            "Application envisagée : discussion entre pairs des contrôles et demandes de validation, puis révision de la carte ; aucune conformité déclarée acquise."
+            "Défendre une décision de contrôle",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Contrôle humain et gouvernance"
           ],
           "besoin_recherche": false,
           "questions_recherche": [],
-          "status": "proposition_a_valider"
+          "status": "proposition_a_valider",
+          "content_ref": "content/AOD-M03-MP04.md",
+          "knowledge_refs": [
+            "MET-GRILLE-RISQUE-IA",
+            "MET-REVUE-RH",
+            "CAS-RH042-ATELIER"
+          ]
         },
         {
           "id": "AOD-M03-MP05",
@@ -1361,7 +1445,8 @@
           "duree_minutes": 5,
           "pratique_minutes": 0,
           "contenu_prevu": [
-            "Trois points clés et retour à l’incident fictif ; mini-checklist orale sans nouvel apport juridique."
+            "Revenir à la sortie de données initiale",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Flux et destinataires des données",
@@ -1369,7 +1454,13 @@
           ],
           "besoin_recherche": false,
           "questions_recherche": [],
-          "status": "proposition_a_valider"
+          "status": "proposition_a_valider",
+          "content_ref": "content/AOD-M03-MP05.md",
+          "knowledge_refs": [
+            "MET-GRILLE-RISQUE-IA",
+            "MET-REVUE-RH",
+            "CAS-RH042-ATELIER"
+          ]
         }
       ],
       "status": "proposition_a_valider"
@@ -1378,12 +1469,23 @@
       "id": "AOD-M04",
       "titre": "Décider d’un prochain pas créateur de valeur",
       "resultat_attendu": "Défendre un usage pour la production interne ou l’offre de services, avec hypothèse de valeur, limites et conditions de poursuite.",
-      "competences": ["AOD-C02", "AOD-C03", "AOD-C04"],
-      "concepts_cles": ["Production et capacité de production", "Valeur métier et hypothèse de gain", "Conditions de poursuite"],
+      "competences": [
+        "AOD-C02",
+        "AOD-C03",
+        "AOD-C04"
+      ],
+      "concepts_cles": [
+        "Production et capacité de production",
+        "Valeur métier et hypothèse de gain",
+        "Conditions de poursuite"
+      ],
       "duree_minutes": 100,
       "pratique_minutes": 70,
       "justification": "Mobiliser architecture et risques pour argumenter une décision de manager, puis transférer aux appels d’offres, budgets ou services. Les gains restent hypothétiques. Claude Code est proposé en ressource (AOD-G10) pour préserver ce résultat professionnel.",
-      "dependances_modules": ["AOD-M02", "AOD-M03"],
+      "dependances_modules": [
+        "AOD-M02",
+        "AOD-M03"
+      ],
       "moments_pedagogiques": [
         {
           "id": "AOD-M04-MP01",
@@ -1396,7 +1498,8 @@
           "duree_minutes": 15,
           "pratique_minutes": 0,
           "contenu_prevu": [
-            "Contraste fictif appliqué à un appel d’offres ou un budget : livrable ponctuel versus processus réutilisable ; aucun gain chiffré présenté comme mesuré."
+            "Un livrable plus rapide améliore-t-il la capacité de production ?",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Production et capacité de production",
@@ -1406,7 +1509,12 @@
           "questions_recherche": [
             "Quels éléments probants permettraient de distinguer gain ponctuel et amélioration durable de capacité sur ce processus ?"
           ],
-          "status": "proposition_a_valider"
+          "status": "proposition_a_valider",
+          "content_ref": "content/AOD-M04-MP01.md",
+          "knowledge_refs": [
+            "MET-VALEUR-WORKFLOW",
+            "CAS-RH042-ATELIER"
+          ]
         },
         {
           "id": "AOD-M04-MP02",
@@ -1418,7 +1526,8 @@
           "duree_minutes": 10,
           "pratique_minutes": 0,
           "contenu_prevu": [
-            "Type d’outil : canvas de décision reliant besoin, hypothèse de valeur, limites et conditions de poursuite ; contenu détaillé différé."
+            "Préparer une argumentation de valeur",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Valeur métier et hypothèse de gain",
@@ -1426,7 +1535,13 @@
           ],
           "besoin_recherche": false,
           "questions_recherche": [],
-          "status": "proposition_a_valider"
+          "status": "proposition_a_valider",
+          "content_ref": "content/AOD-M04-MP02.md",
+          "knowledge_refs": [
+            "MET-VALEUR-WORKFLOW",
+            "MET-GRILLE-RISQUE-IA",
+            "CAS-RH042-ATELIER"
+          ]
         },
         {
           "id": "AOD-M04-MP03",
@@ -1438,7 +1553,8 @@
           "duree_minutes": 70,
           "pratique_minutes": 70,
           "contenu_prevu": [
-            "Situation autonome envisagée : argumenter un usage pour les appels d’offres, budgets ou services, confronter entre pairs et réviser les conditions de poursuite ; gains explicitement hypothétiques."
+            "Argumenter un prochain pas",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Production et capacité de production",
@@ -1447,7 +1563,13 @@
           ],
           "besoin_recherche": false,
           "questions_recherche": [],
-          "status": "proposition_a_valider"
+          "status": "proposition_a_valider",
+          "content_ref": "content/AOD-M04-MP03.md",
+          "knowledge_refs": [
+            "MET-VALEUR-WORKFLOW",
+            "MET-REVUE-RH",
+            "CAS-RH042-ATELIER"
+          ]
         },
         {
           "id": "AOD-M04-MP04",
@@ -1459,7 +1581,8 @@
           "duree_minutes": 5,
           "pratique_minutes": 0,
           "contenu_prevu": [
-            "Retour au contraste initial et reformulation courte de la valeur à vérifier, du risque à lever et de la décision suivante."
+            "Retenir une condition de poursuite",
+            "Contenu pédagogique READY : déroulé, supports et provenance consultables dans le contenu enrichi. Validation finale du formateur attendue."
           ],
           "concepts_concernes": [
             "Valeur métier et hypothèse de gain",
@@ -1467,7 +1590,12 @@
           ],
           "besoin_recherche": false,
           "questions_recherche": [],
-          "status": "proposition_a_valider"
+          "status": "proposition_a_valider",
+          "content_ref": "content/AOD-M04-MP04.md",
+          "knowledge_refs": [
+            "MET-VALEUR-WORKFLOW",
+            "MET-GRILLE-RISQUE-IA"
+          ]
         }
       ],
       "status": "proposition_a_valider"
@@ -1475,7 +1603,7 @@
   ],
   "pratique": {
     "cible_pourcentage": 60,
-    "justification": "Proposition fondée sur les attentes de conception, cartographie et analyse de cas ; la pratique inclut décider, concevoir, expliquer et analyser les risques, pas seulement manipuler des outils. Aucun taux n’est fixé par le client ni encore mesuré.",
+    "justification": "Cible pédagogique validée dans la demande de finalisation : environ 60 % de pratique adaptée aux managers. Prévision conservée : 250 minutes de productions et décisions sur 420 minutes, soit 59,52 %. Observation des démonstrations et temps hors modules exclus de la pratique ; taux réel à observer en session.",
     "minimum_souhaite": 40,
     "maximum_souhaite": 70,
     "status": "proposition_a_valider",
@@ -1632,7 +1760,7 @@
       "id": "AOD-D01",
       "porte": "P1",
       "question": "Quelle durée nette et quelle marge d’adaptation du catalogue confirmer ?",
-      "recommandation": "Ne retenir 420 min qu’après accord ; corriger l’écart de 15 min et prioriser les besoins client.",
+      "recommandation": "Résolue pour la planification par instruction utilisateur du 12 octobre 2026 : conserver 420 minutes. Anomalie documentaire catalogue 435 conservée, sans correction silencieuse.",
       "hypothese_refs": [
         "AOD-H01",
         "AOD-H03"
@@ -1661,7 +1789,7 @@
       "id": "AOD-D04",
       "porte": "P2",
       "question": "Valider une cible de 60 % de pratique intellectuelle et de conception ?",
-      "recommandation": "Compter les productions et décisions des participants ; exclure la simple observation des démonstrations.",
+      "recommandation": "Résolue par instruction utilisateur : cible environ 60 %, évaluations légères ; plan conservé à 250/420 = 59,52 %.",
       "hypothese_refs": [
         "AOD-H01",
         "AOD-H04"

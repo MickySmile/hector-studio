@@ -1,0 +1,222 @@
+{
+  "formation_id": "IA017-ACT-ON-DATA",
+  "date": "2026-10-12",
+  "definition": "READY = supports pédagogiques animables sur le cas fictif, avec provenance et correction selon la fonction. Validation finale du formateur attendue ; aucune autorisation de déploiement réel.",
+  "initial": "readiness-initiale.md",
+  "preserved_module2": {
+    "module": "54622db35db2e0a327f0bb7996d4fdfb546fd4506e8d4fc91dd9b8aba800d3d1",
+    "contents": {
+      "AOD-M02-MP01": "ac6784848f38d2e24eb52660130225e3201cf06933c8caad4fc739036f247d6c",
+      "AOD-M02-MP02": "f3c86f21920309e2fa0829c96e503b51db92c5398f89aeb1769bbdc758a9c19f",
+      "AOD-M02-MP03": "5eb284dc81c1157ff5c667980bdefdd8366a945eeda922e6dfbb9b9eccab2d05",
+      "AOD-M02-MP04": "64b660d220ed7e8378d809e14d2aab2d0e66363d33b67c6b4dbf4a8cd5986df3",
+      "AOD-M02-MP05": "0e4d03998d6bba7f31662b09c4a0c40ed040ebd30d2780ca79505633a3c90768",
+      "AOD-M02-MP06": "e4f8ee9ed5269b8ce1305e0026cff1bb873c6b21d9dfa98d64317e998bc0b8e2"
+    }
+  },
+  "modules": [
+    {
+      "module_id": "AOD-M01",
+      "ready": 3,
+      "total": 3,
+      "moments": [
+        {
+          "moment_id": "AOD-M01-MP01",
+          "status": "READY",
+          "content_ref": "content/AOD-M01-MP01.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        },
+        {
+          "moment_id": "AOD-M01-MP02",
+          "status": "READY",
+          "content_ref": "content/AOD-M01-MP02.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        },
+        {
+          "moment_id": "AOD-M01-MP03",
+          "status": "READY",
+          "content_ref": "content/AOD-M01-MP03.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        }
+      ]
+    },
+    {
+      "module_id": "AOD-M02",
+      "ready": 6,
+      "total": 6,
+      "moments": [
+        {
+          "moment_id": "AOD-M02-MP01",
+          "status": "READY",
+          "content_ref": "content/AOD-M02-MP01.md",
+          "evidence": "Validation utilisateur existante ; module et contenus préservés."
+        },
+        {
+          "moment_id": "AOD-M02-MP02",
+          "status": "READY",
+          "content_ref": "content/AOD-M02-MP02.md",
+          "evidence": "Validation utilisateur existante ; module et contenus préservés."
+        },
+        {
+          "moment_id": "AOD-M02-MP03",
+          "status": "READY",
+          "content_ref": "content/AOD-M02-MP03.md",
+          "evidence": "Validation utilisateur existante ; module et contenus préservés."
+        },
+        {
+          "moment_id": "AOD-M02-MP04",
+          "status": "READY",
+          "content_ref": "content/AOD-M02-MP04.md",
+          "evidence": "Validation utilisateur existante ; module et contenus préservés."
+        },
+        {
+          "moment_id": "AOD-M02-MP05",
+          "status": "READY",
+          "content_ref": "content/AOD-M02-MP05.md",
+          "evidence": "Validation utilisateur existante ; module et contenus préservés."
+        },
+        {
+          "moment_id": "AOD-M02-MP06",
+          "status": "READY",
+          "content_ref": "content/AOD-M02-MP06.md",
+          "evidence": "Validation utilisateur existante ; module et contenus préservés."
+        }
+      ]
+    },
+    {
+      "module_id": "AOD-M03",
+      "ready": 5,
+      "total": 5,
+      "moments": [
+        {
+          "moment_id": "AOD-M03-MP01",
+          "status": "READY",
+          "content_ref": "content/AOD-M03-MP01.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        },
+        {
+          "moment_id": "AOD-M03-MP02",
+          "status": "READY",
+          "content_ref": "content/AOD-M03-MP02.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        },
+        {
+          "moment_id": "AOD-M03-MP03",
+          "status": "READY",
+          "content_ref": "content/AOD-M03-MP03.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        },
+        {
+          "moment_id": "AOD-M03-MP04",
+          "status": "READY",
+          "content_ref": "content/AOD-M03-MP04.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        },
+        {
+          "moment_id": "AOD-M03-MP05",
+          "status": "READY",
+          "content_ref": "content/AOD-M03-MP05.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        }
+      ]
+    },
+    {
+      "module_id": "AOD-M04",
+      "ready": 4,
+      "total": 4,
+      "moments": [
+        {
+          "moment_id": "AOD-M04-MP01",
+          "status": "READY",
+          "content_ref": "content/AOD-M04-MP01.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        },
+        {
+          "moment_id": "AOD-M04-MP02",
+          "status": "READY",
+          "content_ref": "content/AOD-M04-MP02.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        },
+        {
+          "moment_id": "AOD-M04-MP03",
+          "status": "READY",
+          "content_ref": "content/AOD-M04-MP03.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        },
+        {
+          "moment_id": "AOD-M04-MP04",
+          "status": "READY",
+          "content_ref": "content/AOD-M04-MP04.md",
+          "evidence": "Contenu complété et provenance vérifiée ; consigne, production, correction et consolidation selon fonction."
+        }
+      ]
+    }
+  ],
+  "timing": {
+    "envelope_minutes": 420,
+    "module_minutes": 390,
+    "outside_minutes": 30,
+    "practice_minutes": 250,
+    "practice_percent": 59.523809523809526,
+    "catalogue_detail_minutes": 435,
+    "segments": [
+      {
+        "label": "Ouverture / positionnement",
+        "minutes": 15
+      },
+      {
+        "label": "Module 1",
+        "minutes": 50
+      },
+      {
+        "label": "Transition M1 → M2",
+        "minutes": 3
+      },
+      {
+        "label": "Module 2",
+        "minutes": 140
+      },
+      {
+        "label": "Transition M2 → M3",
+        "minutes": 3
+      },
+      {
+        "label": "Module 3",
+        "minutes": 100
+      },
+      {
+        "label": "Transition M3 → M4",
+        "minutes": 3
+      },
+      {
+        "label": "Module 4",
+        "minutes": 100
+      },
+      {
+        "label": "Clôture",
+        "minutes": 6
+      }
+    ]
+  },
+  "remaining_blockers": [],
+  "human_followups": [
+    {
+      "id": "AOD-F01",
+      "title": "Validation finale du formateur sur les modules 1, 3 et 4",
+      "scope": "Avant production PowerPoint complète",
+      "blocking_pedagogical_readiness": false
+    },
+    {
+      "id": "AOD-D06",
+      "title": "Règles et interlocuteurs client à confirmer avant tout usage réel",
+      "scope": "Transfert réel uniquement ; formation sur données fictives prête",
+      "blocking_pedagogical_readiness": false
+    },
+    {
+      "id": "AOD-D03",
+      "title": "Aligner le libellé de l’attestation si un document contractuel est émis",
+      "scope": "Aucune réalisation technique non effectuée ne doit être attestée",
+      "blocking_pedagogical_readiness": false
+    }
+  ]
+}

@@ -19,7 +19,7 @@
       },
       "preuve_recherchee": "Critères de choix chat, agent et workflow appliqués à un cas RH borné.",
       "cadrage_status": "proposition_a_valider",
-      "status": "external_research_needed",
+      "status": "covered",
       "used_by": [
         {
           "module_id": "AOD-M01",
@@ -53,8 +53,8 @@
             "checked_at": "2026-10-12"
           },
           "confidence": "moyenne",
-          "coverage": "partial",
-          "assessment": "Les critères généraux chat/agent/workflow sont disponibles. La preuve attendue exige leur application à un cas RH borné ; le seul exemple fourni concerne une réclamation. Le transfert au cas RH reste à instruire, sans inventer de cas client."
+          "coverage": "sufficient",
+          "assessment": "Distinctions utilisateur/programme/modèle et autonomie bornée présentes dans Knowledge ; application fictive et correction complétées. Aucun état de plateforme ni droit client affirmé ; aucune nouvelle recherche externe."
         },
         {
           "knowledge_id": "MET-GRILLE-CONCEPTION-AGENT",
@@ -76,12 +76,20 @@
             "checked_at": "2026-10-12"
           },
           "confidence": "moyenne",
-          "coverage": "partial",
-          "assessment": "Objectif, limites et contrôle aident à borner un usage. La grille pédagogique ne fournit pas l’application RH attendue ni les règles internes nécessaires ; elle ne clôt pas cette question."
+          "coverage": "sufficient",
+          "assessment": "Distinctions utilisateur/programme/modèle et autonomie bornée présentes dans Knowledge ; application fictive et correction complétées. Aucun état de plateforme ni droit client affirmé ; aucune nouvelle recherche externe."
         }
       ],
       "fusion_justification": null,
-      "review": null
+      "review": {
+        "reviewer": "Codex — revue sémantique pour finalisation Act-On Data, validation finale formateur attendue",
+        "date": "2026-10-12",
+        "justification": "Distinctions utilisateur/programme/modèle et autonomie bornée présentes dans Knowledge ; application fictive et correction complétées. Aucun état de plateforme ni droit client affirmé ; aucune nouvelle recherche externe.",
+        "knowledge_ids": [
+          "CON-AGENT-IA",
+          "MET-GRILLE-CONCEPTION-AGENT"
+        ]
+      }
     },
     {
       "id": "IA017-ACT-ON-DATA-R-39188e825a6c",
@@ -734,7 +742,7 @@
       },
       "preuve_recherchee": "Références en vigueur, périmètre d’application à instruire et interlocuteur de validation ; aucune conformité présumée.",
       "cadrage_status": "proposition_a_valider",
-      "status": "external_research_needed",
+      "status": "covered",
       "used_by": [
         {
           "module_id": "AOD-M03",
@@ -747,9 +755,39 @@
           ]
         }
       ],
-      "knowledge_matches": [],
+      "knowledge_matches": [
+        {
+          "knowledge_id": "MET-REVUE-RH",
+          "path": "methods/revue-rh-avant-usage.md",
+          "title": "Préparer les confirmations avant un usage IA/RH réel",
+          "type": "method",
+          "reasons": [
+            "title : rh",
+            "tags : rgpd, rh",
+            "content : rgpd, cas, rh"
+          ],
+          "score": 13,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2026-11-12",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "Les références à vérifier et les rôles compétents sont explicités pour apprendre à instruire une décision. Complément DPO consulté et réserve AI Act maintenue ; aucune conformité ni calendrier enseigné. Les identités et autorisations réelles restent la question client distincte."
+        }
+      ],
       "fusion_justification": null,
-      "review": null
+      "review": {
+        "reviewer": "Codex — revue sémantique pour finalisation Act-On Data, validation finale formateur attendue",
+        "date": "2026-10-12",
+        "justification": "Les références à vérifier et les rôles compétents sont explicités pour apprendre à instruire une décision. Complément DPO consulté et réserve AI Act maintenue ; aucune conformité ni calendrier enseigné. Les identités et autorisations réelles restent la question client distincte.",
+        "knowledge_ids": [
+          "MET-REVUE-RH"
+        ]
+      }
     },
     {
       "id": "IA017-ACT-ON-DATA-R-a1936416981d",
@@ -765,7 +803,7 @@
         "max_age_days": null,
         "verification_usage": true
       },
-      "preuve_recherchee": "Règles et restrictions confirmées par un responsable identifié avant préparation de la grille.",
+      "preuve_recherchee": "Confirmation client avant usage réel : outils/comptes, catégories de données, destinataires, contrats, conservation, droits, procédure et rôles. Non bloquant pour la grille fictive RH-042 ; aucune règle interne présumée.",
       "cadrage_status": "proposition_a_valider",
       "status": "external_research_needed",
       "used_by": [
@@ -782,7 +820,14 @@
       ],
       "knowledge_matches": [],
       "fusion_justification": null,
-      "review": null
+      "review": {
+        "reviewer": "Codex — distinction préparation pédagogique / transfert réel",
+        "date": "2026-10-12",
+        "justification": "BLOCKED_DECISION uniquement pour le transfert vers des données et systèmes réels. Les permissions fictives de D3 et MET-REVUE-RH rendent les activités pédagogiquement READY. Aucun besoin Web supplémentaire ; ne pas déclarer les règles client couvertes.",
+        "knowledge_ids": [
+          "MET-REVUE-RH"
+        ]
+      }
     },
     {
       "id": "IA017-ACT-ON-DATA-R-364b45c3fd72",
@@ -794,13 +839,13 @@
         "Mesures du processus à obtenir"
       ],
       "fraicheur_attendue": {
-        "description": "Temporalité à arbitrer selon la méthode et le processus étudiés.",
-        "max_age_days": null,
+        "description": "Méthode pédagogique examinée le 12 octobre 2026, réexamen proposé à 180 jours ou changement de processus.",
+        "max_age_days": 180,
         "verification_usage": false
       },
       "preuve_recherchee": "Indicateurs, situation initiale et observations répétées permettant de tester une hypothèse de gain durable.",
       "cadrage_status": "proposition_a_valider",
-      "status": "external_research_needed",
+      "status": "covered",
       "used_by": [
         {
           "module_id": "AOD-M04",
@@ -813,9 +858,39 @@
           ]
         }
       ],
-      "knowledge_matches": [],
+      "knowledge_matches": [
+        {
+          "knowledge_id": "MET-VALEUR-WORKFLOW",
+          "path": "methods/verifier-valeur-workflow.md",
+          "title": "Tester la valeur d'un workflow — du brouillon à la capacité durable",
+          "type": "method",
+          "reasons": [
+            "title : durable, capacite",
+            "tags : gain, capacite",
+            "content : distinguer, gain, capacite, processus"
+          ],
+          "score": 18,
+          "freshness": {
+            "status": "fresh",
+            "verified_at": "2026-10-12",
+            "review_after": "2027-04-10",
+            "age_days": 0,
+            "checked_at": "2026-10-12"
+          },
+          "confidence": "moyenne",
+          "coverage": "sufficient",
+          "assessment": "Recherche interne insuffisante sur la mesure de capacité ; lecture ciblée NIST capitalisée avant rédaction. Canvas, protocole et calcul fictif disponibles. Aucun gain client mesuré, seuil réel imposé ni étude causale revendiquée."
+        }
+      ],
       "fusion_justification": null,
-      "review": null
+      "review": {
+        "reviewer": "Codex — revue sémantique pour finalisation Act-On Data, validation finale formateur attendue",
+        "date": "2026-10-12",
+        "justification": "Recherche interne insuffisante sur la mesure de capacité ; lecture ciblée NIST capitalisée avant rédaction. Canvas, protocole et calcul fictif disponibles. Aucun gain client mesuré, seuil réel imposé ni étude causale revendiquée.",
+        "knowledge_ids": [
+          "MET-VALEUR-WORKFLOW"
+        ]
+      }
     }
   ]
 }

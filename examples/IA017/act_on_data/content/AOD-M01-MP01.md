@@ -1,8 +1,8 @@
 ---
 moment_id: "AOD-M01-MP01"
 module_id: "AOD-M01"
-knowledge_refs: ["CON-AGENT-IA", "CAS-RH-REPONSE-FICTIF", "CON-RISQUES-IA-RH"]
-source_refs: ["SRC-GOOGLE-AGENTIC-DESIGN", "SRC-NIST-AGENT-STANDARDS", "SRC-ANTHROPIC-TRUSTWORTHY", "SRC-ANTHROPIC-EFFECTIVE", "SRC-RGPD-REPERES-RH", "SRC-CNIL-USAGE-IAG", "SRC-ANSSI-SECURITE-IAG", "SRC-UE-AIACT-RH"]
+knowledge_refs: ["CON-AGENT-IA","CAS-RH-REPONSE-FICTIF","CON-RISQUES-IA-RH"]
+source_refs: ["SRC-GOOGLE-AGENTIC-DESIGN","SRC-NIST-AGENT-STANDARDS","SRC-ANTHROPIC-TRUSTWORTHY","SRC-ANTHROPIC-EFFECTIVE","SRC-RGPD-REPERES-RH","SRC-CNIL-USAGE-IAG","SRC-ANSSI-SECURITE-IAG","SRC-UE-AIACT-RH"]
 last_generated_from_knowledge: "2026-10-12"
 ---
 
@@ -50,4 +50,16 @@ Piège à éviter : attribuer davantage d’autonomie parce que cela paraît plu
 - CAS-RH-REPONSE-FICTIF, H5 → CON-RISQUES-IA-RH et MET-GRILLE-RISQUE-IA → leurs fiches Source : situation et frontières du brouillon RH. Les trois variantes sont une adaptation pédagogique de ce cas, sans observation réelle.
 - CON-RISQUES-IA-RH, H2/A1–A2/H3 → SRC-ANSSI-SECURITE-IAG pour les permissions ; SRC-CNIL-USAGE-IAG pour l’examen critique des sorties. H2/H3 sont des synthèses pédagogiques ; les autres sources de la fiche restent résolues, sans ajout d’enseignement réglementaire.
 
-Suffisance : le patrimoine permet ce contraste conceptuel et son application fictive. Il ne confirme pas les capacités d’un outil actuel, les droits client ou une conformité RH. La question de recherche de MP01 conserve son statut actuel en attendant un examen de couverture distinct. La date de rédaction depuis Knowledge ne constitue pas une nouvelle consultation des sources.
+Suffisance : le patrimoine permet ce contraste conceptuel et son application fictive. Il ne confirme pas les capacités d’un outil actuel, les droits client ou une conformité RH. La revue de finalisation couvre la question conceptuelle à partir de Knowledge ; aucune nouvelle recherche sur les agents n'est nécessaire. La date de rédaction depuis Knowledge ne constitue pas une nouvelle consultation des sources.
+
+## Déroulé formateur — 20 minutes, 0 minute de pratique
+
+- 3 min : rappel LLM : produire une formulation plausible ne garantit ni vérité, ni accès à une procédure à jour, ni autorisation d'action. Dans les trois variantes, la sortie reste un brouillon ; appui CON-AGENT-IA et CON-RISQUES-IA-RH, C2.
+- 7 min : présenter les trois variantes dans le même univers RH fictif. Montrer qui fournit les pièces et qui choisit l'étape suivante.
+- 5 min : expliciter les frontières lecture, brouillon, revue et action. Le justificatif médical n'est pas utile à la tâche proposée et n'entre pas dans le support participant.
+- 3 min : commenter deux erreurs : « tout workflow avec IA est un agent » et « agent signifie envoi automatique ». La première confond présence d'IA et choix de la suite ; la seconde confond architecture et permission.
+- 2 min : donner la demande et le support de MP02. L'univers se prolongera en M02 par le dossier RH-042 ; aucune organisation réelle n'est décrite.
+
+## Consolidation et matériel
+
+Projeter les trois variantes et la demande suffit. Le formateur apporte l'explication ; aucun accès LLM n'est requis. Le repère à retenir est : « Qui choisit la suite, avec quels droits, et qui peut arrêter ? » La production argumentée est réservée aux 20 minutes de MP02.
