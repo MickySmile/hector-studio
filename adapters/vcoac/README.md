@@ -95,3 +95,33 @@ reformulations reste une revue humaine P4.
 Les exemples de `template_spec.json` sont relus comme illustrations, pas comme
 preuves de conformité : certaines formes historiques (par exemple `nonAcceptes`
 en chaîne) sont plus permissives que le contrat. V1 utilise un tableau de textes.
+
+## Pilote vertical validé — Cycle C
+
+Le formateur valide la version révisée du Module 2 : **17 slides**, activités
+MP04 et MP05 fusionnées, rappel n8n intégré, notes et provenance conservées.
+Il confirme pouvoir animer le module avec ce support, avec la démonstration
+n8n réalisée en parallèle. Le rendu réel passe la machine locale en mode
+`--strict` avec **0 alerte** ; les **204 tests** réussissent.
+
+Décisions éditoriales validées pour cette projection :
+
+- Une activité correspond à une slide de consigne lorsque la lisibilité le
+  permet ; ne pas forcer une fusion qui surcharge la slide.
+- Les critères peuvent être synthétisés à l'écran. Leurs formulations complètes
+  et leur sens restent conservés dans les notes formateur ou le corrigé.
+- Ne jamais supprimer du fond pour satisfaire un layout : ajuster la projection
+  et conserver les sections pédagogiques intégrales avec leur provenance.
+- Un rappel schématique peut accompagner une démonstration réalisée en parallèle,
+  sans reproduire toute l'interface ni ajouter de connaissance ou d'asset.
+
+MP04 conserve ses cinq étapes et ses **60 minutes** ; MP05 conserve ses cinq
+étapes et ses **30 minutes**. Les quatre critères C02 et les corrigés sont dans
+les notes. MP03 conserve six slides pour dix minutes : présenter la logique et
+les supports, sans lecture exhaustive des notes ni remplissage pendant OUTILLER.
+
+Le commit du pilote conserve uniquement les sources nécessaires à sa reproduction.
+Les PPTX, specs, rapports et prévisualisations sont des artefacts générables dans
+`outputs/vcoac/`, ignorés par Git. Le ZIP et l'extraction de la machine restent
+des dépendances locales externes. La validation de ce rendu ne remplace pas les
+contrôles stricts et visuels d'un futur rendu modifié.

@@ -108,7 +108,7 @@ export async function generate({ root = repository, machineRoot = join(root, 're
     'P4 : projection éditoriale proposée ; validation du formateur avant la génération PPTX.',
     'Contrat natif exécuté sans rendu : polices, géométrie, débordements, chevauchements et compteur D1 exact restent à vérifier au Cycle C.',
     'MP03 : six supports dans les 10 minutes existantes ; montrer la logique, conserver les exemples complets en notes et les gabarits en ressources.',
-    'MP04/MP05 : deux slides par activité, même durée et mêmes cinq étapes ; critères répartis 2 + 2, sans temps ajouté.',
+    'MP04/MP05 : une slide par activité, même durée et mêmes cinq étapes ; synthèse des critères à l’écran, quatre critères intacts et corrections en notes.',
     'Les corrigés MP04/MP05 restent réservés aux notes formateur ; distribuer le dossier RH-042 et les gabarits sources avant l’atelier.',
     'Version exacte et captures n8n non transmises ; la preuve est le retour explicite du formateur, pas une capture synthétique.',
   ];
@@ -153,7 +153,7 @@ function mappingReport(ir, validation) {
     '## Validation et points à confirmer', '',
     `Contrôleur natif : **${validation.native_contract.slides_checked} slides, 0 violation, 0 warning de contrat**. Contrôles complémentaires Hector : conformes. Assets manquants : **aucun**.`, '',
     ...ir.warnings.map(w => '- ' + w), '',
-    'Arbitrage de fond nécessaire : **aucun identifié**. Approbation P4 attendue sur le découpage proposé, notamment les doubles fiches et les doubles consignes. La validation des slides ne vaut pas validation du rendu graphique.', '',
+    'Arbitrage de fond nécessaire : **aucun identifié**. Consignes fusionnées selon le retour du formateur ; nouvelle revue du rendu attendue. La validation des slides ne vaut pas validation du rendu graphique.', '',
   ];
   return lines.join('\n');
 }

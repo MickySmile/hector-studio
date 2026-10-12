@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join, dirname, basename, resolve } from 'node:path';
 import { generate, repository, sectionsOf, scenarioPath } from './generate.mjs';
 import { loadMachine, validateSpec, sha256 } from './machine.mjs';
-import { projection, criteria } from './projection.mjs';
+import { projection, criteria, screenCriteria } from './projection.mjs';
 
 const machineRoot = join(repository, 'references/machine_vcoac/local/machine_vcoac');
 const machine = await loadMachine(machineRoot);
@@ -14,14 +14,14 @@ const moments = Array.from({ length: 6 }, (_, i) => `AOD-M02-MP0${i + 1}`);
 const check = spec => validateSpec(spec, machine);
 
 test('Adaptateur VCOAC : Module 2 seul, six moments et toutes leurs fonctions, temps non multiplié', () => {
-  assert.equal(result.spec.slides.length, 19);
+  assert.equal(result.spec.slides.length, 17);
   assert.deepEqual(result.intermediate.moments.map(m => m.moment_id), moments);
   assert.equal(result.intermediate.duration_minutes, 140);
   assert.equal(result.intermediate.practice_minutes, 90);
   assert.equal(result.intermediate.moments.reduce((n, m) => n + m.duration_minutes, 0), 140);
   assert.deepEqual(result.spec.slides.slice(0, 2).map(s => s.phase), ['VOIR', 'COMPRENDRE']);
   for (const s of result.intermediate.slides) assert.ok(moments.includes(s.moment_id));
-  for (const m of result.intermediate.moments.filter(m => /MP0[45]$/.test(m.moment_id))) assert.equal(m.slides.length, 2);
+  for (const m of result.intermediate.moments.filter(m => /MP0[45]$/.test(m.moment_id))) assert.equal(m.slides.length, 1);
 });
 
 test('Adaptateur VCOAC : sources intégrales conservées dans les notes et fragments traçables', async () => {
@@ -60,7 +60,9 @@ test('Adaptateur VCOAC : six questions MCP et six rubriques du canvas, sans pert
 test('Adaptateur VCOAC : quatre critères C02 et cinq étapes conservés dans chacun des ateliers', () => {
   for (const [id, minutes] of [['MP04', 60], ['MP05', 30]]) {
     const slides = result.spec.slides.filter(s => s.section.startsWith(`AOD-M02-${id}`));
-    assert.deepEqual(slides.flatMap(s => s.criteres), criteria);
+    assert.equal(slides.length, 1);
+    assert.deepEqual(slides[0].criteres, screenCriteria);
+    for (const criterion of criteria) assert.ok(slides[0].notes.reponse.includes(criterion));
     for (const s of slides) {
       assert.equal(s.etapes.length, 5);
       assert.equal(s.etapes.reduce((n, step) => n + Number(step.match(/^\d+/)[0]), 0), minutes);
@@ -82,7 +84,7 @@ test('Adaptateur VCOAC : deux branches n8n validées, aucun compteur RH assimil�
 test('Adaptateur VCOAC : contrôleur natif réel, types et longueurs respectés', () => {
   assert.equal(check(result.spec).valid, true);
   assert.deepEqual(result.validation.native_contract.warnings, []);
-  assert.equal(result.validation.native_contract.slides_checked, 19);
+  assert.equal(result.validation.native_contract.slides_checked, 17);
   assert.equal(result.validation.render_executed, false);
   for (const s of result.spec.slides) assert.ok(machine.composers.has(s.type));
   const broken = structuredClone(result.spec);

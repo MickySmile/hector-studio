@@ -20,13 +20,13 @@ add('MP01', '01', 'VOIR', 'Observer les deux branches de la démonstration valid
   { relance: 'Où passe la demande, et qui pourrait autoriser une correction ?', vigilance: ['« Complet » signifie égalité des nombres, pas validité métier des pièces.'] });
 add('MP01', '02', 'COMPRENDRE', 'Lire le chemin prédéfini et préparer la distinction workflow / agent.',
   ['Intention et message essentiel', 'COMPRENDRE — commentaire', 'Déroulé — durée inchangée'],
-  'PROCESSUS montre le trajet jusqu’au choix de branche ; les deux sorties restent visibles sur la slide précédente.',
+  'Rappel schématique pendant la démonstration réelle : déclencheur, données RH-042 fictives, If et branches ; même layout, résultats détaillés sur la slide précédente.',
   { type: 'PROCESSUS', titre: 'Le workflow suit une règle prédéfinie', etapes: [
-    { nom: 'Déclencheur', phrase: 'Le formateur lance.', exemple: 'Manual Trigger' },
-    { nom: 'Données', phrase: 'Deux nombres fictifs.', exemple: 'Edit Fields : reçus / attendus' },
-    { nom: 'Comparaison', phrase: 'Tester leur égalité.', exemple: 'If' },
+    { nom: 'Départ', phrase: 'Le formateur lance.', exemple: 'Manual Trigger' },
+    { nom: 'Données', phrase: 'Éléments RH-042 fictifs.', exemple: 'Edit Fields : reçus / attendus' },
+    { nom: 'If', phrase: 'Tester leur égalité.', exemple: 'Reçus = attendus' },
     { nom: 'Décision', phrase: 'TRUE ou FALSE.', exemple: 'Règle fixée à l’avance' },
-    { nom: 'Branchement', phrase: 'Afficher le résultat.', exemple: 'Complet / incomplet' },
+    { nom: 'Branches', phrase: 'Afficher le résultat.', exemple: 'Incomplet / complet' },
   ], aRetenir: 'Aucun agent IA ni validation métier n’est démontré.' },
   { reponse: 'La règle oriente le workflow ; le RH habilité garde la décision métier.', transition: 'Passer aux ressources et connexions.' });
 
@@ -129,22 +129,26 @@ add('MP03', '06', 'OUTILLER', 'Présenter les questions MCP 4 à 6 et la décisi
   ], 'Décider : essai fictif / intégration existante / connexion différée.'),
   { vigilance: ['L’exemple reporte la connexion faute de preuves ; la grille ne vaut pas autorisation.'], transition: 'Utiliser les deux gabarits pour cartographier RH-042.' });
 
-// Les quatre critères C02 sont répartis 2 + 2 sur deux supports de la MÊME activité.
-// Les cinq étapes et l'enveloppe de temps sont répétées, jamais additionnées.
+// Une consigne par activité : synthèse à l'écran, quatre critères intacts en notes.
+// Les cinq étapes et leur enveloppe de temps sont conservées.
 export const criteria = [
   'Entrées, sorties et étapes lisibles.',
   'Rôles et connexions justifiés par le besoin.',
   'Contrôles et validations localisés.',
   'Complexité limitée et points restant à vérifier signalés.',
 ];
+export const screenCriteria = [
+  'Trajet lisible ; rôles et liens justifiés.',
+  'Contrôles situés ; complexité limitée.',
+];
 function workshop(moment, title, minutes, context, steps, output, refused, sections) {
-  for (let part = 0; part < 2; part++) add(moment, `0${part + 1}`, 'AGIR',
-    part ? 'Relire avec les critères 3 et 4 du même atelier.' : 'Lancer l’activité et montrer les critères 1 et 2.',
-    sections, 'Deux supports simultanés du même atelier ; quatre critères intacts, cinq étapes conservées.',
-    { type: 'CONSIGNE_ATELIER', titre: title, kicker: `Même atelier — ${part + 1}/2`,
+  add(moment, '01', 'AGIR',
+    'Lancer l’activité et guider la relecture avec les quatre critères C02.',
+    sections, 'Fusion des deux consignes : cinq étapes et durée conservées ; critères synthétisés à l’écran et intacts dans les notes avec le corrigé.',
+    { type: 'CONSIGNE_ATELIER', titre: title,
       modalites: [{ texte: `${minutes} min au total`, style: 'jaune' }, { texte: '2 binômes + 1 trinôme' }, { texte: 'Papier / support partagé', style: 'contour' }],
-      contexte: context, etapes: steps, livrable: output, criteres: criteria.slice(part * 2, part * 2 + 2), nonAcceptes: [refused] },
-    { vigilance: ['Deux slides pour une seule activité : ne pas doubler sa durée. Les corrections restent dans les notes formateur.'] });
+      contexte: context, etapes: steps, livrable: output, criteres: screenCriteria, nonAcceptes: [refused] },
+    { reponse: 'Quatre critères C02 :\n' + criteria.join('\n'), vigilance: ['Conserver la durée indiquée. Les quatre critères détaillés et les corrections restent dans les notes formateur.'] });
 }
 workshop('MP04', 'À vous : cartographier RH-042', 60,
   'CAS FICTIF — dossier D1/D2/D3, canvas et grille MCP de MP03.',
@@ -164,7 +168,7 @@ workshop('MP05', 'À vous : éprouver la carte', 30,
     '8 min : auteurs, réviser et justifier ; conserver les inconnues.',
     '4 min : montrer la révision au groupe relecteur.'],
   'Carte révisée + annotation d’échec + phrase justifiant le changement.',
-  'Transformer le silence en accord ou inventer un défaut.',
+  'Silence ≠ accord ; aucun défaut inventé.',
   ['Situation, intention et mission', 'Ressources et organisation', 'Consigne et durée', 'Scénario d’échec et exemple de lecture', 'Production attendue et critères légers', 'Principe de correction', 'Provenance et condition de disponibilité']);
 add('MP06', '01', 'CONSOLIDER', 'Ancrer entrée, responsabilité et validation.',
   ['Intention et phrase à retenir', 'CONSOLIDER — trois repères et retour illustré', 'Déroulé formateur', 'Provenance'],
