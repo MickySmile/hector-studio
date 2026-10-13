@@ -47,11 +47,12 @@ test('Cycle A : source n8n manquante isolée à MP01, ateliers indépendants de 
   }
 });
 
-test('RH-042 : dossier fictif traçable, validation de session encore requise et liens accessibles', async () => {
+test('RH-042 : dossier fictif traçable validé par le formateur et liens accessibles', async () => {
   const dossier = notes.find(n => n.metadata.id === 'CAS-RH042-ATELIER');
   assert.ok(dossier);
   assert.equal(dossier.metadata.case_nature, 'fictif');
-  assert.equal(dossier.metadata.statut, 'dossier_prepare_validation_formateur_avant_session');
+  assert.equal(dossier.metadata.statut, 'dossier_valide_formateur_ajustements_appliques');
+  assert.match(dossier.content, /validé par le formateur le 13 octobre 2026/);
   const loaded = await loadContents(formation, path);
   assert.equal(loaded.valid, true);
   for (const id of ['AOD-M02-MP04', 'AOD-M02-MP05']) {

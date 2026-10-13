@@ -11,8 +11,8 @@ last_generated_from_knowledge: "2026-10-12"
 AGIR — **30 minutes de pratique**, inchangées. **READY pour la production du
 contenu pédagogique** : Option A validée, dossier RH-042 et activité MP04 préparés.
 La carte sera produite par les participants en MP04 ; cette ressource de séance
-n’est plus un contenu manquant à concevoir. Le formateur valide le dossier avant
-utilisation. Aucun test n8n n’est requis pour cet exercice sur papier.
+n’est plus un contenu manquant à concevoir. Le dossier est validé par le formateur le 13 octobre 2026 ;
+les ajustements de l’audit sont appliqués. Aucun test n8n n’est requis pour cet exercice sur papier.
 
 ## Situation, intention et mission
 
@@ -103,5 +103,6 @@ enseignement juridique. Aucune recherche externe pour cet enrichissement.
 Le choix du cas était le seul obstacle restant au protocole préparé. Le dossier,
 l’action concernée, la carte de référence de MP04 et la correction de revue sont
 maintenant disponibles. Aucun autre blocage de contenu identifié. La validation
-du dossier par le formateur avant session reste une condition d’utilisation,
-distincte de READY, et n’est pas déclarée acquise.
+du dossier par le formateur est acquise le 13 octobre 2026, avec application
+des ajustements. Distribuer le scénario d’échec seulement à l’étape 3 de
+l’activité 4, selon le master case-rh042/ACTIVITES_RH042.md.

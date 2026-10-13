@@ -3,7 +3,7 @@ id: "CAS-RH042-ATELIER"
 type: "case"
 title: "CAS FICTIF — RH-042 : dossier de cartographie et de revue"
 case_nature: "fictif"
-statut: "dossier_prepare_validation_formateur_avant_session"
+statut: "dossier_valide_formateur_ajustements_appliques"
 tags: ["RH-042", "workflow", "cartographie", "permissions", "validation"]
 aliases: ["dossier pédagogique RH-042"]
 verified_at: "2026-10-12"
@@ -17,8 +17,11 @@ used_by: ["IA017-ACT-ON-DATA"]
 # CAS FICTIF — RH-042
 
 **Dossier participant — version pédagogique du 12 octobre 2026.**
-Option A retenue par le formateur. Hector Studio prépare ce dossier ; le formateur
-le valide avant utilisation en session. Cette validation du dossier reste à faire.
+CAS FICTIF RH-042 retenu comme fil rouge. Dossier préparé par Hector Studio et
+validé par le formateur le 13 octobre 2026 comme CAS COHÉRENT AVEC AJUSTEMENTS ;
+les ajustements de l’audit sont appliqués dans case-rh042/. La date de vérification
+des sources demeure le 12 octobre 2026. Distribuer les pièces par épisode, selon
+le master des activités ; ne pas remettre cette fiche intégrale au départ.
 Tous les rôles, pièces et droits ci-dessous sont fictifs. Aucun salarié réel,
 politique client, règle de calcul des congés ou système opérationnel n’est décrit.
 

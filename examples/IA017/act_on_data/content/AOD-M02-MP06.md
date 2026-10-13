@@ -31,8 +31,8 @@ brouillon convaincant ne donnent pas à l’agent lecteur le droit de corriger.
 
 Le formateur peut pointer une carte effectivement produite dans MP05 ; ne pas
 lui attribuer une erreur ou un résultat avant la séance. Les explications et
-l’exemple complet ci-dessus suffisent au support, quel que soit le futur cas
-d’atelier. Le choix de ce cas ne conditionne pas la rédaction de ces trois repères.
+l’exemple complet ci-dessus reprennent le CAS FICTIF RH-042, fil rouge validé
+et dossier utilisé dans l’atelier. Ces trois repères accompagnent la même carte.
 
 ## Déroulé formateur
 

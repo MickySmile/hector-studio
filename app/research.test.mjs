@@ -76,6 +76,17 @@ test('Cockpit Recherche : erreur isolée sans ancien bilan ni blocage des module
   assert.match(ui.html(), /&lt;plan invalide&gt;/); assert.doesNotMatch(ui.html(), /research-stats/);
   ui.click({ view: 'modules' }); assert.match(ui.html(), /PO-M01/);
 });
+
+test('Cockpit Recherche : avertissement de fraîcheur visible et échappé sans bloquer le plan', async () => {
+  const ui = await frontend(body => {
+    body.research.validation.warnings = [{ code: 'coverage_refresh_needed', message: '<vérifier avant usage>' }];
+    return body;
+  });
+  assert.match(ui.html(), /Informations à réactualiser avant usage/);
+  assert.match(ui.html(), /&lt;vérifier avant usage&gt;/);
+  assert.match(ui.html(), /class="card research-question"/);
+  assert.doesNotMatch(ui.html(), /Plan de recherche indisponible|<vérifier/);
+});
 test('Cockpit Recherche : connaissance utilisée, titre/type et distinction des apports partiels', async () => {
   const ui = await frontend();
   ui.change('research-status', 'covered');

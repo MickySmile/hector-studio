@@ -44,7 +44,7 @@ consultation « compteur et éléments utiles, lecture à confirmer » ; retour
 « valeurs + références » ; sortie « brouillon à examiner ». Placer les ressources
 à côté de la consultation et le responsable RH à côté de la revue, sans le
 confondre avec un agent logiciel. MCP est une option de connexion, pas une étape
-de validation. Exemple de niveau de précision, **pas un dossier de TP choisi**.
+de validation. Exemple de niveau de précision sur le **CAS FICTIF RH-042, fil rouge validé**.
 
 ### Gabarit global vierge à copier
 
@@ -61,8 +61,8 @@ Zone de dessin : entrée … → étapes avec rôles/instructions … → sortie
 Ressource reliée à … ; connexion proposée … ; validation de … par … ;
 si refus ou information absente … . Responsable à solliciter pour l’inconnue … .
 
-Le gabarit se complète avec le cas qui sera retenu pour l’atelier ; cet outil et
-son exemple d’usage sont disponibles sans préjuger ce choix. Le contrôle de
+Le gabarit se complète avec le CAS FICTIF RH-042 retenu pour l’atelier ; cet outil et
+son exemple d’usage accompagnent le même dossier. Le contrôle de
 lecture reprend les quatre critères C02 : lisibilité ; rôles/connexions justifiés ;
 contrôles localisés ; complexité limitée et inconnues signalées.
 

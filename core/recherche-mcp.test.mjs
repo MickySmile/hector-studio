@@ -59,11 +59,12 @@ test('Cycle MCP : revue sémantique requise et sources partielles non suffisante
   assert.ok((await validateResearchPlan(copy, formation, { notes, asOf })).errors.some(e => e.code === 'partial_coverage'));
 });
 
-test('Cycle MCP : échéance explicite invalide la couverture sans renouvellement automatique', async () => {
+test('Cycle MCP : échéance explicite signale une réactualisation sans renouvellement automatique', async () => {
   const concept = notes.find(n => n.metadata.id === 'CON-MCP');
   assert.equal(freshness(concept, { max_age_days: 90 }, '2026-11-12').status, 'fresh');
   assert.equal(freshness(concept, { max_age_days: 90 }, '2026-11-13').status, 'stale');
   const result = await validateResearchPlan(plan, formation, { notes, asOf: '2026-11-13' });
-  assert.ok(result.errors.some(e => e.code === 'coverage_not_fresh' && e.message.includes(target)));
+  assert.equal(result.valid, true);
+  assert.ok(result.warnings.some(e => e.code === 'coverage_refresh_needed' && e.message.includes(target)));
   assert.equal(plan.questions.find(q => q.id === target).status, 'covered');
 });

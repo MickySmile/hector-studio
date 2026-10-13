@@ -4,15 +4,16 @@
   "definition": "READY = supports pédagogiques animables sur le cas fictif, avec provenance et correction selon la fonction. Validation finale du formateur attendue ; aucune autorisation de déploiement réel.",
   "initial": "readiness-initiale.md",
   "preserved_module2": {
-    "module": "54622db35db2e0a327f0bb7996d4fdfb546fd4506e8d4fc91dd9b8aba800d3d1",
+    "module": "3513aca2c7429dcb179e5ece3e1b5fb4ceeed359ed6b8c4e0921bdeea72914e9",
     "contents": {
       "AOD-M02-MP01": "ac6784848f38d2e24eb52660130225e3201cf06933c8caad4fc739036f247d6c",
-      "AOD-M02-MP02": "f3c86f21920309e2fa0829c96e503b51db92c5398f89aeb1769bbdc758a9c19f",
-      "AOD-M02-MP03": "5eb284dc81c1157ff5c667980bdefdd8366a945eeda922e6dfbb9b9eccab2d05",
-      "AOD-M02-MP04": "64b660d220ed7e8378d809e14d2aab2d0e66363d33b67c6b4dbf4a8cd5986df3",
-      "AOD-M02-MP05": "0e4d03998d6bba7f31662b09c4a0c40ed040ebd30d2780ca79505633a3c90768",
-      "AOD-M02-MP06": "e4f8ee9ed5269b8ce1305e0026cff1bb873c6b21d9dfa98d64317e998bc0b8e2"
-    }
+      "AOD-M02-MP02": "ade171fea0e982c0948d645f153f0f73873defe376191faf9803773a9ee0c8be",
+      "AOD-M02-MP03": "1b543d61ac9e1a8fe39029cade006c6f481959619b8ed84ecb06b5254413fac1",
+      "AOD-M02-MP04": "00e3a4dee12311688a652fa2f68be014de1c779d6e1c5c0394b3e7f0a8f74a98",
+      "AOD-M02-MP05": "88fd30351d05098a9a68e941a9301dbb887260c1b68182759660fd8fae534ffc",
+      "AOD-M02-MP06": "f9e188d48e60ae893021c89f68d316e36c04b613f8388d6e4cc50c1e1587e580"
+    },
+    "note": "Référence actualisée le 13 octobre 2026 pour les seuls ajustements RH-042 autorisés : cas validé et résumé n8n. Durées et projection écran inchangées ; vérifications d’usage toujours datées du 12 octobre."
   },
   "modules": [
     {

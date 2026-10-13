@@ -35,7 +35,7 @@ test('Finalisation Act-On Data : 3/3, 6/6, 5/5, 4/4 et provenance complète des 
   assert.deepEqual(readiness.remaining_blockers, []);
 });
 
-test('Finalisation Act-On Data : Module 2 et ses six contenus inchangés depuis audit initial', async () => {
+test('Finalisation Act-On Data : référence Module 2 conforme après les ajustements RH-042 autorisés', async () => {
   assert.equal(hash(JSON.stringify(formation.modules[1])), readiness.preserved_module2.module);
   for (const m of formation.modules[1].moments_pedagogiques) assert.equal(hash(await readFile(new URL(m.content_ref, base))), readiness.preserved_module2.contents[m.id]);
 });

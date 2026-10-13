@@ -73,12 +73,12 @@ export function buildResearchPlan(formation, { groups = [] } = {}) {
 }
 
 export async function validateResearchPlan(plan, formation, { notes = [], asOf = localDate() } = {}) {
-  const errors = validateSchema(plan, schema);
+  const errors = validateSchema(plan, schema), warnings = [];
   const fail = (code, message) => errors.push({ code, message });
-  if (errors.length) return { valid: false, errors };
+  if (errors.length) return { valid: false, errors, warnings };
   if (plan.formation_id !== formation.meta.id || plan.scenario !== formation.meta.scenario) fail('scenario_mismatch', 'Le plan appartient à une autre formation ou un autre scénario.');
   let needs;
-  try { needs = extractResearchNeeds(formation); } catch (error) { fail('needs_invalid', error.message); return { valid: false, errors }; }
+  try { needs = extractResearchNeeds(formation); } catch (error) { fail('needs_invalid', error.message); return { valid: false, errors, warnings }; }
   const expected = new Map(needs.map(n => [keyOf(n), n])), seen = new Set(), ids = new Set(), canonical = new Map();
   const noteById = new Map(notes.map(n => [n.metadata.id, n]));
   for (const q of plan.questions) {
@@ -119,12 +119,17 @@ export async function validateResearchPlan(plan, formation, { notes = [], asOf =
       if (selected.some(note => !note)) { fail('review_reference', `Référence de revue introuvable : ${q.id}`); continue; }
       const states = selected.map(note => freshness(note, q.fraicheur_attendue, asOf).status);
       if (q.status === 'covered' && review.knowledge_ids.some(id => q.knowledge_matches.find(m => m.knowledge_id === id)?.coverage === 'partial')) fail('partial_coverage', `Une fiche retenue reste explicitement partielle : ${q.id}`);
-      if (q.status === 'covered' && states.some(s => s !== 'fresh')) fail('coverage_not_fresh', `Couverture non vérifiable ou périmée : ${q.id}`);
+      // Les seuils de freshness restent inchangés. Une preuve datée périmée
+      // demande une réactualisation, sans invalider la structure du dossier.
+      // Une fraîcheur inconnue (date absente/future, règle indéterminée) reste
+      // bloquante : elle ne justifie pas une couverture déclarée acquise.
+      if (q.status === 'covered' && states.includes('unknown')) fail('coverage_not_fresh', `Couverture non vérifiable : ${q.id}`);
+      if (states.includes('stale')) warnings.push({ code: 'coverage_refresh_needed', message: `Information à réactualiser avant usage : ${q.id}`, question_id: q.id });
       if (q.status === 'refresh_needed' && !states.includes('stale')) fail('refresh_not_stale', `Aucune fiche pertinente périmée justifiée : ${q.id}`);
     }
   }
   for (const key of expected.keys()) if (!seen.has(key)) fail('missing_origin', `Question VCOAC omise : ${key}`);
-  return { valid: !errors.length, errors };
+  return { valid: !errors.length, errors, warnings };
 }
 
 // Conserver l'examen sémantique enregistré, même sans recouvrement lexical.

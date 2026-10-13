@@ -74,7 +74,7 @@ d’animation mesuré ; sa validation P3 reste distincte de la complétude.
 
 Application de MET-CHOIX-ORCHESTRATION ; **comparaison pédagogique fictive**.
 Le résultat commun reste une explication de l’écart et un brouillon pour revue RH.
-Le cas déjà utilisé ici n’est pas, par cette comparaison, choisi pour le TP MP04.
+Le CAS FICTIF RH-042 est le fil rouge validé et le dossier retenu pour le TP MP04.
 
 | Point de lecture | Trajet simple | Variante multi-agents, hypothèse à justifier |
 | --- | --- | --- |

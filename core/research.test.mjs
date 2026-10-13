@@ -93,7 +93,9 @@ test('Recherche : candidat lexical frais ne suffit jamais à couvrir', async () 
   q.review = { reviewer: 'Test uniquement', date: asOf, justification: 'Revue synthétique du besoin.', knowledge_ids: ['T-CON-001'] };
   assert.equal((await validate(p)).valid, true);
   q.review.knowledge_ids = ['T-OUT-001'];
-  assert.ok(has(await validate(p), 'coverage_not_fresh'));
+  const stale = await validate(p);
+  assert.equal(stale.valid, true);
+  assert.ok(stale.warnings.some(w => w.code === 'coverage_refresh_needed'));
   q.status = 'refresh_needed'; assert.equal((await validate(p)).valid, true);
   q.review.knowledge_ids = ['T-CON-001']; assert.ok(has(await validate(p), 'refresh_not_stale'));
   q.review.knowledge_ids = ['absente']; assert.ok(has(await validate(p), 'review_reference'));
@@ -103,6 +105,39 @@ test('Recherche : fraîcheur inconnue et revue future ne justifient pas covered'
   q.status = 'covered'; q.review = { reviewer: 'Test', date: asOf, justification: 'Test', knowledge_ids: ['T-CAS-001'] };
   assert.ok(has(await validate(p), 'coverage_not_fresh'));
   q.review.date = '2026-10-13'; assert.ok(has(await validate(p), 'review_required'));
+});
+
+test('Recherche Act-On Data : vérifications du 12 octobre conservées, OK le 12 et deux warnings le 13', async () => {
+  const f = await read(new URL('formation.json', fixture('act_on_data')));
+  const planPath = new URL('research-plan.json', fixture('act_on_data'));
+  const current = await loadResearchPlan(planPath, f, { asOf: '2026-10-12' });
+  const nextDay = await loadResearchPlan(planPath, f, { asOf: '2026-10-13' });
+  assert.equal(current.validation.valid, true);
+  assert.deepEqual(current.validation.warnings, []);
+  assert.equal(nextDay.validation.valid, true);
+  assert.deepEqual(nextDay.validation.errors, []);
+  assert.deepEqual(nextDay.validation.warnings.map(w => w.question_id), [
+    'IA017-ACT-ON-DATA-R-39188e825a6c', 'IA017-ACT-ON-DATA-R-224f3604aea9',
+  ]);
+  assert.deepEqual(nextDay.plan.questions.map(q => q.review), current.plan.questions.map(q => q.review));
+  for (const warning of nextDay.validation.warnings) {
+    const q = nextDay.plan.questions.find(q => q.id === warning.question_id);
+    for (const id of q.review.knowledge_ids) {
+      assert.equal(q.knowledge_matches.find(m => m.knowledge_id === id).freshness.verified_at, '2026-10-12');
+    }
+  }
+});
+
+test('Recherche : un avertissement de fraîcheur ne masque pas une source indispensable absente', async () => {
+  const p = structuredClone(saved), q = p.questions[0];
+  q.status = 'covered';
+  q.review = { reviewer: 'Test', date: asOf, justification: 'Test', knowledge_ids: ['T-OUT-001'] };
+  const stale = await validate(p);
+  assert.equal(stale.valid, true);
+  assert.equal(stale.warnings.length, 1);
+  const missing = await validateResearchPlan(p, formation, { notes: [], asOf });
+  assert.equal(missing.valid, false);
+  assert.ok(has(missing, 'review_reference'));
 });
 test('Recherche : fiche candidate inexistante refusée', async () => {
   const p = structuredClone(saved);

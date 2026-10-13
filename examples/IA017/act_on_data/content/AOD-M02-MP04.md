@@ -9,8 +9,8 @@ last_generated_from_knowledge: "2026-10-12"
 # Cartographier le workflow RH
 
 AGIR — **60 minutes de pratique**, durée inchangée. **READY pour la production
-du contenu pédagogique** ; validation du dossier par le formateur avant session
-encore requise. Le choix du cas est validé : **CAS FICTIF — RH-042**.
+du contenu pédagogique** ; dossier validé par le formateur le 13 octobre 2026,
+ajustements de l’audit appliqués. Le choix du cas est validé : **CAS FICTIF — RH-042**.
 
 ## Situation et intention
 
@@ -97,6 +97,6 @@ a changé, ne pas écrire. La version de départ du dossier n’autorise pas ce 
 CAS-RH042-ATELIER reprend H7/H6 et fournit les pièces de l’activité ; critères et
 intention issus de `formation.json`. La carte de référence est une proposition
 pédagogique Hector, pas une architecture client déployée. Hector Studio a préparé
-le dossier ; le formateur doit encore valider cette version avant distribution.
-Cette approbation d’utilisation est distincte de la complétude READY et n’est
-pas prétendue obtenue ici. Aucune dépendance à la démonstration n8n de MP01.
+le dossier, validé par le formateur le 13 octobre 2026 avec application des
+ajustements détectés. Distribuer D1–D3 et les permissions au moment prévu,
+selon le master case-rh042/ACTIVITES_RH042.md ; réserver les corrigés. Aucune dépendance à la démonstration n8n de MP01.

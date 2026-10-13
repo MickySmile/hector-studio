@@ -53,8 +53,8 @@ test('VCOAC complet : Module 2 et ses quatre artefacts strictement identiques au
   const m2 = result.intermediate.slides.filter(s => s.module_id === 'AOD-M02');
   const extracted = m2.map(s => result.spec.slides[s.machine_index - 1]);
   assert.deepEqual(extracted, pilot.spec.slides);
-  assert.equal(sha256(JSON.stringify(pilot)), 'a3e44b20c269fb315e63937740aeea1f3c74bba3120b5faa9050e91582b5a5fe');
-  assert.equal(sha256(JSON.stringify(extracted)), '21f9e9d97667704864b446bf571b7440895cb63518f7e8b20b26660602872918');
+  assert.equal(sha256(JSON.stringify(pilot)), '4c54be9e486e02bbf26afb534ddcdaaab5d5a0256d6e40ab5d70e890203c19dc');
+  assert.equal(sha256(JSON.stringify(extracted)), '05b58b53b5b82f3aa25ff7c20d3cb7074ee70495f81fc7e9e31735dd66ba5d35');
   for (const slide of m2) {
     const { module_id, machine_index, ...actual } = slide;
     const { machine_index: pilotIndex, ...expected } = pilot.intermediate.slides.find(s => s.slide_id === slide.slide_id);

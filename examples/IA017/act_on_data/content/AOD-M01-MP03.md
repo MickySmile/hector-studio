@@ -18,7 +18,7 @@ En binôme, relisez votre grille. Complétez : « Pour préparer …, nous reten
 
 ## Principe de correction — notes formateur
 
-Exemple acceptable : « Pour préparer le brouillon RH-042, nous retenons un workflow ; la suite suit des étapes prévues ; il consulte les pièces autorisées mais ne corrige pas le compteur ; le RH habilité peut refuser ; si la justification du 9 manque, la correction reste suspendue. » Un assistant reste défendable si le gestionnaire conduit la suite. Un agent exige de nommer un choix adaptatif utile dans un périmètre donné. Corriger la justification, sans imposer un mot commercial.
+Exemple acceptable : « Pour préparer le brouillon sur la procédure d'absence, nous retenons un assistant ; le gestionnaire choisit la suite ; le système prépare un texte à partir d'un extrait autorisé, mais ne peut ni l'envoyer ni écrire dans la paie ; le RH habilité peut refuser ; si la procédure manque, la réponse de fond est suspendue et l'extrait est demandé. » Un workflow reste défendable si les étapes sont prévues. Un agent exige de nommer un choix adaptatif utile dans un périmètre donné. Corriger la justification, sans imposer un mot commercial. Les valeurs du compteur ne sont introduites qu'à la fin de la consolidation ci-dessous.
 
 Si un groupe écrit « le manager a demandé, donc l'agent peut modifier », lui faire séparer objectif et permission. Si la limite est « l'IA doit être fiable », demander une condition observable d'arrêt. Aucun score ni notation.
 

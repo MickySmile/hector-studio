@@ -76,5 +76,6 @@ test('Recherche RH : score lexical et sources ne remplacent pas un examen séman
   q.review.knowledge_ids = ['SRC-CNIL-USAGE-IAG'];
   assert.ok((await validateResearchPlan(copy, formation, { notes, asOf })).errors.some(e => e.code === 'partial_coverage'));
   const stale = await validateResearchPlan(plan, formation, { notes, asOf: '2027-10-12' });
-  assert.ok(stale.errors.some(e => e.code === 'coverage_not_fresh'));
+  assert.equal(stale.valid, true);
+  assert.ok(stale.warnings.some(e => e.code === 'coverage_refresh_needed'));
 });

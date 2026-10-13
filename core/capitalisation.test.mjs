@@ -122,9 +122,11 @@ test('Capitalisation : référence examinée sans match lexical conservée, mét
   assert.equal(result[0].freshness.checked_at, '2026-10-13');
 });
 
-test('Capitalisation : fiche revue absente ou couverture devenue ancienne invalide le plan', async () => {
+test('Capitalisation : fiche absente bloquante, couverture ancienne signalée en avertissement', async () => {
   const f = await read(path('program_only', 'formation')), p = await read(path('program_only', 'research-plan'));
   const withoutConcept = notes.filter(n => n.metadata.id !== 'CON-AGENT-IA');
   assert.equal((await validateResearchPlan(p, f, { notes: withoutConcept, asOf })).valid, false);
-  assert.ok((await validateResearchPlan(p, f, { notes, asOf: '2027-10-12' })).errors.some(e => e.code === 'coverage_not_fresh'));
+  const stale = await validateResearchPlan(p, f, { notes, asOf: '2027-10-12' });
+  assert.equal(stale.valid, true);
+  assert.ok(stale.warnings.some(e => e.code === 'coverage_refresh_needed'));
 });

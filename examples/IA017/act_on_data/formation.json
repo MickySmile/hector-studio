@@ -329,10 +329,10 @@
     },
     {
       "id": "AOD-H04",
-      "texte": "Un cas RH fictif et son jeu de données seront disponibles avant la session ; leur producteur reste à désigner.",
+      "texte": "Le CAS FICTIF RH-042 et ses pièces D1–D3 ont été préparés par Hector Studio et validés par le formateur le 13 octobre 2026 ; le détail des événements D2 reste volontairement absent.",
       "confiance": "faible",
-      "impact_pedagogique": "Conditionne une conception contextualisée sans recours à des données RH réelles ; la contribution des Data Scientists n’est pas acquise.",
-      "a_valider": true,
+      "impact_pedagogique": "Dossier RH-042 disponible pour une conception contextualisée sur données fictives ; aucune contribution supplémentaire des Data Scientists n’est nécessaire aux sept activités.",
+      "a_valider": false,
       "source_refs": [
         {
           "source": "besoin_client_act_on_data.md",
@@ -1128,7 +1128,7 @@
       ],
       "duree_minutes": 140,
       "pratique_minutes": 90,
-      "justification": "Donner la priorité à la conception logique sur un cas fictif à fournir (AOD-H04), sur Miro si autorisé. Introduction conceptuelle de MCP et ouverture multi-agents limitée ; démonstration n8n hors minutes de pratique. Aucun déploiement technique attendu ; adaptation catalogue à valider (AOD-H03).",
+      "justification": "Donner la priorité à la conception logique sur le CAS FICTIF RH-042 préparé et validé comme fil rouge (AOD-H04), sur Miro si autorisé. Introduction conceptuelle de MCP et ouverture multi-agents limitée ; démonstration n8n hors minutes de pratique. Aucun déploiement technique attendu ; adaptation catalogue à valider (AOD-H03).",
       "dependances_modules": [
         "AOD-M01"
       ],
@@ -1149,7 +1149,7 @@
           "duree_minutes": 20,
           "pratique_minutes": 0,
           "contenu_prevu": [
-            "Démonstration n8n envisagée sur cas fictif : rôles, flux et validations ; observation non comptée comme pratique, représentation statique de repli à confirmer."
+            "Démonstration n8n exécutée et validée par le formateur le 12 octobre 2026 sur n8n Cloud : test A, 8 éléments reçus / 9 attendus → dossier incomplet, PASS ; test B, 8/8 → dossier complet, PASS. Workflow déterministe sans agent IA, API externe ni validation métier RH. Observation non comptée comme pratique ; trajet textuel disponible comme illustration statique. Cette validation porte uniquement sur ces deux tests."
           ],
           "concepts_concernes": [
             "Entrées, sorties et instructions",
@@ -1233,7 +1233,7 @@
           "duree_minutes": 60,
           "pratique_minutes": 60,
           "contenu_prevu": [
-            "TP de conception envisagé sur cas et données fictifs ; carte logique à produire, sans réalisation technique obligatoire."
+            "TP de conception sur le CAS FICTIF RH-042 validé comme fil rouge ; carte logique à produire avec D1–D3, sans réalisation technique obligatoire."
           ],
           "concepts_concernes": [
             "Entrées, sorties et instructions",
@@ -1259,7 +1259,7 @@
           "duree_minutes": 30,
           "pratique_minutes": 30,
           "contenu_prevu": [
-            "Application envisagée : revue croisée de la carte, scénario d’échec et révision argumentée ; pratique de conception par les managers."
+            "Revue croisée de la carte RH-042, scénario d’échec et révision argumentée ; pratique de conception par les managers."
           ],
           "concepts_concernes": [
             "Ressources, connecteurs et MCP",
@@ -1712,9 +1712,9 @@
     },
     {
       "id": "AOD-AL06",
-      "type": "donnees_et_cas_a_confirmer",
-      "message": "Le cas doit être fictif ; la fourniture du jeu de données par les Data Scientists est seulement envisagée.",
-      "action": "Désigner le responsable du cas et confirmer le caractère fictif des données avant utilisation.",
+      "type": "cas_fictif_valide",
+      "message": "Décision résolue : CAS FICTIF RH-042 retenu comme fil rouge ; dossier préparé par Hector Studio et validé par le formateur le 13 octobre 2026. Aucune fourniture par les Data Scientists n’est requise pour les activités.",
+      "action": "Distribuer le dossier validé et ses épisodes au moment prévu ; conserver uniquement des données fictives.",
       "source_refs": [
         {
           "source": "besoin_client_act_on_data.md",
@@ -1770,7 +1770,7 @@
       "id": "AOD-D02",
       "porte": "P1",
       "question": "Quel cas RH fictif retenir et qui fournit les données ?",
-      "recommandation": "Décision formateur validée : Option A, adapter le cas fictif RH-042. Hector Studio prépare le dossier pédagogique ; le formateur valide le dossier avant utilisation en session. La validation du dossier préparé reste à obtenir.",
+      "recommandation": "Décision résolue : CAS FICTIF RH-042 utilisé comme fil rouge. Dossier préparé par Hector Studio, validé comme CAS COHÉRENT AVEC AJUSTEMENTS par le formateur le 13 octobre 2026 ; ajustements de l’audit autorisés et appliqués.",
       "hypothese_refs": [
         "AOD-H04"
       ]
@@ -1799,7 +1799,7 @@
       "id": "AOD-D05",
       "porte": "P3",
       "question": "Quels supports et démonstrations sont indispensables et accessibles ?",
-      "recommandation": "Confirmer Miro et n8n ; proposer Claude Code en ressource si le temps manque, sans dépendre des licences Copilot.",
+      "recommandation": "n8n : deux tests de la démonstration exécutés et validés par le formateur le 12 octobre 2026 (8/9 incomplet PASS ; 8/8 complet PASS), sans validation de tous les usages n8n. Miro reste optionnel ; papier suffisant. Claude Code reste une ressource, sans dépendre des licences Copilot.",
       "hypothese_refs": [
         "AOD-H01",
         "AOD-H05"
